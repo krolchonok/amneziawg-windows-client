@@ -40,16 +40,14 @@ if exist .deps\prepared goto :render
 		echo [+] Regenerating files
 		go generate ./... || exit /b 1
 	)
-	call :build_plat x86 i686 386 || goto :error
 	call :build_plat amd64 x86_64 amd64 || goto :error
-	call :build_plat arm64 aarch64 arm64 || goto :error
 
 :sign
 	if exist .\sign.bat call .\sign.bat
 	if "%SigningProvider%"=="" goto :success
 	if "%TimestampServer%"=="" goto :success
 	echo [+] Signing
-	signtool sign %SigningProvider% /fd sha256 /tr "%TimestampServer%" /td sha256 /d WireGuard x86\amneziawg.exe x86\awg.exe amd64\amneziawg.exe amd64\awg.exe arm64\amneziawg.exe arm64\awg.exe || goto :error
+	signtool sign %SigningProvider% /fd sha256 /tr "%TimestampServer%" /td sha256 /d WireGuard amd64\amneziawg.exe amd64\awg.exe || goto :error
 
 :success
 	echo [+] Success. Launch amneziawg.exe.
