@@ -20,8 +20,23 @@ jobs:
       with:
         go-version: '1.20'
 
+    - name: Cache Go modules
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/go-build
+          ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+
     - name: Build application
       run: .\build.bat
+
+    - name: List build directory
+      run: |
+        dir
+        if (Test-Path amd64) { dir amd64 } else { Write-Host "amd64 directory not found" }
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
@@ -31,11 +46,11 @@ jobs:
           amd64/amneziawg.exe
           amd64/awg.exe
           amd64/wintun.dll
+        if-no-files-found: error
 
     - name: Create Release and Upload Assets
       if: github.event_name == 'release'
       run: |
-        # Скачиваем артефакты
         gh release upload ${{ github.event.release.tag_name }} amd64/amneziawg.exe amd64/awg.exe amd64/wintun.dll --clobber
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
