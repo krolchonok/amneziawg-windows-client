@@ -1,0 +1,41 @@
+name: Build and Release AmneziaWG Windows Client
+
+on:
+  push:
+    branches:
+      - master
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
+    - name: Build application
+      run: .\build.bat
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: amneziawg-windows-build
+        path: |
+          amd64/amneziawg.exe
+          amd64/awg.exe
+          amd64/wintun.dll
+
+    - name: Create Release and Upload Assets
+      if: github.event_name == 'release'
+      run: |
+        # Скачиваем артефакты
+        gh release upload ${{ github.event.release.tag_name }} amd64/amneziawg.exe amd64/awg.exe amd64/wintun.dll --clobber
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
