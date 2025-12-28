@@ -30,13 +30,26 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-go-
 
+    - name: Cache build dependencies
+      uses: actions/cache@v3
+      with:
+        path: .deps
+        key: ${{ runner.os }}-deps-${{ hashFiles('build.bat') }}
+        restore-keys: |
+          ${{ runner.os }}-deps-
+
     - name: Build application
       run: .\build.bat
 
     - name: List build directory
       run: |
         dir
-        if (Test-Path amd64) { dir amd64 } else { Write-Host "amd64 directory not found" }
+        if (Test-Path amd64) { 
+          Write-Host "Contents of amd64:"
+          dir amd64 
+        } else { 
+          Write-Host "amd64 directory not found" 
+        }
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
