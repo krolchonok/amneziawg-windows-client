@@ -18,52 +18,61 @@ jobs:
     - name: Setup Go
       uses: actions/setup-go@v4
       with:
-        go-version: '1.20'
-
-    - name: Cache Go modules
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.cache/go-build
-          ~/go/pkg/mod
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.os }}-go-
+        go-version: '1.20.14'
 
     - name: Cache build dependencies
       uses: actions/cache@v3
       with:
         path: .deps
-        key: ${{ runner.os }}-deps-${{ hashFiles('build.bat') }}
+        key: ${{ runner.os }}-deps-v2-${{ hashFiles('build.bat') }}
         restore-keys: |
-          ${{ runner.os }}-deps-
+          ${{ runner.os }}-deps-v2-
 
-    - name: Build application
-      run: .\build.bat
-
-    - name: List build directory
+    - name: Install dependencies and build
       run: |
-        dir
-        if (Test-Path amd64) { 
-          Write-Host "Contents of amd64:"
-          dir amd64 
-        } else { 
-          Write-Host "amd64 directory not found" 
+        if exist .deps\prepared (
+          echo Dependencies already installed
+        ) else (
+          echo Installing dependencies
+        )
+        call build.bat
+        if errorlevel 1 exit /b 1
+      shell: cmd
+
+    - name: Verify build outputs
+      run: |
+        Write-Host "Checking build outputs..."
+        if (!(Test-Path "amd64\amneziawg.exe")) {
+          Write-Host "ERROR: amneziawg.exe not found!"
+          Get-ChildItem -Path amd64 -ErrorAction SilentlyContinue | Format-Table
+          exit 1
         }
+        if (!(Test-Path "amd64\awg.exe")) {
+          Write-Host "ERROR: awg.exe not found!"
+          exit 1
+        }
+        if (!(Test-Path "amd64\wintun.dll")) {
+          Write-Host "ERROR: wintun.dll not found!"
+          exit 1
+        }
+        Write-Host "All build outputs verified successfully"
+        Get-ChildItem -Path amd64 | Format-Table Name, Length
+      shell: pwsh
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: amneziawg-windows-build
+        name: amneziawg-windows-build-${{ github.sha }}
         path: |
-          amd64/amneziawg.exe
-          amd64/awg.exe
-          amd64/wintun.dll
+          amd64\amneziawg.exe
+          amd64\awg.exe
+          amd64\wintun.dll
         if-no-files-found: error
 
     - name: Create Release and Upload Assets
       if: github.event_name == 'release'
       run: |
-        gh release upload ${{ github.event.release.tag_name }} amd64/amneziawg.exe amd64/awg.exe amd64/wintun.dll --clobber
+        gh release upload ${{ github.event.release.tag_name }} amd64\amneziawg.exe amd64\awg.exe amd64\wintun.dll --clobber
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      shell: pwsh
