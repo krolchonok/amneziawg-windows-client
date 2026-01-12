@@ -4,7 +4,7 @@ rem Copyright (C) 2019-2022 WireGuard LLC. All Rights Reserved.
 
 setlocal enabledelayedexpansion
 set BUILDDIR=%~dp0
-set PATH=%BUILDDIR%.deps\llvm-mingw-20231128-ucrt-x86_64\bin;%BUILDDIR%.deps\go\bin;%BUILDDIR%.deps;%PATH%
+set PATH=%BUILDDIR%.deps\llvm-mingw-20201020-msvcrt-x86_64\bin;%BUILDDIR%.deps\go\bin;%BUILDDIR%.deps;%PATH%
 set PATHEXT=.exe
 cd /d %BUILDDIR% || exit /b 1
 
