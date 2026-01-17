@@ -9,6 +9,7 @@ require (
 	github.com/amnezia-vpn/amneziawg-windows v0.1.8
 	github.com/lxn/walk v0.0.0-20210112085537-c389da54e794
 	github.com/lxn/win v0.0.0-20210218163916-a377121e959e
+	github.com/miekg/dns v1.1.61
 	golang.org/x/crypto v0.39.0
 	golang.org/x/sys v0.33.0
 	golang.org/x/text v0.26.0

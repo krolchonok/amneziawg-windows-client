@@ -55,7 +55,26 @@ const (
 	QuitMethodType
 	UpdateStateMethodType
 	UpdateMethodType
+	DomainRoutingGetModeMethodType
+	DomainRoutingSetModeMethodType
+	DomainRoutingGetRulesMethodType
+	DomainRoutingSetRulesMethodType
+	DomainRoutingGetListModeMethodType
+	DomainRoutingSetListModeMethodType
+	DomainRoutingGetExcludeLoopbackMethodType
+	DomainRoutingSetExcludeLoopbackMethodType
+	DNSLogGetEntriesMethodType
+	DNSLogClearMethodType
+	DNSLogSetEnabledMethodType
 )
+
+// DomainRoutingRulesData for IPC transfer
+type DomainRoutingRulesData struct {
+	ListMode string
+	Domains  []string
+	Tunnel   []string
+	Direct   []string
+}
 
 var (
 	rpcEncoder *gob.Encoder
@@ -429,6 +448,124 @@ func IPCClientUpdate() error {
 	defer rpcMutex.Unlock()
 
 	return rpcEncoder.Encode(UpdateMethodType)
+}
+
+func IPCClientDomainRoutingMode() (DomainRoutingMode, error) {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DomainRoutingGetModeMethodType); err != nil {
+		return DomainRoutingOff, err
+	}
+	var mode DomainRoutingMode
+	if err := rpcDecoder.Decode(&mode); err != nil {
+		return DomainRoutingOff, err
+	}
+	return mode, nil
+}
+
+func IPCClientSetDomainRoutingMode(mode DomainRoutingMode) error {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DomainRoutingSetModeMethodType); err != nil {
+		return err
+	}
+	if err := rpcEncoder.Encode(mode); err != nil {
+		return err
+	}
+	return rpcDecodeError()
+}
+
+func IPCClientDomainRoutingRules() (DomainRoutingRulesData, error) {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	var rules DomainRoutingRulesData
+	if err := rpcEncoder.Encode(DomainRoutingGetRulesMethodType); err != nil {
+		return rules, err
+	}
+	if err := rpcDecoder.Decode(&rules); err != nil {
+		return rules, err
+	}
+	return rules, nil
+}
+
+func IPCClientSetDomainRoutingRules(rules DomainRoutingRulesData) error {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DomainRoutingSetRulesMethodType); err != nil {
+		return err
+	}
+	if err := rpcEncoder.Encode(rules); err != nil {
+		return err
+	}
+	return rpcDecodeError()
+}
+
+func IPCClientDomainRoutingExcludeLoopback() (bool, error) {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DomainRoutingGetExcludeLoopbackMethodType); err != nil {
+		return false, err
+	}
+	var exclude bool
+	if err := rpcDecoder.Decode(&exclude); err != nil {
+		return false, err
+	}
+	return exclude, nil
+}
+
+func IPCClientSetDomainRoutingExcludeLoopback(exclude bool) error {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DomainRoutingSetExcludeLoopbackMethodType); err != nil {
+		return err
+	}
+	if err := rpcEncoder.Encode(exclude); err != nil {
+		return err
+	}
+	return rpcDecodeError()
+}
+
+func IPCClientDNSLogGetEntries() ([]DNSLogEntry, error) {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DNSLogGetEntriesMethodType); err != nil {
+		return nil, err
+	}
+	var entries []DNSLogEntry
+	if err := rpcDecoder.Decode(&entries); err != nil {
+		return nil, err
+	}
+	return entries, nil
+}
+
+func IPCClientDNSLogClear() error {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DNSLogClearMethodType); err != nil {
+		return err
+	}
+	return nil
+}
+
+func IPCClientDNSLogSetEnabled(enabled bool) error {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DNSLogSetEnabledMethodType); err != nil {
+		return err
+	}
+	if err := rpcEncoder.Encode(enabled); err != nil {
+		return err
+	}
+	return nil
 }
 
 func IPCClientRegisterTunnelChange(cb func(tunnel *Tunnel, state, globalState TunnelState, err error)) *TunnelChangeCallback {

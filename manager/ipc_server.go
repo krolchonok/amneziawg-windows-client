@@ -92,6 +92,14 @@ func (s *ManagerService) Start(tunnelName string) error {
 		return err
 	}
 
+	// Модифицируем AllowedIPs для исключения loopback если опция включена
+	if ExcludeLoopbackFromAllowedIPs(c) {
+		// Сохраняем модифицированный конфиг во временный файл
+		if err := c.Save(true); err != nil {
+			log.Printf("domain routing: failed to save modified config: %v", err)
+		}
+	}
+
 	// Figure out which tunnels have intersecting addresses/routes and stop those.
 	trackedTunnelsLock.Lock()
 	tt := make([]string, 0, len(trackedTunnels))
@@ -451,6 +459,72 @@ func (s *ManagerService) ServeConn(reader io.Reader, writer io.Writer) {
 			}
 		case UpdateMethodType:
 			s.Update()
+		case DomainRoutingGetModeMethodType:
+			mode := domainRouting.GetMode()
+			err = encoder.Encode(mode)
+			if err != nil {
+				return
+			}
+		case DomainRoutingSetModeMethodType:
+			var mode DomainRoutingMode
+			err := decoder.Decode(&mode)
+			if err != nil {
+				return
+			}
+			retErr := domainRouting.SetMode(mode)
+			err = encoder.Encode(errToString(retErr))
+			if err != nil {
+				return
+			}
+		case DomainRoutingGetRulesMethodType:
+			rules := domainRouting.GetRules()
+			err = encoder.Encode(rules)
+			if err != nil {
+				return
+			}
+		case DomainRoutingSetRulesMethodType:
+			var rules DomainRoutingRulesData
+			err := decoder.Decode(&rules)
+			if err != nil {
+				return
+			}
+			retErr := domainRouting.SetRules(rules)
+			err = encoder.Encode(errToString(retErr))
+			if err != nil {
+				return
+			}
+		case DomainRoutingGetExcludeLoopbackMethodType:
+			exclude := domainRouting.GetExcludeLoopback()
+			err = encoder.Encode(exclude)
+			if err != nil {
+				return
+			}
+		case DomainRoutingSetExcludeLoopbackMethodType:
+			var exclude bool
+			err := decoder.Decode(&exclude)
+			if err != nil {
+				return
+			}
+			retErr := domainRouting.SetExcludeLoopback(exclude)
+			err = encoder.Encode(errToString(retErr))
+			if err != nil {
+				return
+			}
+		case DNSLogGetEntriesMethodType:
+			entries := dnsLogger.GetEntries()
+			err = encoder.Encode(entries)
+			if err != nil {
+				return
+			}
+		case DNSLogClearMethodType:
+			dnsLogger.Clear()
+		case DNSLogSetEnabledMethodType:
+			var enabled bool
+			err := decoder.Decode(&enabled)
+			if err != nil {
+				return
+			}
+			dnsLogger.SetEnabled(enabled)
 		default:
 			return
 		}
@@ -520,6 +594,9 @@ func errToString(err error) string {
 }
 
 func IPCServerNotifyTunnelChange(name string, state TunnelState, err error) {
+	if domainRouting != nil {
+		domainRouting.OnTunnelStateChange(name, state)
+	}
 	notifyAll(TunnelChangeNotificationType, false, name, state, trackedTunnelsGlobalState(), errToString(err))
 }
 

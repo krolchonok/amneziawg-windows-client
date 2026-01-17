@@ -33,6 +33,8 @@ type Tray struct {
 	tunnelsChangedCB *manager.TunnelsChangeCallback
 
 	clicked func()
+
+	domainRoutingActions map[manager.DomainRoutingMode]*walk.Action
 }
 
 func NewTray(mtw *ManageTunnelsWindow) (*Tray, error) {
@@ -103,6 +105,10 @@ func (tray *Tray) setup() error {
 
 		tray.ContextMenu().Actions().Add(action)
 	}
+
+	if err := tray.addDomainRoutingMenu(); err != nil {
+		return err
+	}
 	tray.tunnelChangedCB = manager.IPCClientRegisterTunnelChange(tray.onTunnelChange)
 	tray.tunnelsChangedCB = manager.IPCClientRegisterTunnelsChange(tray.onTunnelsChange)
 	tray.onTunnelsChange()
@@ -110,6 +116,57 @@ func (tray *Tray) setup() error {
 	tray.updateGlobalState(globalState)
 
 	return nil
+}
+
+func (tray *Tray) addDomainRoutingMenu() error {
+	menu, err := walk.NewMenu()
+	if err != nil {
+		return err
+	}
+
+	menuAction := walk.NewMenuAction(menu)
+	menuAction.SetText(l18n.Sprintf("&Domain routing"))
+	menuAction.SetVisible(IsAdmin)
+
+	tray.domainRoutingActions = make(map[manager.DomainRoutingMode]*walk.Action)
+	for _, item := range []struct {
+		mode  manager.DomainRoutingMode
+		label string
+	}{
+		{manager.DomainRoutingOff, l18n.Sprintf("&Off")},
+		{manager.DomainRoutingRelaxed, l18n.Sprintf("&Relaxed")},
+		{manager.DomainRoutingStrict, l18n.Sprintf("&Strict")},
+	} {
+		action := walk.NewAction()
+		action.SetText(item.label)
+		action.SetCheckable(true)
+		mode := item.mode
+		action.Triggered().Attach(func() {
+			if err := manager.IPCClientSetDomainRoutingMode(mode); err != nil {
+				tray.mtw.Synchronize(func() {
+					showErrorCustom(tray.mtw, l18n.Sprintf("Failed to update domain routing"), err.Error())
+				})
+				return
+			}
+			tray.setDomainRoutingMode(mode)
+		})
+		menu.Actions().Add(action)
+		tray.domainRoutingActions[mode] = action
+	}
+
+	tray.ContextMenu().Actions().Insert(4, menuAction)
+
+	mode, err := manager.IPCClientDomainRoutingMode()
+	if err == nil {
+		tray.setDomainRoutingMode(mode)
+	}
+	return nil
+}
+
+func (tray *Tray) setDomainRoutingMode(mode manager.DomainRoutingMode) {
+	for m, action := range tray.domainRoutingActions {
+		action.SetChecked(m == mode)
+	}
 }
 
 func (tray *Tray) Dispose() error {

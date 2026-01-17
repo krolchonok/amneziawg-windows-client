@@ -20,10 +20,12 @@ import (
 type ManageTunnelsWindow struct {
 	walk.FormBase
 
-	tabs        *walk.TabWidget
-	tunnelsPage *TunnelsPage
-	logPage     *LogPage
-	updatePage  *UpdatePage
+	tabs              *walk.TabWidget
+	tunnelsPage       *TunnelsPage
+	logPage           *LogPage
+	updatePage        *UpdatePage
+	domainRoutingPage *DomainRoutingPage
+	dnsLogPage        *DNSLogPage
 
 	tunnelChangedCB *manager.TunnelChangeCallback
 }
@@ -109,6 +111,16 @@ func NewManageTunnelsWindow() (*ManageTunnelsWindow, error) {
 	}
 	mtw.tabs.Pages().Add(mtw.logPage.TabPage)
 
+	if mtw.domainRoutingPage, err = NewDomainRoutingPage(); err != nil {
+		return nil, err
+	}
+	mtw.tabs.Pages().Add(mtw.domainRoutingPage.TabPage)
+
+	if mtw.dnsLogPage, err = NewDNSLogPage(); err != nil {
+		return nil, err
+	}
+	mtw.tabs.Pages().Add(mtw.dnsLogPage.TabPage)
+
 	mtw.tunnelChangedCB = manager.IPCClientRegisterTunnelChange(mtw.onTunnelChange)
 	globalState, _ := manager.IPCClientGlobalState()
 	mtw.onTunnelChange(nil, manager.TunnelUnknown, globalState, nil)
@@ -138,6 +150,12 @@ func (mtw *ManageTunnelsWindow) Dispose() {
 	if mtw.tunnelChangedCB != nil {
 		mtw.tunnelChangedCB.Unregister()
 		mtw.tunnelChangedCB = nil
+	}
+	if mtw.domainRoutingPage != nil {
+		mtw.domainRoutingPage.Dispose()
+	}
+	if mtw.dnsLogPage != nil {
+		mtw.dnsLogPage.Dispose()
 	}
 	mtw.FormBase.Dispose()
 }

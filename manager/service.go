@@ -70,6 +70,9 @@ func (service *managerService) Execute(args []string, r <-chan svc.ChangeRequest
 
 	conf.RegisterStoreChangeCallback(func() { conf.MigrateUnencryptedConfigs(changeTunnelServiceConfigFilePath) })
 	conf.RegisterStoreChangeCallback(IPCServerNotifyTunnelsChange)
+	if err := InitDomainRouting(); err != nil {
+		log.Printf("Failed to initialize domain routing: %v", err)
+	}
 
 	procs := make(map[uint32]*uiProcess)
 	aliveSessions := make(map[uint32]bool)
