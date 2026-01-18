@@ -136,6 +136,7 @@ func (tray *Tray) addDomainRoutingMenu() error {
 		{manager.DomainRoutingOff, l18n.Sprintf("&Off")},
 		{manager.DomainRoutingRelaxed, l18n.Sprintf("&Relaxed")},
 		{manager.DomainRoutingStrict, l18n.Sprintf("&Strict")},
+		{manager.DomainRoutingDNSOnly, l18n.Sprintf("DNS &Only")},
 	} {
 		action := walk.NewAction()
 		action.SetText(item.label)

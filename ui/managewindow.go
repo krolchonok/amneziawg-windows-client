@@ -26,6 +26,7 @@ type ManageTunnelsWindow struct {
 	updatePage        *UpdatePage
 	domainRoutingPage *DomainRoutingPage
 	dnsLogPage        *DNSLogPage
+	dnsBlockPage      *DNSBlockPage
 
 	tunnelChangedCB *manager.TunnelChangeCallback
 }
@@ -121,6 +122,11 @@ func NewManageTunnelsWindow() (*ManageTunnelsWindow, error) {
 	}
 	mtw.tabs.Pages().Add(mtw.dnsLogPage.TabPage)
 
+	if mtw.dnsBlockPage, err = NewDNSBlockPage(); err != nil {
+		return nil, err
+	}
+	mtw.tabs.Pages().Add(mtw.dnsBlockPage.TabPage)
+
 	mtw.tunnelChangedCB = manager.IPCClientRegisterTunnelChange(mtw.onTunnelChange)
 	globalState, _ := manager.IPCClientGlobalState()
 	mtw.onTunnelChange(nil, manager.TunnelUnknown, globalState, nil)
@@ -156,6 +162,9 @@ func (mtw *ManageTunnelsWindow) Dispose() {
 	}
 	if mtw.dnsLogPage != nil {
 		mtw.dnsLogPage.Dispose()
+	}
+	if mtw.dnsBlockPage != nil {
+		mtw.dnsBlockPage.Dispose()
 	}
 	mtw.FormBase.Dispose()
 }

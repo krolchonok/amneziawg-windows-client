@@ -124,6 +124,39 @@ func (m *domainRoutingManager) handleDNSQuery(w dns.ResponseWriter, r *dns.Msg) 
 	logEntry.Domain = name
 	logEntry.QueryType = dns.TypeToString[q.Qtype]
 
+	// Check local DNS records first
+	if q.Qtype == dns.TypeA || q.Qtype == dns.TypeAAAA {
+		if localIP := LookupLocalDNS(name); localIP != "" {
+			ip := net.ParseIP(localIP)
+			if ip != nil {
+				resp := new(dns.Msg)
+				resp.SetReply(r)
+				resp.Authoritative = true
+
+				if q.Qtype == dns.TypeA && ip.To4() != nil {
+					resp.Answer = append(resp.Answer, &dns.A{
+						Hdr: dns.RR_Header{Name: q.Name, Rrtype: dns.TypeA, Class: dns.ClassINET, Ttl: 300},
+						A:   ip.To4(),
+					})
+				} else if q.Qtype == dns.TypeAAAA && ip.To4() == nil {
+					resp.Answer = append(resp.Answer, &dns.AAAA{
+						Hdr:  dns.RR_Header{Name: q.Name, Rrtype: dns.TypeAAAA, Class: dns.ClassINET, Ttl: 300},
+						AAAA: ip,
+					})
+				}
+
+				if len(resp.Answer) > 0 {
+					logEntry.Target = "local"
+					logEntry.ResponseIPs = []string{localIP}
+					logEntry.Latency = time.Since(startTime)
+					dnsLogger.Log(logEntry)
+					_ = w.WriteMsg(resp)
+					return
+				}
+			}
+		}
+	}
+
 	target := m.decideRoute(name)
 	logEntry.Target = routeTargetToString(target)
 
@@ -163,8 +196,8 @@ func (m *domainRoutingManager) handleDNSQuery(w dns.ResponseWriter, r *dns.Msg) 
 		}
 	}
 
-	// Применяем роуты только когда режим включён И туннель активен
-	if mode != DomainRoutingOff && target != routeTargetNone && m.hasTunnel() {
+	// Применяем роуты только когда режим включён И туннель активен И не DNS Only
+	if mode != DomainRoutingOff && mode != DomainRoutingDNSOnly && target != routeTargetNone && m.hasTunnel() {
 		if err := m.applyRoutesFromResponse(resp, target); err != nil && mode == DomainRoutingStrict {
 			failed := new(dns.Msg)
 			failed.SetRcode(r, dns.RcodeServerFailure)

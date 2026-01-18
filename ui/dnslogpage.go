@@ -7,7 +7,9 @@ package ui
 
 import (
 	"fmt"
+	"os/exec"
 	"strings"
+	"sort"
 	"sync"
 	"time"
 
@@ -23,9 +25,11 @@ type DNSLogPage struct {
 	logView       *walk.TableView
 	logModel      *dnsLogModel
 	autoScroll    bool
+	clickedIndex  int // Index of right-clicked row for context menu
 	
 	enabledCheck  *walk.CheckBox
 	clearButton   *walk.PushButton
+	flushButton   *walk.PushButton
 	refreshButton *walk.PushButton
 	autoScrollCheck *walk.CheckBox
 	
@@ -38,7 +42,61 @@ type DNSLogPage struct {
 
 type dnsLogModel struct {
 	walk.TableModelBase
+	walk.SorterBase
 	entries []manager.DNSLogEntry
+}
+
+func (m *dnsLogModel) Sort(col int, order walk.SortOrder) error {
+	asc := order == walk.SortAscending
+	sort.SliceStable(m.entries, func(i, j int) bool {
+		a := m.entries[i]
+		b := m.entries[j]
+		switch col {
+		case 0: // Time
+			if asc {
+				return a.Timestamp.Before(b.Timestamp)
+			}
+			return b.Timestamp.Before(a.Timestamp)
+		case 1: // Domain
+			if asc {
+				return a.Domain < b.Domain
+			}
+			return b.Domain < a.Domain
+		case 2: // Type
+			if asc {
+				return a.QueryType < b.QueryType
+			}
+			return b.QueryType < a.QueryType
+		case 3: // Route
+			if asc {
+				return a.Target < b.Target
+			}
+			return b.Target < a.Target
+		case 4: // IPs
+			ai := strings.Join(a.ResponseIPs, ", ")
+			bi := strings.Join(b.ResponseIPs, ", ")
+			if asc {
+				return ai < bi
+			}
+			return bi < ai
+		case 5: // Latency
+			if asc {
+				return a.Latency < b.Latency
+			}
+			return b.Latency < a.Latency
+		case 6: // Error
+			if asc {
+				return a.Error < b.Error
+			}
+			return b.Error < a.Error
+		default:
+			return false
+		}
+	})
+	err := m.SorterBase.Sort(col, order)
+	// Ensure the view is refreshed after sorting so hover/selection render correctly.
+	m.PublishRowsReset()
+	return err
 }
 
 func (m *dnsLogModel) RowCount() int {
@@ -75,8 +133,9 @@ func NewDNSLogPage() (*DNSLogPage, error) {
 	defer disposables.Treat()
 
 	dlp := &DNSLogPage{
-		autoScroll:  true,
-		stopRefresh: make(chan struct{}),
+		autoScroll:   true,
+		clickedIndex: -1,
+		stopRefresh:  make(chan struct{}),
 	}
 
 	if dlp.TabPage, err = walk.NewTabPage(); err != nil {
@@ -114,7 +173,7 @@ func NewDNSLogPage() (*DNSLogPage, error) {
 	if dlp.statsLabel, err = walk.NewTextLabel(toolbar); err != nil {
 		return nil, err
 	}
-	dlp.statsLabel.SetText(l18n.Sprintf("Queries: 0"))
+	dlp.statsLabel.SetText(l18n.Sprintf("Queries: %d", 0))
 
 	walk.NewHSpacer(toolbar)
 
@@ -130,15 +189,103 @@ func NewDNSLogPage() (*DNSLogPage, error) {
 	dlp.clearButton.SetText(l18n.Sprintf("Clear"))
 	dlp.clearButton.Clicked().Attach(dlp.clearLog)
 
+	if dlp.flushButton, err = walk.NewPushButton(toolbar); err != nil {
+		return nil, err
+	}
+	dlp.flushButton.SetText(l18n.Sprintf("Flush DNS Cache"))
+	dlp.flushButton.Clicked().Attach(dlp.flushDNSCache)
+
 	// Log table
 	dlp.logModel = &dnsLogModel{}
 
 	if dlp.logView, err = walk.NewTableView(dlp); err != nil {
 		return nil, err
 	}
+	// Context menu for actions on entries
+	contextMenu, err := walk.NewMenu()
+	if err != nil {
+		return nil, err
+	}
+	dlp.logView.AddDisposable(contextMenu)
+
+	// Add to Local DNS action
+	addLocalDNSAction := walk.NewAction()
+	addLocalDNSAction.SetText(l18n.Sprintf("Add to Local DNS"))
+	addLocalDNSAction.Triggered().Attach(func() {
+		idx := dlp.clickedIndex
+		if idx < 0 || idx >= len(dlp.logModel.entries) {
+			return
+		}
+		entry := dlp.logModel.entries[idx]
+		domain := entry.Domain
+		ip := ""
+		if len(entry.ResponseIPs) > 0 {
+			ip = entry.ResponseIPs[0]
+		}
+		if domain == "" || ip == "" {
+			walk.MsgBox(dlp.Form(), l18n.Sprintf("Local DNS"), l18n.Sprintf("Cannot add: domain or IP is empty"), walk.MsgBoxIconWarning)
+			return
+		}
+		if err := manager.AddLocalDNSRecord(domain, ip); err != nil {
+			walk.MsgBox(dlp.Form(), l18n.Sprintf("Error"), err.Error(), walk.MsgBoxIconError)
+			return
+		}
+		walk.MsgBox(dlp.Form(), l18n.Sprintf("Local DNS"), l18n.Sprintf("%s -> %s added to local DNS", domain, ip), walk.MsgBoxIconInformation)
+	})
+	contextMenu.Actions().Add(addLocalDNSAction)
+
+	// Add to Domain Routing (Whitelist) action
+	addWhitelistAction := walk.NewAction()
+	addWhitelistAction.SetText(l18n.Sprintf("Add to Domain List"))
+	addWhitelistAction.Triggered().Attach(func() {
+		idx := dlp.clickedIndex
+		if idx < 0 || idx >= len(dlp.logModel.entries) {
+			return
+		}
+		entry := dlp.logModel.entries[idx]
+		domain := entry.Domain
+		if domain == "" {
+			return
+		}
+		// Fetch current rules via IPC, append domain if not present
+		rules, err := manager.IPCClientDomainRoutingRules()
+		if err != nil {
+			showErrorCustom(dlp.Form(), l18n.Sprintf("Failed to update domain routing rules"), err.Error())
+			return
+		}
+		// check existence (case-insensitive)
+		exists := false
+		for _, d := range rules.Domains {
+			if strings.EqualFold(d, domain) {
+				exists = true
+				break
+			}
+		}
+		if !exists {
+			rules.Domains = append(rules.Domains, domain)
+			if err := manager.IPCClientSetDomainRoutingRules(rules); err != nil {
+				showErrorCustom(dlp.Form(), l18n.Sprintf("Failed to update domain routing rules"), err.Error())
+				return
+			}
+		}
+		walk.MsgBox(dlp.Form(), l18n.Sprintf("Domain Routing"), l18n.Sprintf("%s added to domain list", domain), walk.MsgBoxIconInformation)
+	})
+	contextMenu.Actions().Add(addWhitelistAction)
+
 	dlp.logView.SetModel(dlp.logModel)
 	dlp.logView.SetAlternatingRowBG(true)
 	dlp.logView.SetLastColumnStretched(true)
+	dlp.logView.SetContextMenu(contextMenu)
+	// Ensure right-click selects the clicked row and stores index for menu actions
+	dlp.logView.MouseDown().Attach(func(x, y int, button walk.MouseButton) {
+		if button == walk.RightButton {
+			idx := dlp.logView.IndexAt(x, y)
+			dlp.clickedIndex = idx
+			if idx >= 0 {
+				dlp.logView.SetCurrentIndex(idx)
+			}
+		}
+	})
 
 	columns := []struct {
 		title string
@@ -204,7 +351,7 @@ func (dlp *DNSLogPage) refreshLog() {
 	dlp.logModel.entries = entries
 	dlp.logModel.PublishRowsReset()
 
-	dlp.statsLabel.SetText(fmt.Sprintf(l18n.Sprintf("Queries: %d"), len(entries)))
+	dlp.statsLabel.SetText(l18n.Sprintf("Queries: %d", len(entries)))
 
 	// Auto-scroll to bottom if enabled and new entries added
 	if dlp.autoScroll && len(entries) > 0 && len(entries) > oldCount {
@@ -215,6 +362,16 @@ func (dlp *DNSLogPage) refreshLog() {
 func (dlp *DNSLogPage) clearLog() {
 	_ = manager.IPCClientDNSLogClear()
 	dlp.refreshLog()
+}
+
+func (dlp *DNSLogPage) flushDNSCache() {
+	cmd := exec.Command("ipconfig", "/flushdns")
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		walk.MsgBox(dlp.Form(), l18n.Sprintf("Flush DNS Cache"), l18n.Sprintf("Failed to flush DNS cache: %s\n\n%s", err.Error(), string(out)), walk.MsgBoxIconError)
+		return
+	}
+	walk.MsgBox(dlp.Form(), l18n.Sprintf("Flush DNS Cache"), l18n.Sprintf("DNS cache flushed successfully."), walk.MsgBoxIconInformation)
 }
 
 func (dlp *DNSLogPage) onEnabledChanged() {

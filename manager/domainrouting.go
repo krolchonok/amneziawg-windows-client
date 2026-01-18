@@ -24,6 +24,7 @@ const (
 	DomainRoutingOff DomainRoutingMode = iota
 	DomainRoutingRelaxed
 	DomainRoutingStrict
+	DomainRoutingDNSOnly // DNS proxy only, no routing through tunnel
 )
 
 func (m DomainRoutingMode) String() string {
@@ -32,6 +33,8 @@ func (m DomainRoutingMode) String() string {
 		return "relaxed"
 	case DomainRoutingStrict:
 		return "strict"
+	case DomainRoutingDNSOnly:
+		return "dnsonly"
 	default:
 		return "off"
 	}
@@ -43,6 +46,8 @@ func parseDomainRoutingMode(s string) DomainRoutingMode {
 		return DomainRoutingRelaxed
 	case "strict":
 		return DomainRoutingStrict
+	case "dnsonly":
+		return DomainRoutingDNSOnly
 	default:
 		return DomainRoutingOff
 	}

@@ -21,6 +21,7 @@ type DomainRoutingPage struct {
 	modeOff      *walk.RadioButton
 	modeRelaxed  *walk.RadioButton
 	modeStrict   *walk.RadioButton
+	modeDNSOnly  *walk.RadioButton
 	statusLabel  *walk.TextLabel
 
 	// Исключить loopback из туннеля
@@ -101,6 +102,12 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	}
 	drp.modeStrict.SetText(l18n.Sprintf("Strict"))
 	drp.modeStrict.SetToolTipText(l18n.Sprintf("Routes are added for matching domains. If route cannot be added, DNS query fails."))
+
+	if drp.modeDNSOnly, err = walk.NewRadioButton(radioContainer); err != nil {
+		return nil, err
+	}
+	drp.modeDNSOnly.SetText(l18n.Sprintf("DNS Only"))
+	drp.modeDNSOnly.SetToolTipText(l18n.Sprintf("DNS proxy only. Traffic goes directly without tunnel routing."))
 
 	walk.NewHSpacer(radioContainer)
 
@@ -259,6 +266,11 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 			drp.onModeChanged(manager.DomainRoutingStrict)
 		}
 	})
+	drp.modeDNSOnly.CheckedChanged().Attach(func() {
+		if drp.modeDNSOnly.Checked() {
+			drp.onModeChanged(manager.DomainRoutingDNSOnly)
+		}
+	})
 
 	// Обработчики для режима списка
 	drp.listModeWhitelist.CheckedChanged().Attach(func() {
@@ -288,6 +300,7 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 		drp.modeOff.SetEnabled(false)
 		drp.modeRelaxed.SetEnabled(false)
 		drp.modeStrict.SetEnabled(false)
+		drp.modeDNSOnly.SetEnabled(false)
 		drp.listModeWhitelist.SetEnabled(false)
 		drp.listModeBlacklist.SetEnabled(false)
 		drp.listModeAdvanced.SetEnabled(false)
@@ -342,6 +355,7 @@ func (drp *DomainRoutingPage) setModeUI(mode manager.DomainRoutingMode) {
 	drp.modeOff.SetChecked(mode == manager.DomainRoutingOff)
 	drp.modeRelaxed.SetChecked(mode == manager.DomainRoutingRelaxed)
 	drp.modeStrict.SetChecked(mode == manager.DomainRoutingStrict)
+	drp.modeDNSOnly.SetChecked(mode == manager.DomainRoutingDNSOnly)
 }
 
 func (drp *DomainRoutingPage) setListModeUI(listMode string) {
