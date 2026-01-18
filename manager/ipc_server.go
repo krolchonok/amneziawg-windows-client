@@ -516,6 +516,7 @@ func (s *ManagerService) ServeConn(reader io.Reader, writer io.Writer) {
 			if err != nil {
 				return
 			}
+        
 		case DNSLogClearMethodType:
 			dnsLogger.Clear()
 		case DNSLogSetEnabledMethodType:

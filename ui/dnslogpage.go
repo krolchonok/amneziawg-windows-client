@@ -274,7 +274,9 @@ func NewDNSLogPage() (*DNSLogPage, error) {
 
 	dlp.logView.SetModel(dlp.logModel)
 	dlp.logView.SetAlternatingRowBG(true)
-	dlp.logView.SetLastColumnStretched(true)
+	// Do not stretch the last column — stretching can trigger layout
+	// recalculations that cause visual glitches when hovering rows.
+	dlp.logView.SetLastColumnStretched(false)
 	dlp.logView.SetContextMenu(contextMenu)
 	// Ensure right-click selects the clicked row and stores index for menu actions
 	dlp.logView.MouseDown().Attach(func(x, y int, button walk.MouseButton) {
@@ -350,6 +352,12 @@ func (dlp *DNSLogPage) refreshLog() {
 	oldCount := len(dlp.logModel.entries)
 	dlp.logModel.entries = entries
 	dlp.logModel.PublishRowsReset()
+
+	// Ensure the view is fully repainted after the model reset to avoid
+	// visual inconsistencies when hovering rows.
+	if dlp.logView != nil {
+		dlp.logView.Invalidate()
+	}
 
 	dlp.statsLabel.SetText(l18n.Sprintf("Queries: %d", len(entries)))
 

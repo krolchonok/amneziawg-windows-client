@@ -192,7 +192,8 @@ func (m *domainRoutingManager) init() error {
 		// Не возвращаем ошибку - приложение может работать без DNS proxy
 	}
 
-	go m.cleanupLoop()
+	// Автоматическая очистка маршрутов отключена - пользователь очищает вручную
+	// go m.cleanupLoop()
 	return nil
 }
 
@@ -203,7 +204,8 @@ func (m *domainRoutingManager) cleanupLoop() {
 	for {
 		select {
 		case <-ticker.C:
-			m.cleanupExpiredRoutes()
+			// Автоматическая очистка отключена
+			// m.cleanupExpiredRoutes()
 		case <-m.stop:
 			return
 		}
@@ -224,6 +226,24 @@ func (m *domainRoutingManager) cleanupExpiredRoutes() {
 		}
 		delete(m.routeEntries, ip)
 	}
+}
+
+// ClearAllRoutes очищает все маршруты (для ручной очистки)
+func ClearAllRoutes() {
+	domainRouting.clearAllRoutes()
+}
+
+func (m *domainRoutingManager) clearAllRoutes() {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
+	for ip, entry := range m.routeEntries {
+		if err := deleteRoute(entry); err != nil {
+			log.Printf("domain routing: failed to delete route for %s: %v", ip, err)
+		}
+		delete(m.routeEntries, ip)
+	}
+	log.Printf("domain routing: cleared all routes manually")
 }
 
 func (m *domainRoutingManager) OnTunnelStateChange(name string, state TunnelState) {
@@ -582,8 +602,11 @@ func (m *domainRoutingManager) addRouteForIP(ip net.IP, target routeTarget, ttl 
 	}
 
 	ttlSeconds := int(ttl)
-	if ttlSeconds <= 0 {
-		ttlSeconds = 60
+	// Минимальный TTL 5 минут (300 секунд) - браузеры часто кэшируют DNS дольше,
+	// чем TTL из DNS ответа, поэтому маршрут должен жить достаточно долго
+	const minTTL = 300
+	if ttlSeconds < minTTL {
+		ttlSeconds = minTTL
 	}
 	expires := time.Now().Add(time.Duration(ttlSeconds) * time.Second)
 

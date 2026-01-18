@@ -166,6 +166,7 @@ func (mtw *ManageTunnelsWindow) Dispose() {
 	if mtw.dnsBlockPage != nil {
 		mtw.dnsBlockPage.Dispose()
 	}
+    
 	mtw.FormBase.Dispose()
 }
 
