@@ -94,10 +94,12 @@ type domainRoutingConfig struct {
 	Tunnel          []string `json:"tunnel"`
 	Direct          []string `json:"direct"`
 	ExcludeLoopback bool     `json:"excludeLoopback"`
+	DNSUpstreams    []string `json:"dnsUpstreams"`
+	DNSRouteMode    string   `json:"dnsRouteMode"`
 }
 
 type interfaceDNSState struct {
-	luid   winipcfg.LUID
+	luid    winipcfg.LUID
 	servers []net.IP
 	search  []string
 }
@@ -111,21 +113,22 @@ const (
 )
 
 type routeEntry struct {
-	ip       string
-	target   routeTarget
-	luid     winipcfg.LUID
-	nextHop  net.IP
-	metric   uint32
-	expires  time.Time
+	ip      string
+	target  routeTarget
+	luid    winipcfg.LUID
+	nextHop net.IP
+	metric  uint32
+	expires time.Time
 }
 
 type domainRoutingManager struct {
 	mu sync.Mutex
 
-	mode     DomainRoutingMode
-	listMode DomainListMode
-	config   domainRoutingConfig
-	rules    domainRoutingRules
+	mode         DomainRoutingMode
+	listMode     DomainListMode
+	dnsRouteMode DNSRouteMode
+	config       domainRoutingConfig
+	rules        domainRoutingRules
 
 	configPath    string
 	configModTime time.Time
@@ -137,8 +140,9 @@ type domainRoutingManager struct {
 	defaultRoute winipcfg.MibIPforwardRow2
 	defaultDNS   []net.IP
 
-	tunDNS []net.IP
-	tunSearch []string
+	tunDNS       []net.IP
+	tunSearch    []string
+	dnsUpstreams []string
 
 	defaultDNSState *interfaceDNSState
 	tunDNSState     *interfaceDNSState
@@ -151,11 +155,42 @@ type domainRoutingManager struct {
 	cachedDefaultIfIndex uint32
 
 	// excludeLoopback - исключать 127.0.0.1 из туннеля (для DNS proxy)
-	excludeLoopback bool
+	excludeLoopback    bool
 	loopbackRouteAdded bool
 
 	proxy *dnsProxy
 	stop  chan struct{}
+}
+
+type DNSRouteMode int
+
+const (
+	DNSRouteDirect DNSRouteMode = iota
+	DNSRouteTunnel
+)
+
+func (m DNSRouteMode) String() string {
+	switch m {
+	case DNSRouteTunnel:
+		return "tunnel"
+	default:
+		return "direct"
+	}
+}
+
+func parseDNSRouteMode(s string) DNSRouteMode {
+	switch strings.ToLower(strings.TrimSpace(s)) {
+	case "tunnel":
+		return DNSRouteTunnel
+	default:
+		return DNSRouteDirect
+	}
+}
+
+// DomainRoutingDNSSettings describes DNS upstreams and routing mode for DNS lookups.
+type DomainRoutingDNSSettings struct {
+	Upstreams []string
+	RouteMode string
 }
 
 type domainRoutingRules struct {
@@ -292,10 +327,10 @@ func (m *domainRoutingManager) SetExcludeLoopback(exclude bool) error {
 	if err := m.saveConfigLocked(); err != nil {
 		return err
 	}
-	
+
 	// Обновляем все конфиги туннелей
 	go updateAllTunnelConfigs(exclude)
-	
+
 	return nil
 }
 
@@ -306,20 +341,20 @@ func updateAllTunnelConfigs(excludeLoopback bool) {
 		log.Printf("domain routing: failed to list tunnels: %v", err)
 		return
 	}
-	
+
 	for _, name := range tunnels {
 		c, err := conf.LoadFromName(name)
 		if err != nil {
 			continue
 		}
-		
+
 		var modified bool
 		if excludeLoopback {
 			modified = excludeLoopbackFromConfig(c)
 		} else {
 			modified = RestoreLoopbackToAllowedIPs(c)
 		}
-		
+
 		if modified {
 			if err := c.Save(true); err != nil {
 				log.Printf("domain routing: failed to save config %s: %v", name, err)
@@ -393,6 +428,29 @@ func (m *domainRoutingManager) SetRules(rules DomainRoutingRulesData) error {
 	return m.saveConfigLocked()
 }
 
+func (m *domainRoutingManager) GetDNSSettings() DomainRoutingDNSSettings {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	upstreams := make([]string, len(m.config.DNSUpstreams))
+	copy(upstreams, m.config.DNSUpstreams)
+	return DomainRoutingDNSSettings{
+		Upstreams: upstreams,
+		RouteMode: m.dnsRouteMode.String(),
+	}
+}
+
+func (m *domainRoutingManager) SetDNSSettings(settings DomainRoutingDNSSettings) error {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
+	upstreams := sanitizeDNSUpstreams(settings.Upstreams)
+	m.dnsUpstreams = upstreams
+	m.config.DNSUpstreams = upstreams
+	m.dnsRouteMode = parseDNSRouteMode(settings.RouteMode)
+	m.config.DNSRouteMode = m.dnsRouteMode.String()
+	return m.saveConfigLocked()
+}
+
 func (m *domainRoutingManager) applyModeLocked() error {
 	if m.mode == DomainRoutingOff {
 		m.clearRoutesLocked()
@@ -463,7 +521,7 @@ func (m *domainRoutingManager) deactivateTunnelLocked() {
 	m.clearRoutesLocked()
 	m.restoreDNSLocked()
 	m.removeLoopbackRouteLocked()
-	
+
 	// НЕ останавливаем proxy - он работает всегда
 	// Просто сбрасываем информацию о туннеле
 	m.activeTunnel = ""
@@ -509,7 +567,7 @@ func (m *domainRoutingManager) applyDNSLocked() error {
 	if m.tunDNSState == nil {
 		search := sanitizeSearchList(m.tunSearch)
 		m.tunDNSState = &interfaceDNSState{
-			luid:   m.tunLUID,
+			luid:    m.tunLUID,
 			servers: filterIPv4(m.tunDNS),
 			search:  search,
 		}
@@ -517,7 +575,7 @@ func (m *domainRoutingManager) applyDNSLocked() error {
 	if m.defaultRoute.InterfaceLUID != 0 && m.defaultDNSState == nil {
 		search := sanitizeSearchList(m.readSearchListForInterface(m.defaultRoute.InterfaceLUID))
 		m.defaultDNSState = &interfaceDNSState{
-			luid:   m.defaultRoute.InterfaceLUID,
+			luid:    m.defaultRoute.InterfaceLUID,
 			servers: filterIPv4(m.defaultDNS),
 			search:  search,
 		}
@@ -678,7 +736,11 @@ func (m *domainRoutingManager) refreshConfigIfNeededLocked() {
 }
 
 func (m *domainRoutingManager) loadConfigLocked() error {
-	cfg := domainRoutingConfig{Mode: DomainRoutingOff.String(), ExcludeLoopback: true} // По умолчанию включено
+	cfg := domainRoutingConfig{
+		Mode:            DomainRoutingOff.String(),
+		ExcludeLoopback: true,
+		DNSRouteMode:    DNSRouteDirect.String(),
+	} // По умолчанию включено
 	info, err := os.Stat(m.configPath)
 	if err == nil {
 		data, readErr := os.ReadFile(m.configPath)
@@ -691,6 +753,10 @@ func (m *domainRoutingManager) loadConfigLocked() error {
 	m.mode = parseDomainRoutingMode(cfg.Mode)
 	m.listMode = parseListMode(cfg.ListMode)
 	m.excludeLoopback = cfg.ExcludeLoopback
+	m.dnsRouteMode = parseDNSRouteMode(cfg.DNSRouteMode)
+	m.dnsUpstreams = sanitizeDNSUpstreams(cfg.DNSUpstreams)
+	m.config.DNSUpstreams = m.dnsUpstreams
+	m.config.DNSRouteMode = m.dnsRouteMode.String()
 	m.rules = domainRoutingRules{
 		domains: normalizeRules(cfg.Domains),
 		tunnel:  normalizeRules(cfg.Tunnel),
@@ -813,6 +879,18 @@ func sanitizeSearchList(in []string) []string {
 	return out
 }
 
+func sanitizeDNSUpstreams(in []string) []string {
+	out := make([]string, 0, len(in))
+	for _, v := range in {
+		v = strings.TrimSpace(v)
+		if v == "" {
+			continue
+		}
+		out = append(out, v)
+	}
+	return out
+}
+
 func filterIPv4(ips []net.IP) []net.IP {
 	out := make([]net.IP, 0, len(ips))
 	for _, ip := range ips {
@@ -895,18 +973,18 @@ func (m *domainRoutingManager) addLoopbackRouteLocked() {
 	if m.loopbackRouteAdded {
 		return
 	}
-	
+
 	// Находим loopback интерфейс
 	loopbackLUID, err := findLoopbackLUID()
 	if err != nil {
 		log.Printf("domain routing: cannot find loopback interface: %v", err)
 		return
 	}
-	
+
 	// Добавляем маршрут для 127.0.0.1/32 через loopback интерфейс с метрикой 1
 	loopbackIP := net.ParseIP("127.0.0.1").To4()
 	dest := net.IPNet{IP: loopbackIP, Mask: net.CIDRMask(32, 32)}
-	
+
 	// nexthop 127.0.0.1 для loopback интерфейса
 	err = loopbackLUID.AddRoute(dest, loopbackIP, 1)
 	if err != nil {
@@ -924,16 +1002,16 @@ func (m *domainRoutingManager) removeLoopbackRouteLocked() {
 	if !m.loopbackRouteAdded {
 		return
 	}
-	
+
 	loopbackLUID, err := findLoopbackLUID()
 	if err != nil {
 		m.loopbackRouteAdded = false
 		return
 	}
-	
+
 	loopbackIP := net.ParseIP("127.0.0.1").To4()
 	dest := net.IPNet{IP: loopbackIP, Mask: net.CIDRMask(32, 32)}
-	
+
 	err = loopbackLUID.DeleteRoute(dest, loopbackIP)
 	if err != nil && !errors.Is(err, windows.ERROR_NOT_FOUND) {
 		log.Printf("domain routing: failed to remove loopback route: %v", err)
@@ -962,7 +1040,7 @@ func ExcludeLoopbackFromAllowedIPs(c *conf.Config) bool {
 	if !domainRouting.GetExcludeLoopback() {
 		return false
 	}
-	
+
 	modified := false
 	for i := range c.Peers {
 		newAllowedIPs := make([]conf.IPCidr, 0, len(c.Peers[i].AllowedIPs)+32)
@@ -1109,7 +1187,7 @@ func allowedIPsExcludingLoopback() []conf.IPCidr {
 		"127.128.0.0/9",
 		"128.0.0.0/1",
 	}
-	
+
 	result := make([]conf.IPCidr, 0, len(subnets))
 	for _, s := range subnets {
 		_, ipnet, err := net.ParseCIDR(s)

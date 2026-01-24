@@ -63,6 +63,8 @@ const (
 	DomainRoutingSetListModeMethodType
 	DomainRoutingGetExcludeLoopbackMethodType
 	DomainRoutingSetExcludeLoopbackMethodType
+	DomainRoutingGetDNSSettingsMethodType
+	DomainRoutingSetDNSSettingsMethodType
 	DNSLogGetEntriesMethodType
 	DNSLogClearMethodType
 	DNSLogSetEnabledMethodType
@@ -408,8 +410,6 @@ func IPCClientTunnels() (tunnels []Tunnel, err error) {
 	return
 }
 
- 
-
 func IPCClientQuit(stopTunnelsOnQuit bool) (alreadyQuit bool, err error) {
 	rpcMutex.Lock()
 	defer rpcMutex.Unlock()
@@ -528,6 +528,33 @@ func IPCClientSetDomainRoutingExcludeLoopback(exclude bool) error {
 		return err
 	}
 	if err := rpcEncoder.Encode(exclude); err != nil {
+		return err
+	}
+	return rpcDecodeError()
+}
+
+func IPCClientDomainRoutingDNSSettings() (DomainRoutingDNSSettings, error) {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	var settings DomainRoutingDNSSettings
+	if err := rpcEncoder.Encode(DomainRoutingGetDNSSettingsMethodType); err != nil {
+		return settings, err
+	}
+	if err := rpcDecoder.Decode(&settings); err != nil {
+		return settings, err
+	}
+	return settings, nil
+}
+
+func IPCClientSetDomainRoutingDNSSettings(settings DomainRoutingDNSSettings) error {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DomainRoutingSetDNSSettingsMethodType); err != nil {
+		return err
+	}
+	if err := rpcEncoder.Encode(settings); err != nil {
 		return err
 	}
 	return rpcDecodeError()

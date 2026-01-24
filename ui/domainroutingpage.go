@@ -17,15 +17,22 @@ import (
 type DomainRoutingPage struct {
 	*walk.TabPage
 
-	modeGroup    *walk.GroupBox
-	modeOff      *walk.RadioButton
-	modeRelaxed  *walk.RadioButton
-	modeStrict   *walk.RadioButton
-	modeDNSOnly  *walk.RadioButton
-	statusLabel  *walk.TextLabel
+	modeGroup   *walk.GroupBox
+	modeOff     *walk.RadioButton
+	modeRelaxed *walk.RadioButton
+	modeStrict  *walk.RadioButton
+	modeDNSOnly *walk.RadioButton
+	statusLabel *walk.TextLabel
 
 	// Исключить loopback из туннеля
 	excludeLoopbackCheck *walk.CheckBox
+
+	// DNS lookup settings
+	dnsGroup        *walk.GroupBox
+	dnsServersLabel *walk.TextLabel
+	dnsServersEdit  *walk.TextEdit
+	dnsRouteDirect  *walk.RadioButton
+	dnsRouteTunnel  *walk.RadioButton
 
 	// Режим списка (whitelist/blacklist/advanced)
 	listModeGroup     *walk.GroupBox
@@ -142,6 +149,44 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 		go manager.IPCClientSetDomainRoutingExcludeLoopback(exclude)
 	})
 	walk.NewHSpacer(loopbackContainer)
+
+	// === DNS lookup settings ===
+	if drp.dnsGroup, err = walk.NewGroupBox(drp); err != nil {
+		return nil, err
+	}
+	drp.dnsGroup.SetTitle(l18n.Sprintf("DNS Lookup"))
+	dnsLayout := walk.NewVBoxLayout()
+	dnsLayout.SetMargins(walk.Margins{10, 10, 10, 10})
+	drp.dnsGroup.SetLayout(dnsLayout)
+
+	if drp.dnsServersLabel, err = walk.NewTextLabel(drp.dnsGroup); err != nil {
+		return nil, err
+	}
+	drp.dnsServersLabel.SetText(l18n.Sprintf("DNS servers for lookup (one per line, IP or IP:port). Empty uses system/tunnel DNS."))
+
+	if drp.dnsServersEdit, err = walk.NewTextEdit(drp.dnsGroup); err != nil {
+		return nil, err
+	}
+	drp.dnsServersEdit.SetMinMaxSize(walk.Size{0, 60}, walk.Size{0, 120})
+
+	dnsRouteContainer, _ := walk.NewComposite(drp.dnsGroup)
+	dnsRouteLayout := walk.NewHBoxLayout()
+	dnsRouteLayout.SetMargins(walk.Margins{})
+	dnsRouteContainer.SetLayout(dnsRouteLayout)
+
+	if drp.dnsRouteDirect, err = walk.NewRadioButton(dnsRouteContainer); err != nil {
+		return nil, err
+	}
+	drp.dnsRouteDirect.SetText(l18n.Sprintf("Send DNS directly (bypass tunnel)"))
+	drp.dnsRouteDirect.SetToolTipText(l18n.Sprintf("Bind DNS queries to the physical interface when the tunnel is active."))
+
+	if drp.dnsRouteTunnel, err = walk.NewRadioButton(dnsRouteContainer); err != nil {
+		return nil, err
+	}
+	drp.dnsRouteTunnel.SetText(l18n.Sprintf("Send DNS through tunnel"))
+	drp.dnsRouteTunnel.SetToolTipText(l18n.Sprintf("Bind DNS queries to the tunnel interface when the tunnel is active."))
+
+	walk.NewHSpacer(dnsRouteContainer)
 
 	// === Группа выбора режима списка ===
 	if drp.listModeGroup, err = walk.NewGroupBox(drp); err != nil {
@@ -301,6 +346,9 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 		drp.modeRelaxed.SetEnabled(false)
 		drp.modeStrict.SetEnabled(false)
 		drp.modeDNSOnly.SetEnabled(false)
+		drp.dnsServersEdit.SetReadOnly(true)
+		drp.dnsRouteDirect.SetEnabled(false)
+		drp.dnsRouteTunnel.SetEnabled(false)
 		drp.listModeWhitelist.SetEnabled(false)
 		drp.listModeBlacklist.SetEnabled(false)
 		drp.listModeAdvanced.SetEnabled(false)
@@ -348,6 +396,14 @@ func (drp *DomainRoutingPage) loadCurrentSettings() {
 		drp.setListModeUI("disabled")
 	}
 
+	settings, err := manager.IPCClientDomainRoutingDNSSettings()
+	if err == nil {
+		drp.dnsServersEdit.SetText(strings.Join(settings.Upstreams, "\r\n"))
+		drp.setDNSRouteModeUI(settings.RouteMode)
+	} else {
+		drp.setDNSRouteModeUI("direct")
+	}
+
 	drp.updateStatus()
 }
 
@@ -368,6 +424,15 @@ func (drp *DomainRoutingPage) setListModeUI(listMode string) {
 		drp.listModeAdvanced.SetChecked(true)
 	}
 	drp.updateListModeUI(listMode)
+}
+
+func (drp *DomainRoutingPage) setDNSRouteModeUI(routeMode string) {
+	switch strings.ToLower(strings.TrimSpace(routeMode)) {
+	case "tunnel":
+		drp.dnsRouteTunnel.SetChecked(true)
+	default:
+		drp.dnsRouteDirect.SetChecked(true)
+	}
 }
 
 func (drp *DomainRoutingPage) updateListModeUI(listMode string) {
@@ -417,7 +482,16 @@ func (drp *DomainRoutingPage) onApply() {
 		return
 	}
 
-	showInfoCustom(drp.Form(), l18n.Sprintf("Domain Routing"), l18n.Sprintf("Rules saved successfully."))
+	settings := manager.DomainRoutingDNSSettings{
+		Upstreams: parseDNSServersText(drp.dnsServersEdit.Text()),
+		RouteMode: drp.dnsRouteModeValue(),
+	}
+	if err := manager.IPCClientSetDomainRoutingDNSSettings(settings); err != nil {
+		showErrorCustom(drp.Form(), l18n.Sprintf("Failed to save DNS settings"), err.Error())
+		return
+	}
+
+	showInfoCustom(drp.Form(), l18n.Sprintf("Domain Routing"), l18n.Sprintf("Settings saved successfully."))
 }
 
 func (drp *DomainRoutingPage) onTunnelChange(tunnel *manager.Tunnel, state, globalState manager.TunnelState, err error) {
@@ -457,6 +531,34 @@ func parseDomainsText(text string) []string {
 		result = append(result, line)
 	}
 	return result
+}
+
+func parseDNSServersText(text string) []string {
+	lines := strings.Split(text, "\n")
+	result := make([]string, 0, len(lines))
+	for _, line := range lines {
+		line = strings.ReplaceAll(line, "\r", "")
+		line = strings.TrimSpace(line)
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
+		}
+		parts := strings.Split(line, ",")
+		for _, part := range parts {
+			part = strings.TrimSpace(part)
+			if part == "" {
+				continue
+			}
+			result = append(result, part)
+		}
+	}
+	return result
+}
+
+func (drp *DomainRoutingPage) dnsRouteModeValue() string {
+	if drp.dnsRouteTunnel.Checked() {
+		return "tunnel"
+	}
+	return "direct"
 }
 
 func showInfoCustom(owner walk.Form, title, message string) {

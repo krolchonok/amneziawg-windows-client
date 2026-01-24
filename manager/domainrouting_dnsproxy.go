@@ -35,7 +35,7 @@ func newDNSProxy(mgr *domainRoutingManager) (*dnsProxy, error) {
 			return opErr
 		},
 	}
-	
+
 	udpConn, err := lc.ListenPacket(context.Background(), "udp4", "127.0.0.1:53")
 	if err != nil {
 		log.Printf("domain routing: failed to listen UDP on 127.0.0.1:53: %v", err)
@@ -243,6 +243,14 @@ func (m *domainRoutingManager) pickUpstreams() []string {
 	m.mu.Lock()
 	defer m.mu.Unlock()
 
+	if len(m.dnsUpstreams) > 0 {
+		custom := normalizeUpstreamList(m.dnsUpstreams)
+		if len(custom) > 0 {
+			return custom
+		}
+		log.Printf("domain routing: custom DNS upstreams invalid, falling back to defaults")
+	}
+
 	// Без активного туннеля всегда используем публичные DNS
 	if m.activeTunnel == "" {
 		return []string{"8.8.8.8:53", "1.1.1.1:53"}
@@ -276,6 +284,44 @@ func (m *domainRoutingManager) pickUpstreams() []string {
 	return upstreams
 }
 
+func normalizeUpstreamList(servers []string) []string {
+	out := make([]string, 0, len(servers))
+	for _, server := range servers {
+		upstream, ok := normalizeUpstream(server)
+		if !ok {
+			continue
+		}
+		out = append(out, upstream)
+	}
+	return out
+}
+
+func normalizeUpstream(server string) (string, bool) {
+	server = strings.TrimSpace(server)
+	if server == "" {
+		return "", false
+	}
+	if strings.Contains(server, ":") {
+		host, port, err := net.SplitHostPort(server)
+		if err != nil {
+			return "", false
+		}
+		ip := net.ParseIP(host)
+		if ip == nil || ip.To4() == nil {
+			return "", false
+		}
+		if port == "" {
+			return "", false
+		}
+		return net.JoinHostPort(ip.String(), port), true
+	}
+	ip := net.ParseIP(server)
+	if ip == nil || ip.To4() == nil {
+		return "", false
+	}
+	return net.JoinHostPort(ip.String(), "53"), true
+}
+
 // getSystemDNSAndInterface retrieves DNS servers and default interface index
 func getSystemDNSAndInterface() ([]net.IP, uint32) {
 	interfaces, err := winipcfg.GetAdaptersAddresses(windows.AF_INET, winipcfg.GAAFlagIncludeAll)
@@ -283,11 +329,11 @@ func getSystemDNSAndInterface() ([]net.IP, uint32) {
 		log.Printf("domain routing: failed to get adapters: %v", err)
 		return nil, 0
 	}
-	
+
 	var servers []net.IP
 	var bestIfIndex uint32
 	var bestMetric uint32 = 0xFFFFFFFF
-	
+
 	for _, iface := range interfaces {
 		if iface.OperStatus != winipcfg.IfOperStatusUp {
 			continue
@@ -296,13 +342,13 @@ func getSystemDNSAndInterface() ([]net.IP, uint32) {
 		if iface.IfType == 131 { // IF_TYPE_TUNNEL
 			continue
 		}
-		
+
 		// Ищем интерфейс с лучшей метрикой (наименьшей)
 		if iface.Ipv4Metric < bestMetric {
 			bestMetric = iface.Ipv4Metric
 			bestIfIndex = iface.IfIndex
 		}
-		
+
 		for dns := iface.FirstDNSServerAddress; dns != nil; dns = dns.Next {
 			ip := dns.Address.IP()
 			if ip == nil {
@@ -386,13 +432,23 @@ func (m *domainRoutingManager) dialerForDefault() *net.Dialer {
 		return nil
 	}
 
-	// Используем интерфейс из defaultRoute (физический интерфейс, не туннель)
-	ifIndex := m.defaultRoute.InterfaceIndex
-	if ifIndex == 0 {
-		log.Printf("domain routing: no default interface index, using default routing")
-		return nil
+	var ifIndex uint32
+	if m.dnsRouteMode == DNSRouteTunnel {
+		ifIndex = m.tunIfIndex
+		if ifIndex == 0 {
+			log.Printf("domain routing: no tunnel interface index, using default routing")
+			return nil
+		}
+		log.Printf("domain routing: creating DNS dialer bound to tunnel ifIndex=%d", ifIndex)
+	} else {
+		// Используем интерфейс из defaultRoute (физический интерфейс, не туннель)
+		ifIndex = m.defaultRoute.InterfaceIndex
+		if ifIndex == 0 {
+			log.Printf("domain routing: no default interface index, using default routing")
+			return nil
+		}
+		log.Printf("domain routing: creating DNS dialer bound to ifIndex=%d", ifIndex)
 	}
-	log.Printf("domain routing: creating dialer bound to ifIndex=%d", ifIndex)
 	return &net.Dialer{
 		Control: func(network, address string, c syscall.RawConn) error {
 			var controlErr error

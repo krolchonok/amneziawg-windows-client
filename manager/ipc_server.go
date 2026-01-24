@@ -510,13 +510,30 @@ func (s *ManagerService) ServeConn(reader io.Reader, writer io.Writer) {
 			if err != nil {
 				return
 			}
+		case DomainRoutingGetDNSSettingsMethodType:
+			settings := domainRouting.GetDNSSettings()
+			err = encoder.Encode(settings)
+			if err != nil {
+				return
+			}
+		case DomainRoutingSetDNSSettingsMethodType:
+			var settings DomainRoutingDNSSettings
+			err := decoder.Decode(&settings)
+			if err != nil {
+				return
+			}
+			retErr := domainRouting.SetDNSSettings(settings)
+			err = encoder.Encode(errToString(retErr))
+			if err != nil {
+				return
+			}
 		case DNSLogGetEntriesMethodType:
 			entries := dnsLogger.GetEntries()
 			err = encoder.Encode(entries)
 			if err != nil {
 				return
 			}
-        
+
 		case DNSLogClearMethodType:
 			dnsLogger.Clear()
 		case DNSLogSetEnabledMethodType:
