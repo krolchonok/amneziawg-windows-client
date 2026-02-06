@@ -8,8 +8,8 @@ package ui
 import (
 	"fmt"
 	"os/exec"
-	"strings"
 	"sort"
+	"strings"
 	"sync"
 	"time"
 
@@ -26,15 +26,16 @@ type DNSLogPage struct {
 	logModel      *dnsLogModel
 	autoScroll    bool
 	clickedIndex  int // Index of right-clicked row for context menu
-	
-	enabledCheck  *walk.CheckBox
-	clearButton   *walk.PushButton
-	flushButton   *walk.PushButton
-	refreshButton *walk.PushButton
+
+	enabledCheck    *walk.CheckBox
+	searchEdit     *walk.LineEdit
+	clearButton    *walk.PushButton
+	flushButton    *walk.PushButton
+	refreshButton  *walk.PushButton
 	autoScrollCheck *walk.CheckBox
-	
-	statsLabel    *walk.TextLabel
-	
+
+	statsLabel *walk.TextLabel
+
 	refreshTicker *time.Ticker
 	stopRefresh   chan struct{}
 	disposeOnce   sync.Once
@@ -43,10 +44,20 @@ type DNSLogPage struct {
 type dnsLogModel struct {
 	walk.TableModelBase
 	walk.SorterBase
-	entries []manager.DNSLogEntry
+	entries    []manager.DNSLogEntry
+	allEntries []manager.DNSLogEntry
+	filterText string
 }
 
 func (m *dnsLogModel) Sort(col int, order walk.SortOrder) error {
+	m.sortEntries(col, order)
+	err := m.SorterBase.Sort(col, order)
+	// Ensure the view is refreshed after sorting so hover/selection render correctly.
+	m.PublishRowsReset()
+	return err
+}
+
+func (m *dnsLogModel) sortEntries(col int, order walk.SortOrder) {
 	asc := order == walk.SortAscending
 	sort.SliceStable(m.entries, func(i, j int) bool {
 		a := m.entries[i]
@@ -93,10 +104,42 @@ func (m *dnsLogModel) Sort(col int, order walk.SortOrder) error {
 			return false
 		}
 	})
-	err := m.SorterBase.Sort(col, order)
-	// Ensure the view is refreshed after sorting so hover/selection render correctly.
+}
+
+func (m *dnsLogModel) SetEntries(entries []manager.DNSLogEntry) {
+	m.allEntries = entries
+	m.applyFilter()
+}
+
+func (m *dnsLogModel) SetFilterText(text string) {
+	m.filterText = strings.ToLower(strings.TrimSpace(text))
+	m.applyFilter()
+}
+
+func (m *dnsLogModel) FilterActive() bool {
+	return m.filterText != ""
+}
+
+func (m *dnsLogModel) TotalCount() int {
+	return len(m.allEntries)
+}
+
+func (m *dnsLogModel) applyFilter() {
+	if m.filterText == "" {
+		m.entries = append(m.entries[:0], m.allEntries...)
+	} else {
+		filtered := make([]manager.DNSLogEntry, 0, len(m.allEntries))
+		for _, entry := range m.allEntries {
+			if strings.Contains(strings.ToLower(entry.String()), m.filterText) {
+				filtered = append(filtered, entry)
+			}
+		}
+		m.entries = filtered
+	}
+	if col := m.SortedColumn(); col >= 0 {
+		m.sortEntries(col, m.SortOrder())
+	}
 	m.PublishRowsReset()
-	return err
 }
 
 func (m *dnsLogModel) RowCount() int {
@@ -166,6 +209,20 @@ func NewDNSLogPage() (*DNSLogPage, error) {
 	dlp.autoScrollCheck.SetChecked(true)
 	dlp.autoScrollCheck.CheckedChanged().Attach(func() {
 		dlp.autoScroll = dlp.autoScrollCheck.Checked()
+	})
+
+	walk.NewHSpacer(toolbar)
+
+	searchLabel, _ := walk.NewTextLabel(toolbar)
+	searchLabel.SetText(l18n.Sprintf("Search:"))
+
+	if dlp.searchEdit, err = walk.NewLineEdit(toolbar); err != nil {
+		return nil, err
+	}
+	dlp.searchEdit.SetToolTipText(l18n.Sprintf("Search in DNS log entries"))
+	dlp.searchEdit.TextChanged().Attach(func() {
+		dlp.logModel.SetFilterText(dlp.searchEdit.Text())
+		dlp.updateStats()
 	})
 
 	walk.NewHSpacer(toolbar)
@@ -350,8 +407,7 @@ func (dlp *DNSLogPage) refreshLog() {
 	}
 
 	oldCount := len(dlp.logModel.entries)
-	dlp.logModel.entries = entries
-	dlp.logModel.PublishRowsReset()
+	dlp.logModel.SetEntries(entries)
 
 	// Ensure the view is fully repainted after the model reset to avoid
 	// visual inconsistencies when hovering rows.
@@ -359,11 +415,11 @@ func (dlp *DNSLogPage) refreshLog() {
 		dlp.logView.Invalidate()
 	}
 
-	dlp.statsLabel.SetText(l18n.Sprintf("Queries: %d", len(entries)))
+	dlp.updateStats()
 
 	// Auto-scroll to bottom if enabled and new entries added
-	if dlp.autoScroll && len(entries) > 0 && len(entries) > oldCount {
-		dlp.logView.EnsureItemVisible(len(entries) - 1)
+	if dlp.autoScroll && len(dlp.logModel.entries) > 0 && len(dlp.logModel.entries) > oldCount {
+		dlp.logView.EnsureItemVisible(len(dlp.logModel.entries) - 1)
 	}
 }
 
@@ -384,4 +440,12 @@ func (dlp *DNSLogPage) flushDNSCache() {
 
 func (dlp *DNSLogPage) onEnabledChanged() {
 	_ = manager.IPCClientDNSLogSetEnabled(dlp.enabledCheck.Checked())
+}
+
+func (dlp *DNSLogPage) updateStats() {
+	if dlp.logModel.FilterActive() {
+		dlp.statsLabel.SetText(l18n.Sprintf("Queries: %d / %d", dlp.logModel.RowCount(), dlp.logModel.TotalCount()))
+		return
+	}
+	dlp.statsLabel.SetText(l18n.Sprintf("Queries: %d", dlp.logModel.TotalCount()))
 }
