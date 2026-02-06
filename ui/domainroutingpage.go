@@ -337,8 +337,8 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	// Регистрация callback для обновления статуса
 	drp.tunnelChangedCB = manager.IPCClientRegisterTunnelChange(drp.onTunnelChange)
 
-	// Загрузка текущих настроек
-	drp.loadCurrentSettings()
+	// Синхронная начальная загрузка (в конструкторе Form() ещё не доступна)
+	drp.loadCurrentSettingsSync()
 
 	// Отключение редактирования для не-админов
 	if !IsAdmin {
@@ -371,40 +371,65 @@ func (drp *DomainRoutingPage) Dispose() {
 }
 
 func (drp *DomainRoutingPage) loadCurrentSettings() {
-	mode, err := manager.IPCClientDomainRoutingMode()
-	if err != nil {
+	go func() {
+		mode, modeErr := manager.IPCClientDomainRoutingMode()
+		excludeLoopback, exclErr := manager.IPCClientDomainRoutingExcludeLoopback()
+		rules, rulesErr := manager.IPCClientDomainRoutingRules()
+		settings, settingsErr := manager.IPCClientDomainRoutingDNSSettings()
+		globalState, _ := manager.IPCClientGlobalState()
+
+		drp.Form().Synchronize(func() {
+			drp.applyLoadedSettings(mode, modeErr, excludeLoopback, exclErr, rules, rulesErr, settings, settingsErr, globalState)
+		})
+	}()
+}
+
+// loadCurrentSettingsSync выполняет загрузку синхронно (для использования в конструкторе)
+func (drp *DomainRoutingPage) loadCurrentSettingsSync() {
+	mode, modeErr := manager.IPCClientDomainRoutingMode()
+	excludeLoopback, exclErr := manager.IPCClientDomainRoutingExcludeLoopback()
+	rules, rulesErr := manager.IPCClientDomainRoutingRules()
+	settings, settingsErr := manager.IPCClientDomainRoutingDNSSettings()
+	globalState, _ := manager.IPCClientGlobalState()
+
+	drp.applyLoadedSettings(mode, modeErr, excludeLoopback, exclErr, rules, rulesErr, settings, settingsErr, globalState)
+}
+
+func (drp *DomainRoutingPage) applyLoadedSettings(
+	mode manager.DomainRoutingMode, modeErr error,
+	excludeLoopback bool, exclErr error,
+	rules manager.DomainRoutingRulesData, rulesErr error,
+	settings manager.DomainRoutingDNSSettings, settingsErr error,
+	globalState manager.TunnelState,
+) {
+	if modeErr != nil {
 		mode = manager.DomainRoutingOff
 	}
 	drp.setModeUI(mode)
 
-	// Загружаем настройку excludeLoopback
-	excludeLoopback, err := manager.IPCClientDomainRoutingExcludeLoopback()
-	if err == nil {
+	if exclErr == nil {
 		drp.excludeLoopbackCheck.SetChecked(excludeLoopback)
 	} else {
-		drp.excludeLoopbackCheck.SetChecked(true) // По умолчанию включено
+		drp.excludeLoopbackCheck.SetChecked(true)
 	}
 
-	rules, err := manager.IPCClientDomainRoutingRules()
-	if err == nil {
+	if rulesErr == nil {
 		drp.domainsEdit.SetText(strings.Join(rules.Domains, "\r\n"))
 		drp.tunnelDomainsEdit.SetText(strings.Join(rules.Tunnel, "\r\n"))
 		drp.directDomainsEdit.SetText(strings.Join(rules.Direct, "\r\n"))
 		drp.setListModeUI(rules.ListMode)
 	} else {
-		// По умолчанию Advanced режим
 		drp.setListModeUI("disabled")
 	}
 
-	settings, err := manager.IPCClientDomainRoutingDNSSettings()
-	if err == nil {
+	if settingsErr == nil {
 		drp.dnsServersEdit.SetText(strings.Join(settings.Upstreams, "\r\n"))
 		drp.setDNSRouteModeUI(settings.RouteMode)
 	} else {
 		drp.setDNSRouteModeUI("direct")
 	}
 
-	drp.updateStatus()
+	drp.updateStatusFromState(mode, globalState)
 }
 
 func (drp *DomainRoutingPage) setModeUI(mode manager.DomainRoutingMode) {
@@ -452,12 +477,30 @@ func (drp *DomainRoutingPage) updateListModeUI(listMode string) {
 }
 
 func (drp *DomainRoutingPage) onModeChanged(mode manager.DomainRoutingMode) {
-	if err := manager.IPCClientSetDomainRoutingMode(mode); err != nil {
-		showErrorCustom(drp.Form(), l18n.Sprintf("Failed to set routing mode"), err.Error())
-		drp.loadCurrentSettings()
+	drp.setControlsEnabled(false)
+	go func() {
+		err := manager.IPCClientSetDomainRoutingMode(mode)
+		drp.Form().Synchronize(func() {
+			drp.setControlsEnabled(true)
+			if err != nil {
+				showErrorCustom(drp.Form(), l18n.Sprintf("Failed to set routing mode"), err.Error())
+				drp.loadCurrentSettings()
+				return
+			}
+			drp.updateStatus()
+		})
+	}()
+}
+
+func (drp *DomainRoutingPage) setControlsEnabled(enabled bool) {
+	if !IsAdmin {
 		return
 	}
-	drp.updateStatus()
+	drp.applyButton.SetEnabled(enabled)
+	drp.modeOff.SetEnabled(enabled)
+	drp.modeRelaxed.SetEnabled(enabled)
+	drp.modeStrict.SetEnabled(enabled)
+	drp.modeDNSOnly.SetEnabled(enabled)
 }
 
 func (drp *DomainRoutingPage) onApply() {
@@ -477,21 +520,31 @@ func (drp *DomainRoutingPage) onApply() {
 		Direct:   parseDomainsText(drp.directDomainsEdit.Text()),
 	}
 
-	if err := manager.IPCClientSetDomainRoutingRules(rules); err != nil {
-		showErrorCustom(drp.Form(), l18n.Sprintf("Failed to save rules"), err.Error())
-		return
-	}
-
 	settings := manager.DomainRoutingDNSSettings{
 		Upstreams: parseDNSServersText(drp.dnsServersEdit.Text()),
 		RouteMode: drp.dnsRouteModeValue(),
 	}
-	if err := manager.IPCClientSetDomainRoutingDNSSettings(settings); err != nil {
-		showErrorCustom(drp.Form(), l18n.Sprintf("Failed to save DNS settings"), err.Error())
-		return
-	}
 
-	showInfoCustom(drp.Form(), l18n.Sprintf("Domain Routing"), l18n.Sprintf("Settings saved successfully."))
+	drp.setControlsEnabled(false)
+	go func() {
+		var rulesErr, dnsErr error
+		rulesErr = manager.IPCClientSetDomainRoutingRules(rules)
+		if rulesErr == nil {
+			dnsErr = manager.IPCClientSetDomainRoutingDNSSettings(settings)
+		}
+		drp.Form().Synchronize(func() {
+			drp.setControlsEnabled(true)
+			if rulesErr != nil {
+				showErrorCustom(drp.Form(), l18n.Sprintf("Failed to save rules"), rulesErr.Error())
+				return
+			}
+			if dnsErr != nil {
+				showErrorCustom(drp.Form(), l18n.Sprintf("Failed to save DNS settings"), dnsErr.Error())
+				return
+			}
+			showInfoCustom(drp.Form(), l18n.Sprintf("Domain Routing"), l18n.Sprintf("Settings saved successfully."))
+		})
+	}()
 }
 
 func (drp *DomainRoutingPage) onTunnelChange(tunnel *manager.Tunnel, state, globalState manager.TunnelState, err error) {
@@ -501,9 +554,16 @@ func (drp *DomainRoutingPage) onTunnelChange(tunnel *manager.Tunnel, state, glob
 }
 
 func (drp *DomainRoutingPage) updateStatus() {
-	mode, _ := manager.IPCClientDomainRoutingMode()
-	globalState, _ := manager.IPCClientGlobalState()
+	go func() {
+		mode, _ := manager.IPCClientDomainRoutingMode()
+		globalState, _ := manager.IPCClientGlobalState()
+		drp.Form().Synchronize(func() {
+			drp.updateStatusFromState(mode, globalState)
+		})
+	}()
+}
 
+func (drp *DomainRoutingPage) updateStatusFromState(mode manager.DomainRoutingMode, globalState manager.TunnelState) {
 	var statusText string
 	if mode == manager.DomainRoutingOff {
 		statusText = l18n.Sprintf("Disabled")
@@ -520,14 +580,40 @@ func (drp *DomainRoutingPage) updateStatus() {
 }
 
 func parseDomainsText(text string) []string {
+	// Нормализуем: разбиваем по переносам, запятым, точкам с запятой, табам, пробелам
+	text = strings.ReplaceAll(text, "\r\n", "\n")
+	text = strings.ReplaceAll(text, "\r", "\n")
+	text = strings.ReplaceAll(text, ",", "\n")
+	text = strings.ReplaceAll(text, ";", "\n")
+	text = strings.ReplaceAll(text, "\t", "\n")
+	// Пробелы — разделители только если нет точки рядом (чтобы не ломать домены)
+	// Простая эвристика: если пробел окружён непробельными символами — разделитель
+	text = strings.ReplaceAll(text, " ", "\n")
+
 	lines := strings.Split(text, "\n")
+	seen := make(map[string]bool, len(lines))
 	result := make([]string, 0, len(lines))
 	for _, line := range lines {
 		line = strings.TrimSpace(line)
-		line = strings.ReplaceAll(line, "\r", "")
+		// Убираем возможные обрамления
+		line = strings.Trim(line, "\"'")
+		line = strings.TrimSpace(line)
 		if line == "" || strings.HasPrefix(line, "#") {
 			continue
 		}
+		// Убираем wildcard-префикс, если пользователь его добавил
+		line = strings.TrimPrefix(line, "*.")
+		line = strings.ToLower(line)
+		// Убираем trailing dot
+		line = strings.TrimSuffix(line, ".")
+		if line == "" {
+			continue
+		}
+		// Дедупликация
+		if seen[line] {
+			continue
+		}
+		seen[line] = true
 		result = append(result, line)
 	}
 	return result
