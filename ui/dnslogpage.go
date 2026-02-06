@@ -444,33 +444,35 @@ func (dlp *DNSLogPage) refreshLog() {
 	}
 }
 
-// incrementalRefresh получает только новые записи и добавляет их
-// без полного сброса таблицы. Это устраняет мерцание.
+// incrementalRefresh загружает все записи через стандартный IPC-метод,
+// но обновляет модель инкрементально (без полного сброса таблицы).
+// Это устраняет мерцание и совместимо с любой версией сервиса.
 func (dlp *DNSLogPage) incrementalRefresh() {
-	// Сначала проверяем количество — лёгкий IPC-вызов
-	count, err := manager.IPCClientDNSLogGetCount()
+	entries, err := manager.IPCClientDNSLogGetEntries()
 	if err != nil {
 		return
 	}
 
-	if count == dlp.lastKnownCount {
+	newCount := len(entries)
+	if newCount == dlp.lastKnownCount {
 		// Ничего не изменилось
 		return
 	}
 
-	if count < dlp.lastKnownCount {
+	if newCount < dlp.lastKnownCount {
 		// Лог был очищен или обрезан — полная перезагрузка
-		dlp.refreshLog()
+		dlp.logModel.SetEntries(entries)
+		dlp.lastKnownCount = newCount
+		dlp.updateStats()
+		if dlp.autoScroll && len(dlp.logModel.entries) > 0 {
+			dlp.logView.EnsureItemVisible(len(dlp.logModel.entries) - 1)
+		}
 		return
 	}
 
-	// Получаем только новые записи
-	newEntries, err := manager.IPCClientDNSLogGetEntriesSinceIndex(dlp.lastKnownCount)
-	if err != nil {
-		return
-	}
-
-	dlp.lastKnownCount = count
+	// Добавляем только новые записи
+	newEntries := entries[dlp.lastKnownCount:]
+	dlp.lastKnownCount = newCount
 
 	if dlp.logModel.AppendEntries(newEntries) {
 		dlp.updateStats()
