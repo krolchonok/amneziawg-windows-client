@@ -39,6 +39,9 @@ type DNSLogPage struct {
 	refreshTicker *time.Ticker
 	stopRefresh   chan struct{}
 	disposeOnce   sync.Once
+
+	// Количество записей, которые мы уже загрузили из сервиса (до фильтрации)
+	lastKnownCount int
 }
 
 type dnsLogModel struct {
@@ -47,9 +50,12 @@ type dnsLogModel struct {
 	entries    []manager.DNSLogEntry
 	allEntries []manager.DNSLogEntry
 	filterText string
+	// isSorted показывает, включена ли пользовательская сортировка
+	isSorted bool
 }
 
 func (m *dnsLogModel) Sort(col int, order walk.SortOrder) error {
+	m.isSorted = true
 	m.sortEntries(col, order)
 	err := m.SorterBase.Sort(col, order)
 	// Ensure the view is refreshed after sorting so hover/selection render correctly.
@@ -109,6 +115,28 @@ func (m *dnsLogModel) sortEntries(col int, order walk.SortOrder) {
 func (m *dnsLogModel) SetEntries(entries []manager.DNSLogEntry) {
 	m.allEntries = entries
 	m.applyFilter()
+}
+
+// AppendEntries добавляет новые записи инкрементально, без полного сброса.
+// Возвращает true если записи были добавлены.
+func (m *dnsLogModel) AppendEntries(newEntries []manager.DNSLogEntry) bool {
+	if len(newEntries) == 0 {
+		return false
+	}
+
+	m.allEntries = append(m.allEntries, newEntries...)
+
+	// Если есть фильтр или пользовательская сортировка — нужен полный пересчёт
+	if m.filterText != "" || m.isSorted {
+		m.applyFilter()
+		return true
+	}
+
+	// Просто добавляем в конец — PublishRowsInserted вместо PublishRowsReset
+	from := len(m.entries)
+	m.entries = append(m.entries, newEntries...)
+	m.PublishRowsInserted(from, from+len(newEntries)-1)
+	return true
 }
 
 func (m *dnsLogModel) SetFilterText(text string) {
@@ -366,8 +394,8 @@ func NewDNSLogPage() (*DNSLogPage, error) {
 		dlp.logView.Columns().Add(c)
 	}
 
-	// Start auto-refresh
-	dlp.refreshTicker = time.NewTicker(1 * time.Second)
+	// Start auto-refresh (2 seconds to reduce visual load)
+	dlp.refreshTicker = time.NewTicker(2 * time.Second)
 	go dlp.autoRefreshLoop()
 
 	// Initial load
@@ -392,7 +420,7 @@ func (dlp *DNSLogPage) autoRefreshLoop() {
 		select {
 		case <-dlp.refreshTicker.C:
 			dlp.Form().Synchronize(func() {
-				dlp.refreshLog()
+				dlp.incrementalRefresh()
 			})
 		case <-dlp.stopRefresh:
 			return
@@ -406,25 +434,57 @@ func (dlp *DNSLogPage) refreshLog() {
 		return
 	}
 
-	oldCount := len(dlp.logModel.entries)
 	dlp.logModel.SetEntries(entries)
-
-	// Ensure the view is fully repainted after the model reset to avoid
-	// visual inconsistencies when hovering rows.
-	if dlp.logView != nil {
-		dlp.logView.Invalidate()
-	}
-
+	dlp.lastKnownCount = len(entries)
 	dlp.updateStats()
 
-	// Auto-scroll to bottom if enabled and new entries added
-	if dlp.autoScroll && len(dlp.logModel.entries) > 0 && len(dlp.logModel.entries) > oldCount {
+	// Auto-scroll to bottom if enabled
+	if dlp.autoScroll && len(dlp.logModel.entries) > 0 {
 		dlp.logView.EnsureItemVisible(len(dlp.logModel.entries) - 1)
+	}
+}
+
+// incrementalRefresh получает только новые записи и добавляет их
+// без полного сброса таблицы. Это устраняет мерцание.
+func (dlp *DNSLogPage) incrementalRefresh() {
+	// Сначала проверяем количество — лёгкий IPC-вызов
+	count, err := manager.IPCClientDNSLogGetCount()
+	if err != nil {
+		return
+	}
+
+	if count == dlp.lastKnownCount {
+		// Ничего не изменилось
+		return
+	}
+
+	if count < dlp.lastKnownCount {
+		// Лог был очищен или обрезан — полная перезагрузка
+		dlp.refreshLog()
+		return
+	}
+
+	// Получаем только новые записи
+	newEntries, err := manager.IPCClientDNSLogGetEntriesSinceIndex(dlp.lastKnownCount)
+	if err != nil {
+		return
+	}
+
+	dlp.lastKnownCount = count
+
+	if dlp.logModel.AppendEntries(newEntries) {
+		dlp.updateStats()
+
+		// Auto-scroll to bottom if enabled
+		if dlp.autoScroll && len(dlp.logModel.entries) > 0 {
+			dlp.logView.EnsureItemVisible(len(dlp.logModel.entries) - 1)
+		}
 	}
 }
 
 func (dlp *DNSLogPage) clearLog() {
 	_ = manager.IPCClientDNSLogClear()
+	dlp.lastKnownCount = 0
 	dlp.refreshLog()
 }
 

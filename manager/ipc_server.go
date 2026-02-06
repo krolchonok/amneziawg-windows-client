@@ -543,6 +543,23 @@ func (s *ManagerService) ServeConn(reader io.Reader, writer io.Writer) {
 				return
 			}
 			dnsLogger.SetEnabled(enabled)
+		case DNSLogGetCountMethodType:
+			count := dnsLogger.Count()
+			err = encoder.Encode(count)
+			if err != nil {
+				return
+			}
+		case DNSLogGetEntriesSinceIndexMethodType:
+			var fromIndex int
+			err := decoder.Decode(&fromIndex)
+			if err != nil {
+				return
+			}
+			entries := dnsLogger.GetEntriesSinceIndex(fromIndex)
+			err = encoder.Encode(entries)
+			if err != nil {
+				return
+			}
 		default:
 			return
 		}

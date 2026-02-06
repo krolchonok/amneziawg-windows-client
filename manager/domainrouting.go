@@ -227,8 +227,8 @@ func (m *domainRoutingManager) init() error {
 		// Не возвращаем ошибку - приложение может работать без DNS proxy
 	}
 
-	// Автоматическая очистка маршрутов отключена - пользователь очищает вручную
-	// go m.cleanupLoop()
+	// Периодическая верификация маршрутов — переставляем удалённые системой
+	go m.routeVerificationLoop()
 	return nil
 }
 
@@ -245,6 +245,86 @@ func (m *domainRoutingManager) cleanupLoop() {
 			return
 		}
 	}
+}
+
+// routeVerificationLoop периодически проверяет, что маршруты из routeEntries
+// действительно присутствуют в системной таблице маршрутизации.
+// Windows может удалять маршруты при смене сети, выходе из спящего режима и т.д.
+func (m *domainRoutingManager) routeVerificationLoop() {
+	ticker := time.NewTicker(45 * time.Second)
+	defer ticker.Stop()
+
+	for {
+		select {
+		case <-ticker.C:
+			m.verifyAndRepairRoutes()
+		case <-m.stop:
+			return
+		}
+	}
+}
+
+// verifyAndRepairRoutes проверяет все маршруты из карты и переустанавливает
+// те, которые были удалены из системной таблицы маршрутизации.
+func (m *domainRoutingManager) verifyAndRepairRoutes() {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
+	if m.activeTunnel == "" || m.mode == DomainRoutingOff || m.mode == DomainRoutingDNSOnly {
+		return
+	}
+
+	if len(m.routeEntries) == 0 {
+		return
+	}
+
+	// Получаем текущую таблицу маршрутов из системы
+	systemRoutes := m.getSystemRouteSet()
+
+	repaired := 0
+	for ipStr, entry := range m.routeEntries {
+		if _, exists := systemRoutes[ipStr]; !exists {
+			// Маршрут пропал из системной таблицы — переустанавливаем
+			if err := addRoute(entry); err != nil {
+				if !errors.Is(err, windows.ERROR_OBJECT_ALREADY_EXISTS) {
+					log.Printf("domain routing: failed to re-add route for %s: %v", ipStr, err)
+				}
+			} else {
+				repaired++
+			}
+		}
+	}
+
+	if repaired > 0 {
+		log.Printf("domain routing: re-added %d missing routes", repaired)
+	}
+}
+
+// getSystemRouteSet возвращает множество IP-адресов (/32), для которых
+// существуют маршруты в системной таблице через наши интерфейсы.
+func (m *domainRoutingManager) getSystemRouteSet() map[string]bool {
+	result := make(map[string]bool)
+
+	routes, err := winipcfg.GetIPForwardTable2(windows.AF_INET)
+	if err != nil {
+		log.Printf("domain routing: failed to get route table for verification: %v", err)
+		return result
+	}
+
+	for _, route := range routes {
+		if route.DestinationPrefix.PrefixLength != 32 {
+			continue
+		}
+		// Проверяем только маршруты через наши интерфейсы
+		if route.InterfaceLUID != m.tunLUID && route.InterfaceLUID != m.defaultRoute.InterfaceLUID {
+			continue
+		}
+		ip := route.DestinationPrefix.Prefix.IP()
+		if ip != nil {
+			result[ip.String()] = true
+		}
+	}
+	return result
 }
 
 func (m *domainRoutingManager) cleanupExpiredRoutes() {
@@ -672,6 +752,14 @@ func (m *domainRoutingManager) addRouteForIP(ip net.IP, target routeTarget, ttl 
 	entry, ok := m.routeEntries[ipStr]
 	if ok {
 		entry.expires = expires
+		// Проверяем, что маршрут реально существует в системе.
+		// Windows может удалить его (спящий режим, смена сети и т.д.).
+		if !m.routeExistsInSystemLocked(ipStr, entry.luid) {
+			log.Printf("domain routing: route for %s missing in system, re-adding", ipStr)
+			if err := addRoute(entry); err != nil && !errors.Is(err, windows.ERROR_OBJECT_ALREADY_EXISTS) {
+				log.Printf("domain routing: failed to re-add route for %s: %v", ipStr, err)
+			}
+		}
 		return nil
 	}
 
@@ -956,6 +1044,33 @@ func addRoute(entry *routeEntry) error {
 	netmask := net.CIDRMask(32, 32)
 	dest := net.IPNet{IP: net.ParseIP(entry.ip).To4(), Mask: netmask}
 	return entry.luid.AddRoute(dest, entry.nextHop, entry.metric)
+}
+
+// routeExistsInSystemLocked проверяет наличие /32 маршрута для IP в системной таблице.
+// Caller must hold m.mu.
+func (m *domainRoutingManager) routeExistsInSystemLocked(ipStr string, expectedLUID winipcfg.LUID) bool {
+	routes, err := winipcfg.GetIPForwardTable2(windows.AF_INET)
+	if err != nil {
+		// При ошибке считаем что маршрут есть (не пытаемся переставить)
+		return true
+	}
+	targetIP := net.ParseIP(ipStr).To4()
+	if targetIP == nil {
+		return true
+	}
+	for _, route := range routes {
+		if route.DestinationPrefix.PrefixLength != 32 {
+			continue
+		}
+		if route.InterfaceLUID != expectedLUID {
+			continue
+		}
+		rip := route.DestinationPrefix.Prefix.IP()
+		if rip != nil && rip.Equal(targetIP) {
+			return true
+		}
+	}
+	return false
 }
 
 func deleteRoute(entry *routeEntry) error {

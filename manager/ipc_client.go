@@ -68,6 +68,8 @@ const (
 	DNSLogGetEntriesMethodType
 	DNSLogClearMethodType
 	DNSLogSetEnabledMethodType
+	DNSLogGetCountMethodType
+	DNSLogGetEntriesSinceIndexMethodType
 )
 
 // DomainRoutingRulesData for IPC transfer
@@ -595,6 +597,39 @@ func IPCClientDNSLogSetEnabled(enabled bool) error {
 		return err
 	}
 	return nil
+}
+
+// IPCClientDNSLogGetCount returns the current number of log entries without transferring them.
+func IPCClientDNSLogGetCount() (int, error) {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DNSLogGetCountMethodType); err != nil {
+		return 0, err
+	}
+	var count int
+	if err := rpcDecoder.Decode(&count); err != nil {
+		return 0, err
+	}
+	return count, nil
+}
+
+// IPCClientDNSLogGetEntriesSinceIndex returns entries starting from the given index.
+func IPCClientDNSLogGetEntriesSinceIndex(fromIndex int) ([]DNSLogEntry, error) {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DNSLogGetEntriesSinceIndexMethodType); err != nil {
+		return nil, err
+	}
+	if err := rpcEncoder.Encode(fromIndex); err != nil {
+		return nil, err
+	}
+	var entries []DNSLogEntry
+	if err := rpcDecoder.Decode(&entries); err != nil {
+		return nil, err
+	}
+	return entries, nil
 }
 
 func IPCClientRegisterTunnelChange(cb func(tunnel *Tunnel, state, globalState TunnelState, err error)) *TunnelChangeCallback {

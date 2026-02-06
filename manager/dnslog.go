@@ -134,3 +134,21 @@ func (l *DNSLogger) Count() int {
 	defer l.mu.RUnlock()
 	return len(l.entries)
 }
+
+// GetEntriesSinceIndex returns entries starting from the given index.
+// This is used for incremental updates in the UI to avoid transferring
+// all entries on each poll.
+func (l *DNSLogger) GetEntriesSinceIndex(fromIndex int) []DNSLogEntry {
+	l.mu.RLock()
+	defer l.mu.RUnlock()
+
+	if fromIndex < 0 {
+		fromIndex = 0
+	}
+	if fromIndex >= len(l.entries) {
+		return nil
+	}
+	result := make([]DNSLogEntry, len(l.entries)-fromIndex)
+	copy(result, l.entries[fromIndex:])
+	return result
+}
