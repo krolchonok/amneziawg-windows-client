@@ -96,6 +96,7 @@ type domainRoutingConfig struct {
 	ExcludeLoopback bool     `json:"excludeLoopback"`
 	DNSUpstreams    []string `json:"dnsUpstreams"`
 	DNSRouteMode    string   `json:"dnsRouteMode"`
+	RouteTunnel     string   `json:"routeTunnel"`
 }
 
 type interfaceDNSState struct {
@@ -127,6 +128,7 @@ type domainRoutingManager struct {
 	mode         DomainRoutingMode
 	listMode     DomainListMode
 	dnsRouteMode DNSRouteMode
+	routeTunnel  string
 	config       domainRoutingConfig
 	rules        domainRoutingRules
 
@@ -191,6 +193,7 @@ func parseDNSRouteMode(s string) DNSRouteMode {
 type DomainRoutingDNSSettings struct {
 	Upstreams []string
 	RouteMode string
+	Tunnel    string
 }
 
 type domainRoutingRules struct {
@@ -367,12 +370,20 @@ func (m *domainRoutingManager) OnTunnelStateChange(name string, state TunnelStat
 
 	switch state {
 	case TunnelStarted:
+		if m.routeTunnel != "" && !strings.EqualFold(name, m.routeTunnel) {
+			return
+		}
 		if err := m.activateTunnelLocked(name); err != nil {
 			log.Printf("domain routing: failed to activate tunnel %s: %v", name, err)
 		}
 	case TunnelStopped:
 		if m.activeTunnel == name {
 			m.deactivateTunnelLocked()
+			if next := m.pickFallbackTunnelLocked(name); next != "" {
+				if err := m.activateTunnelLocked(next); err != nil {
+					log.Printf("domain routing: failed to activate fallback tunnel %s: %v", next, err)
+				}
+			}
 		}
 	}
 }
@@ -516,6 +527,7 @@ func (m *domainRoutingManager) GetDNSSettings() DomainRoutingDNSSettings {
 	return DomainRoutingDNSSettings{
 		Upstreams: upstreams,
 		RouteMode: m.dnsRouteMode.String(),
+		Tunnel:    m.routeTunnel,
 	}
 }
 
@@ -528,6 +540,16 @@ func (m *domainRoutingManager) SetDNSSettings(settings DomainRoutingDNSSettings)
 	m.config.DNSUpstreams = upstreams
 	m.dnsRouteMode = parseDNSRouteMode(settings.RouteMode)
 	m.config.DNSRouteMode = m.dnsRouteMode.String()
+	m.routeTunnel = strings.TrimSpace(settings.Tunnel)
+	m.config.RouteTunnel = m.routeTunnel
+	if m.routeTunnel != "" && m.activeTunnel != "" && !strings.EqualFold(m.activeTunnel, m.routeTunnel) {
+		m.deactivateTunnelLocked()
+		if next := m.pickFallbackTunnelLocked(""); next != "" {
+			if err := m.activateTunnelLocked(next); err != nil {
+				log.Printf("domain routing: failed to activate selected tunnel %s: %v", next, err)
+			}
+		}
+	}
 	return m.saveConfigLocked()
 }
 
@@ -828,6 +850,7 @@ func (m *domainRoutingManager) loadConfigLocked() error {
 		Mode:            DomainRoutingOff.String(),
 		ExcludeLoopback: true,
 		DNSRouteMode:    DNSRouteDirect.String(),
+		RouteTunnel:     "",
 	} // По умолчанию включено
 	info, err := os.Stat(m.configPath)
 	if err == nil {
@@ -842,15 +865,37 @@ func (m *domainRoutingManager) loadConfigLocked() error {
 	m.listMode = parseListMode(cfg.ListMode)
 	m.excludeLoopback = cfg.ExcludeLoopback
 	m.dnsRouteMode = parseDNSRouteMode(cfg.DNSRouteMode)
+	m.routeTunnel = strings.TrimSpace(cfg.RouteTunnel)
 	m.dnsUpstreams = sanitizeDNSUpstreams(cfg.DNSUpstreams)
 	m.config.DNSUpstreams = m.dnsUpstreams
 	m.config.DNSRouteMode = m.dnsRouteMode.String()
+	m.config.RouteTunnel = m.routeTunnel
 	m.rules = domainRoutingRules{
 		domains: normalizeRules(cfg.Domains),
 		tunnel:  normalizeRules(cfg.Tunnel),
 		direct:  normalizeRules(cfg.Direct),
 	}
 	return nil
+}
+
+func (m *domainRoutingManager) pickFallbackTunnelLocked(exclude string) string {
+	trackedTunnelsLock.Lock()
+	defer trackedTunnelsLock.Unlock()
+
+	if m.routeTunnel != "" {
+		for name, state := range trackedTunnels {
+			if strings.EqualFold(name, m.routeTunnel) && !strings.EqualFold(name, exclude) && state == TunnelStarted {
+				return name
+			}
+		}
+		return ""
+	}
+	for name, state := range trackedTunnels {
+		if !strings.EqualFold(name, exclude) && state == TunnelStarted {
+			return name
+		}
+	}
+	return ""
 }
 
 func (m *domainRoutingManager) saveConfigLocked() error {

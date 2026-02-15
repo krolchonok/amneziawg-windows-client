@@ -6,6 +6,7 @@
 package ui
 
 import (
+	"sort"
 	"strings"
 
 	"github.com/lxn/walk"
@@ -33,6 +34,7 @@ type DomainRoutingPage struct {
 	dnsServersEdit  *walk.TextEdit
 	dnsRouteDirect  *walk.RadioButton
 	dnsRouteTunnel  *walk.RadioButton
+	dnsTargetTunnel *walk.ComboBox
 
 	// Режим списка (whitelist/blacklist/advanced)
 	listModeGroup     *walk.GroupBox
@@ -53,6 +55,9 @@ type DomainRoutingPage struct {
 	applyButton *walk.PushButton
 
 	tunnelChangedCB *manager.TunnelChangeCallback
+
+	// loading guard — подавляет обработчики при программном изменении UI
+	loading bool
 }
 
 func NewDomainRoutingPage() (*DomainRoutingPage, error) {
@@ -188,6 +193,23 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 
 	walk.NewHSpacer(dnsRouteContainer)
 
+	dnsTunnelContainer, _ := walk.NewComposite(drp.dnsGroup)
+	dnsTunnelLayout := walk.NewHBoxLayout()
+	dnsTunnelLayout.SetMargins(walk.Margins{})
+	dnsTunnelContainer.SetLayout(dnsTunnelLayout)
+
+	dnsTunnelLabel, _ := walk.NewTextLabel(dnsTunnelContainer)
+	dnsTunnelLabel.SetText(l18n.Sprintf("Tunnel for filtered traffic:"))
+
+	if drp.dnsTargetTunnel, err = walk.NewComboBox(dnsTunnelContainer); err != nil {
+		return nil, err
+	}
+	drp.dnsTargetTunnel.SetEditable(false)
+	drp.dnsTargetTunnel.SetMinMaxSize(walk.Size{220, 0}, walk.Size{220, 0})
+	drp.dnsTargetTunnel.SetToolTipText(l18n.Sprintf("Choose which tunnel should receive filtered domain traffic. Auto uses the currently active tunnel."))
+
+	walk.NewHSpacer(dnsTunnelContainer)
+
 	// === Группа выбора режима списка ===
 	if drp.listModeGroup, err = walk.NewGroupBox(drp); err != nil {
 		return nil, err
@@ -297,39 +319,39 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 
 	// Установка обработчиков radio buttons
 	drp.modeOff.CheckedChanged().Attach(func() {
-		if drp.modeOff.Checked() {
+		if !drp.loading && drp.modeOff.Checked() {
 			drp.onModeChanged(manager.DomainRoutingOff)
 		}
 	})
 	drp.modeRelaxed.CheckedChanged().Attach(func() {
-		if drp.modeRelaxed.Checked() {
+		if !drp.loading && drp.modeRelaxed.Checked() {
 			drp.onModeChanged(manager.DomainRoutingRelaxed)
 		}
 	})
 	drp.modeStrict.CheckedChanged().Attach(func() {
-		if drp.modeStrict.Checked() {
+		if !drp.loading && drp.modeStrict.Checked() {
 			drp.onModeChanged(manager.DomainRoutingStrict)
 		}
 	})
 	drp.modeDNSOnly.CheckedChanged().Attach(func() {
-		if drp.modeDNSOnly.Checked() {
+		if !drp.loading && drp.modeDNSOnly.Checked() {
 			drp.onModeChanged(manager.DomainRoutingDNSOnly)
 		}
 	})
 
 	// Обработчики для режима списка
 	drp.listModeWhitelist.CheckedChanged().Attach(func() {
-		if drp.listModeWhitelist.Checked() {
+		if !drp.loading && drp.listModeWhitelist.Checked() {
 			drp.updateListModeUI("whitelist")
 		}
 	})
 	drp.listModeBlacklist.CheckedChanged().Attach(func() {
-		if drp.listModeBlacklist.Checked() {
+		if !drp.loading && drp.listModeBlacklist.Checked() {
 			drp.updateListModeUI("blacklist")
 		}
 	})
 	drp.listModeAdvanced.CheckedChanged().Attach(func() {
-		if drp.listModeAdvanced.Checked() {
+		if !drp.loading && drp.listModeAdvanced.Checked() {
 			drp.updateListModeUI("disabled")
 		}
 	})
@@ -349,6 +371,7 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 		drp.dnsServersEdit.SetReadOnly(true)
 		drp.dnsRouteDirect.SetEnabled(false)
 		drp.dnsRouteTunnel.SetEnabled(false)
+		drp.dnsTargetTunnel.SetEnabled(false)
 		drp.listModeWhitelist.SetEnabled(false)
 		drp.listModeBlacklist.SetEnabled(false)
 		drp.listModeAdvanced.SetEnabled(false)
@@ -376,10 +399,11 @@ func (drp *DomainRoutingPage) loadCurrentSettings() {
 		excludeLoopback, exclErr := manager.IPCClientDomainRoutingExcludeLoopback()
 		rules, rulesErr := manager.IPCClientDomainRoutingRules()
 		settings, settingsErr := manager.IPCClientDomainRoutingDNSSettings()
+		tunnels, tunnelsErr := manager.IPCClientTunnels()
 		globalState, _ := manager.IPCClientGlobalState()
 
 		drp.Form().Synchronize(func() {
-			drp.applyLoadedSettings(mode, modeErr, excludeLoopback, exclErr, rules, rulesErr, settings, settingsErr, globalState)
+			drp.applyLoadedSettings(mode, modeErr, excludeLoopback, exclErr, rules, rulesErr, settings, settingsErr, tunnels, tunnelsErr, globalState)
 		})
 	}()
 }
@@ -390,9 +414,10 @@ func (drp *DomainRoutingPage) loadCurrentSettingsSync() {
 	excludeLoopback, exclErr := manager.IPCClientDomainRoutingExcludeLoopback()
 	rules, rulesErr := manager.IPCClientDomainRoutingRules()
 	settings, settingsErr := manager.IPCClientDomainRoutingDNSSettings()
+	tunnels, tunnelsErr := manager.IPCClientTunnels()
 	globalState, _ := manager.IPCClientGlobalState()
 
-	drp.applyLoadedSettings(mode, modeErr, excludeLoopback, exclErr, rules, rulesErr, settings, settingsErr, globalState)
+	drp.applyLoadedSettings(mode, modeErr, excludeLoopback, exclErr, rules, rulesErr, settings, settingsErr, tunnels, tunnelsErr, globalState)
 }
 
 func (drp *DomainRoutingPage) applyLoadedSettings(
@@ -400,8 +425,12 @@ func (drp *DomainRoutingPage) applyLoadedSettings(
 	excludeLoopback bool, exclErr error,
 	rules manager.DomainRoutingRulesData, rulesErr error,
 	settings manager.DomainRoutingDNSSettings, settingsErr error,
+	tunnels []manager.Tunnel, tunnelsErr error,
 	globalState manager.TunnelState,
 ) {
+	drp.loading = true
+	defer func() { drp.loading = false }()
+
 	if modeErr != nil {
 		mode = manager.DomainRoutingOff
 	}
@@ -425,8 +454,10 @@ func (drp *DomainRoutingPage) applyLoadedSettings(
 	if settingsErr == nil {
 		drp.dnsServersEdit.SetText(strings.Join(settings.Upstreams, "\r\n"))
 		drp.setDNSRouteModeUI(settings.RouteMode)
+		drp.setTunnelSelectionUI(settings.Tunnel, tunnels, tunnelsErr)
 	} else {
 		drp.setDNSRouteModeUI("direct")
+		drp.setTunnelSelectionUI("", tunnels, tunnelsErr)
 	}
 
 	drp.updateStatusFromState(mode, globalState)
@@ -457,6 +488,31 @@ func (drp *DomainRoutingPage) setDNSRouteModeUI(routeMode string) {
 		drp.dnsRouteTunnel.SetChecked(true)
 	default:
 		drp.dnsRouteDirect.SetChecked(true)
+	}
+}
+
+func (drp *DomainRoutingPage) setTunnelSelectionUI(selected string, tunnels []manager.Tunnel, tunnelsErr error) {
+	options := []string{l18n.Sprintf("Auto (active tunnel)")}
+	if tunnelsErr == nil {
+		names := make([]string, 0, len(tunnels))
+		for _, t := range tunnels {
+			names = append(names, t.Name)
+		}
+		sort.Strings(names)
+		options = append(options, names...)
+	}
+	drp.dnsTargetTunnel.SetModel(options)
+	drp.dnsTargetTunnel.SetCurrentIndex(0)
+
+	selected = strings.TrimSpace(selected)
+	if selected == "" {
+		return
+	}
+	for i := 1; i < len(options); i++ {
+		if strings.EqualFold(options[i], selected) {
+			drp.dnsTargetTunnel.SetCurrentIndex(i)
+			return
+		}
 	}
 }
 
@@ -523,6 +579,7 @@ func (drp *DomainRoutingPage) onApply() {
 	settings := manager.DomainRoutingDNSSettings{
 		Upstreams: parseDNSServersText(drp.dnsServersEdit.Text()),
 		RouteMode: drp.dnsRouteModeValue(),
+		Tunnel:    drp.selectedTunnelName(),
 	}
 
 	drp.setControlsEnabled(false)
@@ -551,6 +608,7 @@ func (drp *DomainRoutingPage) onTunnelChange(tunnel *manager.Tunnel, state, glob
 	drp.Form().Synchronize(func() {
 		drp.updateStatus()
 	})
+	drp.loadCurrentSettings()
 }
 
 func (drp *DomainRoutingPage) updateStatus() {
@@ -645,6 +703,13 @@ func (drp *DomainRoutingPage) dnsRouteModeValue() string {
 		return "tunnel"
 	}
 	return "direct"
+}
+
+func (drp *DomainRoutingPage) selectedTunnelName() string {
+	if drp.dnsTargetTunnel == nil || drp.dnsTargetTunnel.CurrentIndex() <= 0 {
+		return ""
+	}
+	return strings.TrimSpace(drp.dnsTargetTunnel.Text())
 }
 
 func showInfoCustom(owner walk.Form, title, message string) {

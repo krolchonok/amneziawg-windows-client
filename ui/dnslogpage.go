@@ -448,12 +448,11 @@ func (dlp *DNSLogPage) refreshLog() {
 // но обновляет модель инкрементально (без полного сброса таблицы).
 // Это устраняет мерцание и совместимо с любой версией сервиса.
 func (dlp *DNSLogPage) incrementalRefresh() {
-	entries, err := manager.IPCClientDNSLogGetEntries()
+	newCount, err := manager.IPCClientDNSLogGetCount()
 	if err != nil {
 		return
 	}
 
-	newCount := len(entries)
 	if newCount == dlp.lastKnownCount {
 		// Ничего не изменилось
 		return
@@ -461,6 +460,10 @@ func (dlp *DNSLogPage) incrementalRefresh() {
 
 	if newCount < dlp.lastKnownCount {
 		// Лог был очищен или обрезан — полная перезагрузка
+		entries, err := manager.IPCClientDNSLogGetEntries()
+		if err != nil {
+			return
+		}
 		dlp.logModel.SetEntries(entries)
 		dlp.lastKnownCount = newCount
 		dlp.updateStats()
@@ -471,7 +474,23 @@ func (dlp *DNSLogPage) incrementalRefresh() {
 	}
 
 	// Добавляем только новые записи
-	newEntries := entries[dlp.lastKnownCount:]
+	newEntries, err := manager.IPCClientDNSLogGetEntriesSinceIndex(dlp.lastKnownCount)
+	if err != nil {
+		return
+	}
+	if len(newEntries) == 0 {
+		entries, err := manager.IPCClientDNSLogGetEntries()
+		if err != nil {
+			return
+		}
+		dlp.logModel.SetEntries(entries)
+		dlp.lastKnownCount = len(entries)
+		dlp.updateStats()
+		if dlp.autoScroll && len(dlp.logModel.entries) > 0 {
+			dlp.logView.EnsureItemVisible(len(dlp.logModel.entries) - 1)
+		}
+		return
+	}
 	dlp.lastKnownCount = newCount
 
 	if dlp.logModel.AppendEntries(newEntries) {

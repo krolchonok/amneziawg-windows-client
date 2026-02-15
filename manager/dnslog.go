@@ -35,14 +35,15 @@ func (e DNSLogEntry) String() string {
 type DNSLogger struct {
 	mu       sync.RWMutex
 	entries  []DNSLogEntry
+	// maxSize <= 0 means unlimited.
 	maxSize  int
 	enabled  bool
 	onChange func()
 }
 
 var dnsLogger = &DNSLogger{
-	entries: make([]DNSLogEntry, 0, 1000),
-	maxSize: 1000,
+	entries: make([]DNSLogEntry, 0, 1024),
+	maxSize: 0,
 	enabled: true,
 }
 
@@ -66,8 +67,8 @@ func (l *DNSLogger) Log(entry DNSLogEntry) {
 
 	l.entries = append(l.entries, entry)
 
-	// Trim if exceeds max size
-	if len(l.entries) > l.maxSize {
+	// Trim if exceeds max size (when bounded mode is enabled).
+	if l.maxSize > 0 && len(l.entries) > l.maxSize {
 		l.entries = l.entries[len(l.entries)-l.maxSize:]
 	}
 
