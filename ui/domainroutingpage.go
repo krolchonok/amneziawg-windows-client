@@ -204,7 +204,6 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	if drp.dnsTargetTunnel, err = walk.NewComboBox(dnsTunnelContainer); err != nil {
 		return nil, err
 	}
-	drp.dnsTargetTunnel.SetEditable(false)
 	drp.dnsTargetTunnel.SetMinMaxSize(walk.Size{220, 0}, walk.Size{220, 0})
 	drp.dnsTargetTunnel.SetToolTipText(l18n.Sprintf("Choose which tunnel should receive filtered domain traffic. Auto uses the currently active tunnel."))
 
