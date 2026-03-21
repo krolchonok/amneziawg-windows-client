@@ -101,7 +101,7 @@ func NewLocalDNSPage() (*LocalDNSPage, error) {
         if len(domain) == 0 || len(ip) == 0 {
             return
         }
-        if err := manager.AddLocalDNSRecord(domain, ip); err != nil {
+        if err := manager.IPCClientLocalDNSAddRecord(domain, ip); err != nil {
             walk.MsgBox(ldp.Form(), l18n.Sprintf("Error"), err.Error(), walk.MsgBoxIconError)
             return
         }
@@ -120,7 +120,7 @@ func NewLocalDNSPage() (*LocalDNSPage, error) {
             return
         }
         domain := ldp.tableModel.records[idx].Domain
-        _ = manager.RemoveLocalDNSRecord(domain)
+        _ = manager.IPCClientLocalDNSRemoveRecord(domain)
         ldp.refreshList()
     })
 
@@ -169,7 +169,10 @@ func NewLocalDNSPage() (*LocalDNSPage, error) {
 }
 
 func (ldp *LocalDNSPage) refreshList() {
-    records := manager.GetLocalDNSRecords()
+    records, err := manager.IPCClientLocalDNSGetRecords()
+    if err != nil {
+        return
+    }
     ldp.tableModel.records = records
     ldp.tableModel.PublishRowsReset()
 }

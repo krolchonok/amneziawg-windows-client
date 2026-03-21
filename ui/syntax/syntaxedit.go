@@ -453,18 +453,6 @@ func (se *SyntaxEdit) WndProc(hWnd win.HWND, msg uint32, wParam, lParam uintptr)
 			se.textChangedPublisher.Publish()
 		}
 
-	case win.WM_PASTE:
-		win.SendMessage(hWnd, win.EM_PASTESPECIAL, win.CF_TEXT, 0)
-		return 0
-
-	case win.WM_KEYDOWN:
-		key := win.LOWORD(uint32(wParam))
-		if key == 'V' && win.GetKeyState(win.VK_CONTROL) < 0 ||
-			key == win.VK_INSERT && win.GetKeyState(win.VK_SHIFT) < 0 {
-			win.SendMessage(hWnd, win.EM_PASTESPECIAL, win.CF_TEXT, 0)
-			return 0
-		}
-
 	case win.WM_CONTEXTMENU:
 		se.contextMenu(win.GET_X_LPARAM(lParam), win.GET_Y_LPARAM(lParam))
 		return 0

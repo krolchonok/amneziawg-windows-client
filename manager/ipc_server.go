@@ -527,6 +527,38 @@ func (s *ManagerService) ServeConn(reader io.Reader, writer io.Writer) {
 			if err != nil {
 				return
 			}
+		case LocalDNSGetRecordsMethodType:
+			records := GetLocalDNSRecords()
+			err = encoder.Encode(records)
+			if err != nil {
+				return
+			}
+		case LocalDNSAddRecordMethodType:
+			var domain, ip string
+			err := decoder.Decode(&domain)
+			if err != nil {
+				return
+			}
+			err = decoder.Decode(&ip)
+			if err != nil {
+				return
+			}
+			retErr := AddLocalDNSRecord(domain, ip)
+			err = encoder.Encode(errToString(retErr))
+			if err != nil {
+				return
+			}
+		case LocalDNSRemoveRecordMethodType:
+			var domain string
+			err := decoder.Decode(&domain)
+			if err != nil {
+				return
+			}
+			retErr := RemoveLocalDNSRecord(domain)
+			err = encoder.Encode(errToString(retErr))
+			if err != nil {
+				return
+			}
 		case DNSLogGetEntriesMethodType:
 			entries := dnsLogger.GetEntries()
 			err = encoder.Encode(entries)

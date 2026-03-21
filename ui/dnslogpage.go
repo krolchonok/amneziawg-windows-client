@@ -187,7 +187,7 @@ func (m *dnsLogModel) Value(row, col int) interface{} {
 	case 2: // Type
 		return entry.QueryType
 	case 3: // Route
-		return entry.Target
+		return displayRouteTarget(entry.Target)
 	case 4: // IPs
 		return strings.Join(entry.ResponseIPs, ", ")
 	case 5: // Latency
@@ -196,6 +196,24 @@ func (m *dnsLogModel) Value(row, col int) interface{} {
 		return entry.Error
 	}
 	return ""
+}
+
+func displayRouteTarget(target string) string {
+	switch strings.ToLower(strings.TrimSpace(target)) {
+	case "local":
+		return l18n.Sprintf("Local DNS")
+	case "tunnel":
+		return l18n.Sprintf("Tunnel")
+	case "direct":
+		return l18n.Sprintf("Direct")
+	case "default":
+		return l18n.Sprintf("Default")
+	default:
+		if target == "" {
+			return l18n.Sprintf("Default")
+		}
+		return target
+	}
 }
 
 func NewDNSLogPage() (*DNSLogPage, error) {
@@ -311,7 +329,7 @@ func NewDNSLogPage() (*DNSLogPage, error) {
 			walk.MsgBox(dlp.Form(), l18n.Sprintf("Local DNS"), l18n.Sprintf("Cannot add: domain or IP is empty"), walk.MsgBoxIconWarning)
 			return
 		}
-		if err := manager.AddLocalDNSRecord(domain, ip); err != nil {
+		if err := manager.IPCClientLocalDNSAddRecord(domain, ip); err != nil {
 			walk.MsgBox(dlp.Form(), l18n.Sprintf("Error"), err.Error(), walk.MsgBoxIconError)
 			return
 		}
@@ -524,9 +542,16 @@ func (dlp *DNSLogPage) onEnabledChanged() {
 }
 
 func (dlp *DNSLogPage) updateStats() {
+	localCount := 0
+	for _, entry := range dlp.logModel.allEntries {
+		if strings.EqualFold(strings.TrimSpace(entry.Target), "local") {
+			localCount++
+		}
+	}
+
 	if dlp.logModel.FilterActive() {
-		dlp.statsLabel.SetText(l18n.Sprintf("Queries: %d / %d", dlp.logModel.RowCount(), dlp.logModel.TotalCount()))
+		dlp.statsLabel.SetText(l18n.Sprintf("Queries: %d / %d | Local: %d", dlp.logModel.RowCount(), dlp.logModel.TotalCount(), localCount))
 		return
 	}
-	dlp.statsLabel.SetText(l18n.Sprintf("Queries: %d", dlp.logModel.TotalCount()))
+	dlp.statsLabel.SetText(l18n.Sprintf("Queries: %d | Local: %d", dlp.logModel.TotalCount(), localCount))
 }

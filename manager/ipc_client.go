@@ -65,6 +65,9 @@ const (
 	DomainRoutingSetExcludeLoopbackMethodType
 	DomainRoutingGetDNSSettingsMethodType
 	DomainRoutingSetDNSSettingsMethodType
+	LocalDNSGetRecordsMethodType
+	LocalDNSAddRecordMethodType
+	LocalDNSRemoveRecordMethodType
 	DNSLogGetEntriesMethodType
 	DNSLogClearMethodType
 	DNSLogSetEnabledMethodType
@@ -557,6 +560,49 @@ func IPCClientSetDomainRoutingDNSSettings(settings DomainRoutingDNSSettings) err
 		return err
 	}
 	if err := rpcEncoder.Encode(settings); err != nil {
+		return err
+	}
+	return rpcDecodeError()
+}
+
+func IPCClientLocalDNSGetRecords() ([]LocalDNSRecord, error) {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(LocalDNSGetRecordsMethodType); err != nil {
+		return nil, err
+	}
+	var records []LocalDNSRecord
+	if err := rpcDecoder.Decode(&records); err != nil {
+		return nil, err
+	}
+	return records, nil
+}
+
+func IPCClientLocalDNSAddRecord(domain, ip string) error {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(LocalDNSAddRecordMethodType); err != nil {
+		return err
+	}
+	if err := rpcEncoder.Encode(domain); err != nil {
+		return err
+	}
+	if err := rpcEncoder.Encode(ip); err != nil {
+		return err
+	}
+	return rpcDecodeError()
+}
+
+func IPCClientLocalDNSRemoveRecord(domain string) error {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(LocalDNSRemoveRecordMethodType); err != nil {
+		return err
+	}
+	if err := rpcEncoder.Encode(domain); err != nil {
 		return err
 	}
 	return rpcDecodeError()

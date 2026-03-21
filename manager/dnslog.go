@@ -11,7 +11,7 @@ type DNSLogEntry struct {
 	Timestamp   time.Time
 	Domain      string
 	QueryType   string
-	Target      string // "tunnel", "direct", or "default"
+	Target      string // "tunnel", "direct", "default", or "local"
 	ResponseIPs []string
 	Latency     time.Duration
 	Error       string

@@ -19,18 +19,15 @@ type LocalDNSRecord struct {
 
 var (
     localRecords     []LocalDNSRecord
-    localRecordsInit bool
     localRecordsLock sync.Mutex
 )
 
 func loadLocalRecordsLocked() {
-    if localRecordsInit {
-        return
-    }
+    // Always reload from persistent storage so changes made from another process
+    // (UI <-> manager service) are visible immediately.
     s := services.UserKeyString(localDNSRecordsKey)
     if s == "" {
         localRecords = []LocalDNSRecord{}
-        localRecordsInit = true
         return
     }
     // Format: domain1=ip1;domain2=ip2;...
@@ -51,7 +48,6 @@ func loadLocalRecordsLocked() {
         }
     }
     localRecords = out
-    localRecordsInit = true
 }
 
 func saveLocalRecordsLocked() error {
@@ -76,6 +72,8 @@ func GetLocalDNSRecords() []LocalDNSRecord {
 // AddLocalDNSRecord adds a local DNS record (domain -> IP) if not present.
 func AddLocalDNSRecord(domain, ip string) error {
     domain = strings.TrimSpace(strings.ToLower(domain))
+    domain = strings.TrimPrefix(domain, "*.")
+    domain = strings.TrimSuffix(domain, ".")
     ip = strings.TrimSpace(ip)
     if domain == "" {
         return errors.New("domain cannot be empty")
@@ -103,7 +101,9 @@ func AddLocalDNSRecord(domain, ip string) error {
 
 // RemoveLocalDNSRecord removes a local DNS record by domain.
 func RemoveLocalDNSRecord(domain string) error {
-    domain = strings.TrimSpace(domain)
+    domain = strings.TrimSpace(strings.ToLower(domain))
+    domain = strings.TrimPrefix(domain, "*.")
+    domain = strings.TrimSuffix(domain, ".")
     if domain == "" {
         return nil
     }
@@ -124,6 +124,8 @@ func RemoveLocalDNSRecord(domain string) error {
 // Returns IP if found, empty string if not.
 func LookupLocalDNS(domain string) string {
     domain = strings.TrimSpace(strings.ToLower(domain))
+    domain = strings.TrimPrefix(domain, "*.")
+    domain = strings.TrimSuffix(domain, ".")
     localRecordsLock.Lock()
     defer localRecordsLock.Unlock()
     loadLocalRecordsLocked()

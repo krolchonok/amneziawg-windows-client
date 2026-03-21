@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/lxn/walk"
+	"github.com/lxn/win"
 
 	"github.com/amnezia-vpn/amneziawg-windows-client/l18n"
 	"github.com/amnezia-vpn/amneziawg-windows-client/manager"
@@ -73,7 +74,8 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	disposables.Add(drp)
 
 	drp.SetTitle(l18n.Sprintf("Domain Routing"))
-	drp.SetLayout(walk.NewVBoxLayout())
+	mainLayout := walk.NewVBoxLayout()
+	drp.SetLayout(mainLayout)
 
 	// Группа выбора режима
 	if drp.modeGroup, err = walk.NewGroupBox(drp); err != nil {
@@ -173,6 +175,9 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 		return nil, err
 	}
 	drp.dnsServersEdit.SetMinMaxSize(walk.Size{0, 60}, walk.Size{0, 120})
+	if err := drp.attachTextEditContextMenu(drp.dnsServersEdit); err != nil {
+		return nil, err
+	}
 
 	dnsRouteContainer, _ := walk.NewComposite(drp.dnsGroup)
 	dnsRouteLayout := walk.NewHBoxLayout()
@@ -257,10 +262,14 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	}
 	drp.domainsLabel.SetText(l18n.Sprintf("Domains (one per line):"))
 
-	if drp.domainsEdit, err = walk.NewTextEdit(drp.domainsGroup); err != nil {
+	if drp.domainsEdit, err = newScrollableTextEdit(drp.domainsGroup); err != nil {
 		return nil, err
 	}
-	drp.domainsEdit.SetMinMaxSize(walk.Size{0, 100}, walk.Size{0, 200})
+	drp.domainsEdit.SetMinMaxSize(walk.Size{0, 100}, walk.Size{0, 0})
+	if err := drp.attachTextEditContextMenu(drp.domainsEdit); err != nil {
+		return nil, err
+	}
+	domainsLayout.SetStretchFactor(drp.domainsEdit, 1)
 
 	// Пример для whitelist/blacklist
 	domainsExampleLabel, _ := walk.NewTextLabel(drp.domainsGroup)
@@ -280,19 +289,27 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	tunnelLabel, _ := walk.NewTextLabel(drp.advancedGroup)
 	tunnelLabel.SetText(l18n.Sprintf("Domains to route through tunnel (one per line):"))
 
-	if drp.tunnelDomainsEdit, err = walk.NewTextEdit(drp.advancedGroup); err != nil {
+	if drp.tunnelDomainsEdit, err = newScrollableTextEdit(drp.advancedGroup); err != nil {
 		return nil, err
 	}
-	drp.tunnelDomainsEdit.SetMinMaxSize(walk.Size{0, 60}, walk.Size{0, 100})
+	drp.tunnelDomainsEdit.SetMinMaxSize(walk.Size{0, 60}, walk.Size{0, 0})
+	if err := drp.attachTextEditContextMenu(drp.tunnelDomainsEdit); err != nil {
+		return nil, err
+	}
+	advancedLayout.SetStretchFactor(drp.tunnelDomainsEdit, 1)
 
 	// Direct domains
 	directLabel, _ := walk.NewTextLabel(drp.advancedGroup)
 	directLabel.SetText(l18n.Sprintf("Domains to route directly (bypass tunnel, one per line):"))
 
-	if drp.directDomainsEdit, err = walk.NewTextEdit(drp.advancedGroup); err != nil {
+	if drp.directDomainsEdit, err = newScrollableTextEdit(drp.advancedGroup); err != nil {
 		return nil, err
 	}
-	drp.directDomainsEdit.SetMinMaxSize(walk.Size{0, 60}, walk.Size{0, 100})
+	drp.directDomainsEdit.SetMinMaxSize(walk.Size{0, 60}, walk.Size{0, 0})
+	if err := drp.attachTextEditContextMenu(drp.directDomainsEdit); err != nil {
+		return nil, err
+	}
+	advancedLayout.SetStretchFactor(drp.directDomainsEdit, 1)
 
 	// Пример
 	exampleLabel, _ := walk.NewTextLabel(drp.advancedGroup)
@@ -314,7 +331,8 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	drp.applyButton.SetMinMaxSize(walk.Size{100, 0}, walk.Size{100, 0})
 	drp.applyButton.Clicked().Attach(drp.onApply)
 
-	walk.NewVSpacer(drp)
+	mainLayout.SetStretchFactor(drp.domainsGroup, 1)
+	mainLayout.SetStretchFactor(drp.advancedGroup, 1)
 
 	// Установка обработчиков radio buttons
 	drp.modeOff.CheckedChanged().Attach(func() {
@@ -709,6 +727,60 @@ func (drp *DomainRoutingPage) selectedTunnelName() string {
 		return ""
 	}
 	return strings.TrimSpace(drp.dnsTargetTunnel.Text())
+}
+
+func (drp *DomainRoutingPage) attachTextEditContextMenu(edit *walk.TextEdit) error {
+	contextMenu, err := walk.NewMenu()
+	if err != nil {
+		return err
+	}
+	edit.AddDisposable(contextMenu)
+
+	cutAction := walk.NewAction()
+	cutAction.SetText(l18n.Sprintf("Cu&t"))
+	cutAction.Triggered().Attach(func() {
+		edit.SendMessage(win.WM_CUT, 0, 0)
+	})
+	contextMenu.Actions().Add(cutAction)
+
+	copyAction := walk.NewAction()
+	copyAction.SetText(l18n.Sprintf("&Copy"))
+	copyAction.Triggered().Attach(func() {
+		edit.SendMessage(win.WM_COPY, 0, 0)
+	})
+	contextMenu.Actions().Add(copyAction)
+
+	pasteAction := walk.NewAction()
+	pasteAction.SetText(l18n.Sprintf("&Paste"))
+	pasteAction.Triggered().Attach(func() {
+		edit.SendMessage(win.WM_PASTE, 0, 0)
+	})
+	contextMenu.Actions().Add(pasteAction)
+
+	deleteAction := walk.NewAction()
+	deleteAction.SetText(l18n.Sprintf("&Delete"))
+	deleteAction.SetShortcut(walk.Shortcut{0, walk.KeyDelete})
+	deleteAction.Triggered().Attach(func() {
+		edit.SendMessage(win.WM_CLEAR, 0, 0)
+	})
+	contextMenu.Actions().Add(deleteAction)
+
+	contextMenu.Actions().Add(walk.NewSeparatorAction())
+
+	selectAllAction := walk.NewAction()
+	selectAllAction.SetText(l18n.Sprintf("Select &all"))
+	selectAllAction.Triggered().Attach(func() {
+		edit.SendMessage(win.EM_SETSEL, 0, ^uintptr(0))
+	})
+	contextMenu.Actions().Add(selectAllAction)
+
+	edit.SetContextMenu(contextMenu)
+	return nil
+}
+
+func newScrollableTextEdit(parent walk.Container) (*walk.TextEdit, error) {
+	// Vertical scroll for large domain lists; auto-scroll keeps caret visible while typing/pasting.
+	return walk.NewTextEditWithStyle(parent, win.WS_VSCROLL|win.ES_AUTOVSCROLL)
 }
 
 func showInfoCustom(owner walk.Form, title, message string) {
