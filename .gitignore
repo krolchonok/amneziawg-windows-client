@@ -1,6 +1,7 @@
 # Dependencies
 /.deps
 /.distfiles
+/embed/wintun.dll
 
 # Build Output
 /x86

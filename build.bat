@@ -77,6 +77,8 @@ if exist .deps\prepared goto :render
 :build_plat
 	set GOARCH=%~3
 	mkdir %1 >NUL 2>&1
+	mkdir embed >NUL 2>&1
+	copy /Y ".deps\wintun\bin\%~1\wintun.dll" "embed\wintun.dll" > NUL || exit /b 1
 	echo [+] Assembling resources %1
 	%~2-w64-mingw32-windres -DWIREGUARD_VERSION_ARRAY=%WIREGUARD_VERSION_ARRAY% -DWIREGUARD_VERSION_STR=%WIREGUARD_VERSION% -i resources.rc -o "resources_%~3.syso" -O coff -c 65001 || exit /b !errorlevel!
 	echo [+] Building program %1

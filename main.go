@@ -21,6 +21,7 @@ import (
 	"github.com/amnezia-vpn/amneziawg-windows/tunnel"
 
 	"github.com/amnezia-vpn/amneziawg-windows-client/elevate"
+	"github.com/amnezia-vpn/amneziawg-windows-client/embed"
 	"github.com/amnezia-vpn/amneziawg-windows-client/l18n"
 	"github.com/amnezia-vpn/amneziawg-windows-client/manager"
 	"github.com/amnezia-vpn/amneziawg-windows-client/ringlogger"
@@ -149,6 +150,8 @@ func pipeFromHandleArgument(handleStr string) (*os.File, error) {
 }
 
 func main() {
+	_ = embed.ExtractWintunDLL()
+
 	if windows.SetDllDirectory("") != nil || windows.SetDefaultDllDirectories(windows.LOAD_LIBRARY_SEARCH_SYSTEM32) != nil {
 		panic("failed to restrict dll search path")
 	}
