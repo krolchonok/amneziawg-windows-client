@@ -93,6 +93,13 @@ if exist .deps\prepared goto :render
 	if not exist "%~1\wintun.dll" (
 		copy /Y ".deps\wintun\bin\%~1\wintun.dll" "%~1\wintun.dll" > NUL || exit /b 1
 	)
+	echo [+] Building single-file installer %1
+	mkdir setup\bin >NUL 2>&1
+	copy /Y "%~1\amneziawg.exe" "setup\bin\amneziawg.exe" > NUL || exit /b 1
+	copy /Y "%~1\awg.exe" "setup\bin\awg.exe" > NUL || exit /b 1
+	copy /Y "%~1\wintun.dll" "setup\bin\wintun.dll" > NUL || exit /b 1
+	%~2-w64-mingw32-windres -i setup/resources.rc -o "setup/resources_%~3.syso" -O coff -c 65001 || exit /b !errorlevel!
+	go build -ldflags="-H windowsgui -s -w" -trimpath -buildvcs=false -v -o "%~1\AmneziaWG-Setup.exe" ./setup || exit /b 1
 	goto :eof
 
 :error

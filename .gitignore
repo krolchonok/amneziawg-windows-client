@@ -2,6 +2,7 @@
 /.deps
 /.distfiles
 /embed/wintun.dll
+/setup/bin
 
 # Build Output
 /x86
