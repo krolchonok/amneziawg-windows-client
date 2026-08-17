@@ -93,10 +93,14 @@ type domainRoutingConfig struct {
 	Domains         []string `json:"domains"`
 	Tunnel          []string `json:"tunnel"`
 	Direct          []string `json:"direct"`
+	Block           []string `json:"block"`
 	ExcludeLoopback bool     `json:"excludeLoopback"`
+	DisableIPv6     bool     `json:"disableIPv6"`
 	DNSUpstreams    []string `json:"dnsUpstreams"`
 	DNSRouteMode    string   `json:"dnsRouteMode"`
 	RouteTunnel     string   `json:"routeTunnel"`
+	ManagedRouteTunnel             string `json:"managedRouteTunnel,omitempty"`
+	ManagedRouteTunnelOriginalTableOff bool `json:"managedRouteTunnelOriginalTableOff,omitempty"`
 }
 
 type interfaceDNSState struct {
@@ -111,6 +115,7 @@ const (
 	routeTargetNone routeTarget = iota
 	routeTargetTunnel
 	routeTargetDirect
+	routeTargetBlock
 )
 
 type routeEntry struct {
@@ -200,6 +205,7 @@ type domainRoutingRules struct {
 	domains []string // для whitelist/blacklist режима
 	tunnel  []string
 	direct  []string
+	block   []string
 }
 
 var domainRouting = &domainRoutingManager{
@@ -230,7 +236,10 @@ func (m *domainRoutingManager) init() error {
 		// Не возвращаем ошибку - приложение может работать без DNS proxy
 	}
 
-	// Периодическая верификация маршрутов — переставляем удалённые системой
+	// Удаляем просроченные DNS-маршруты, чтобы старые записи не залипали.
+	go m.cleanupLoop()
+
+	// Периодическая верификация маршрутов - переставляем удалённые системой
 	go m.routeVerificationLoop()
 	return nil
 }
@@ -242,8 +251,7 @@ func (m *domainRoutingManager) cleanupLoop() {
 	for {
 		select {
 		case <-ticker.C:
-			// Автоматическая очистка отключена
-			// m.cleanupExpiredRoutes()
+			m.cleanupExpiredRoutes()
 		case <-m.stop:
 			return
 		}
@@ -483,8 +491,14 @@ func (m *domainRoutingManager) SetMode(mode DomainRoutingMode) error {
 	if mode == m.mode {
 		return nil
 	}
+
+	// Existing DNS-derived routes may no longer match the new policy.
+	m.clearRoutesLocked()
 	m.mode = mode
 	m.config.Mode = mode.String()
+	if err := m.syncManagedRouteTunnelLocked(); err != nil {
+		log.Printf("domain routing: failed to sync managed tunnel TableOff: %v", err)
+	}
 	if err := m.saveConfigLocked(); err != nil {
 		return err
 	}
@@ -499,6 +513,7 @@ func (m *domainRoutingManager) GetRules() DomainRoutingRulesData {
 		Domains:  m.config.Domains,
 		Tunnel:   m.config.Tunnel,
 		Direct:   m.config.Direct,
+		Block:    m.config.Block,
 	}
 }
 
@@ -506,15 +521,19 @@ func (m *domainRoutingManager) SetRules(rules DomainRoutingRulesData) error {
 	m.mu.Lock()
 	defer m.mu.Unlock()
 
+	// Flush previously learned routes so the new rules apply immediately.
+	m.clearRoutesLocked()
 	m.listMode = parseListMode(rules.ListMode)
 	m.config.ListMode = rules.ListMode
 	m.config.Domains = rules.Domains
 	m.config.Tunnel = rules.Tunnel
 	m.config.Direct = rules.Direct
+	m.config.Block = rules.Block
 	m.rules = domainRoutingRules{
 		domains: normalizeRules(rules.Domains),
 		tunnel:  normalizeRules(rules.Tunnel),
 		direct:  normalizeRules(rules.Direct),
+		block:   normalizeRules(rules.Block),
 	}
 	return m.saveConfigLocked()
 }
@@ -542,6 +561,9 @@ func (m *domainRoutingManager) SetDNSSettings(settings DomainRoutingDNSSettings)
 	m.config.DNSRouteMode = m.dnsRouteMode.String()
 	m.routeTunnel = strings.TrimSpace(settings.Tunnel)
 	m.config.RouteTunnel = m.routeTunnel
+	if err := m.syncManagedRouteTunnelLocked(); err != nil {
+		log.Printf("domain routing: failed to sync managed tunnel TableOff: %v", err)
+	}
 	if m.routeTunnel != "" && m.activeTunnel != "" && !strings.EqualFold(m.activeTunnel, m.routeTunnel) {
 		m.deactivateTunnelLocked()
 		if next := m.pickFallbackTunnelLocked(""); next != "" {
@@ -568,6 +590,11 @@ func (m *domainRoutingManager) applyModeLocked() error {
 		if err := m.startProxyLocked(); err != nil {
 			return err
 		}
+	}
+	if !m.hasEffectiveRulesLocked() {
+		m.clearRoutesLocked()
+		m.restoreDNSLocked()
+		return nil
 	}
 	if err := m.applyDNSLocked(); err != nil {
 		log.Printf("domain routing: failed to apply DNS settings: %v", err)
@@ -612,6 +639,11 @@ func (m *domainRoutingManager) activateTunnelLocked(name string) error {
 
 	// Proxy уже запущен при init(), только применяем DNS настройки если режим включён
 	if m.mode != DomainRoutingOff {
+		if !m.hasEffectiveRulesLocked() {
+			m.clearRoutesLocked()
+			m.restoreDNSLocked()
+			return nil
+		}
 		if err := m.applyDNSLocked(); err != nil {
 			return err
 		}
@@ -706,6 +738,17 @@ func (m *domainRoutingManager) restoreDNSLocked() {
 	}
 }
 
+func (m *domainRoutingManager) hasEffectiveRulesLocked() bool {
+	switch m.listMode {
+	case ListModeWhitelist:
+		return len(m.rules.domains) > 0
+	case ListModeBlacklist:
+		return true
+	default:
+		return len(m.rules.tunnel) > 0 || len(m.rules.direct) > 0
+	}
+}
+
 func (m *domainRoutingManager) clearRoutesLocked() {
 	for ip, entry := range m.routeEntries {
 		if err := deleteRoute(entry); err != nil {
@@ -724,13 +767,20 @@ func (m *domainRoutingManager) decideRoute(domain string) routeTarget {
 		return routeTargetNone
 	}
 
+	// Проверяем список блокировки первым делом
+	if matchDomain(d, m.rules.block) {
+		return routeTargetBlock
+	}
+
 	// Whitelist/Blacklist режим
 	switch m.listMode {
 	case ListModeWhitelist:
-		// Только домены из списка идут через туннель
+		// Only matched domains should be affected in whitelist mode.
 		if matchDomain(d, m.rules.domains) {
 			return routeTargetTunnel
 		}
+		// Для всех остальных доменов в режиме Whitelist явно указываем Direct,
+		// чтобы трафик не ушел в туннель, если там 0.0.0.0/0
 		return routeTargetDirect
 	case ListModeBlacklist:
 		// Всё через туннель, кроме доменов из списка
@@ -750,7 +800,7 @@ func (m *domainRoutingManager) decideRoute(domain string) routeTarget {
 	}
 }
 
-func (m *domainRoutingManager) addRouteForIP(ip net.IP, target routeTarget, ttl uint32) error {
+func (m *domainRoutingManager) addRouteForIP(domain string, ip net.IP, target routeTarget, ttl uint32) error {
 	m.mu.Lock()
 	defer m.mu.Unlock()
 
@@ -774,6 +824,8 @@ func (m *domainRoutingManager) addRouteForIP(ip net.IP, target routeTarget, ttl 
 	entry, ok := m.routeEntries[ipStr]
 	if ok {
 		entry.expires = expires
+		entry.target = target
+		log.Printf("domain routing: refreshed %s route for domain %s -> %s via %s until %s", routeTargetToString(target), domain, ipStr, m.interfaceNameForTargetLocked(target), expires.Format(time.RFC3339))
 		// Проверяем, что маршрут реально существует в системе.
 		// Windows может удалить его (спящий режим, смена сети и т.д.).
 		if !m.routeExistsInSystemLocked(ipStr, entry.luid) {
@@ -792,11 +844,13 @@ func (m *domainRoutingManager) addRouteForIP(ip net.IP, target routeTarget, ttl 
 	if err := addRoute(newEntry); err != nil {
 		if errors.Is(err, windows.ERROR_OBJECT_ALREADY_EXISTS) {
 			m.routeEntries[ipStr] = newEntry
+			log.Printf("domain routing: adopted existing %s route for domain %s -> %s via %s until %s", routeTargetToString(target), domain, ipStr, m.interfaceNameForTargetLocked(target), expires.Format(time.RFC3339))
 			return nil
 		}
 		return err
 	}
 	m.routeEntries[ipStr] = newEntry
+	log.Printf("domain routing: added %s route for domain %s -> %s via %s until %s", routeTargetToString(target), domain, ipStr, m.interfaceNameForTargetLocked(target), expires.Format(time.RFC3339))
 	return nil
 }
 
@@ -849,9 +903,10 @@ func (m *domainRoutingManager) loadConfigLocked() error {
 	cfg := domainRoutingConfig{
 		Mode:            DomainRoutingOff.String(),
 		ExcludeLoopback: true,
+		DisableIPv6:     true, // По умолчанию выключаем IPv6 как просил пользователь
 		DNSRouteMode:    DNSRouteDirect.String(),
 		RouteTunnel:     "",
-	} // По умолчанию включено
+	}
 	info, err := os.Stat(m.configPath)
 	if err == nil {
 		data, readErr := os.ReadFile(m.configPath)
@@ -874,6 +929,7 @@ func (m *domainRoutingManager) loadConfigLocked() error {
 		domains: normalizeRules(cfg.Domains),
 		tunnel:  normalizeRules(cfg.Tunnel),
 		direct:  normalizeRules(cfg.Direct),
+		block:   normalizeRules(cfg.Block),
 	}
 	return nil
 }
@@ -920,8 +976,123 @@ func (m *domainRoutingManager) saveConfigLocked() error {
 		domains: normalizeRules(m.config.Domains),
 		tunnel:  normalizeRules(m.config.Tunnel),
 		direct:  normalizeRules(m.config.Direct),
+		block:   normalizeRules(m.config.Block),
 	}
 	return nil
+}
+
+func (m *domainRoutingManager) PrepareTunnelConfigForStart(name string, c *conf.Config) bool {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
+	m.refreshConfigIfNeededLocked()
+	target := strings.TrimSpace(m.routeTunnel)
+	if m.mode == DomainRoutingOff || target == "" || !strings.EqualFold(name, target) {
+		return false
+	}
+
+	if !strings.EqualFold(m.config.ManagedRouteTunnel, name) {
+		m.config.ManagedRouteTunnel = name
+		m.config.ManagedRouteTunnelOriginalTableOff = c.Interface.TableOff
+		if err := m.saveConfigLocked(); err != nil {
+			log.Printf("domain routing: failed to persist managed tunnel state: %v", err)
+		}
+	}
+
+	if c.Interface.TableOff {
+		return false
+	}
+	c.Interface.TableOff = true
+	return true
+}
+
+func (m *domainRoutingManager) syncManagedRouteTunnelLocked() error {
+	target := ""
+	if m.mode != DomainRoutingOff {
+		target = strings.TrimSpace(m.routeTunnel)
+	}
+
+	managed := strings.TrimSpace(m.config.ManagedRouteTunnel)
+	if managed != "" && !strings.EqualFold(managed, target) {
+		if err := restoreTunnelTableOff(managed, m.config.ManagedRouteTunnelOriginalTableOff); err != nil {
+			return err
+		}
+		m.config.ManagedRouteTunnel = ""
+		m.config.ManagedRouteTunnelOriginalTableOff = false
+	}
+
+	if target == "" {
+		return nil
+	}
+	if strings.EqualFold(managed, target) {
+		return nil
+	}
+
+	cfg, err := conf.LoadFromName(target)
+	if err != nil {
+		return err
+	}
+	original := cfg.Interface.TableOff
+	m.config.ManagedRouteTunnel = target
+	m.config.ManagedRouteTunnelOriginalTableOff = original
+	if original {
+		return nil
+	}
+	cfg.Interface.TableOff = true
+	if err := cfg.Save(true); err != nil {
+		return err
+	}
+	if strings.EqualFold(m.activeTunnel, target) {
+		m.removeAllowedIPRoutesForConfigLocked(cfg)
+	}
+	return nil
+}
+
+func restoreTunnelTableOff(name string, original bool) error {
+	cfg, err := conf.LoadFromName(name)
+	if err != nil {
+		return err
+	}
+	if cfg.Interface.TableOff == original {
+		return nil
+	}
+	cfg.Interface.TableOff = original
+	return cfg.Save(true)
+}
+
+func (m *domainRoutingManager) interfaceNameForTargetLocked(target routeTarget) string {
+	switch target {
+	case routeTargetTunnel:
+		if m.activeTunnel != "" {
+			return m.activeTunnel
+		}
+		return "tunnel"
+	case routeTargetDirect:
+		return "default"
+	default:
+		return "none"
+	}
+}
+
+func (m *domainRoutingManager) removeAllowedIPRoutesForConfigLocked(cfg *conf.Config) {
+	if cfg == nil || m.tunLUID == 0 {
+		return
+	}
+	for _, peer := range cfg.Peers {
+		for _, allowedip := range peer.AllowedIPs {
+			allowedip.MaskSelf()
+			dest := allowedip.IPNet()
+			var nextHop net.IP
+			if allowedip.Bits() == 32 {
+				nextHop = net.IPv4zero
+			} else {
+				nextHop = net.IPv6zero
+			}
+			if err := m.tunLUID.DeleteRoute(dest, nextHop); err != nil && !errors.Is(err, windows.ERROR_NOT_FOUND) {
+				log.Printf("domain routing: failed to remove auto route %s from managed tunnel %s: %v", dest.String(), cfg.Name, err)
+			}
+		}
+	}
 }
 
 func (m *domainRoutingManager) readSearchListForInterface(luid winipcfg.LUID) []string {
@@ -1192,6 +1363,47 @@ func findLoopbackLUID() (winipcfg.LUID, error) {
 		}
 	}
 	return 0, errors.New("loopback interface not found")
+}
+
+func (m *domainRoutingManager) GetDisableIPv6() bool {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	return m.config.DisableIPv6
+}
+
+func (m *domainRoutingManager) SetDisableIPv6(disable bool) error {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
+	if disable == m.config.DisableIPv6 {
+		return nil
+	}
+	m.config.DisableIPv6 = disable
+	return m.saveConfigLocked()
+}
+
+// DisableIPv6FromConfig removes all IPv6 AllowedIPs from the config
+func DisableIPv6FromConfig(c *conf.Config) bool {
+	if !domainRouting.GetDisableIPv6() {
+		return false
+	}
+
+	modified := false
+	for i := range c.Peers {
+		newAllowedIPs := make([]conf.IPCidr, 0, len(c.Peers[i].AllowedIPs))
+		for _, ip := range c.Peers[i].AllowedIPs {
+			if ip.IP.To4() != nil {
+				newAllowedIPs = append(newAllowedIPs, ip)
+			} else {
+				modified = true
+				log.Printf("domain routing: removed IPv6 AllowedIP %s", ip.String())
+			}
+		}
+		if modified {
+			c.Peers[i].AllowedIPs = newAllowedIPs
+		}
+	}
+	return modified
 }
 
 // ExcludeLoopbackFromAllowedIPs модифицирует конфиг, заменяя 0.0.0.0/0 на подсети без 127.0.0.1

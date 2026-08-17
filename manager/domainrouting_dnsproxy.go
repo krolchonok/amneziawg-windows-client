@@ -124,9 +124,20 @@ func (m *domainRoutingManager) handleDNSQuery(w dns.ResponseWriter, r *dns.Msg) 
 	logEntry.Domain = name
 	logEntry.QueryType = dns.TypeToString[q.Qtype]
 
+	// Блокируем IPv6 (AAAA) если опция включена.
+	// Большинство приложений после пустого NOERROR ответа для AAAA перейдут на A.
+	if q.Qtype == dns.TypeAAAA && m.GetDisableIPv6() {
+		resp := new(dns.Msg)
+		resp.SetReply(r)
+		resp.Authoritative = true
+		_ = w.WriteMsg(resp)
+		logEntry.Target = "blocked (ipv6)"
+		logEntry.Latency = time.Since(startTime)
+		dnsLogger.Log(logEntry)
+		return
+	}
+
 	// Check local DNS records first and never fall back to upstream for matched names.
-	// For mismatched query type (e.g. AAAA query for IPv4 local record), reply with
-	// NOERROR/NODATA so clients won't obtain a conflicting remote address.
 	if localIP := LookupLocalDNS(name); localIP != "" {
 		ip := net.ParseIP(localIP)
 		if ip != nil {
@@ -175,7 +186,18 @@ func (m *domainRoutingManager) handleDNSQuery(w dns.ResponseWriter, r *dns.Msg) 
 	target := m.decideRoute(name)
 	logEntry.Target = routeTargetToString(target)
 
-	upstreams := m.pickUpstreams()
+	// Если домен в списке блокировки - возвращаем NXDOMAIN
+	if target == routeTargetBlock {
+		resp := new(dns.Msg)
+		resp.SetRcode(r, dns.RcodeNameError) // NXDOMAIN
+		_ = w.WriteMsg(resp)
+		logEntry.Error = "blocked (blacklisted)"
+		logEntry.Latency = time.Since(startTime)
+		dnsLogger.Log(logEntry)
+		return
+	}
+
+	upstreams := m.pickUpstreams(target)
 	mode := m.GetMode()
 
 	log.Printf("domain routing: query %s, upstreams: %v, target: %s", name, upstreams, logEntry.Target)
@@ -190,7 +212,8 @@ func (m *domainRoutingManager) handleDNSQuery(w dns.ResponseWriter, r *dns.Msg) 
 		return
 	}
 
-	dialer := m.dialerForDefault()
+	// Для запроса используем диалер, привязанный к соответствующему интерфейсу
+	dialer := m.dialerForTarget(target)
 	resp, err := exchangeWithUpstreams(r, upstreams, dialer)
 	if err != nil {
 		failed := new(dns.Msg)
@@ -213,7 +236,7 @@ func (m *domainRoutingManager) handleDNSQuery(w dns.ResponseWriter, r *dns.Msg) 
 
 	// Применяем роуты только когда режим включён И туннель активен И не DNS Only
 	if mode != DomainRoutingOff && mode != DomainRoutingDNSOnly && target != routeTargetNone && m.hasTunnel() {
-		if err := m.applyRoutesFromResponse(resp, target); err != nil && mode == DomainRoutingStrict {
+		if err := m.applyRoutesFromResponse(name, resp, target); err != nil && mode == DomainRoutingStrict {
 			failed := new(dns.Msg)
 			failed.SetRcode(r, dns.RcodeServerFailure)
 			_ = w.WriteMsg(failed)
@@ -235,26 +258,28 @@ func routeTargetToString(t routeTarget) string {
 		return "tunnel"
 	case routeTargetDirect:
 		return "direct"
+	case routeTargetBlock:
+		return "blocked"
 	default:
 		return "default"
 	}
 }
 
-func (m *domainRoutingManager) applyRoutesFromResponse(resp *dns.Msg, target routeTarget) error {
+func (m *domainRoutingManager) applyRoutesFromResponse(domain string, resp *dns.Msg, target routeTarget) error {
 	var routeErr error
 	for _, ans := range resp.Answer {
 		a, ok := ans.(*dns.A)
 		if !ok {
 			continue
 		}
-		if err := m.addRouteForIP(a.A, target, a.Hdr.Ttl); err != nil && routeErr == nil {
+		if err := m.addRouteForIP(domain, a.A, target, a.Hdr.Ttl); err != nil && routeErr == nil {
 			routeErr = err
 		}
 	}
 	return routeErr
 }
 
-func (m *domainRoutingManager) pickUpstreams() []string {
+func (m *domainRoutingManager) pickUpstreams(target routeTarget) []string {
 	m.mu.Lock()
 	defer m.mu.Unlock()
 
@@ -271,10 +296,21 @@ func (m *domainRoutingManager) pickUpstreams() []string {
 		return []string{"8.8.8.8:53", "1.1.1.1:53"}
 	}
 
-	servers := filterIPv4(m.defaultDNS)
-	if len(servers) == 0 {
+	var servers []net.IP
+	if target == routeTargetTunnel {
+		// Для туннельных доменов предпочитаем DNS туннеля
 		servers = filterIPv4(m.tunDNS)
+		if len(servers) == 0 {
+			servers = filterIPv4(m.defaultDNS)
+		}
+	} else {
+		// Для прямых доменов предпочитаем системные DNS
+		servers = filterIPv4(m.defaultDNS)
+		if len(servers) == 0 {
+			servers = filterIPv4(m.tunDNS)
+		}
 	}
+
 	if len(servers) == 0 {
 		// Используем кэшированные системные DNS (без loopback)
 		servers = m.cachedSystemDNS
@@ -437,24 +473,25 @@ func htonl(value uint32) uint32 {
 	return bits.ReverseBytes32(value)
 }
 
-func (m *domainRoutingManager) dialerForDefault() *net.Dialer {
+func (m *domainRoutingManager) dialerForTarget(target routeTarget) *net.Dialer {
 	m.mu.Lock()
 	defer m.mu.Unlock()
 
-	// Привязка к интерфейсу нужна только когда туннель активен с 0.0.0.0/0
-	// Без туннеля просто используем обычный dialer
+	// Привязка к интерфейсу нужна только когда туннель активен
 	if m.activeTunnel == "" {
 		return nil
 	}
 
 	var ifIndex uint32
-	if m.dnsRouteMode == DNSRouteTunnel {
+	// Если домен туннельный - принудительно шлем DNS в туннель
+	// Если прямой - принудительно шлем DNS мимо туннеля (если DNSRouteDirect или target=Direct)
+	if target == routeTargetTunnel || (target == routeTargetNone && m.dnsRouteMode == DNSRouteTunnel) {
 		ifIndex = m.tunIfIndex
 		if ifIndex == 0 {
 			log.Printf("domain routing: no tunnel interface index, using default routing")
 			return nil
 		}
-		log.Printf("domain routing: creating DNS dialer bound to tunnel ifIndex=%d", ifIndex)
+		log.Printf("domain routing: creating DNS dialer bound to tunnel ifIndex=%d for target %s", ifIndex, routeTargetToString(target))
 	} else {
 		// Используем интерфейс из defaultRoute (физический интерфейс, не туннель)
 		ifIndex = m.defaultRoute.InterfaceIndex
@@ -462,7 +499,7 @@ func (m *domainRoutingManager) dialerForDefault() *net.Dialer {
 			log.Printf("domain routing: no default interface index, using default routing")
 			return nil
 		}
-		log.Printf("domain routing: creating DNS dialer bound to ifIndex=%d", ifIndex)
+		log.Printf("domain routing: creating DNS dialer bound to ifIndex=%d for target %s", ifIndex, routeTargetToString(target))
 	}
 	return &net.Dialer{
 		Control: func(network, address string, c syscall.RawConn) error {

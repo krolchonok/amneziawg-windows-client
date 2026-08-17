@@ -28,6 +28,8 @@ type DomainRoutingPage struct {
 
 	// Исключить loopback из туннеля
 	excludeLoopbackCheck *walk.CheckBox
+	// Отключить IPv6
+	disableIPv6Check *walk.CheckBox
 
 	// DNS lookup settings
 	dnsGroup        *walk.GroupBox
@@ -47,6 +49,10 @@ type DomainRoutingPage struct {
 	domainsGroup *walk.GroupBox
 	domainsLabel *walk.TextLabel
 	domainsEdit  *walk.TextEdit
+
+	// Группа для блокировки доменов
+	blockGroup       *walk.GroupBox
+	blockDomainsEdit *walk.TextEdit
 
 	// Расширенный режим (tunnel/direct)
 	advancedGroup     *walk.GroupBox
@@ -77,8 +83,31 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	mainLayout := walk.NewVBoxLayout()
 	drp.SetLayout(mainLayout)
 
+	tabWidget, err := walk.NewTabWidget(drp)
+	if err != nil {
+		return nil, err
+	}
+
+	generalTab, err := walk.NewTabPage()
+	if err != nil {
+		return nil, err
+	}
+	generalTab.SetTitle(l18n.Sprintf("General & DNS"))
+	generalLayout := walk.NewVBoxLayout()
+	generalTab.SetLayout(generalLayout)
+	tabWidget.Pages().Add(generalTab)
+
+	rulesTab, err := walk.NewTabPage()
+	if err != nil {
+		return nil, err
+	}
+	rulesTab.SetTitle(l18n.Sprintf("Routing Rules"))
+	rulesLayout := walk.NewVBoxLayout()
+	rulesTab.SetLayout(rulesLayout)
+	tabWidget.Pages().Add(rulesTab)
+
 	// Группа выбора режима
-	if drp.modeGroup, err = walk.NewGroupBox(drp); err != nil {
+	if drp.modeGroup, err = walk.NewGroupBox(generalTab); err != nil {
 		return nil, err
 	}
 	drp.modeGroup.SetTitle(l18n.Sprintf("Routing Mode"))
@@ -155,10 +184,20 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 		exclude := drp.excludeLoopbackCheck.Checked()
 		go manager.IPCClientSetDomainRoutingExcludeLoopback(exclude)
 	})
+
+	if drp.disableIPv6Check, err = walk.NewCheckBox(loopbackContainer); err != nil {
+		return nil, err
+	}
+	drp.disableIPv6Check.SetText(l18n.Sprintf("Disable IPv6 (prevents leaks and improves performance)"))
+	drp.disableIPv6Check.SetToolTipText(l18n.Sprintf("When enabled, intercepts AAAA DNS queries and removes IPv6 from tunnel AllowedIPs."))
+	drp.disableIPv6Check.CheckedChanged().Attach(func() {
+		disable := drp.disableIPv6Check.Checked()
+		go manager.IPCClientSetDomainRoutingDisableIPv6(disable)
+	})
 	walk.NewHSpacer(loopbackContainer)
 
 	// === DNS lookup settings ===
-	if drp.dnsGroup, err = walk.NewGroupBox(drp); err != nil {
+	if drp.dnsGroup, err = walk.NewGroupBox(generalTab); err != nil {
 		return nil, err
 	}
 	drp.dnsGroup.SetTitle(l18n.Sprintf("DNS Lookup"))
@@ -215,7 +254,7 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	walk.NewHSpacer(dnsTunnelContainer)
 
 	// === Группа выбора режима списка ===
-	if drp.listModeGroup, err = walk.NewGroupBox(drp); err != nil {
+	if drp.listModeGroup, err = walk.NewGroupBox(rulesTab); err != nil {
 		return nil, err
 	}
 	drp.listModeGroup.SetTitle(l18n.Sprintf("List Mode"))
@@ -249,7 +288,7 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	walk.NewHSpacer(listModeRadioContainer)
 
 	// === Группа доменов для whitelist/blacklist ===
-	if drp.domainsGroup, err = walk.NewGroupBox(drp); err != nil {
+	if drp.domainsGroup, err = walk.NewGroupBox(rulesTab); err != nil {
 		return nil, err
 	}
 	drp.domainsGroup.SetTitle(l18n.Sprintf("Domains"))
@@ -265,19 +304,35 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	if drp.domainsEdit, err = newScrollableTextEdit(drp.domainsGroup); err != nil {
 		return nil, err
 	}
-	drp.domainsEdit.SetMinMaxSize(walk.Size{0, 100}, walk.Size{0, 0})
+	drp.domainsEdit.SetMinMaxSize(walk.Size{0, 60}, walk.Size{0, 0})
 	if err := drp.attachTextEditContextMenu(drp.domainsEdit); err != nil {
 		return nil, err
 	}
 	domainsLayout.SetStretchFactor(drp.domainsEdit, 1)
 
-	// Пример для whitelist/blacklist
-	domainsExampleLabel, _ := walk.NewTextLabel(drp.domainsGroup)
-	domainsExampleLabel.SetText(l18n.Sprintf("Example: google.com (matches google.com and *.google.com)"))
-	domainsExampleLabel.SetMinMaxSize(walk.Size{1, 0}, walk.Size{0, 0})
+	// === Группа для блокировки доменов ===
+	if drp.blockGroup, err = walk.NewGroupBox(rulesTab); err != nil {
+		return nil, err
+	}
+	drp.blockGroup.SetTitle(l18n.Sprintf("Blocked Domains (Always Active)"))
+	blockLayout := walk.NewVBoxLayout()
+	blockLayout.SetMargins(walk.Margins{10, 10, 10, 10})
+	drp.blockGroup.SetLayout(blockLayout)
+
+	blockDescLabel, _ := walk.NewTextLabel(drp.blockGroup)
+	blockDescLabel.SetText(l18n.Sprintf("Domains to block completely (returns NXDOMAIN):"))
+
+	if drp.blockDomainsEdit, err = newScrollableTextEdit(drp.blockGroup); err != nil {
+		return nil, err
+	}
+	drp.blockDomainsEdit.SetMinMaxSize(walk.Size{0, 60}, walk.Size{0, 0})
+	if err := drp.attachTextEditContextMenu(drp.blockDomainsEdit); err != nil {
+		return nil, err
+	}
+	blockLayout.SetStretchFactor(drp.blockDomainsEdit, 1)
 
 	// === Группа расширенных правил (tunnel/direct) ===
-	if drp.advancedGroup, err = walk.NewGroupBox(drp); err != nil {
+	if drp.advancedGroup, err = walk.NewGroupBox(rulesTab); err != nil {
 		return nil, err
 	}
 	drp.advancedGroup.SetTitle(l18n.Sprintf("Domain Rules (Advanced)"))
@@ -331,8 +386,10 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	drp.applyButton.SetMinMaxSize(walk.Size{100, 0}, walk.Size{100, 0})
 	drp.applyButton.Clicked().Attach(drp.onApply)
 
-	mainLayout.SetStretchFactor(drp.domainsGroup, 1)
-	mainLayout.SetStretchFactor(drp.advancedGroup, 1)
+	rulesLayout.SetStretchFactor(drp.domainsGroup, 1)
+	rulesLayout.SetStretchFactor(drp.blockGroup, 1)
+	rulesLayout.SetStretchFactor(drp.advancedGroup, 1)
+	generalLayout.SetStretchFactor(drp.dnsGroup, 1)
 
 	// Установка обработчиков radio buttons
 	drp.modeOff.CheckedChanged().Attach(func() {
@@ -385,6 +442,8 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 		drp.modeRelaxed.SetEnabled(false)
 		drp.modeStrict.SetEnabled(false)
 		drp.modeDNSOnly.SetEnabled(false)
+		drp.excludeLoopbackCheck.SetEnabled(false)
+		drp.disableIPv6Check.SetEnabled(false)
 		drp.dnsServersEdit.SetReadOnly(true)
 		drp.dnsRouteDirect.SetEnabled(false)
 		drp.dnsRouteTunnel.SetEnabled(false)
@@ -393,6 +452,7 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 		drp.listModeBlacklist.SetEnabled(false)
 		drp.listModeAdvanced.SetEnabled(false)
 		drp.domainsEdit.SetReadOnly(true)
+		drp.blockDomainsEdit.SetReadOnly(true)
 		drp.tunnelDomainsEdit.SetReadOnly(true)
 		drp.directDomainsEdit.SetReadOnly(true)
 		drp.applyButton.SetEnabled(false)
@@ -414,13 +474,14 @@ func (drp *DomainRoutingPage) loadCurrentSettings() {
 	go func() {
 		mode, modeErr := manager.IPCClientDomainRoutingMode()
 		excludeLoopback, exclErr := manager.IPCClientDomainRoutingExcludeLoopback()
+		disableIPv6, ipv6Err := manager.IPCClientDomainRoutingDisableIPv6()
 		rules, rulesErr := manager.IPCClientDomainRoutingRules()
 		settings, settingsErr := manager.IPCClientDomainRoutingDNSSettings()
 		tunnels, tunnelsErr := manager.IPCClientTunnels()
 		globalState, _ := manager.IPCClientGlobalState()
 
 		drp.Form().Synchronize(func() {
-			drp.applyLoadedSettings(mode, modeErr, excludeLoopback, exclErr, rules, rulesErr, settings, settingsErr, tunnels, tunnelsErr, globalState)
+			drp.applyLoadedSettings(mode, modeErr, excludeLoopback, exclErr, disableIPv6, ipv6Err, rules, rulesErr, settings, settingsErr, tunnels, tunnelsErr, globalState)
 		})
 	}()
 }
@@ -429,17 +490,19 @@ func (drp *DomainRoutingPage) loadCurrentSettings() {
 func (drp *DomainRoutingPage) loadCurrentSettingsSync() {
 	mode, modeErr := manager.IPCClientDomainRoutingMode()
 	excludeLoopback, exclErr := manager.IPCClientDomainRoutingExcludeLoopback()
+	disableIPv6, ipv6Err := manager.IPCClientDomainRoutingDisableIPv6()
 	rules, rulesErr := manager.IPCClientDomainRoutingRules()
 	settings, settingsErr := manager.IPCClientDomainRoutingDNSSettings()
 	tunnels, tunnelsErr := manager.IPCClientTunnels()
 	globalState, _ := manager.IPCClientGlobalState()
 
-	drp.applyLoadedSettings(mode, modeErr, excludeLoopback, exclErr, rules, rulesErr, settings, settingsErr, tunnels, tunnelsErr, globalState)
+	drp.applyLoadedSettings(mode, modeErr, excludeLoopback, exclErr, disableIPv6, ipv6Err, rules, rulesErr, settings, settingsErr, tunnels, tunnelsErr, globalState)
 }
 
 func (drp *DomainRoutingPage) applyLoadedSettings(
 	mode manager.DomainRoutingMode, modeErr error,
 	excludeLoopback bool, exclErr error,
+	disableIPv6 bool, ipv6Err error,
 	rules manager.DomainRoutingRulesData, rulesErr error,
 	settings manager.DomainRoutingDNSSettings, settingsErr error,
 	tunnels []manager.Tunnel, tunnelsErr error,
@@ -459,10 +522,17 @@ func (drp *DomainRoutingPage) applyLoadedSettings(
 		drp.excludeLoopbackCheck.SetChecked(true)
 	}
 
+	if ipv6Err == nil {
+		drp.disableIPv6Check.SetChecked(disableIPv6)
+	} else {
+		drp.disableIPv6Check.SetChecked(true)
+	}
+
 	if rulesErr == nil {
 		drp.domainsEdit.SetText(strings.Join(rules.Domains, "\r\n"))
 		drp.tunnelDomainsEdit.SetText(strings.Join(rules.Tunnel, "\r\n"))
 		drp.directDomainsEdit.SetText(strings.Join(rules.Direct, "\r\n"))
+		drp.blockDomainsEdit.SetText(strings.Join(rules.Block, "\r\n"))
 		drp.setListModeUI(rules.ListMode)
 	} else {
 		drp.setListModeUI("disabled")
@@ -591,6 +661,7 @@ func (drp *DomainRoutingPage) onApply() {
 		Domains:  parseDomainsText(drp.domainsEdit.Text()),
 		Tunnel:   parseDomainsText(drp.tunnelDomainsEdit.Text()),
 		Direct:   parseDomainsText(drp.directDomainsEdit.Text()),
+		Block:    parseDomainsText(drp.blockDomainsEdit.Text()),
 	}
 
 	settings := manager.DomainRoutingDNSSettings{

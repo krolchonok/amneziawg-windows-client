@@ -92,9 +92,24 @@ func (s *ManagerService) Start(tunnelName string) error {
 		return err
 	}
 
+	modified := false
+
 	// Модифицируем AllowedIPs для исключения loopback если опция включена
 	if ExcludeLoopbackFromAllowedIPs(c) {
-		// Сохраняем модифицированный конфиг во временный файл
+		modified = true
+	}
+
+	// Отключаем IPv6 если опция включена
+	if DisableIPv6FromConfig(c) {
+		modified = true
+	}
+
+	// Selected DNS route tunnel must not install global routes from AllowedIPs.
+	if domainRouting.PrepareTunnelConfigForStart(tunnelName, c) {
+		modified = true
+	}
+
+	if modified {
 		if err := c.Save(true); err != nil {
 			log.Printf("domain routing: failed to save modified config: %v", err)
 		}
@@ -506,6 +521,23 @@ func (s *ManagerService) ServeConn(reader io.Reader, writer io.Writer) {
 				return
 			}
 			retErr := domainRouting.SetExcludeLoopback(exclude)
+			err = encoder.Encode(errToString(retErr))
+			if err != nil {
+				return
+			}
+		case DomainRoutingGetDisableIPv6MethodType:
+			disable := domainRouting.GetDisableIPv6()
+			err = encoder.Encode(disable)
+			if err != nil {
+				return
+			}
+		case DomainRoutingSetDisableIPv6MethodType:
+			var disable bool
+			err := decoder.Decode(&disable)
+			if err != nil {
+				return
+			}
+			retErr := domainRouting.SetDisableIPv6(disable)
 			err = encoder.Encode(errToString(retErr))
 			if err != nil {
 				return

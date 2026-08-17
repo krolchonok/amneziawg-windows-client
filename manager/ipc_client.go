@@ -63,6 +63,8 @@ const (
 	DomainRoutingSetListModeMethodType
 	DomainRoutingGetExcludeLoopbackMethodType
 	DomainRoutingSetExcludeLoopbackMethodType
+	DomainRoutingGetDisableIPv6MethodType
+	DomainRoutingSetDisableIPv6MethodType
 	DomainRoutingGetDNSSettingsMethodType
 	DomainRoutingSetDNSSettingsMethodType
 	LocalDNSGetRecordsMethodType
@@ -81,6 +83,7 @@ type DomainRoutingRulesData struct {
 	Domains  []string
 	Tunnel   []string
 	Direct   []string
+	Block    []string
 }
 
 var (
@@ -533,6 +536,33 @@ func IPCClientSetDomainRoutingExcludeLoopback(exclude bool) error {
 		return err
 	}
 	if err := rpcEncoder.Encode(exclude); err != nil {
+		return err
+	}
+	return rpcDecodeError()
+}
+
+func IPCClientDomainRoutingDisableIPv6() (bool, error) {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DomainRoutingGetDisableIPv6MethodType); err != nil {
+		return false, err
+	}
+	var disable bool
+	if err := rpcDecoder.Decode(&disable); err != nil {
+		return false, err
+	}
+	return disable, nil
+}
+
+func IPCClientSetDomainRoutingDisableIPv6(disable bool) error {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(DomainRoutingSetDisableIPv6MethodType); err != nil {
+		return err
+	}
+	if err := rpcEncoder.Encode(disable); err != nil {
 		return err
 	}
 	return rpcDecodeError()
