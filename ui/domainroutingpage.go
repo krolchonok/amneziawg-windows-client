@@ -120,7 +120,7 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 	descLabel.SetText(l18n.Sprintf("Domain routing allows you to route traffic based on domain names. DNS requests are intercepted and routes are added automatically."))
 	descLabel.SetMinMaxSize(walk.Size{1, 0}, walk.Size{0, 0})
 
-	walk.NewVSeparator(drp.modeGroup)
+	walk.NewHSeparator(drp.modeGroup)
 
 	// Radio buttons для выбора режима
 	radioContainer, _ := walk.NewComposite(drp.modeGroup)
@@ -383,7 +383,7 @@ func NewDomainRoutingPage() (*DomainRoutingPage, error) {
 		return nil, err
 	}
 	drp.applyButton.SetText(l18n.Sprintf("Apply"))
-	drp.applyButton.SetMinMaxSize(walk.Size{100, 0}, walk.Size{100, 0})
+	drp.applyButton.SetMinMaxSize(walk.Size{100, 0}, walk.Size{0, 0})
 	drp.applyButton.Clicked().Attach(drp.onApply)
 
 	rulesLayout.SetStretchFactor(drp.domainsGroup, 1)

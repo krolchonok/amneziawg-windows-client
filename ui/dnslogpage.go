@@ -266,6 +266,8 @@ func NewDNSLogPage() (*DNSLogPage, error) {
 		return nil, err
 	}
 	dlp.searchEdit.SetToolTipText(l18n.Sprintf("Search in DNS log entries"))
+	dlp.searchEdit.SetMinMaxSize(walk.Size{150, 0}, walk.Size{0, 0})
+	toolbarLayout.SetStretchFactor(dlp.searchEdit, 1)
 	dlp.searchEdit.TextChanged().Attach(func() {
 		dlp.logModel.SetFilterText(dlp.searchEdit.Text())
 		dlp.updateStats()

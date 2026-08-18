@@ -81,6 +81,8 @@ func NewLocalDNSPage() (*LocalDNSPage, error) {
     }
     ldp.domainEdit.SetMaxLength(256)
     ldp.domainEdit.SetToolTipText(l18n.Sprintf("e.g. example.com"))
+    ldp.domainEdit.SetMinMaxSize(walk.Size{150, 0}, walk.Size{0, 0})
+    toolbarLayout.SetStretchFactor(ldp.domainEdit, 2)
 
     ipLabel, _ := walk.NewTextLabel(toolbar)
     ipLabel.SetText(l18n.Sprintf("IP:"))
@@ -90,6 +92,8 @@ func NewLocalDNSPage() (*LocalDNSPage, error) {
     }
     ldp.ipEdit.SetMaxLength(45) // IPv6 max length
     ldp.ipEdit.SetToolTipText(l18n.Sprintf("e.g. 192.168.1.1 or ::1"))
+    ldp.ipEdit.SetMinMaxSize(walk.Size{110, 0}, walk.Size{0, 0})
+    toolbarLayout.SetStretchFactor(ldp.ipEdit, 1)
 
     if ldp.addButton, err = walk.NewPushButton(toolbar); err != nil {
         return nil, err

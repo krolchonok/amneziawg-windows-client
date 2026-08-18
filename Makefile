@@ -25,8 +25,8 @@ define download =
 	if ! mv $$@.unverified $$@; then rm -f $$@.unverified; exit 1; fi
 endef
 
-$(eval $(call download,go.tar.gz,https://go.dev/dl/go1.20.14.linux-amd64.tar.gz,ff445e48af27f93f66bd949ae060d97991c83e11289009d311f25426258f9c44))
-$(eval $(call download,wireguard-nt.zip,https://download.wireguard.com/wireguard-nt/wireguard-nt-0.10.1.zip,772c0b1463d8d2212716f43f06f4594d880dea4f735165bd68e388fc41b81605))
+$(eval $(call download,go.tar.gz,https://go.dev/dl/go1.24.11.linux-amd64.tar.gz,bceca00afaac856bc48b4cc33db7cd9eb383c81811379faed3bdbc80edb0af65))
+$(eval $(call download,wintun.zip,https://www.wintun.net/builds/wintun-0.14.1.zip,07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51))
 
 .deps/go/prepared: .distfiles/go.tar.gz
 	mkdir -p .deps
@@ -65,10 +65,10 @@ arm64/amneziawg.exe: export GOARCH := arm64
 arm64/amneziawg.exe: resources_arm64.syso $(SOURCE_FILES)
 	go build $(GOFLAGS) -o $@
 
-amd64/wintun.dll:
+amd64/wintun.dll: .deps/wintun/prepared
 	cp .deps/wintun/bin/amd64/wintun.dll $@
 
-x86/wintun.dll:
+x86/wintun.dll: .deps/wintun/prepared
 	cp .deps/wintun/bin/x86/wintun.dll $@
 
 remaster: export GOARCH := amd64
