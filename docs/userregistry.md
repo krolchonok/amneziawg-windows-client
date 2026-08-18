@@ -8,3 +8,11 @@ Supported languages: "ca", "cs", "de", "en", "es_ES", "et", "fa", "fi", "fr", "i
 ```
 > reg add HKCU\Software\AmneziaWG /v Language /t REG_SZ /d "en" /f
 ```
+
+#### `HKCU\Software\AmneziaWG\SkipUpdatePrompt`
+
+When set to `1`, the "Update Available" dialog shown at startup is suppressed (the passive Update tab and tray icon still appear). Set automatically when the user clicks "Never ask again" on that dialog.
+
+```
+> reg add HKCU\Software\AmneziaWG /v SkipUpdatePrompt /t REG_SZ /d "1" /f
+```

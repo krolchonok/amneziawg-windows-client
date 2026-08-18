@@ -67,6 +67,7 @@ func RunUI() {
 		})
 	})
 
+	updatePromptShown := false
 	onUpdateNotification := func(updateState manager.UpdateState) {
 		if updateState == manager.UpdateStateUnknown {
 			return
@@ -77,6 +78,10 @@ func RunUI() {
 				mtw.UpdateFound()
 				if tray != nil && IsAdmin {
 					tray.UpdateFound()
+				}
+				if IsAdmin && !updatePromptShown && !updatePromptDisabled() {
+					updatePromptShown = true
+					showUpdatePromptDialog(mtw)
 				}
 			case manager.UpdateStateUpdatesDisabledUnofficialBuild:
 				mtw.SetTitle(l18n.Sprintf("%s (unsigned build, no updates)", mtw.Title()))
