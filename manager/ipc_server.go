@@ -624,6 +624,23 @@ func (s *ManagerService) ServeConn(reader io.Reader, writer io.Writer) {
 			if err != nil {
 				return
 			}
+		case PortFirewallGetRulesMethodType:
+			data := portFirewall.GetRules()
+			err = encoder.Encode(data)
+			if err != nil {
+				return
+			}
+		case PortFirewallSetRulesMethodType:
+			var data PortFirewallRulesData
+			err := decoder.Decode(&data)
+			if err != nil {
+				return
+			}
+			retErr := portFirewall.SetRules(data)
+			err = encoder.Encode(errToString(retErr))
+			if err != nil {
+				return
+			}
 		default:
 			return
 		}
@@ -695,6 +712,9 @@ func errToString(err error) string {
 func IPCServerNotifyTunnelChange(name string, state TunnelState, err error) {
 	if domainRouting != nil {
 		domainRouting.OnTunnelStateChange(name, state)
+	}
+	if portFirewall != nil {
+		portFirewall.OnTunnelStateChange(name, state)
 	}
 	notifyAll(TunnelChangeNotificationType, false, name, state, trackedTunnelsGlobalState(), errToString(err))
 }

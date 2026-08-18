@@ -25,6 +25,7 @@ type ManageTunnelsWindow struct {
 	logPage           *LogPage
 	updatePage        *UpdatePage
 	domainRoutingPage *DomainRoutingPage
+	portFirewallPage  *PortFirewallPage
 	dnsLogPage        *DNSLogPage
 	dnsBlockPage      *DNSBlockPage
 
@@ -117,6 +118,11 @@ func NewManageTunnelsWindow() (*ManageTunnelsWindow, error) {
 	}
 	mtw.tabs.Pages().Add(mtw.domainRoutingPage.TabPage)
 
+	if mtw.portFirewallPage, err = NewPortFirewallPage(); err != nil {
+		return nil, err
+	}
+	mtw.tabs.Pages().Add(mtw.portFirewallPage.TabPage)
+
 	if mtw.dnsLogPage, err = NewDNSLogPage(); err != nil {
 		return nil, err
 	}
@@ -159,6 +165,9 @@ func (mtw *ManageTunnelsWindow) Dispose() {
 	}
 	if mtw.domainRoutingPage != nil {
 		mtw.domainRoutingPage.Dispose()
+	}
+	if mtw.portFirewallPage != nil {
+		mtw.portFirewallPage.Dispose()
 	}
 	if mtw.dnsLogPage != nil {
 		mtw.dnsLogPage.Dispose()

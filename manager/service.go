@@ -73,6 +73,9 @@ func (service *managerService) Execute(args []string, r <-chan svc.ChangeRequest
 	if err := InitDomainRouting(); err != nil {
 		log.Printf("Failed to initialize domain routing: %v", err)
 	}
+	if err := InitPortFirewall(); err != nil {
+		log.Printf("Failed to initialize port firewall: %v", err)
+	}
 
 	procs := make(map[uint32]*uiProcess)
 	aliveSessions := make(map[uint32]bool)

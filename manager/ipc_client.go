@@ -75,6 +75,8 @@ const (
 	DNSLogSetEnabledMethodType
 	DNSLogGetCountMethodType
 	DNSLogGetEntriesSinceIndexMethodType
+	PortFirewallGetRulesMethodType
+	PortFirewallSetRulesMethodType
 )
 
 // DomainRoutingRulesData for IPC transfer
@@ -706,6 +708,33 @@ func IPCClientDNSLogGetEntriesSinceIndex(fromIndex int) ([]DNSLogEntry, error) {
 		return nil, err
 	}
 	return entries, nil
+}
+
+func IPCClientPortFirewallRules() (PortFirewallRulesData, error) {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	var data PortFirewallRulesData
+	if err := rpcEncoder.Encode(PortFirewallGetRulesMethodType); err != nil {
+		return data, err
+	}
+	if err := rpcDecoder.Decode(&data); err != nil {
+		return data, err
+	}
+	return data, nil
+}
+
+func IPCClientSetPortFirewallRules(data PortFirewallRulesData) error {
+	rpcMutex.Lock()
+	defer rpcMutex.Unlock()
+
+	if err := rpcEncoder.Encode(PortFirewallSetRulesMethodType); err != nil {
+		return err
+	}
+	if err := rpcEncoder.Encode(data); err != nil {
+		return err
+	}
+	return rpcDecodeError()
 }
 
 func IPCClientRegisterTunnelChange(cb func(tunnel *Tunnel, state, globalState TunnelState, err error)) *TunnelChangeCallback {
