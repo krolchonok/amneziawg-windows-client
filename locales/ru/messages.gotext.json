@@ -1912,6 +1912,531 @@
                     "expr": "hf"
                 }
             ]
+        },
+        {
+            "id": "Local DNS",
+            "message": "Local DNS",
+            "translation": "Локальный DNS"
+        },
+        {
+            "id": "Add local DNS records. These domains will resolve to the specified IP addresses.",
+            "message": "Add local DNS records. These domains will resolve to the specified IP addresses.",
+            "translation": "Добавьте локальные DNS-записи. Эти домены будут разрешаться в указанные IP-адреса."
+        },
+        {
+            "id": "Domain:",
+            "message": "Domain:",
+            "translation": "Домен:"
+        },
+        {
+            "id": "e.g. example.com",
+            "message": "e.g. example.com",
+            "translation": "например, example.com"
+        },
+        {
+            "id": "IP:",
+            "message": "IP:",
+            "translation": "IP:"
+        },
+        {
+            "id": "e.g. 192.168.1.1 or ::1",
+            "message": "e.g. 192.168.1.1 or ::1",
+            "translation": "например, 192.168.1.1 или ::1"
+        },
+        {
+            "id": "Add",
+            "message": "Add",
+            "translation": "Добавить"
+        },
+        {
+            "id": "Remove",
+            "message": "Remove",
+            "translation": "Удалить"
+        },
+        {
+            "id": "Enable local DNS",
+            "message": "Enable local DNS",
+            "translation": "Включить локальный DNS"
+        },
+        {
+            "id": "Domain",
+            "message": "Domain",
+            "translation": "Домен"
+        },
+        {
+            "id": "IP Address",
+            "message": "IP Address",
+            "translation": "IP-адрес"
+        },
+        {
+            "id": "Tunnel",
+            "message": "Tunnel",
+            "translation": "Туннель"
+        },
+        {
+            "id": "Direct",
+            "message": "Direct",
+            "translation": "Напрямую"
+        },
+        {
+            "id": "Default",
+            "message": "Default",
+            "translation": "По умолчанию"
+        },
+        {
+            "id": "DNS Log",
+            "message": "DNS Log",
+            "translation": "Журнал DNS"
+        },
+        {
+            "id": "Enable logging",
+            "message": "Enable logging",
+            "translation": "Включить логирование"
+        },
+        {
+            "id": "Auto-scroll",
+            "message": "Auto-scroll",
+            "translation": "Автопрокрутка"
+        },
+        {
+            "id": "Search:",
+            "message": "Search:",
+            "translation": "Поиск:"
+        },
+        {
+            "id": "Search in DNS log entries",
+            "message": "Search in DNS log entries",
+            "translation": "Поиск в записях журнала DNS"
+        },
+        {
+            "id": "Queries: {0}",
+            "message": "Queries: {0}",
+            "translation": "Запросов: {0}"
+        },
+        {
+            "id": "Refresh",
+            "message": "Refresh",
+            "translation": "Обновить"
+        },
+        {
+            "id": "Clear",
+            "message": "Clear",
+            "translation": "Очистить"
+        },
+        {
+            "id": "Flush DNS Cache",
+            "message": "Flush DNS Cache",
+            "translation": "Очистить кэш DNS"
+        },
+        {
+            "id": "Add to Local DNS",
+            "message": "Add to Local DNS",
+            "translation": "Добавить в локальный DNS"
+        },
+        {
+            "id": "Cannot add: domain or IP is empty",
+            "message": "Cannot add: domain or IP is empty",
+            "translation": "Невозможно добавить: домен или IP не указаны"
+        },
+        {
+            "id": "{Domain} -> {Ip} added to local DNS",
+            "message": "{Domain} -> {Ip} added to local DNS",
+            "translation": "{Domain} -> {Ip} добавлен в локальный DNS"
+        },
+        {
+            "id": "Add to Domain List",
+            "message": "Add to Domain List",
+            "translation": "Добавить в список доменов"
+        },
+        {
+            "id": "Failed to update domain routing rules",
+            "message": "Failed to update domain routing rules",
+            "translation": "Не удалось обновить правила маршрутизации доменов"
+        },
+        {
+            "id": "{Domain} added to domain list",
+            "message": "{Domain} added to domain list",
+            "translation": "{Domain} добавлен в список доменов"
+        },
+        {
+            "id": "Type",
+            "message": "Type",
+            "translation": "Тип"
+        },
+        {
+            "id": "Route",
+            "message": "Route",
+            "translation": "Маршрут"
+        },
+        {
+            "id": "IPs",
+            "message": "IPs",
+            "translation": "IP-адреса"
+        },
+        {
+            "id": "Latency",
+            "message": "Latency",
+            "translation": "Задержка"
+        },
+        {
+            "id": "Failed to flush DNS cache: {Error}\n\n{Stringout}",
+            "message": "Failed to flush DNS cache: {Error}\n\n{Stringout}",
+            "translation": "Не удалось очистить кэш DNS: {Error}\n\n{Stringout}"
+        },
+        {
+            "id": "DNS cache flushed successfully.",
+            "message": "DNS cache flushed successfully.",
+            "translation": "Кэш DNS успешно очищен."
+        },
+        {
+            "id": "Queries: {RowCount} / {TotalCount} | Local: {LocalCount}",
+            "message": "Queries: {RowCount} / {TotalCount} | Local: {LocalCount}",
+            "translation": "Запросов: {RowCount} / {TotalCount} | Локальных: {LocalCount}"
+        },
+        {
+            "id": "Queries: {TotalCount} | Local: {LocalCount}",
+            "message": "Queries: {TotalCount} | Local: {LocalCount}",
+            "translation": "Запросов: {TotalCount} | Локальных: {LocalCount}"
+        },
+        {
+            "id": "Domain Routing",
+            "message": "Domain Routing",
+            "translation": "Маршрутизация доменов"
+        },
+        {
+            "id": "General & DNS",
+            "message": "General & DNS",
+            "translation": "Общее и DNS"
+        },
+        {
+            "id": "Routing Rules",
+            "message": "Routing Rules",
+            "translation": "Правила маршрутизации"
+        },
+        {
+            "id": "Routing Mode",
+            "message": "Routing Mode",
+            "translation": "Режим маршрутизации"
+        },
+        {
+            "id": "Domain routing allows you to route traffic based on domain names. DNS requests are intercepted and routes are added automatically.",
+            "message": "Domain routing allows you to route traffic based on domain names. DNS requests are intercepted and routes are added automatically.",
+            "translation": "Маршрутизация по доменам позволяет направлять трафик на основе доменных имён. DNS-запросы перехватываются, а маршруты добавляются автоматически."
+        },
+        {
+            "id": "Off",
+            "message": "Off",
+            "translation": "Выкл."
+        },
+        {
+            "id": "Domain routing is disabled. All traffic goes through the tunnel as configured.",
+            "message": "Domain routing is disabled. All traffic goes through the tunnel as configured.",
+            "translation": "Маршрутизация по доменам отключена. Весь трафик идёт через туннель согласно настройкам."
+        },
+        {
+            "id": "Relaxed",
+            "message": "Relaxed",
+            "translation": "Мягкий"
+        },
+        {
+            "id": "Routes are added for matching domains. If route cannot be added, traffic still flows.",
+            "message": "Routes are added for matching domains. If route cannot be added, traffic still flows.",
+            "translation": "Для совпадающих доменов добавляются маршруты. Если маршрут добавить не удаётся, трафик всё равно идёт."
+        },
+        {
+            "id": "Strict",
+            "message": "Strict",
+            "translation": "Строгий"
+        },
+        {
+            "id": "Routes are added for matching domains. If route cannot be added, DNS query fails.",
+            "message": "Routes are added for matching domains. If route cannot be added, DNS query fails.",
+            "translation": "Для совпадающих доменов добавляются маршруты. Если маршрут добавить не удаётся, DNS-запрос завершается ошибкой."
+        },
+        {
+            "id": "DNS Only",
+            "message": "DNS Only",
+            "translation": "Только DNS"
+        },
+        {
+            "id": "DNS proxy only. Traffic goes directly without tunnel routing.",
+            "message": "DNS proxy only. Traffic goes directly without tunnel routing.",
+            "translation": "Только DNS-прокси. Трафик идёт напрямую, без маршрутизации через туннель."
+        },
+        {
+            "id": "Exclude localhost from tunnel (required for DNS proxy)",
+            "message": "Exclude localhost from tunnel (required for DNS proxy)",
+            "translation": "Исключить localhost из туннеля (требуется для DNS-прокси)"
+        },
+        {
+            "id": "When enabled, adds a route to prevent 127.0.0.1 traffic from going through the tunnel. Required when using AllowedIPs = 0.0.0.0/0",
+            "message": "When enabled, adds a route to prevent 127.0.0.1 traffic from going through the tunnel. Required when using AllowedIPs = 0.0.0.0/0",
+            "translation": "При включении добавляется маршрут, предотвращающий прохождение трафика 127.0.0.1 через туннель. Требуется при использовании AllowedIPs = 0.0.0.0/0"
+        },
+        {
+            "id": "Disable IPv6 (prevents leaks and improves performance)",
+            "message": "Disable IPv6 (prevents leaks and improves performance)",
+            "translation": "Отключить IPv6 (предотвращает утечки и повышает производительность)"
+        },
+        {
+            "id": "When enabled, intercepts AAAA DNS queries and removes IPv6 from tunnel AllowedIPs.",
+            "message": "When enabled, intercepts AAAA DNS queries and removes IPv6 from tunnel AllowedIPs.",
+            "translation": "При включении перехватывает AAAA DNS-запросы и убирает IPv6 из AllowedIPs туннеля."
+        },
+        {
+            "id": "DNS Lookup",
+            "message": "DNS Lookup",
+            "translation": "DNS-запросы"
+        },
+        {
+            "id": "DNS servers for lookup (one per line, IP or IP:port). Empty uses system/tunnel DNS.",
+            "message": "DNS servers for lookup (one per line, IP or IP:port). Empty uses system/tunnel DNS.",
+            "translation": "DNS-серверы для запросов (по одному на строку, IP или IP:порт). Если пусто — используется системный/туннельный DNS."
+        },
+        {
+            "id": "Send DNS directly (bypass tunnel)",
+            "message": "Send DNS directly (bypass tunnel)",
+            "translation": "Отправлять DNS напрямую (в обход туннеля)"
+        },
+        {
+            "id": "Bind DNS queries to the physical interface when the tunnel is active.",
+            "message": "Bind DNS queries to the physical interface when the tunnel is active.",
+            "translation": "Привязывать DNS-запросы к физическому интерфейсу, когда туннель активен."
+        },
+        {
+            "id": "Send DNS through tunnel",
+            "message": "Send DNS through tunnel",
+            "translation": "Отправлять DNS через туннель"
+        },
+        {
+            "id": "Bind DNS queries to the tunnel interface when the tunnel is active.",
+            "message": "Bind DNS queries to the tunnel interface when the tunnel is active.",
+            "translation": "Привязывать DNS-запросы к интерфейсу туннеля, когда туннель активен."
+        },
+        {
+            "id": "Tunnel for filtered traffic:",
+            "message": "Tunnel for filtered traffic:",
+            "translation": "Туннель для фильтруемого трафика:"
+        },
+        {
+            "id": "Choose which tunnel should receive filtered domain traffic. Auto uses the currently active tunnel.",
+            "message": "Choose which tunnel should receive filtered domain traffic. Auto uses the currently active tunnel.",
+            "translation": "Выберите туннель, который будет получать отфильтрованный по доменам трафик. «Авто» использует текущий активный туннель."
+        },
+        {
+            "id": "List Mode",
+            "message": "List Mode",
+            "translation": "Режим списка"
+        },
+        {
+            "id": "Whitelist",
+            "message": "Whitelist",
+            "translation": "Белый список"
+        },
+        {
+            "id": "Only listed domains go through tunnel, everything else is direct",
+            "message": "Only listed domains go through tunnel, everything else is direct",
+            "translation": "Через туннель идут только перечисленные домены, остальное — напрямую"
+        },
+        {
+            "id": "Blacklist",
+            "message": "Blacklist",
+            "translation": "Чёрный список"
+        },
+        {
+            "id": "Everything goes through tunnel, except listed domains",
+            "message": "Everything goes through tunnel, except listed domains",
+            "translation": "Всё идёт через туннель, кроме перечисленных доменов"
+        },
+        {
+            "id": "Advanced",
+            "message": "Advanced",
+            "translation": "Расширенный"
+        },
+        {
+            "id": "Use separate tunnel and direct domain lists",
+            "message": "Use separate tunnel and direct domain lists",
+            "translation": "Использовать раздельные списки доменов для туннеля и прямого подключения"
+        },
+        {
+            "id": "Domains",
+            "message": "Domains",
+            "translation": "Домены"
+        },
+        {
+            "id": "Domains (one per line):",
+            "message": "Domains (one per line):",
+            "translation": "Домены (по одному на строку):"
+        },
+        {
+            "id": "Blocked Domains (Always Active)",
+            "message": "Blocked Domains (Always Active)",
+            "translation": "Заблокированные домены (всегда активно)"
+        },
+        {
+            "id": "Domains to block completely (returns NXDOMAIN):",
+            "message": "Domains to block completely (returns NXDOMAIN):",
+            "translation": "Домены для полной блокировки (возвращается NXDOMAIN):"
+        },
+        {
+            "id": "Domain Rules (Advanced)",
+            "message": "Domain Rules (Advanced)",
+            "translation": "Правила для доменов (расширенные)"
+        },
+        {
+            "id": "Domains to route through tunnel (one per line):",
+            "message": "Domains to route through tunnel (one per line):",
+            "translation": "Домены для маршрутизации через туннель (по одному на строку):"
+        },
+        {
+            "id": "Domains to route directly (bypass tunnel, one per line):",
+            "message": "Domains to route directly (bypass tunnel, one per line):",
+            "translation": "Домены для прямой маршрутизации (в обход туннеля, по одному на строку):"
+        },
+        {
+            "id": "Example: google.com (matches google.com and *.google.com)",
+            "message": "Example: google.com (matches google.com and *.google.com)",
+            "translation": "Пример: google.com (соответствует google.com и *.google.com)"
+        },
+        {
+            "id": "Apply",
+            "message": "Apply",
+            "translation": "Применить"
+        },
+        {
+            "id": "Auto (active tunnel)",
+            "message": "Auto (active tunnel)",
+            "translation": "Авто (активный туннель)"
+        },
+        {
+            "id": "Domains to route through TUNNEL (one per line):",
+            "message": "Domains to route through TUNNEL (one per line):",
+            "translation": "Домены для маршрутизации ЧЕРЕЗ ТУННЕЛЬ (по одному на строку):"
+        },
+        {
+            "id": "Domains to route DIRECTLY (one per line):",
+            "message": "Domains to route DIRECTLY (one per line):",
+            "translation": "Домены для маршрутизации НАПРЯМУЮ (по одному на строку):"
+        },
+        {
+            "id": "Failed to set routing mode",
+            "message": "Failed to set routing mode",
+            "translation": "Не удалось задать режим маршрутизации"
+        },
+        {
+            "id": "Failed to save rules",
+            "message": "Failed to save rules",
+            "translation": "Не удалось сохранить правила"
+        },
+        {
+            "id": "Failed to save DNS settings",
+            "message": "Failed to save DNS settings",
+            "translation": "Не удалось сохранить настройки DNS"
+        },
+        {
+            "id": "Settings saved successfully.",
+            "message": "Settings saved successfully.",
+            "translation": "Настройки успешно сохранены."
+        },
+        {
+            "id": "Disabled",
+            "message": "Disabled",
+            "translation": "Отключено"
+        },
+        {
+            "id": "Waiting for tunnel connection...",
+            "message": "Waiting for tunnel connection...",
+            "translation": "Ожидание подключения туннеля..."
+        },
+        {
+            "id": "Active ({ModeStr} mode)",
+            "message": "Active ({ModeStr} mode)",
+            "translation": "Активно (режим {ModeStr})"
+        },
+        {
+            "id": "Cu&t",
+            "message": "Cu&t",
+            "translation": "Вы&резать"
+        },
+        {
+            "id": "&Paste",
+            "message": "&Paste",
+            "translation": "&Вставить"
+        },
+        {
+            "id": "&Delete",
+            "message": "&Delete",
+            "translation": "&Удалить"
+        },
+        {
+            "id": "Port Firewall",
+            "message": "Port Firewall",
+            "translation": "Файрвол портов"
+        },
+        {
+            "id": "Mode",
+            "message": "Mode",
+            "translation": "Режим"
+        },
+        {
+            "id": "Block or allow specific TCP/UDP ports for traffic on the active tunnel only. System-wide traffic outside the tunnel is not affected.",
+            "message": "Block or allow specific TCP/UDP ports for traffic on the active tunnel only. System-wide traffic outside the tunnel is not affected.",
+            "translation": "Блокирует или разрешает отдельные TCP/UDP-порты только для трафика через активный туннель. На остальной системный трафик вне туннеля это не влияет."
+        },
+        {
+            "id": "Port firewall is disabled. All ports are allowed through the tunnel.",
+            "message": "Port firewall is disabled. All ports are allowed through the tunnel.",
+            "translation": "Файрвол портов отключён. Все порты через туннель разрешены."
+        },
+        {
+            "id": "Only the listed ports are allowed through the tunnel, everything else is blocked.",
+            "message": "Only the listed ports are allowed through the tunnel, everything else is blocked.",
+            "translation": "Через туннель разрешены только перечисленные порты, всё остальное блокируется."
+        },
+        {
+            "id": "The listed ports are blocked through the tunnel, everything else is allowed.",
+            "message": "The listed ports are blocked through the tunnel, everything else is allowed.",
+            "translation": "Перечисленные порты блокируются через туннель, всё остальное разрешено."
+        },
+        {
+            "id": "Ports",
+            "message": "Ports",
+            "translation": "Порты"
+        },
+        {
+            "id": "One entry per line: a port or range, optionally prefixed with tcp: or udp: (default: both). Example: 443, 8000-8100, udp:51820-51830",
+            "message": "One entry per line: a port or range, optionally prefixed with tcp: or udp: (default: both). Example: 443, 8000-8100, udp:51820-51830",
+            "translation": "По одной записи на строку: порт или диапазон, опционально с префиксом tcp: или udp: (по умолчанию — оба). Пример: 443, 8000-8100, udp:51820-51830"
+        },
+        {
+            "id": "Active ({Mode} mode)",
+            "message": "Active ({Mode} mode)",
+            "translation": "Активно (режим {Mode})"
+        },
+        {
+            "id": "Failed to save port firewall rules",
+            "message": "Failed to save port firewall rules",
+            "translation": "Не удалось сохранить правила файрвола портов"
+        },
+        {
+            "id": "Whitelist mode with an empty port list blocks all ports through the tunnel. Continue?",
+            "message": "Whitelist mode with an empty port list blocks all ports through the tunnel. Continue?",
+            "translation": "Режим «белый список» с пустым списком портов заблокирует все порты через туннель. Продолжить?"
+        },
+        {
+            "id": "Invalid port entry on line {I__1}: \"{Raw}\"",
+            "message": "Invalid port entry on line {I__1}: \"{Raw}\"",
+            "translation": "Некорректная запись порта в строке {I__1}: \"{Raw}\""
+        },
+        {
+            "id": "No",
+            "message": "No",
+            "translation": "Нет"
+        },
+        {
+            "id": "Never ask again",
+            "message": "Never ask again",
+            "translation": "Больше не спрашивать"
         }
     ]
 }

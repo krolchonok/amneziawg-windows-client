@@ -79,80 +79,90 @@ var messageKeyToIndex = map[string]int{
 	"%s\n\nPlease consult the log for more information.": 74,
 	"%s (out of date)":                75,
 	"%s (unsigned build, no updates)": 128,
-	"%s - Handshake did not complete after %d attempts, giving up":              246,
-	"%s - Handshake did not complete after %d seconds, retrying (try %d)":       247,
-	"%s - Removing all keys, since we haven't received a new one in %d seconds": 249,
-	"%s - Retrying handshake because we stopped hearing back after %d seconds":  248,
+	"%s - Handshake did not complete after %d attempts, giving up":              233,
+	"%s - Handshake did not complete after %d seconds, retrying (try %d)":       234,
+	"%s - Removing all keys, since we haven't received a new one in %d seconds": 236,
+	"%s - Retrying handshake because we stopped hearing back after %d seconds":  235,
+	"%s -> %s added to local DNS":                                               314,
 	"%s You cannot undo this action.":                                           119,
+	"%s added to domain list":                                                   318,
 	"%s ago":                                                                    144,
 	"%s received, %s sent":                                                      36,
 	"%s: %q":                                                                    150,
-	"%v":                                                                        276,
-	"%v - %v":                                                                   229,
-	"%v - ConsumeMessageInitiation: handshake flood":                            195,
-	"%v - ConsumeMessageInitiation: handshake replay @ %v":                      194,
-	"%v - Failed to create initiation message: %v":                              228,
-	"%v - Failed to create junk packet: %v":                                     242,
-	"%v - Failed to create response message: %v":                                233,
-	"%v - Failed to derive keypair: %v":                                         218,
-	"%v - Failed to send data packets: %v":                                      245,
-	"%v - Failed to send handshake initiation: %v":                              231,
-	"%v - Failed to send handshake response: %v":                                234,
-	"%v - Failed to send junk packets: %v":                                      230,
-	"%v - Received handshake initiation":                                        214,
-	"%v - Received handshake response":                                          217,
-	"%v - Receiving keepalive packet":                                           221,
-	"%v - Routine: sequential receiver - started":                               220,
-	"%v - Routine: sequential receiver - stopped":                               219,
-	"%v - Routine: sequential sender - started":                                 244,
-	"%v - Sending handshake initiation":                                         227,
-	"%v - Sending handshake response":                                           232,
-	"%v - Sending keepalive packet":                                             226,
-	"%v - Starting":                                                             196,
-	"%v - Stopping":                                                             197,
-	"%v - UAPI: Adding allowedip":                                               292,
-	"%v - UAPI: Created":                                                        286,
-	"%v - UAPI: Removing":                                                       287,
-	"%v - UAPI: Removing all allowedips":                                        291,
-	"%v - UAPI: Updating endpoint":                                              289,
-	"%v - UAPI: Updating persistent keepalive interval":                         290,
-	"%v - UAPI: Updating preshared key":                                         288,
+	"%v":                                                                        266,
+	"%v - ConsumeMessageInitiation: handshake flood":                            187,
+	"%v - ConsumeMessageInitiation: handshake replay @ %v":                      186,
+	"%v - Failed to create initiation message: %v":                              218,
+	"%v - Failed to create response message: %v":                                221,
+	"%v - Failed to derive keypair: %v":                                         208,
+	"%v - Failed to send data packets: %v":                                      232,
+	"%v - Failed to send handshake initiation: %v":                              219,
+	"%v - Failed to send handshake response: %v":                                222,
+	"%v - Received handshake initiation":                                        204,
+	"%v - Received handshake response":                                          207,
+	"%v - Receiving keepalive packet":                                           211,
+	"%v - Routine: sequential receiver - started":                               210,
+	"%v - Routine: sequential receiver - stopped":                               209,
+	"%v - Routine: sequential sender - started":                                 231,
+	"%v - Sending handshake initiation":                                         217,
+	"%v - Sending handshake response":                                           220,
+	"%v - Sending keepalive packet":                                             216,
+	"%v - Starting":                                                             188,
+	"%v - Stopping":                                                             189,
+	"%v - UAPI: %s allowedip":                                                   284,
+	"%v - UAPI: Created":                                                        278,
+	"%v - UAPI: Removing":                                                       279,
+	"%v - UAPI: Removing all allowedips":                                        283,
+	"%v - UAPI: Updating endpoint":                                              281,
+	"%v - UAPI: Updating persistent keepalive interval":                         282,
+	"%v - UAPI: Updating preshared key":                                         280,
 	"&About AmneziaWG…":                                                         176,
 	"&Activate":                                                                 17,
-	"&Block untunneled traffic (kill-switch)":                                   47,
-	"&Configuration:":                                                           50,
-	"&Copy":                                                                     66,
+	"&Block untunneled traffic (kill-switch)":                                   51,
+	"&Configuration:":                                                           54,
+	"&Copy":                                                                     44,
 	"&Deactivate":                                                               16,
+	"&Delete":                                                                   379,
+	"&Domain routing":                                                           392,
 	"&Edit":                                                                     97,
 	"&Import tunnel(s) from file…":                                              82,
 	"&Manage tunnels…":                                                          81,
-	"&Name:":                                                                    44,
-	"&Public key:":                                                              45,
+	"&Name:":                                                                    48,
+	"&Off":                                                                      393,
+	"&Paste":                                                                    378,
+	"&Public key:":                                                              49,
+	"&Relaxed":                                                                  394,
 	"&Remove selected tunnel(s)":                                                105,
-	"&Save":                                                                     48,
-	"&Save to file…":                                                            68,
+	"&Save":                                                                     52,
+	"&Save to file…":                                                            69,
+	"&Strict":                                                                   395,
 	"&Toggle":                                                                   102,
 	"&Tunnels":                                                                  84,
 	"(no argument): elevate and install manager service":                        1,
-	"(unknown)":                                                                 46,
-	"A name is required.":                                                       52,
+	"(unknown)":                                                                 50,
+	"A name is required.":                                                       56,
 	"A tunnel was unable to be removed: %s":                                     121,
-	"ASec: Received message with unknown type":                                  202,
 	"About AmneziaWG":                                                           12,
-	"Activating":                                                                61,
-	"Active":                                                                    60,
+	"Activating":                                                                65,
+	"Active":                                                                    64,
+	"Active (%s mode)":                                                          376,
+	"Add":                                                                       295,
 	"Add &empty tunnel…":                                                        98,
 	"Add Tunnel":                                                                99,
-	"Addresses:":                                                                21,
-	"Addresses: %s":                                                             92,
-	"Addresses: None":                                                           80,
-	"All peers must have public keys":                                           171,
-	"Allowed IPs:":                                                              25,
-	"AmneziaWG Activated":                                                       85,
-	"AmneziaWG Deactivated":                                                     87,
-	"AmneziaWG Detection Error":                                                 76,
-	"AmneziaWG Tunnel Error":                                                    89,
-	"AmneziaWG Update Available":                                                94,
+	"Add local DNS records. These domains will resolve to the specified IP addresses.": 290,
+	"Add to Domain List":              315,
+	"Add to Local DNS":                312,
+	"Addresses:":                      21,
+	"Addresses: %s":                   92,
+	"Addresses: None":                 80,
+	"Advanced":                        356,
+	"All peers must have public keys": 171,
+	"Allowed IPs:":                    25,
+	"AmneziaWG Activated":             85,
+	"AmneziaWG Deactivated":           87,
+	"AmneziaWG Detection Error":       76,
+	"AmneziaWG Tunnel Error":          89,
+	"AmneziaWG Update Available":      94,
 	"AmneziaWG is running, but the UI is only accessible from desktops of the Builtin %s group.": 8,
 	"AmneziaWG logo image": 13,
 	"AmneziaWG may only be used by users who are a member of the Builtin %s group.": 7,
@@ -164,68 +174,120 @@ var messageKeyToIndex = map[string]int{
 	"An update to AmneziaWG is available. It is highly advisable to update without delay.":        131,
 	"An update to AmneziaWG is now available. You are advised to update as soon as possible.":     95,
 	"Another tunnel already exists with the name ‘%s’":                                            109,
-	"Another tunnel already exists with the name ‘%s’.":                                           56,
-	"App version: %s\nWintun version: %s\nGo version: %s\nOperating system: %s\nArchitecture: %s": 294,
-	"Are you sure you would like to delete %d tunnels?":                                           116,
-	"Are you sure you would like to delete tunnel ‘%s’?":                                          118,
-	"Bind close failed: %v":                 181,
+	"Another tunnel already exists with the name ‘%s’.":                                           60,
+	"App version: %s\nWintun version: %s\nGo version: %s\nOperating system: %s\nArchitecture: %s": 286,
+	"Apply": 366,
+	"Are you sure you would like to delete %d tunnels?":                     116,
+	"Are you sure you would like to delete tunnel ‘%s’?":                    118,
+	"Auto (active tunnel)":                                                  367,
+	"Auto-scroll":                                                           305,
+	"Bind DNS queries to the physical interface when the tunnel is active.": 346,
+	"Bind DNS queries to the tunnel interface when the tunnel is active.":   348,
+	"Bind close failed: %v":                                                 181,
+	"Blacklist":                                                             354,
+	"Block or allow specific TCP/UDP ports for traffic on the active tunnel only. System-wide traffic outside the tunnel is not affected.": 383,
+	"Blocked Domains (Always Active)":       360,
 	"Brackets must contain an IPv6 address": 155,
-	"Cancel":                                49,
-	"Close":                                 14,
-	"Command Line Options":                  3,
+	"Cancel":                                53,
+	"Cannot add: domain or IP is empty":     313,
+	"Choose which tunnel should receive filtered domain traffic. Auto uses the currently active tunnel.": 350,
+	"Clear":                310,
+	"Close":                14,
+	"Command Line Options": 3,
 	"Config key is missing an equals separator":                            165,
 	"Configuration Files (*.zip, *.conf)|*.zip;*.conf|All Files (*.*)|*.*": 124,
 	"Configuration ZIP Files (*.zip)|*.zip":                                126,
-	"Could not decrypt invalid cookie response":                            209,
+	"Could not decrypt invalid cookie response":                            199,
 	"Could not enumerate existing tunnels: %v":                             108,
 	"Could not import selected configuration: %v":                          107,
-	"Create new tunnel":                                                    42,
-	"DNS servers:":                                                         22,
-	"Deactivating":                                                         63,
-	"Delete %d tunnels":                                                    115,
-	"Delete tunnel ‘%s’":                                                   117,
-	"Device closed":                                                        184,
-	"Device closing":                                                       183,
-	"Dropped some packets from multi-segment read: %v":                     240,
-	"E&xit":                  83,
-	"Edit &selected tunnel…": 104,
-	"Edit tunnel":            43,
-	"Endpoint:":              26,
-	"Ensure that you obtained the configuration file from a trusted source.": 298,
-	"Error":                                                     0,
-	"Error Exiting AmneziaWG":                                   129,
-	"Error in getting configuration":                            172,
-	"Error: ":                                                   177,
-	"Error: %v. Please try again.":                              135,
+	"Create new tunnel":                                                    46,
+	"Cu&t":                                                                 377,
+	"DNS &Only":                                                            396,
+	"DNS Log":                                                              303,
+	"DNS Lookup":                                                           343,
+	"DNS Only":                                                             337,
+	"DNS cache flushed successfully.":                                      324,
+	"DNS proxy only. Traffic goes directly without tunnel routing.":                       338,
+	"DNS servers for lookup (one per line, IP or IP:port). Empty uses system/tunnel DNS.": 344,
+	"DNS servers:":       22,
+	"Deactivating":       66,
+	"Default":            302,
+	"Delete %d tunnels":  115,
+	"Delete tunnel ‘%s’": 117,
+	"Device closed":      184,
+	"Device closing":     183,
+	"Direct":             301,
+	"Disable IPv6 (prevents leaks and improves performance)": 341,
+	"Disabled":                374,
+	"Domain":                  298,
+	"Domain Routing":          317,
+	"Domain Rules (Advanced)": 362,
+	"Domain routing allows you to route traffic based on domain names. DNS requests are intercepted and routes are added automatically.": 330,
+	"Domain routing is disabled. All traffic goes through the tunnel as configured.":                                                     332,
+	"Domain:":                 291,
+	"Domains":                 358,
+	"Domains (one per line):": 359,
+	"Domains to block completely (returns NXDOMAIN):":          361,
+	"Domains to route DIRECTLY (one per line):":                369,
+	"Domains to route directly (bypass tunnel, one per line):": 364,
+	"Domains to route through TUNNEL (one per line):":          368,
+	"Domains to route through tunnel (one per line):":          363,
+	"Dropped some packets from multi-segment read: %v":         228,
+	"E&xit":                          83,
+	"Edit &selected tunnel…":         104,
+	"Edit tunnel":                    47,
+	"Enable local DNS":               297,
+	"Enable logging":                 304,
+	"Endpoint:":                      26,
+	"Error":                          0,
+	"Error Exiting AmneziaWG":        129,
+	"Error in getting configuration": 172,
+	"Error: ":                        177,
+	"Error: %v. Please try again.":   135,
+	"Everything goes through tunnel, except listed domains":     355,
+	"Example: google.com (matches google.com and *.google.com)": 365,
+	"Exclude localhost from tunnel (required for DNS proxy)":    339,
 	"Export all tunnels to &zip…":                               103,
 	"Export all tunnels to zip":                                 101,
 	"Export log to file":                                        72,
 	"Export tunnels to zip":                                     127,
 	"Failed to activate tunnel":                                 38,
-	"Failed to create cookie reply: %v":                         236,
+	"Failed to create cookie reply: %v":                         224,
 	"Failed to deactivate tunnel":                               39,
-	"Failed to decode cookie reply":                             207,
-	"Failed to decode initiation message":                       212,
-	"Failed to decode response message":                         215,
+	"Failed to decode cookie reply":                             197,
+	"Failed to decode initiation message":                       202,
+	"Failed to decode response message":                         205,
 	"Failed to determine tunnel state":                          37,
-	"Failed to load updated MTU of device: %v":                  251,
-	"Failed to read packet from TUN device: %v":                 241,
-	"Failed to receive %s packet: %v":                           200,
-	"Failed to write packets to TUN device: %v":                 225,
-	"File ‘%s’ already exists.\n\nDo you want to overwrite it?": 59,
-	"IPv4 packet with disallowed source address from %v":        222,
-	"IPv6 packet with disallowed source address from %v":        223,
+	"Failed to flush DNS cache: %s\n\n%s":                       323,
+	"Failed to load updated MTU of device: %v":                  238,
+	"Failed to read packet from TUN device: %v":                 229,
+	"Failed to receive %s packet: %v":                           192,
+	"Failed to save DNS settings":                               372,
+	"Failed to save port firewall rules":                        389,
+	"Failed to save rules":                                      371,
+	"Failed to set routing mode":                                370,
+	"Failed to update domain routing":                           397,
+	"Failed to update domain routing rules":                     316,
+	"Failed to write packets to TUN device: %v":                 215,
+	"File ‘%s’ already exists.\n\nDo you want to overwrite it?": 63,
+	"Flush DNS Cache":                                           311,
+	"General & DNS":                                             327,
+	"IP Address":                                                299,
+	"IP:":                                                       293,
+	"IPs":                                                       321,
+	"IPv4 packet with disallowed source address from %v":        212,
+	"IPv6 packet with disallowed source address from %v":        213,
 	"Import tunnel(s) from file":                                125,
 	"Imported %d of %d tunnels":                                 113,
 	"Imported %d tunnels":                                       112,
 	"Imported tunnels":                                          111,
-	"Inactive":                                                  62,
+	"Inactive":                                                  43,
 	"Interface closed, ignored requested state %s":              178,
-	"Interface down requested":                                  255,
+	"Interface down requested":                                  242,
 	"Interface state was %s, requested %s, now %s":              179,
-	"Interface up requested":                                    254,
+	"Interface up requested":                                    241,
 	"Interface: %s":                                             40,
-	"Invalid %s":                                                302,
+	"Invalid %s":                                                402,
 	"Invalid IP address":                                        151,
 	"Invalid MTU":                                               156,
 	"Invalid endpoint host":                                     154,
@@ -234,143 +296,181 @@ var messageKeyToIndex = map[string]int{
 	"Invalid key for interface section":                         173,
 	"Invalid key for peer section":                              175,
 	"Invalid key: %v":                                           159,
-	"Invalid name":                                              51,
+	"Invalid name":                                              55,
 	"Invalid network prefix length":                             152,
-	"Invalid packet ended up in the handshake queue":            211,
+	"Invalid packet ended up in the handshake queue":            201,
 	"Invalid persistent keepalive":                              158,
 	"Invalid port":                                              157,
+	"Invalid port entry on line %d: \"%s\"":                     391,
 	"Key must have a value":                                     166,
 	"Keys must decode to exactly 32 bytes":                      160,
+	"Latency":                                                   322,
 	"Latest handshake:":                                         28,
 	"Line must occur in a section":                              164,
+	"List Mode":                                                 351,
 	"Listen port:":                                              19,
-	"Log":                                                       65,
+	"Local DNS":                                                 289,
+	"Log":                                                       68,
 	"Log message":                                               70,
-	"MTU not updated to negative value: %v":                     252,
-	"MTU updated: %v%s":                                         253,
+	"MTU not updated to negative value: %v":                     239,
+	"MTU updated: %v%s":                                         240,
 	"MTU:":                                                      20,
 	"Missing port from endpoint":                                153,
+	"Mode":                                                      382,
+	"Never ask again":                                           400,
+	"No":                                                        401,
 	"Now":                                                       137,
 	"Number must be a number between 0 and 2^64-1: %v":          161,
-	"Official Amnezia services are available only at amnezia.org.": 299,
-	"Packet with invalid IP version from %v":                       224,
-	"Peer":                                                         41,
-	"Persistent keepalive:":                                        27,
-	"Please ask the system administrator to update.":               300,
-	"Preshared key:":                                               24,
-	"Protocol version must be 1":                                   174,
-	"Public key:":                                                  18,
-	"Received invalid initiation message from %s":                  213,
-	"Received invalid response message from %s":                    216,
-	"Received message with unknown type":                           203,
-	"Received packet with invalid mac1":                            210,
-	"Received packet with unknown IP version":                      239,
-	"Receiving cookie response from %s":                            208,
-	"Remove selected tunnel(s)":                                    100,
-	"Routine: TUN reader - started":                                238,
-	"Routine: TUN reader - stopped":                                237,
-	"Routine: decryption worker %d - started":                      204,
-	"Routine: encryption worker %d - started":                      243,
-	"Routine: event worker - started":                              250,
-	"Routine: event worker - stopped":                              256,
-	"Routine: handshake worker %d - started":                       206,
-	"Routine: handshake worker %d - stopped":                       205,
-	"Routine: receive incoming %s - started":                       199,
-	"Routine: receive incoming %s - stopped":                       198,
-	"Scripts:":                                                     23,
-	"Select &all":                                                  67,
-	"Sending cookie response for denied handshake message for %v":  235,
-	"Status:":                                      15,
-	"Status: %s":                                   91,
-	"Status: Complete!":                            136,
-	"Status: Unknown":                              79,
-	"Status: Waiting for administrator":            301,
-	"Status: Waiting for updater service":          134,
-	"Status: Waiting for user":                     132,
-	"System clock wound backward!":                 138,
-	"Table:":                                       295,
-	"Text Files (*.txt)|*.txt|All Files (*.*)|*.*": 71,
-	"The %s tunnel has been activated.":            86,
-	"The %s tunnel has been deactivated.":          88,
-	"Time":                                         69,
-	"Transfer:":                                    29,
-	"Transport packet lined up with another msg type": 201,
-	"Trouble determining MTU, assuming default: %v":   182,
-	"Tunnel Error":                                                       73,
-	"Tunnel already exists":                                              55,
-	"Tunnel name is not valid":                                           163,
-	"Tunnel name ‘%s’ is invalid.":                                       53,
-	"Tunnels":                                                            96,
-	"Two commas in a row":                                                162,
-	"UAPI: Removing all peers":                                           280,
-	"UAPI: Updating fwmark":                                              279,
-	"UAPI: Updating init_packet_junk_size":                               284,
-	"UAPI: Updating init_packet_magic_header":                            186,
-	"UAPI: Updating junk_packet_count":                                   281,
-	"UAPI: Updating junk_packet_max_size":                                283,
-	"UAPI: Updating junk_packet_min_size":                                282,
-	"UAPI: Updating listen port":                                         278,
-	"UAPI: Updating private key":                                         277,
-	"UAPI: Updating response_packet_junk_size":                           285,
-	"UAPI: Updating response_packet_magic_header":                        188,
-	"UAPI: Updating transport_packet_magic_header":                       192,
-	"UAPI: Updating underload_packet_magic_header":                       190,
-	"UAPI: Using default init type":                                      187,
-	"UAPI: Using default response type":                                  189,
-	"UAPI: Using default transport type":                                 193,
-	"UAPI: Using default underload type":                                 191,
-	"UDP bind has been updated":                                          185,
-	"Unable to create new configuration":                                 57,
-	"Unable to create tunnel":                                            114,
-	"Unable to delete tunnel":                                            120,
-	"Unable to delete tunnels":                                           122,
-	"Unable to determine whether the process is running under WOW64: %v": 4,
+	"Off": 331,
+	"One entry per line: a port or range, optionally prefixed with tcp: or udp: (default: both). Example: 443, 8000-8100, udp:51820-51830": 388,
+	"Only listed domains go through tunnel, everything else is direct":                                                                     353,
+	"Only the listed ports are allowed through the tunnel, everything else is blocked.":                                                    385,
+	"Packet with invalid IP version from %v":                                                                                               214,
+	"Peer":                                                                                                                                 41,
+	"Persistent keepalive:":                                                                                                                27,
+	"Please ask the system administrator to update.":                                                                                       398,
+	"Port Firewall": 381,
+	"Port firewall is disabled. All ports are allowed through the tunnel.": 384,
+	"Ports":                        387,
+	"Preshared key:":               24,
+	"Protocol version must be 1":   174,
+	"Public key:":                  18,
+	"Queries: %d":                  308,
+	"Queries: %d / %d | Local: %d": 325,
+	"Queries: %d | Local: %d":      326,
+	"Received invalid initiation message from %s": 203,
+	"Received invalid response message from %s":   206,
+	"Received message with unknown type":          193,
+	"Received packet with invalid mac1":           200,
+	"Received packet with unknown IP version":     227,
+	"Receiving cookie response from %s":           198,
+	"Refresh":                                     309,
+	"Relaxed":                                     333,
+	"Remove":                                      296,
+	"Remove selected tunnel(s)":                   100,
+	"Route":                                       320,
+	"Routes are added for matching domains. If route cannot be added, DNS query fails.":     336,
+	"Routes are added for matching domains. If route cannot be added, traffic still flows.": 334,
+	"Routine: TUN reader - started":                               226,
+	"Routine: TUN reader - stopped":                               225,
+	"Routine: decryption worker %d - started":                     194,
+	"Routine: encryption worker %d - started":                     230,
+	"Routine: event worker - started":                             237,
+	"Routine: event worker - stopped":                             243,
+	"Routine: handshake worker %d - started":                      196,
+	"Routine: handshake worker %d - stopped":                      195,
+	"Routine: receive incoming %s - started":                      191,
+	"Routine: receive incoming %s - stopped":                      190,
+	"Routing Mode":                                                329,
+	"Routing Rules":                                               328,
+	"Scripts:":                                                    23,
+	"Search in DNS log entries":                                   307,
+	"Search:":                                                     306,
+	"Select &all":                                                 45,
+	"Send DNS directly (bypass tunnel)":                           345,
+	"Send DNS through tunnel":                                     347,
+	"Sending cookie response for denied handshake message for %v": 223,
+	"Settings saved successfully.":                                373,
+	"Status:":                                                     15,
+	"Status: %s":                                                  91,
+	"Status: Complete!":                                           136,
+	"Status: Unknown":                                             79,
+	"Status: Waiting for administrator":                           399,
+	"Status: Waiting for updater service":                         134,
+	"Status: Waiting for user":                                    132,
+	"Strict":                                                      335,
+	"System clock wound backward!":                                138,
+	"Table:":                                                      287,
+	"Text Files (*.txt)|*.txt|All Files (*.*)|*.*":                71,
+	"The %s tunnel has been activated.":                           86,
+	"The %s tunnel has been deactivated.":                         88,
+	"The listed ports are blocked through the tunnel, everything else is allowed.": 386,
+	"Time":      42,
+	"Transfer:": 29,
+	"Trouble determining MTU, assuming default: %v": 182,
+	"Tunnel":                             300,
+	"Tunnel Error":                       73,
+	"Tunnel already exists":              59,
+	"Tunnel for filtered traffic:":       349,
+	"Tunnel name is not valid":           163,
+	"Tunnel name ‘%s’ is invalid.":       57,
+	"Tunnels":                            96,
+	"Two commas in a row":                162,
+	"Type":                               319,
+	"UAPI: Removing all peers":           270,
+	"UAPI: Updating fwmark":              269,
+	"UAPI: Updating junk count":          271,
+	"UAPI: Updating junk max":            273,
+	"UAPI: Updating junk min":            272,
+	"UAPI: Updating listen port":         268,
+	"UAPI: Updating private key":         267,
+	"UAPI: Updating s1 padding":          274,
+	"UAPI: Updating s2 padding":          275,
+	"UAPI: Updating s3 padding":          276,
+	"UAPI: Updating s4 padding":          277,
+	"UDP bind has been updated":          185,
+	"Unable to create new configuration": 61,
+	"Unable to create tunnel":            114,
+	"Unable to delete tunnel":            120,
+	"Unable to delete tunnels":           122,
+	"Unable to determine whether the process is running under WOW64: %v":                          4,
 	"Unable to exit service due to: %v. You may want to stop AmneziaWG from the service manager.": 130,
-	"Unable to import configuration: %v":                110,
-	"Unable to list existing tunnels":                   54,
-	"Unable to open current process token: %v":          6,
-	"Unable to update bind: %v":                         180,
-	"Unable to wait for AmneziaWG window to appear: %v": 77,
-	"Unknown state":                                     64,
-	"Update Now":                                        133,
-	"Usage: %s [\n%s]":                                  2,
-	"When a configuration has exactly one peer, and that peer has an allowed IPs containing at least one of 0.0.0.0/0 or ::/0, and the interface does not have table off, then the tunnel service engages a firewall ruleset to block all traffic that is neither to nor from the tunnel interface or is to the wrong DNS server, with special exceptions for DHCP and NDP.": 297,
-	"Writing file failed": 58,
+	"Unable to import configuration: %v":                                                          110,
+	"Unable to list existing tunnels":                                                             58,
+	"Unable to open current process token: %v":                                                    6,
+	"Unable to update bind: %v":                                                                   180,
+	"Unable to wait for AmneziaWG window to appear: %v":                                           77,
+	"Unknown state":    67,
+	"Update Now":       133,
+	"Usage: %s [\n%s]": 2,
+	"Use separate tunnel and direct domain lists": 357,
+	"Waiting for tunnel connection...":            375,
+	"When a configuration has exactly one peer, and that peer has an allowed IPs containing at least one of 0.0.0.0/0 or ::/0, and the interface does not have table off, then the tunnel service engages a firewall ruleset to block all traffic that is neither to nor from the tunnel interface or is to the wrong DNS server, with special exceptions for DHCP and NDP.": 380,
+	"When enabled, adds a route to prevent 127.0.0.1 traffic from going through the tunnel. Required when using AllowedIPs = 0.0.0.0/0": 340,
+	"When enabled, intercepts AAAA DNS queries and removes IPv6 from tunnel AllowedIPs.":                                                342,
+	"Whitelist": 352,
+	"Whitelist mode with an empty port list blocks all ports through the tunnel. Continue?": 390,
+	"Writing file failed": 62,
 	"You must use the native version of AmneziaWG on this computer.": 5,
 	"[EnumerationSeparator]":            10,
 	"[UnitSeparator]":                   11,
 	"[none specified]":                  170,
-	"allowed_ip=%s":                     275,
+	"allowed_ip=%s":                     265,
 	"disabled, per policy":              34,
+	"e.g. 192.168.1.1 or ::1":           294,
+	"e.g. example.com":                  292,
 	"enabled":                           35,
-	"endpoint=%s":                       269,
-	"fwmark=%d":                         258,
-	"h1=%d":                             264,
-	"h2=%d":                             265,
-	"h3=%d":                             266,
-	"h4=%d":                             267,
-	"invalid UAPI operation: %v":        293,
-	"jc=%d":                             259,
-	"jmax=%d":                           261,
-	"jmin=%d":                           260,
-	"last_handshake_time_nsec=%d":       271,
-	"last_handshake_time_sec=%d":        270,
-	"listen_port=%d":                    257,
+	"endpoint=%s":                       259,
+	"fwmark=%d":                         245,
+	"h1=%s":                             253,
+	"h2=%s":                             254,
+	"h3=%s":                             255,
+	"h4=%s":                             256,
+	"i%d=%s":                            257,
+	"invalid UAPI operation: %v":        285,
+	"jc=%d":                             246,
+	"jmax=%d":                           248,
+	"jmin=%d":                           247,
+	"last_handshake_time_nsec=%d":       261,
+	"last_handshake_time_sec=%d":        260,
+	"listen_port=%d":                    244,
 	"no configuration files were found": 106,
-	"off":                               296,
-	"persistent_keepalive_interval=%d":  274,
+	"off":                               288,
+	"persistent_keepalive_interval=%d":  264,
 	"post-down":                         33,
 	"post-up":                           31,
 	"pre-down":                          32,
 	"pre-up":                            30,
-	"protocol_version=1":                268,
-	"rx_bytes=%d":                       273,
-	"s1=%d":                             262,
-	"s2=%d":                             263,
-	"tx_bytes=%d":                       272,
+	"protocol_version=1":                258,
+	"rx_bytes=%d":                       263,
+	"s1=%d":                             249,
+	"s2=%d":                             250,
+	"s3=%d":                             251,
+	"s4=%d":                             252,
+	"tx_bytes=%d":                       262,
 }
 
-var caIndex = []uint32{ // 304 elements
+var caIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000006, 0x00000042, 0x00000056,
 	0x00000071, 0x000000b0, 0x000000f5, 0x0000012c,
@@ -383,15 +483,15 @@ var caIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x0000037b, 0x0000038c, 0x0000039e, 0x000003ba,
 	0x000003c4, 0x000003de, 0x00000405, 0x00000420,
-	0x0000043e, 0x00000451, 0x00000458, 0x0000046c,
-	0x0000047a, 0x00000480, 0x00000490, 0x0000049d,
-	0x000004da, 0x000004e1, 0x000004ed, 0x000004fd,
-	0x0000050a, 0x00000520, 0x0000054c, 0x00000578,
-	0x0000058e, 0x000005c2, 0x000005ed, 0x00000609,
-	0x00000644, 0x0000064a, 0x00000653, 0x0000065b,
+	0x0000043e, 0x00000451, 0x00000458, 0x0000045e,
+	0x00000466, 0x0000046d, 0x0000047f, 0x00000493,
+	0x000004a1, 0x000004a7, 0x000004b7, 0x000004c4,
+	0x00000501, 0x00000508, 0x00000514, 0x00000524,
+	0x00000531, 0x00000547, 0x00000573, 0x0000059f,
+	0x000005b5, 0x000005e9, 0x00000614, 0x00000630,
 	// Entry 40 - 5F
-	0x00000667, 0x00000678, 0x00000681, 0x00000688,
-	0x0000069a, 0x000006ae, 0x000006b4, 0x000006c9,
+	0x0000066b, 0x00000671, 0x0000067a, 0x00000686,
+	0x00000697, 0x000006a0, 0x000006b4, 0x000006c9,
 	0x00000702, 0x0000071c, 0x0000072c, 0x0000076b,
 	0x00000782, 0x0000079e, 0x000007e8, 0x000007fe,
 	0x00000810, 0x0000081d, 0x00000835, 0x0000085c,
@@ -457,7 +557,35 @@ var caIndex = []uint32{ // 304 elements
 	0x00001547, 0x00001547, 0x00001547, 0x00001547,
 	0x00001547, 0x00001547, 0x00001547, 0x00001547,
 	0x00001547, 0x00001547, 0x00001547, 0x00001547,
-} // Size: 1240 bytes
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	// Entry 140 - 15F
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	// Entry 160 - 17F
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	// Entry 180 - 19F
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+	0x00001547, 0x00001547, 0x00001547, 0x00001547,
+} // Size: 1640 bytes
 
 const caData string = "" + // Size: 5447 bytes
 	"\x02Error\x02(sense argument): eleva i instala el servei d'administrador" +
@@ -477,77 +605,77 @@ const caData string = "" + // Size: 5447 bytes
 	"tivació\x02deshabilitat, per política\x02habilitat\x02%[1]s rebut, %[2]s" +
 	" enviat\x02Error en determinar l'estat del túnel\x02Error en activar el " +
 	"túnel\x02Error en desactivar el túnel\x02Interfície: %[1]s\x02Parell\x02" +
-	"Crear un túnel nou\x02Editar túnel\x02&Nom:\x02&Clau pública:\x02(descon" +
-	"egut)\x02&Bloquejar el trànsit que no passa pel túnel (kill-switch)\x02&" +
-	"Desar\x02Cancel·lar\x02&Configuració:\x02Nom invàlid\x02És necessari un " +
-	"nom.\x02El nom del túnel ‘%[1]s’ és invàlid.\x02No s'ha pogut llistar el" +
-	"s túnels existents\x02El túnel ja existeix\x02Ja existeix un altre túnel" +
-	" amb el nom ‘%[1]s’.\x02No s'ha pogut crear una nova configuració\x02Err" +
-	"or en escriure el fitxer\x02El fitxer ‘%[1]s’ ja existeix.\x0a\x0aEl vol" +
-	"s sobreescriure?\x02Actiu\x02Activant\x02Inactiu\x02Desactivant\x02Estat" +
-	" desconegut\x02Registre\x02&Copia\x02Selecciona-ho tot\x02Desa en un arx" +
-	"iu…\x02Temps\x02Missatge de registre\x02Fitxers de text (*.txt)|*.txt|To" +
-	"ts els fitxers (*.*)|*.*\x02Exporta registre a fitxer\x02Error de túnel" +
-	"\x02%[1]s\x0a\x0aSi us plau, consulteu el registre per més informació." +
-	"\x02%[1]s (desactualitzat)\x02Error en detectar AmneziaWG\x02No ha estat" +
-	" possible esperar que aparegui la finestra de AmneziaWG: %[1]v\x02Amnezi" +
-	"aWG: Desactivat\x02Estat: Desconegut\x02Adreces: Cap\x02&Administrar tún" +
-	"els…\x02&Importar túnel(s) des d'un fitxer…\x02&Surt\x02&Túnels\x02Amnez" +
-	"iaWG Activat\x02El túnel %[1]s ha estat activat.\x02AmneziaWG Desactivat" +
-	"\x02El túnel %[1]s ha estat desactivat.\x02Error en el túnel de AmneziaW" +
-	"G\x02AmneziaWG: %[1]s\x02Estat: %[1]s\x02Adreces: %[1]s\x02Hi ha una act" +
-	"ualització disponible!\x02Actualització de AmneziaWG disponible\x02Hi ha" +
-	" una actualització de AmneziaWG. Es recomana actualitzar el més aviat mi" +
-	"llor.\x02Túnels\x02&Editar\x02Afegir &túnel buit…\x02Afegir túnel\x02Eli" +
-	"minar túnel(s) seleccionats\x02Exportar túnels a zip\x02&Alterna\x02Expo" +
-	"rtar tots els túnels a &zip…\x02Editar túnels &seleccionats…\x02&Elimina" +
-	"r túnel(s) seleccionats\x02no s'han trobat fitxers de configuració\x02No" +
-	" s'ha pogut importar la configuració seleccionada: %[1]v\x02No s'han pog" +
-	"ut enumerar els túnels existents: %[1]v\x02Ja existeix un altre túnel am" +
-	"b el nom ‘%[1]s’\x02No s'ha pogut importar la configuració: %[1]v\x02Tún" +
-	"els importats\x14\x01\x81\x01\x00\x02\x16\x02%[1]d túnel importat\x00" +
-	"\x18\x02%[1]d túnels importats\x14\x02\x80\x01\x02\x1f\x02%[1]d de %[2]d" +
-	" túnel importat\x00!\x02%[1]d de %[2]d túnels importats\x02No s'ha pogut" +
-	" crear el túnel\x14\x01\x81\x01\x00\x02\x16\x02Eliminar %[1]d túnel\x00" +
-	"\x17\x02Eliminar %[1]d túnels\x14\x01\x81\x01\x00\x02-\x02Estàs segur qu" +
-	"e vols eliminar %[1]d túnel?\x00.\x02Estàs segur que vols eliminar %[1]d" +
-	" túnels?\x02Eliminar túnel ‘%[1]s’\x02Estàs segur que vols eliminar el t" +
-	"únel ‘%[1]s’?\x02%[1]s Aquesta acció no es pot desfer.\x02No s'ha pogut" +
-	" eliminar el túnel\x02Un túnel no ha estat capaç de ser eliminat: %[1]s" +
-	"\x02No s'ha pogut eliminar els túnels\x14\x01\x81\x01\x00\x02%\x02No s'h" +
-	"a pogut eliminar %[1]d túnel.\x00&\x02No s'ha pogut eliminar %[1]d túnel" +
-	"s.\x02Fitxers de configuració (*.zip, *.conf)|*.zip;*.conf|Tots els fitx" +
-	"ers (*.*)|*.*\x02Importar túnel(s) des d'un fitxer\x02Fitxers ZIP de con" +
-	"figuració (*.zip)|*.zip\x02Exportar túnels a zip\x02%[1]s (compilació no" +
-	" signada, sense actualitzacions)\x02Error al sortir de AmneziaWG\x02No s" +
-	"'ha pogut sortir del servei a causa de l'error: %[1]v. Pot intentar atur" +
-	"ar AmneziaWG des de l'administrador de serveis.\x02Una actualització per" +
-	" AmneziaWG està disponible. Es recomana actualitzar immediatament.\x02Es" +
-	"tat: Esperant a l'usuari\x02Actualitza ara\x02Estat: Esperant el servei " +
-	"d'actualitzacions\x02Error: %[1]v. Si us plau, torneu-ho a provar.\x02Es" +
-	"tat: Completat!\x02Ara\x02El rellotge del sistema s'ha atraçat!\x14\x01" +
-	"\x81\x01\x00\x02\x0a\x02%[1]d any\x00\x0b\x02%[1]d anys\x14\x01\x81\x01" +
-	"\x00\x02\x0a\x02%[1]d dia\x00\x0b\x02%[1]d dies\x14\x01\x81\x01\x00\x02" +
-	"\x0b\x02%[1]d hora\x00\x0c\x02%[1]d hores\x14\x01\x81\x01\x00\x02\x0c" +
-	"\x02%[1]d minut\x00\x0d\x02%[1]d minuts\x14\x01\x81\x01\x00\x02\x0c\x02%" +
-	"[1]d segon\x00\x0d\x02%[1]d segons\x02Fa %[1]s\x02%[1]d\u00a0B\x02%.2[1]" +
-	"f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB\x02%.2[1]f\u00a0TiB" +
-	"\x02%[1]s: %[2]q\x02Adreça IP invàlida\x02Tamany del prefix de xarxa inv" +
-	"àlid\x02Falta el port de l'extrem\x02El format de l'extrem no és valid" +
-	"\x02Els claudàtors han de contenir una adreça IPv6\x02MTU invàlida\x02Po" +
-	"rt invàlid\x02Temps de missatge de persistència invàlid\x02Clau invàlida" +
-	": %[1]v\x02Les claus han de descodificar a exactament 32 bytes\x02El nom" +
-	"bre ha de estar entre 0 i 2^64-1: %[1]v\x02Dos comes seguides\x02El nom " +
-	"del túnel no és vàlid\x02La línia ha d'aparèixer en una secció\x02La cla" +
-	"u de configuració no té un separador d'igualtat\x02La clau ha de tenir u" +
-	"n valor\x02La clau no és vàlida per la secció [Interface]\x02La clau no " +
-	"és vàlida per la secció [Peer]\x02Una interfície ha de tenir una clau p" +
+	"Temps\x02Inactiu\x02&Copia\x02Selecciona-ho tot\x02Crear un túnel nou" +
+	"\x02Editar túnel\x02&Nom:\x02&Clau pública:\x02(desconegut)\x02&Bloqueja" +
+	"r el trànsit que no passa pel túnel (kill-switch)\x02&Desar\x02Cancel·la" +
+	"r\x02&Configuració:\x02Nom invàlid\x02És necessari un nom.\x02El nom del" +
+	" túnel ‘%[1]s’ és invàlid.\x02No s'ha pogut llistar els túnels existents" +
+	"\x02El túnel ja existeix\x02Ja existeix un altre túnel amb el nom ‘%[1]s" +
+	"’.\x02No s'ha pogut crear una nova configuració\x02Error en escriure e" +
+	"l fitxer\x02El fitxer ‘%[1]s’ ja existeix.\x0a\x0aEl vols sobreescriure?" +
+	"\x02Actiu\x02Activant\x02Desactivant\x02Estat desconegut\x02Registre\x02" +
+	"Desa en un arxiu…\x02Missatge de registre\x02Fitxers de text (*.txt)|*.t" +
+	"xt|Tots els fitxers (*.*)|*.*\x02Exporta registre a fitxer\x02Error de t" +
+	"únel\x02%[1]s\x0a\x0aSi us plau, consulteu el registre per més informac" +
+	"ió.\x02%[1]s (desactualitzat)\x02Error en detectar AmneziaWG\x02No ha es" +
+	"tat possible esperar que aparegui la finestra de AmneziaWG: %[1]v\x02Amn" +
+	"eziaWG: Desactivat\x02Estat: Desconegut\x02Adreces: Cap\x02&Administrar " +
+	"túnels…\x02&Importar túnel(s) des d'un fitxer…\x02&Surt\x02&Túnels\x02Am" +
+	"neziaWG Activat\x02El túnel %[1]s ha estat activat.\x02AmneziaWG Desacti" +
+	"vat\x02El túnel %[1]s ha estat desactivat.\x02Error en el túnel de Amnez" +
+	"iaWG\x02AmneziaWG: %[1]s\x02Estat: %[1]s\x02Adreces: %[1]s\x02Hi ha una " +
+	"actualització disponible!\x02Actualització de AmneziaWG disponible\x02Hi" +
+	" ha una actualització de AmneziaWG. Es recomana actualitzar el més aviat" +
+	" millor.\x02Túnels\x02&Editar\x02Afegir &túnel buit…\x02Afegir túnel\x02" +
+	"Eliminar túnel(s) seleccionats\x02Exportar túnels a zip\x02&Alterna\x02E" +
+	"xportar tots els túnels a &zip…\x02Editar túnels &seleccionats…\x02&Elim" +
+	"inar túnel(s) seleccionats\x02no s'han trobat fitxers de configuració" +
+	"\x02No s'ha pogut importar la configuració seleccionada: %[1]v\x02No s'h" +
+	"an pogut enumerar els túnels existents: %[1]v\x02Ja existeix un altre tú" +
+	"nel amb el nom ‘%[1]s’\x02No s'ha pogut importar la configuració: %[1]v" +
+	"\x02Túnels importats\x14\x01\x81\x01\x00\x02\x16\x02%[1]d túnel importat" +
+	"\x00\x18\x02%[1]d túnels importats\x14\x02\x80\x01\x02\x1f\x02%[1]d de %" +
+	"[2]d túnel importat\x00!\x02%[1]d de %[2]d túnels importats\x02No s'ha p" +
+	"ogut crear el túnel\x14\x01\x81\x01\x00\x02\x16\x02Eliminar %[1]d túnel" +
+	"\x00\x17\x02Eliminar %[1]d túnels\x14\x01\x81\x01\x00\x02-\x02Estàs segu" +
+	"r que vols eliminar %[1]d túnel?\x00.\x02Estàs segur que vols eliminar %" +
+	"[1]d túnels?\x02Eliminar túnel ‘%[1]s’\x02Estàs segur que vols eliminar " +
+	"el túnel ‘%[1]s’?\x02%[1]s Aquesta acció no es pot desfer.\x02No s'ha po" +
+	"gut eliminar el túnel\x02Un túnel no ha estat capaç de ser eliminat: %[1" +
+	"]s\x02No s'ha pogut eliminar els túnels\x14\x01\x81\x01\x00\x02%\x02No s" +
+	"'ha pogut eliminar %[1]d túnel.\x00&\x02No s'ha pogut eliminar %[1]d tún" +
+	"els.\x02Fitxers de configuració (*.zip, *.conf)|*.zip;*.conf|Tots els fi" +
+	"txers (*.*)|*.*\x02Importar túnel(s) des d'un fitxer\x02Fitxers ZIP de c" +
+	"onfiguració (*.zip)|*.zip\x02Exportar túnels a zip\x02%[1]s (compilació " +
+	"no signada, sense actualitzacions)\x02Error al sortir de AmneziaWG\x02No" +
+	" s'ha pogut sortir del servei a causa de l'error: %[1]v. Pot intentar at" +
+	"urar AmneziaWG des de l'administrador de serveis.\x02Una actualització p" +
+	"er AmneziaWG està disponible. Es recomana actualitzar immediatament.\x02" +
+	"Estat: Esperant a l'usuari\x02Actualitza ara\x02Estat: Esperant el serve" +
+	"i d'actualitzacions\x02Error: %[1]v. Si us plau, torneu-ho a provar.\x02" +
+	"Estat: Completat!\x02Ara\x02El rellotge del sistema s'ha atraçat!\x14" +
+	"\x01\x81\x01\x00\x02\x0a\x02%[1]d any\x00\x0b\x02%[1]d anys\x14\x01\x81" +
+	"\x01\x00\x02\x0a\x02%[1]d dia\x00\x0b\x02%[1]d dies\x14\x01\x81\x01\x00" +
+	"\x02\x0b\x02%[1]d hora\x00\x0c\x02%[1]d hores\x14\x01\x81\x01\x00\x02" +
+	"\x0c\x02%[1]d minut\x00\x0d\x02%[1]d minuts\x14\x01\x81\x01\x00\x02\x0c" +
+	"\x02%[1]d segon\x00\x0d\x02%[1]d segons\x02Fa %[1]s\x02%[1]d\u00a0B\x02%" +
+	".2[1]f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB\x02%.2[1]f\u00a0" +
+	"TiB\x02%[1]s: %[2]q\x02Adreça IP invàlida\x02Tamany del prefix de xarxa " +
+	"invàlid\x02Falta el port de l'extrem\x02El format de l'extrem no és vali" +
+	"d\x02Els claudàtors han de contenir una adreça IPv6\x02MTU invàlida\x02P" +
+	"ort invàlid\x02Temps de missatge de persistència invàlid\x02Clau invàlid" +
+	"a: %[1]v\x02Les claus han de descodificar a exactament 32 bytes\x02El no" +
+	"mbre ha de estar entre 0 i 2^64-1: %[1]v\x02Dos comes seguides\x02El nom" +
+	" del túnel no és vàlid\x02La línia ha d'aparèixer en una secció\x02La cl" +
+	"au de configuració no té un separador d'igualtat\x02La clau ha de tenir " +
+	"un valor\x02La clau no és vàlida per la secció [Interface]\x02La clau no" +
+	" és vàlida per la secció [Peer]\x02Una interfície ha de tenir una clau p" +
 	"rivada\x02[no especificat]\x02Tots els parells han de tenir claus públiq" +
 	"ues\x02Error obtenint configuració\x02La clau no és vàlida per la secció" +
 	" d'interfície\x02La versió del protocol ha de ser 1\x02La clau no és vàl" +
 	"ida per la secció de parell"
 
-var csIndex = []uint32{ // 304 elements
+var csIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000006, 0x0000004f, 0x00000069,
 	0x0000008a, 0x000000bd, 0x00000106, 0x00000138,
@@ -560,15 +688,15 @@ var csIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x00000373, 0x00000383, 0x0000038f, 0x000003a5,
 	0x000003ad, 0x000003cd, 0x000003f0, 0x0000040f,
-	0x00000430, 0x00000441, 0x00000446, 0x0000045c,
-	0x0000046a, 0x00000473, 0x00000486, 0x00000492,
-	0x000004bf, 0x000004c8, 0x000004d0, 0x000004dd,
-	0x000004ee, 0x00000502, 0x00000526, 0x00000552,
-	0x00000566, 0x0000058d, 0x000005b8, 0x000005d4,
-	0x00000608, 0x00000611, 0x0000061a, 0x00000625,
+	0x00000430, 0x00000441, 0x00000446, 0x0000044b,
+	0x00000456, 0x00000462, 0x0000046f, 0x00000485,
+	0x00000493, 0x0000049c, 0x000004af, 0x000004bb,
+	0x000004e8, 0x000004f1, 0x000004f9, 0x00000506,
+	0x00000517, 0x0000052b, 0x0000054f, 0x0000057b,
+	0x0000058f, 0x000005b6, 0x000005e1, 0x000005fd,
 	// Entry 40 - 5F
-	0x00000630, 0x0000063f, 0x00000648, 0x00000654,
-	0x00000661, 0x00000678, 0x0000067d, 0x0000068a,
+	0x00000631, 0x0000063a, 0x00000643, 0x0000064e,
+	0x0000065d, 0x00000666, 0x0000067d, 0x0000068a,
 	0x000006c4, 0x000006e2, 0x000006ef, 0x0000072a,
 	0x0000073f, 0x0000075c, 0x0000078d, 0x000007a5,
 	0x000007b5, 0x000007c6, 0x000007da, 0x000007fd,
@@ -634,7 +762,35 @@ var csIndex = []uint32{ // 304 elements
 	0x00001610, 0x00001610, 0x00001610, 0x00001610,
 	0x00001610, 0x00001610, 0x00001610, 0x00001610,
 	0x00001610, 0x00001610, 0x00001610, 0x00001610,
-} // Size: 1240 bytes
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	// Entry 140 - 15F
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	// Entry 160 - 17F
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	// Entry 180 - 19F
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+	0x00001610, 0x00001610, 0x00001610, 0x00001610,
+} // Size: 1640 bytes
 
 const csData string = "" + // Size: 5648 bytes
 	"\x02Chyba\x02(žádný argument): Zvýšit oprávnění a instalovat službu sprá" +
@@ -652,17 +808,17 @@ const csData string = "" + // Size: 5648 bytes
 	":\x02Přenos:\x02před-zapnutím\x02po-zapnutí\x02před-vypnutím\x02po-vypnu" +
 	"tí\x02vypnuto, podle zásad\x02zapnuto\x02%[1]s přijato, %[2]s odesláno" +
 	"\x02Nepodařilo se zjistit stav tunelu\x02Nepodařilo se aktivovat tunel" +
-	"\x02Nepodařilo se deaktivovat tunel\x02Rozhraní: %[1]s\x02Peer\x02Vytvoř" +
-	"it nový tunel\x02Upravit tunel\x02&Název:\x02&Veřejný klíč:\x02(neznámý)" +
-	"\x02&Blokovat netunelovaný provoz (kill-switch)\x02&Uložit\x02Zrušit\x02" +
-	"&Nastavení:\x02Neplatný název\x02Název je povinný.\x02Název tunelu '%[1]" +
-	"s' je neplatný.\x02Nepodařilo se zobrazit existující tunely\x02Tunel již" +
-	" existuje\x02Tunel s názvem '%[1]s' již existuje.\x02Nepodařilo se vytvo" +
-	"řit novou konfiguraci\x02Zápis souboru se nezdařil\x02Soubor \x22%[1]s" +
-	"\x22 již existuje.\x0a\x0aChcete jej přepsat?\x02Aktivní\x02Aktivuji\x02" +
-	"Neaktivní\x02Deaktivuji\x02Neznámý stav\x02Záznamy\x02&Kopírovat\x02Vybr" +
-	"&at vše\x02&Uložit do souboru…\x02Čas\x02Zpráva logu\x02Textové soubory " +
-	"(*.txt)|*.txt|Všechny soubory (*.*)|*.*\x02Exportovat záznam do souboru" +
+	"\x02Nepodařilo se deaktivovat tunel\x02Rozhraní: %[1]s\x02Peer\x02Čas" +
+	"\x02Neaktivní\x02&Kopírovat\x02Vybr&at vše\x02Vytvořit nový tunel\x02Upr" +
+	"avit tunel\x02&Název:\x02&Veřejný klíč:\x02(neznámý)\x02&Blokovat netune" +
+	"lovaný provoz (kill-switch)\x02&Uložit\x02Zrušit\x02&Nastavení:\x02Nepla" +
+	"tný název\x02Název je povinný.\x02Název tunelu '%[1]s' je neplatný.\x02N" +
+	"epodařilo se zobrazit existující tunely\x02Tunel již existuje\x02Tunel s" +
+	" názvem '%[1]s' již existuje.\x02Nepodařilo se vytvořit novou konfigurac" +
+	"i\x02Zápis souboru se nezdařil\x02Soubor \x22%[1]s\x22 již existuje.\x0a" +
+	"\x0aChcete jej přepsat?\x02Aktivní\x02Aktivuji\x02Deaktivuji\x02Neznámý " +
+	"stav\x02Záznamy\x02&Uložit do souboru…\x02Zpráva logu\x02Textové soubory" +
+	" (*.txt)|*.txt|Všechny soubory (*.*)|*.*\x02Exportovat záznam do souboru" +
 	"\x02Chyba tunelu\x02%[1]s\x0a\x0aPro více informací se prosím podívejte " +
 	"do logu.\x02%[1]s (neaktuální)\x02Chyba při detekci AmneziaWG\x02Nelze č" +
 	"ekat na zobrazení okna AmneziaWG: %[1]v\x02AmneziaWG: Deaktivován\x02Sta" +
@@ -727,7 +883,7 @@ const csData string = "" + // Size: 5648 bytes
 	"ozhraní\x02Verze protokolu musí být 1\x02Neplatný klíč v sekci peer\x02&" +
 	"O aplikaci AmneziaWG…"
 
-var deIndex = []uint32{ // 304 elements
+var deIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000007, 0x00000059, 0x00000074,
 	0x0000008b, 0x000000e1, 0x00000137, 0x0000016b,
@@ -740,15 +896,15 @@ var deIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x000003bc, 0x000003d1, 0x000003e7, 0x00000403,
 	0x0000040d, 0x0000042d, 0x00000458, 0x0000047d,
-	0x000004a4, 0x000004b9, 0x000004c4, 0x000004e1,
-	0x000004f3, 0x000004fa, 0x00000515, 0x00000521,
-	0x00000555, 0x00000560, 0x0000056a, 0x0000057a,
-	0x0000058b, 0x000005a3, 0x000005c7, 0x000005fa,
-	0x00000613, 0x0000064b, 0x00000679, 0x00000699,
-	0x000006de, 0x000006e4, 0x000006ee, 0x000006f6,
+	0x000004a4, 0x000004b9, 0x000004c4, 0x000004c9,
+	0x000004d1, 0x000004db, 0x000004ec, 0x00000509,
+	0x0000051b, 0x00000522, 0x0000053d, 0x00000549,
+	0x0000057d, 0x00000588, 0x00000592, 0x000005a2,
+	0x000005b3, 0x000005cb, 0x000005ef, 0x00000622,
+	0x0000063b, 0x00000673, 0x000006a1, 0x000006c1,
 	// Entry 40 - 5F
-	0x00000702, 0x00000716, 0x00000720, 0x0000072a,
-	0x0000073b, 0x00000752, 0x00000757, 0x00000768,
+	0x00000706, 0x0000070c, 0x00000716, 0x00000722,
+	0x00000736, 0x00000740, 0x00000757, 0x00000768,
 	0x00000799, 0x000007b7, 0x000007c5, 0x00000806,
 	0x00000817, 0x00000832, 0x0000087a, 0x00000891,
 	0x000008a3, 0x000008b3, 0x000008c8, 0x000008e9,
@@ -814,7 +970,35 @@ var deIndex = []uint32{ // 304 elements
 	0x00001693, 0x00001693, 0x00001693, 0x00001693,
 	0x00001693, 0x00001693, 0x00001693, 0x00001693,
 	0x00001693, 0x00001693, 0x00001693, 0x00001693,
-} // Size: 1240 bytes
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	// Entry 140 - 15F
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	// Entry 160 - 17F
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	// Entry 180 - 19F
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+	0x00001693, 0x00001693, 0x00001693, 0x00001693,
+} // Size: 1640 bytes
 
 const deData string = "" + // Size: 5779 bytes
 	"\x02Fehler\x02(kein Argument): Als Administrator ausführen und den Manag" +
@@ -835,17 +1019,17 @@ const deData string = "" + // Size: 5779 bytes
 	"dungsabbau\x02deaktiviert, per Richtlinie\x02aktiviert\x02%[1]s empfange" +
 	"n, %[2]s gesendet\x02Tunnelstatus konnte nicht ermittelt werden\x02Tunne" +
 	"l aktivieren ist fehlgeschlagen\x02Tunnel deaktivieren ist fehlgeschlage" +
-	"n\x02Schnittstelle: %[1]s\x02Teilnehmer\x02Einen neuen Tunnel erstellen" +
-	"\x02Tunnel bearbeiten\x02&Name:\x02&Öffentlicher Schlüssel:\x02(unbekann" +
-	"t)\x02&Blockiere Verkehr außerhalb des Tunnels (Not-Aus)\x02&Speichern" +
-	"\x02Abbrechen\x02&Konfiguration:\x02Ungültiger Name\x02Ein Name ist notw" +
-	"endig.\x02Der Name „%[1]s“ ist ungültig.\x02Vorhandene Tunnel können nic" +
-	"ht aufgelistet werden\x02Tunnel existiert bereits\x02Ein Tunnel mit dem " +
-	"Namen „%[1]s“ existiert bereits.\x02Neue Konfiguration kann nicht erstel" +
-	"lt werden\x02Schreiben der Datei schlug fehl\x02Die Datei „%[1]s“ existi" +
-	"ert bereits.\x0a\x0aMöchten Sie sie ersetzen?\x02Aktiv\x02Aktiviere\x02I" +
-	"naktiv\x02Deaktiviere\x02Unbekannter Zustand\x02Protokoll\x02&Kopieren" +
-	"\x02&Alles markieren\x02&In Datei Speichern…\x02Zeit\x02Protokolleintrag" +
+	"n\x02Schnittstelle: %[1]s\x02Teilnehmer\x02Zeit\x02Inaktiv\x02&Kopieren" +
+	"\x02&Alles markieren\x02Einen neuen Tunnel erstellen\x02Tunnel bearbeite" +
+	"n\x02&Name:\x02&Öffentlicher Schlüssel:\x02(unbekannt)\x02&Blockiere Ver" +
+	"kehr außerhalb des Tunnels (Not-Aus)\x02&Speichern\x02Abbrechen\x02&Konf" +
+	"iguration:\x02Ungültiger Name\x02Ein Name ist notwendig.\x02Der Name „%[" +
+	"1]s“ ist ungültig.\x02Vorhandene Tunnel können nicht aufgelistet werden" +
+	"\x02Tunnel existiert bereits\x02Ein Tunnel mit dem Namen „%[1]s“ existie" +
+	"rt bereits.\x02Neue Konfiguration kann nicht erstellt werden\x02Schreibe" +
+	"n der Datei schlug fehl\x02Die Datei „%[1]s“ existiert bereits.\x0a\x0aM" +
+	"öchten Sie sie ersetzen?\x02Aktiv\x02Aktiviere\x02Deaktiviere\x02Unbeka" +
+	"nnter Zustand\x02Protokoll\x02&In Datei Speichern…\x02Protokolleintrag" +
 	"\x02Textdateien (*.txt)|*.txt|Alle Dateien (*.*)|*.*\x02Exportiere Proto" +
 	"koll in Datei\x02Tunnel Fehler\x02%[1]s\x0a\x0aBitte lesen Sie das Proto" +
 	"koll für weitere Informationen.\x02%[1]s (veraltet)\x02AmneziaWG Erkennu" +
@@ -909,7 +1093,7 @@ const deData string = "" + // Size: 5779 bytes
 	"ltiger Eintrag im Abschnitt [interface]\x02Die Protokollversion muss 1 s" +
 	"ein\x02Ungültiger Eintrag im Abschnitt [peer]\x02&Über AmneziaWG…"
 
-var enIndex = []uint32{ // 304 elements
+var enIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000006, 0x00000039, 0x0000004f,
 	0x00000064, 0x000000aa, 0x000000e9, 0x00000115,
@@ -922,15 +1106,15 @@ var enIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x000002f5, 0x000002fe, 0x00000308, 0x0000031d,
 	0x00000325, 0x00000340, 0x00000361, 0x0000037b,
-	0x00000397, 0x000003a8, 0x000003ad, 0x000003bf,
-	0x000003cb, 0x000003d2, 0x000003df, 0x000003e9,
-	0x00000411, 0x00000417, 0x0000041e, 0x0000042e,
-	0x0000043b, 0x0000044f, 0x00000473, 0x00000493,
-	0x000004a9, 0x000004e2, 0x00000505, 0x00000519,
-	0x00000558, 0x0000055f, 0x0000056a, 0x00000573,
+	0x00000397, 0x000003a8, 0x000003ad, 0x000003b2,
+	0x000003bb, 0x000003c1, 0x000003cd, 0x000003df,
+	0x000003eb, 0x000003f2, 0x000003ff, 0x00000409,
+	0x00000431, 0x00000437, 0x0000043e, 0x0000044e,
+	0x0000045b, 0x0000046f, 0x00000493, 0x000004b3,
+	0x000004c9, 0x00000502, 0x00000525, 0x00000539,
 	// Entry 40 - 5F
-	0x00000580, 0x0000058e, 0x00000592, 0x00000598,
-	0x000005a4, 0x000005b5, 0x000005ba, 0x000005c6,
+	0x00000578, 0x0000057f, 0x0000058a, 0x00000597,
+	0x000005a5, 0x000005a9, 0x000005ba, 0x000005c6,
 	0x000005f3, 0x00000606, 0x00000613, 0x00000647,
 	0x0000065b, 0x00000675, 0x000006aa, 0x000006c1,
 	0x000006d1, 0x000006e1, 0x000006f4, 0x00000713,
@@ -962,43 +1146,71 @@ var enIndex = []uint32{ // 304 elements
 	0x000011e2, 0x00001201, 0x00001223, 0x0000123e,
 	0x0000125b, 0x0000126f, 0x0000127b, 0x000012ab,
 	0x000012e1, 0x000012fe, 0x00001317, 0x00001348,
-	0x00001357, 0x00001365, 0x0000137f, 0x000013a7,
-	0x000013c5, 0x000013f1, 0x00001413, 0x00001440,
+	0x00001357, 0x00001365, 0x0000137f, 0x000013ba,
+	0x000013ec, 0x000013fd, 0x0000140e, 0x00001438,
 	// Entry C0 - DF
-	0x00001463, 0x00001490, 0x000014b3, 0x000014ee,
-	0x00001520, 0x00001531, 0x00001542, 0x0000156c,
-	0x00001596, 0x000015bc, 0x000015ec, 0x00001615,
-	0x00001638, 0x00001663, 0x0000168d, 0x000016b7,
-	0x000016d5, 0x000016fa, 0x00001724, 0x00001746,
-	0x00001775, 0x00001799, 0x000017c8, 0x000017ee,
-	0x00001810, 0x0000183d, 0x00001861, 0x00001889,
-	0x000018b8, 0x000018e7, 0x0000190a, 0x00001940,
+	0x00001462, 0x00001488, 0x000014ab, 0x000014d6,
+	0x00001500, 0x0000152a, 0x00001548, 0x0000156d,
+	0x00001597, 0x000015b9, 0x000015e8, 0x0000160c,
+	0x0000163b, 0x00001661, 0x00001683, 0x000016b0,
+	0x000016d4, 0x000016fc, 0x0000172b, 0x0000175a,
+	0x0000177d, 0x000017b3, 0x000017e9, 0x00001813,
+	0x00001840, 0x00001861, 0x00001886, 0x000018b9,
+	0x000018ec, 0x0000190f, 0x00001940, 0x00001971,
 	// Entry E0 - FF
-	0x00001976, 0x000019a0, 0x000019cd, 0x000019ee,
-	0x00001a13, 0x00001a46, 0x00001a54, 0x00001a7f,
-	0x00001ab2, 0x00001ad5, 0x00001b06, 0x00001b37,
-	0x00001b76, 0x00001b9b, 0x00001bb9, 0x00001bd7,
-	0x00001bff, 0x00001c33, 0x00001c60, 0x00001c8c,
-	0x00001cb7, 0x00001ce4, 0x00001d0f, 0x00001d52,
-	0x00001d9f, 0x00001dee, 0x00001e3e, 0x00001e5e,
-	0x00001e8a, 0x00001eb3, 0x00001ecb, 0x00001ee2,
+	0x000019b0, 0x000019d5, 0x000019f3, 0x00001a11,
+	0x00001a39, 0x00001a6d, 0x00001a9a, 0x00001ac5,
+	0x00001af2, 0x00001b1d, 0x00001b60, 0x00001bad,
+	0x00001bfc, 0x00001c4c, 0x00001c6c, 0x00001c98,
+	0x00001cc1, 0x00001cd9, 0x00001cf0, 0x00001d09,
+	0x00001d29, 0x00001d3b, 0x00001d48, 0x00001d51,
+	0x00001d5c, 0x00001d67, 0x00001d70, 0x00001d79,
+	0x00001d82, 0x00001d8b, 0x00001d94, 0x00001d9d,
 	// Entry 100 - 11F
-	0x00001efb, 0x00001f1b, 0x00001f2d, 0x00001f3a,
-	0x00001f43, 0x00001f4e, 0x00001f59, 0x00001f62,
-	0x00001f6b, 0x00001f74, 0x00001f7d, 0x00001f86,
-	0x00001f8f, 0x00001fa2, 0x00001fb1, 0x00001fcf,
-	0x00001fee, 0x00001ffd, 0x0000200c, 0x00002030,
-	0x00002041, 0x00002047, 0x00002062, 0x0000207d,
-	0x00002093, 0x000020ac, 0x000020cd, 0x000020f1,
-	0x00002115, 0x0000213a, 0x00002163, 0x00002179,
+	0x00001da6, 0x00001daf, 0x00001dbc, 0x00001dcf,
+	0x00001dde, 0x00001dfc, 0x00001e1b, 0x00001e2a,
+	0x00001e39, 0x00001e5d, 0x00001e6e, 0x00001e74,
+	0x00001e8f, 0x00001eaa, 0x00001ec0, 0x00001ed9,
+	0x00001ef3, 0x00001f0b, 0x00001f23, 0x00001f3d,
+	0x00001f57, 0x00001f71, 0x00001f8b, 0x00001fa1,
+	0x00001fb8, 0x00001fdd, 0x00001ffd, 0x00002032,
+	0x00002058, 0x00002076, 0x00002094, 0x000020fb,
 	// Entry 120 - 13F
-	0x00002190, 0x000021b5, 0x000021d5, 0x0000220a,
-	0x00002230, 0x0000224f, 0x0000226d, 0x000022d4,
-	0x000022db, 0x000022df, 0x00002446, 0x0000248d,
-	0x000024ca, 0x000024f9, 0x0000251b, 0x00002529,
-} // Size: 1240 bytes
+	0x00002102, 0x00002106, 0x00002110, 0x00002161,
+	0x00002169, 0x0000217a, 0x0000217e, 0x00002196,
+	0x0000219a, 0x000021a1, 0x000021b2, 0x000021b9,
+	0x000021c4, 0x000021cb, 0x000021d2, 0x000021da,
+	0x000021e2, 0x000021f1, 0x000021fd, 0x00002205,
+	0x0000221f, 0x0000222e, 0x00002236, 0x0000223c,
+	0x0000224c, 0x0000225d, 0x0000227f, 0x000022a1,
+	0x000022b4, 0x000022da, 0x000022e9, 0x00002304,
+	// Entry 140 - 15F
+	0x00002309, 0x0000230f, 0x00002313, 0x0000231b,
+	0x00002343, 0x00002363, 0x00002389, 0x000023a7,
+	0x000023b5, 0x000023c3, 0x000023d0, 0x00002453,
+	0x00002457, 0x000024a6, 0x000024ae, 0x00002504,
+	0x0000250b, 0x0000255d, 0x00002566, 0x000025a4,
+	0x000025db, 0x0000265d, 0x00002694, 0x000026e7,
+	0x000026f2, 0x00002746, 0x00002768, 0x000027ae,
+	0x000027c6, 0x0000280a, 0x00002827, 0x0000288a,
+	// Entry 160 - 17F
+	0x00002894, 0x0000289e, 0x000028df, 0x000028e9,
+	0x0000291f, 0x00002928, 0x00002954, 0x0000295c,
+	0x00002974, 0x00002994, 0x000029c4, 0x000029dc,
+	0x00002a0c, 0x00002a45, 0x00002a7f, 0x00002a85,
+	0x00002a9a, 0x00002aca, 0x00002af4, 0x00002b0f,
+	0x00002b24, 0x00002b40, 0x00002b5d, 0x00002b66,
+	0x00002b87, 0x00002b9b, 0x00002ba0, 0x00002ba7,
+	0x00002baf, 0x00002d16, 0x00002d24, 0x00002d29,
+	// Entry 180 - 19F
+	0x00002dae, 0x00002df3, 0x00002e45, 0x00002e92,
+	0x00002e98, 0x00002f1d, 0x00002f40, 0x00002f96,
+	0x00002fc0, 0x00002fd0, 0x00002fd5, 0x00002fde,
+	0x00002fe6, 0x00002ff0, 0x00003010, 0x0000303f,
+	0x00003061, 0x00003071, 0x00003074, 0x00003082,
+} // Size: 1640 bytes
 
-const enData string = "" + // Size: 9513 bytes
+const enData string = "" + // Size: 12418 bytes
 	"\x02Error\x02(no argument): elevate and install manager service\x02Usage" +
 	": %[1]s [\x0a%[2]s]\x02Command Line Options\x02Unable to determine wheth" +
 	"er the process is running under WOW64: %[1]v\x02You must use the native " +
@@ -1013,16 +1225,16 @@ const enData string = "" + // Size: 9513 bytes
 	"t keepalive:\x02Latest handshake:\x02Transfer:\x02pre-up\x02post-up\x02p" +
 	"re-down\x02post-down\x02disabled, per policy\x02enabled\x02%[1]s receive" +
 	"d, %[2]s sent\x02Failed to determine tunnel state\x02Failed to activate " +
-	"tunnel\x02Failed to deactivate tunnel\x02Interface: %[1]s\x02Peer\x02Cre" +
-	"ate new tunnel\x02Edit tunnel\x02&Name:\x02&Public key:\x02(unknown)\x02" +
-	"&Block untunneled traffic (kill-switch)\x02&Save\x02Cancel\x02&Configura" +
-	"tion:\x02Invalid name\x02A name is required.\x02Tunnel name ‘%[1]s’ is i" +
-	"nvalid.\x02Unable to list existing tunnels\x02Tunnel already exists\x02A" +
-	"nother tunnel already exists with the name ‘%[1]s’.\x02Unable to create " +
-	"new configuration\x02Writing file failed\x02File ‘%[1]s’ already exists." +
-	"\x0a\x0aDo you want to overwrite it?\x02Active\x02Activating\x02Inactive" +
-	"\x02Deactivating\x02Unknown state\x02Log\x02&Copy\x02Select &all\x02&Sav" +
-	"e to file…\x02Time\x02Log message\x02Text Files (*.txt)|*.txt|All Files " +
+	"tunnel\x02Failed to deactivate tunnel\x02Interface: %[1]s\x02Peer\x02Tim" +
+	"e\x02Inactive\x02&Copy\x02Select &all\x02Create new tunnel\x02Edit tunne" +
+	"l\x02&Name:\x02&Public key:\x02(unknown)\x02&Block untunneled traffic (k" +
+	"ill-switch)\x02&Save\x02Cancel\x02&Configuration:\x02Invalid name\x02A n" +
+	"ame is required.\x02Tunnel name ‘%[1]s’ is invalid.\x02Unable to list ex" +
+	"isting tunnels\x02Tunnel already exists\x02Another tunnel already exists" +
+	" with the name ‘%[1]s’.\x02Unable to create new configuration\x02Writing" +
+	" file failed\x02File ‘%[1]s’ already exists.\x0a\x0aDo you want to overw" +
+	"rite it?\x02Active\x02Activating\x02Deactivating\x02Unknown state\x02Log" +
+	"\x02&Save to file…\x02Log message\x02Text Files (*.txt)|*.txt|All Files " +
 	"(*.*)|*.*\x02Export log to file\x02Tunnel Error\x02%[1]s\x0a\x0aPlease c" +
 	"onsult the log for more information.\x02%[1]s (out of date)\x02AmneziaWG" +
 	" Detection Error\x02Unable to wait for AmneziaWG window to appear: %[1]v" +
@@ -1080,77 +1292,122 @@ const enData string = "" + // Size: 9513 bytes
 	"ate %[1]s\x02Interface state was %[1]s, requested %[2]s, now %[3]s\x02Un" +
 	"able to update bind: %[1]v\x02Bind close failed: %[1]v\x02Trouble determ" +
 	"ining MTU, assuming default: %[1]v\x02Device closing\x02Device closed" +
-	"\x02UDP bind has been updated\x02UAPI: Updating init_packet_magic_header" +
-	"\x02UAPI: Using default init type\x02UAPI: Updating response_packet_magi" +
-	"c_header\x02UAPI: Using default response type\x02UAPI: Updating underloa" +
-	"d_packet_magic_header\x02UAPI: Using default underload type\x02UAPI: Upd" +
-	"ating transport_packet_magic_header\x02UAPI: Using default transport typ" +
-	"e\x02%[1]v - ConsumeMessageInitiation: handshake replay @ %[2]v\x02%[1]v" +
-	" - ConsumeMessageInitiation: handshake flood\x02%[1]v - Starting\x02%[1]" +
-	"v - Stopping\x02Routine: receive incoming %[1]s - stopped\x02Routine: re" +
-	"ceive incoming %[1]s - started\x02Failed to receive %[1]s packet: %[2]v" +
-	"\x02Transport packet lined up with another msg type\x02ASec: Received me" +
-	"ssage with unknown type\x02Received message with unknown type\x02Routine" +
-	": decryption worker %[1]d - started\x02Routine: handshake worker %[1]d -" +
-	" stopped\x02Routine: handshake worker %[1]d - started\x02Failed to decod" +
-	"e cookie reply\x02Receiving cookie response from %[1]s\x02Could not decr" +
-	"ypt invalid cookie response\x02Received packet with invalid mac1\x02Inva" +
-	"lid packet ended up in the handshake queue\x02Failed to decode initiatio" +
-	"n message\x02Received invalid initiation message from %[1]s\x02%[1]v - R" +
-	"eceived handshake initiation\x02Failed to decode response message\x02Rec" +
-	"eived invalid response message from %[1]s\x02%[1]v - Received handshake " +
-	"response\x02%[1]v - Failed to derive keypair: %[2]v\x02%[1]v - Routine: " +
-	"sequential receiver - stopped\x02%[1]v - Routine: sequential receiver - " +
-	"started\x02%[1]v - Receiving keepalive packet\x02IPv4 packet with disall" +
-	"owed source address from %[1]v\x02IPv6 packet with disallowed source add" +
-	"ress from %[1]v\x02Packet with invalid IP version from %[1]v\x02Failed t" +
-	"o write packets to TUN device: %[1]v\x02%[1]v - Sending keepalive packet" +
-	"\x02%[1]v - Sending handshake initiation\x02%[1]v - Failed to create ini" +
-	"tiation message: %[2]v\x02%[1]v - %[2]v\x02%[1]v - Failed to send junk p" +
-	"ackets: %[2]v\x02%[1]v - Failed to send handshake initiation: %[2]v\x02%" +
-	"[1]v - Sending handshake response\x02%[1]v - Failed to create response m" +
-	"essage: %[2]v\x02%[1]v - Failed to send handshake response: %[2]v\x02Sen" +
-	"ding cookie response for denied handshake message for %[1]v\x02Failed to" +
-	" create cookie reply: %[1]v\x02Routine: TUN reader - stopped\x02Routine:" +
-	" TUN reader - started\x02Received packet with unknown IP version\x02Drop" +
-	"ped some packets from multi-segment read: %[1]v\x02Failed to read packet" +
-	" from TUN device: %[1]v\x02%[1]v - Failed to create junk packet: %[2]v" +
-	"\x02Routine: encryption worker %[1]d - started\x02%[1]v - Routine: seque" +
-	"ntial sender - started\x02%[1]v - Failed to send data packets: %[2]v\x02" +
-	"%[1]s - Handshake did not complete after %[2]d attempts, giving up\x02%[" +
-	"1]s - Handshake did not complete after %[2]d seconds, retrying (try %[3]" +
-	"d)\x02%[1]s - Retrying handshake because we stopped hearing back after %" +
-	"[2]d seconds\x02%[1]s - Removing all keys, since we haven't received a n" +
-	"ew one in %[2]d seconds\x02Routine: event worker - started\x02Failed to " +
-	"load updated MTU of device: %[1]v\x02MTU not updated to negative value: " +
-	"%[1]v\x02MTU updated: %[1]v%[2]s\x02Interface up requested\x02Interface " +
-	"down requested\x02Routine: event worker - stopped\x02listen_port=%[1]d" +
-	"\x02fwmark=%[1]d\x02jc=%[1]d\x02jmin=%[1]d\x02jmax=%[1]d\x02s1=%[1]d\x02" +
-	"s2=%[1]d\x02h1=%[1]d\x02h2=%[1]d\x02h3=%[1]d\x02h4=%[1]d\x02protocol_ver" +
-	"sion=1\x02endpoint=%[1]s\x02last_handshake_time_sec=%[1]d\x02last_handsh" +
-	"ake_time_nsec=%[1]d\x02tx_bytes=%[1]d\x02rx_bytes=%[1]d\x02persistent_ke" +
-	"epalive_interval=%[1]d\x02allowed_ip=%[1]s\x02%[1]v\x02UAPI: Updating pr" +
-	"ivate key\x02UAPI: Updating listen port\x02UAPI: Updating fwmark\x02UAPI" +
-	": Removing all peers\x02UAPI: Updating junk_packet_count\x02UAPI: Updati" +
-	"ng junk_packet_min_size\x02UAPI: Updating junk_packet_max_size\x02UAPI: " +
-	"Updating init_packet_junk_size\x02UAPI: Updating response_packet_junk_si" +
-	"ze\x02%[1]v - UAPI: Created\x02%[1]v - UAPI: Removing\x02%[1]v - UAPI: U" +
-	"pdating preshared key\x02%[1]v - UAPI: Updating endpoint\x02%[1]v - UAPI" +
-	": Updating persistent keepalive interval\x02%[1]v - UAPI: Removing all a" +
-	"llowedips\x02%[1]v - UAPI: Adding allowedip\x02invalid UAPI operation: %" +
-	"[1]v\x02App version: %[1]s\x0aWintun version: %[2]s\x0aGo version: %[3]s" +
-	"\x0aOperating system: %[4]s\x0aArchitecture: %[5]s\x02Table:\x02off\x02W" +
-	"hen a configuration has exactly one peer, and that peer has an allowed I" +
-	"Ps containing at least one of 0.0.0.0/0 or ::/0, and the interface does " +
-	"not have table off, then the tunnel service engages a firewall ruleset t" +
-	"o block all traffic that is neither to nor from the tunnel interface or " +
-	"is to the wrong DNS server, with special exceptions for DHCP and NDP." +
-	"\x02Ensure that you obtained the configuration file from a trusted sourc" +
-	"e.\x02Official Amnezia services are available only at amnezia.org.\x02Pl" +
-	"ease ask the system administrator to update.\x02Status: Waiting for admi" +
-	"nistrator\x02Invalid %[1]s"
+	"\x02UDP bind has been updated\x02%[1]v - ConsumeMessageInitiation: hands" +
+	"hake replay @ %[2]v\x02%[1]v - ConsumeMessageInitiation: handshake flood" +
+	"\x02%[1]v - Starting\x02%[1]v - Stopping\x02Routine: receive incoming %[" +
+	"1]s - stopped\x02Routine: receive incoming %[1]s - started\x02Failed to " +
+	"receive %[1]s packet: %[2]v\x02Received message with unknown type\x02Rou" +
+	"tine: decryption worker %[1]d - started\x02Routine: handshake worker %[1" +
+	"]d - stopped\x02Routine: handshake worker %[1]d - started\x02Failed to d" +
+	"ecode cookie reply\x02Receiving cookie response from %[1]s\x02Could not " +
+	"decrypt invalid cookie response\x02Received packet with invalid mac1\x02" +
+	"Invalid packet ended up in the handshake queue\x02Failed to decode initi" +
+	"ation message\x02Received invalid initiation message from %[1]s\x02%[1]v" +
+	" - Received handshake initiation\x02Failed to decode response message" +
+	"\x02Received invalid response message from %[1]s\x02%[1]v - Received han" +
+	"dshake response\x02%[1]v - Failed to derive keypair: %[2]v\x02%[1]v - Ro" +
+	"utine: sequential receiver - stopped\x02%[1]v - Routine: sequential rece" +
+	"iver - started\x02%[1]v - Receiving keepalive packet\x02IPv4 packet with" +
+	" disallowed source address from %[1]v\x02IPv6 packet with disallowed sou" +
+	"rce address from %[1]v\x02Packet with invalid IP version from %[1]v\x02F" +
+	"ailed to write packets to TUN device: %[1]v\x02%[1]v - Sending keepalive" +
+	" packet\x02%[1]v - Sending handshake initiation\x02%[1]v - Failed to cre" +
+	"ate initiation message: %[2]v\x02%[1]v - Failed to send handshake initia" +
+	"tion: %[2]v\x02%[1]v - Sending handshake response\x02%[1]v - Failed to c" +
+	"reate response message: %[2]v\x02%[1]v - Failed to send handshake respon" +
+	"se: %[2]v\x02Sending cookie response for denied handshake message for %[" +
+	"1]v\x02Failed to create cookie reply: %[1]v\x02Routine: TUN reader - sto" +
+	"pped\x02Routine: TUN reader - started\x02Received packet with unknown IP" +
+	" version\x02Dropped some packets from multi-segment read: %[1]v\x02Faile" +
+	"d to read packet from TUN device: %[1]v\x02Routine: encryption worker %[" +
+	"1]d - started\x02%[1]v - Routine: sequential sender - started\x02%[1]v -" +
+	" Failed to send data packets: %[2]v\x02%[1]s - Handshake did not complet" +
+	"e after %[2]d attempts, giving up\x02%[1]s - Handshake did not complete " +
+	"after %[2]d seconds, retrying (try %[3]d)\x02%[1]s - Retrying handshake " +
+	"because we stopped hearing back after %[2]d seconds\x02%[1]s - Removing " +
+	"all keys, since we haven't received a new one in %[2]d seconds\x02Routin" +
+	"e: event worker - started\x02Failed to load updated MTU of device: %[1]v" +
+	"\x02MTU not updated to negative value: %[1]v\x02MTU updated: %[1]v%[2]s" +
+	"\x02Interface up requested\x02Interface down requested\x02Routine: event" +
+	" worker - stopped\x02listen_port=%[1]d\x02fwmark=%[1]d\x02jc=%[1]d\x02jm" +
+	"in=%[1]d\x02jmax=%[1]d\x02s1=%[1]d\x02s2=%[1]d\x02s3=%[1]d\x02s4=%[1]d" +
+	"\x02h1=%[1]s\x02h2=%[1]s\x02h3=%[1]s\x02h4=%[1]s\x02i%[1]d=%[2]s\x02prot" +
+	"ocol_version=1\x02endpoint=%[1]s\x02last_handshake_time_sec=%[1]d\x02las" +
+	"t_handshake_time_nsec=%[1]d\x02tx_bytes=%[1]d\x02rx_bytes=%[1]d\x02persi" +
+	"stent_keepalive_interval=%[1]d\x02allowed_ip=%[1]s\x02%[1]v\x02UAPI: Upd" +
+	"ating private key\x02UAPI: Updating listen port\x02UAPI: Updating fwmark" +
+	"\x02UAPI: Removing all peers\x02UAPI: Updating junk count\x02UAPI: Updat" +
+	"ing junk min\x02UAPI: Updating junk max\x02UAPI: Updating s1 padding\x02" +
+	"UAPI: Updating s2 padding\x02UAPI: Updating s3 padding\x02UAPI: Updating" +
+	" s4 padding\x02%[1]v - UAPI: Created\x02%[1]v - UAPI: Removing\x02%[1]v " +
+	"- UAPI: Updating preshared key\x02%[1]v - UAPI: Updating endpoint\x02%[1" +
+	"]v - UAPI: Updating persistent keepalive interval\x02%[1]v - UAPI: Remov" +
+	"ing all allowedips\x02%[1]v - UAPI: %[2]s allowedip\x02invalid UAPI oper" +
+	"ation: %[1]v\x02App version: %[1]s\x0aWintun version: %[2]s\x0aGo versio" +
+	"n: %[3]s\x0aOperating system: %[4]s\x0aArchitecture: %[5]s\x02Table:\x02" +
+	"off\x02Local DNS\x02Add local DNS records. These domains will resolve to" +
+	" the specified IP addresses.\x02Domain:\x02e.g. example.com\x02IP:\x02e." +
+	"g. 192.168.1.1 or ::1\x02Add\x02Remove\x02Enable local DNS\x02Domain\x02" +
+	"IP Address\x02Tunnel\x02Direct\x02Default\x02DNS Log\x02Enable logging" +
+	"\x02Auto-scroll\x02Search:\x02Search in DNS log entries\x02Queries: %[1]" +
+	"d\x02Refresh\x02Clear\x02Flush DNS Cache\x02Add to Local DNS\x02Cannot a" +
+	"dd: domain or IP is empty\x02%[1]s -> %[2]s added to local DNS\x02Add to" +
+	" Domain List\x02Failed to update domain routing rules\x02Domain Routing" +
+	"\x02%[1]s added to domain list\x02Type\x02Route\x02IPs\x02Latency\x02Fai" +
+	"led to flush DNS cache: %[1]s\x0a\x0a%[2]s\x02DNS cache flushed successf" +
+	"ully.\x02Queries: %[1]d / %[2]d | Local: %[3]d\x02Queries: %[1]d | Local" +
+	": %[2]d\x02General & DNS\x02Routing Rules\x02Routing Mode\x02Domain rout" +
+	"ing allows you to route traffic based on domain names. DNS requests are " +
+	"intercepted and routes are added automatically.\x02Off\x02Domain routing" +
+	" is disabled. All traffic goes through the tunnel as configured.\x02Rela" +
+	"xed\x02Routes are added for matching domains. If route cannot be added, " +
+	"traffic still flows.\x02Strict\x02Routes are added for matching domains." +
+	" If route cannot be added, DNS query fails.\x02DNS Only\x02DNS proxy onl" +
+	"y. Traffic goes directly without tunnel routing.\x02Exclude localhost fr" +
+	"om tunnel (required for DNS proxy)\x02When enabled, adds a route to prev" +
+	"ent 127.0.0.1 traffic from going through the tunnel. Required when using" +
+	" AllowedIPs = 0.0.0.0/0\x02Disable IPv6 (prevents leaks and improves per" +
+	"formance)\x02When enabled, intercepts AAAA DNS queries and removes IPv6 " +
+	"from tunnel AllowedIPs.\x02DNS Lookup\x02DNS servers for lookup (one per" +
+	" line, IP or IP:port). Empty uses system/tunnel DNS.\x02Send DNS directl" +
+	"y (bypass tunnel)\x02Bind DNS queries to the physical interface when the" +
+	" tunnel is active.\x02Send DNS through tunnel\x02Bind DNS queries to the" +
+	" tunnel interface when the tunnel is active.\x02Tunnel for filtered traf" +
+	"fic:\x02Choose which tunnel should receive filtered domain traffic. Auto" +
+	" uses the currently active tunnel.\x02List Mode\x02Whitelist\x02Only lis" +
+	"ted domains go through tunnel, everything else is direct\x02Blacklist" +
+	"\x02Everything goes through tunnel, except listed domains\x02Advanced" +
+	"\x02Use separate tunnel and direct domain lists\x02Domains\x02Domains (o" +
+	"ne per line):\x02Blocked Domains (Always Active)\x02Domains to block com" +
+	"pletely (returns NXDOMAIN):\x02Domain Rules (Advanced)\x02Domains to rou" +
+	"te through tunnel (one per line):\x02Domains to route directly (bypass t" +
+	"unnel, one per line):\x02Example: google.com (matches google.com and *.g" +
+	"oogle.com)\x02Apply\x02Auto (active tunnel)\x02Domains to route through " +
+	"TUNNEL (one per line):\x02Domains to route DIRECTLY (one per line):\x02F" +
+	"ailed to set routing mode\x02Failed to save rules\x02Failed to save DNS " +
+	"settings\x02Settings saved successfully.\x02Disabled\x02Waiting for tunn" +
+	"el connection...\x02Active (%[1]s mode)\x02Cu&t\x02&Paste\x02&Delete\x02" +
+	"When a configuration has exactly one peer, and that peer has an allowed " +
+	"IPs containing at least one of 0.0.0.0/0 or ::/0, and the interface does" +
+	" not have table off, then the tunnel service engages a firewall ruleset " +
+	"to block all traffic that is neither to nor from the tunnel interface or" +
+	" is to the wrong DNS server, with special exceptions for DHCP and NDP." +
+	"\x02Port Firewall\x02Mode\x02Block or allow specific TCP/UDP ports for t" +
+	"raffic on the active tunnel only. System-wide traffic outside the tunnel" +
+	" is not affected.\x02Port firewall is disabled. All ports are allowed th" +
+	"rough the tunnel.\x02Only the listed ports are allowed through the tunne" +
+	"l, everything else is blocked.\x02The listed ports are blocked through t" +
+	"he tunnel, everything else is allowed.\x02Ports\x02One entry per line: a" +
+	" port or range, optionally prefixed with tcp: or udp: (default: both). E" +
+	"xample: 443, 8000-8100, udp:51820-51830\x02Failed to save port firewall " +
+	"rules\x02Whitelist mode with an empty port list blocks all ports through" +
+	" the tunnel. Continue?\x02Invalid port entry on line %[1]d: \x22%[2]s" +
+	"\x22\x02&Domain routing\x02&Off\x02&Relaxed\x02&Strict\x02DNS &Only\x02F" +
+	"ailed to update domain routing\x02Please ask the system administrator to" +
+	" update.\x02Status: Waiting for administrator\x02Never ask again\x02No" +
+	"\x02Invalid %[1]s"
 
-var es_ESIndex = []uint32{ // 304 elements
+var es_ESIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000006, 0x00000044, 0x00000058,
 	0x00000077, 0x000000c5, 0x000000ff, 0x00000137,
@@ -1163,15 +1420,15 @@ var es_ESIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x00000391, 0x000003a4, 0x000003b8, 0x000003d4,
 	0x000003df, 0x000003fd, 0x00000426, 0x00000441,
-	0x0000045f, 0x0000046f, 0x00000473, 0x00000489,
-	0x00000497, 0x000004a0, 0x000004b0, 0x000004be,
-	0x000004f8, 0x00000501, 0x0000050a, 0x0000051b,
-	0x00000533, 0x0000054a, 0x0000057a, 0x000005a8,
-	0x000005bc, 0x000005ed, 0x0000061b, 0x00000638,
-	0x0000067c, 0x00000683, 0x0000068d, 0x00000696,
+	0x0000045f, 0x0000046f, 0x00000473, 0x0000047a,
+	0x00000483, 0x0000048b, 0x0000049e, 0x000004b4,
+	0x000004c2, 0x000004cb, 0x000004db, 0x000004e9,
+	0x00000523, 0x0000052c, 0x00000535, 0x00000546,
+	0x0000055e, 0x00000575, 0x000005a5, 0x000005d3,
+	0x000005e7, 0x00000618, 0x00000646, 0x00000663,
 	// Entry 40 - 5F
-	0x000006a3, 0x000006b6, 0x000006bf, 0x000006c7,
-	0x000006da, 0x000006f1, 0x000006f8, 0x0000070d,
+	0x000006a7, 0x000006ae, 0x000006b8, 0x000006c5,
+	0x000006d8, 0x000006e1, 0x000006f8, 0x0000070d,
 	0x0000074a, 0x00000766, 0x00000779, 0x000007b8,
 	0x000007cf, 0x000007eb, 0x00000830, 0x00000847,
 	0x0000085b, 0x00000870, 0x00000889, 0x000008af,
@@ -1237,7 +1494,35 @@ var es_ESIndex = []uint32{ // 304 elements
 	0x00001641, 0x00001641, 0x00001641, 0x00001641,
 	0x00001641, 0x00001641, 0x00001641, 0x00001641,
 	0x00001641, 0x00001641, 0x00001641, 0x00001641,
-} // Size: 1240 bytes
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	// Entry 140 - 15F
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	// Entry 160 - 17F
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	// Entry 180 - 19F
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+	0x00001641, 0x00001641, 0x00001641, 0x00001641,
+} // Size: 1640 bytes
 
 const es_ESData string = "" + // Size: 5697 bytes
 	"\x02Error\x02(sin argumento): eleve e instale el servicio de administrad" +
@@ -1257,18 +1542,18 @@ const es_ESData string = "" + // Size: 5697 bytes
 	"n\x02pre-desactivación\x02post-desactivación\x02inhabilitado, por políti" +
 	"ca\x02habilitado\x02%[1]s recibido, %[2]s enviado\x02Error al determinar" +
 	" el estado del túnel\x02Error al activar el túnel\x02Error al desactivar" +
-	" el túnel\x02Interfaz: %[1]s\x02Par\x02Crear un túnel nuevo\x02Editar tú" +
-	"nel\x02&Nombre:\x02Clave pública:\x02(desconocido)\x02&Bloquear tráfico " +
-	"sin tunelizar (interruptor de apagado)\x02&Guardar\x02Cancelar\x02&Confi" +
-	"guración:\x02El nombre no es válido\x02Se requiere un nombre.\x02El nomb" +
-	"re del túnel ‘%[1]s’ no es válido.\x02No fue posible listar los túneles " +
-	"existentes\x02El túnel ya existe\x02Ya existe otro túnel con el nombre ‘" +
-	"%[1]s’.\x02No fue posible crear una nueva configuración\x02Error al escr" +
-	"ibir el archivo\x02El archivo ‘%[1]s’ ya existe.\x0a\x0a¿Desea sobrescri" +
-	"bir el archivo?\x02Activo\x02Activando\x02Inactivo\x02Desactivando\x02Es" +
-	"tado desconocido\x02Registro\x02&Copiar\x02Seleccionar &todos\x02&Guarda" +
-	"r en archivo…\x02Tiempo\x02Mensaje del registro\x02Archivos de texto (*." +
-	"txt)|*.txt|Todos los archivos (*.*)|*.*\x02Exportar registro a archivo" +
+	" el túnel\x02Interfaz: %[1]s\x02Par\x02Tiempo\x02Inactivo\x02&Copiar\x02" +
+	"Seleccionar &todos\x02Crear un túnel nuevo\x02Editar túnel\x02&Nombre:" +
+	"\x02Clave pública:\x02(desconocido)\x02&Bloquear tráfico sin tunelizar (" +
+	"interruptor de apagado)\x02&Guardar\x02Cancelar\x02&Configuración:\x02El" +
+	" nombre no es válido\x02Se requiere un nombre.\x02El nombre del túnel ‘%" +
+	"[1]s’ no es válido.\x02No fue posible listar los túneles existentes\x02E" +
+	"l túnel ya existe\x02Ya existe otro túnel con el nombre ‘%[1]s’.\x02No f" +
+	"ue posible crear una nueva configuración\x02Error al escribir el archivo" +
+	"\x02El archivo ‘%[1]s’ ya existe.\x0a\x0a¿Desea sobrescribir el archivo?" +
+	"\x02Activo\x02Activando\x02Desactivando\x02Estado desconocido\x02Registr" +
+	"o\x02&Guardar en archivo…\x02Mensaje del registro\x02Archivos de texto (" +
+	"*.txt)|*.txt|Todos los archivos (*.*)|*.*\x02Exportar registro a archivo" +
 	"\x02Error en el túnel\x02%[1]s\x0a\x0aPor favor, consulte el registro pa" +
 	"ra más información.\x02%[1]s (desactualizado)\x02Error al detectar Amnez" +
 	"iaWG\x02No fue posible esperar a que aparezca la ventana de AmneziaWG: %" +
@@ -1330,7 +1615,7 @@ const es_ESData string = "" + // Size: 5697 bytes
 	"ección de interfaz\x02La versión del protocolo debe ser 1\x02La clave no" +
 	" es válida para la sección de par\x02&Acerca de AmneziaWG…"
 
-var etIndex = []uint32{ // 304 elements
+var etIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000005, 0x0000003c, 0x00000055,
 	0x00000066, 0x000000ae, 0x000000eb, 0x0000011a,
@@ -1343,15 +1628,15 @@ var etIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x00000340, 0x00000357, 0x00000371, 0x0000038f,
 	0x00000397, 0x000003bb, 0x000003e2, 0x00000403,
-	0x0000042a, 0x00000438, 0x00000440, 0x0000044f,
-	0x0000045e, 0x00000465, 0x00000474, 0x0000047f,
-	0x000004ab, 0x000004b5, 0x000004bb, 0x000004c7,
-	0x000004d5, 0x000004ea, 0x0000050c, 0x00000534,
-	0x0000054a, 0x00000570, 0x00000594, 0x000005b3,
-	0x000005f9, 0x00000604, 0x0000060f, 0x0000061c,
+	0x0000042a, 0x00000438, 0x00000440, 0x00000444,
+	0x00000451, 0x0000045a, 0x00000466, 0x00000475,
+	0x00000484, 0x0000048b, 0x0000049a, 0x000004a5,
+	0x000004d1, 0x000004db, 0x000004e1, 0x000004ed,
+	0x000004fb, 0x00000510, 0x00000532, 0x0000055a,
+	0x00000570, 0x00000596, 0x000005ba, 0x000005d9,
 	// Entry 40 - 5F
-	0x0000062d, 0x0000063b, 0x00000640, 0x00000649,
-	0x00000655, 0x00000668, 0x0000066c, 0x00000677,
+	0x0000061f, 0x0000062a, 0x00000635, 0x00000646,
+	0x00000654, 0x00000659, 0x0000066c, 0x00000677,
 	0x000006a9, 0x000006be, 0x000006cb, 0x00000706,
 	0x00000719, 0x00000732, 0x00000769, 0x00000785,
 	0x0000079c, 0x000007ac, 0x000007c0, 0x000007df,
@@ -1417,7 +1702,35 @@ var etIndex = []uint32{ // 304 elements
 	0x00001412, 0x00001412, 0x00001412, 0x00001412,
 	0x00001412, 0x00001412, 0x00001412, 0x00001412,
 	0x00001412, 0x00001412, 0x00001412, 0x00001412,
-} // Size: 1240 bytes
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	// Entry 140 - 15F
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	// Entry 160 - 17F
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	// Entry 180 - 19F
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+	0x00001412, 0x00001412, 0x00001412, 0x00001412,
+} // Size: 1640 bytes
 
 const etData string = "" + // Size: 5138 bytes
 	"\x02Viga\x02(tühi muutuja): paigalda haldusteenus ülemõigustega\x02Kasut" +
@@ -1436,74 +1749,74 @@ const etData string = "" + // Size: 5138 bytes
 	"ärast lahti ühendumist\x02keelatud, poliitika põhiselt\x02lubatud\x02%[" +
 	"1]s vastu võetud, %[2]s saadetud\x02Tunneli oleku tuvastamine ebaõnnestu" +
 	"s\x02Tunneli ühendamine ebaõnnestus\x02Tunneli lahti ühendamine ebaõnnes" +
-	"tus\x02Liides: %[1]s\x02Partner\x02Loo uus tunnel\x02Muuda tunnelit\x02&" +
-	"Nimi:\x02&Avalik võti:\x02(tundmatu)\x02&Keela tunneldamata liiklus (kai" +
-	"tselüliti)\x02&Salvesta\x02Loobu\x02&Seadistus:\x02Sobimatu nimi\x02Nimi" +
-	" on kohustuslik.\x02Tunneli nimi '%[1]s' on sobimatu.\x02Olemasolevaid t" +
-	"unneleid ei saa loetleda\x02Tunnel on juba olemas\x02Tunnel nimega '%[1]" +
-	"s' juba on olemas.\x02Uue seadistuse loomine ebaõnnestus\x02Faili kirjut" +
-	"amine ebaõnnestus\x02Fail nimega '%[1]s' on juba olemas.\x0a\x0aKas soov" +
-	"id selle üle kirjutada?\x02Ühenduses\x02Ühendumas\x02Jõudeolekus\x02Laht" +
-	"i ühendumas\x02Tundmatu olek\x02Logi\x02&Kopeeri\x02Vali &kõik\x02&Salve" +
-	"sta faili…\x02Aeg\x02Logisõnum\x02Tekstifailid (*.txt)|*.txt|Kõik failid" +
-	" (*.*)|*.*\x02Ekspordi logid faili\x02Tunneli viga\x02%[1]s\x0a\x0aLisai" +
-	"nformatsiooni saamiseks palun vaadake logisid.\x02%[1]s (uuendamata)\x02" +
-	"AmneziaWG'i tuvastusviga\x02AmneziaWG'i akna ilmumise ootamine ebaõnnest" +
-	"us: %[1]v\x02AmneziaWG: Lahti ühendatud\x02Staatus: Tundmatu olek\x02Aad" +
-	"ressid: Pole\x02&Halda tunneleid…\x02&Impordi tunnel(id) failist…\x02Sul" +
-	"&e\x02&Tunnelid\x02AmneziaWG ühendatud\x02Tunnel '%[1]s' on ühendatud." +
-	"\x02AmneziaWG lahti ühendatud\x02Tunnel '%[1]s' on lahti ühendatud.\x02A" +
-	"mneziaWG tunneli viga\x02AmneziaWG: %[1]s\x02Staatus: %[1]s\x02Aadressid" +
-	": %[1]s\x02Uuendus on saadaval!\x02AmneziaWG uuendus saadaval\x02Amnezia" +
-	"WG'i uuendus on nüüd saadaval. Soovitame teil esimesel võimalusel uuenda" +
-	"da.\x02Tunnelid\x02&Muuda\x02Lisa tühi tunn&el…\x02Lisa tunnel\x02Eemald" +
-	"a valitud tunnel(id)\x02Ekspordi kõik tunnelid zip-faili\x02Lüli&tu ümbe" +
-	"r\x02Ekspordi kõik tunnelid &zip-faili…\x02Muuda &valitud tunnelit…\x02&" +
-	"Eemalda valitud tunnel(id)\x02ühtegi seadistusfaili ei leitud\x02Pole võ" +
-	"imeline importima valitud seadistusfaili: %[1]v\x02Pole võimeline loetle" +
-	"ma olemasolevaid tunneleid: %[1]v\x02Tunnel nimega '%[1]s' on juba olema" +
-	"s\x02Seadistuse import ebaõnnestus: %[1]v\x02Imporditud tunnelid\x14\x01" +
-	"\x81\x01\x00\x02\x18\x02Imporditud %[1]d tunnel\x00\x1a\x02Importitud %[" +
-	"1]d tunnelit\x14\x02\x80\x01\x02$\x02Imporditud %[1]d %[2]d-st tunnelist" +
-	"\x00$\x02Imporditud %[1]d %[2]d-st tunnelist\x02Tunnelit ei saa luua\x14" +
-	"\x01\x81\x01\x00\x02\x15\x02Kustuta %[1]d tunnel\x00\x17\x02Kustuta %[1]" +
-	"d tunnelit\x14\x01\x81\x01\x00\x024\x02Kas oled kindel, et soovid kustut" +
-	"ada %[1]d tunneli?\x005\x02Kas oled kindel, et soovid kustutada %[1]d tu" +
-	"nnelit?\x02Kustuta tunnel '%[1]s'\x02Kas oled kindel, et soovid kustutad" +
-	"a tunneli nimega '%[1]s'?\x02%[1]s Seda tegevust ei saa tagasi võtta." +
-	"\x02Tunnelit ei saa kustutada\x02Tunnelit ei saanud kustutada: %[1]s\x02" +
-	"Tunneleid ei saa kustutada\x14\x01\x81\x01\x00\x02$\x02Ei saanud eemalda" +
-	"da %[1]d tunnelit.\x00$\x02Ei saanud eemaldada %[1]d tunnelit.\x02Seadis" +
-	"tusfailid (*.zip, *.conf)|*.zip;*.conf|Kõik failid (*.*)|*.*\x02Impordi " +
-	"tunnel(id) failist\x02Pakendatud seadistusfailid (*.zip)|*.zip\x02Ekspor" +
-	"di tunnelid zip-faili\x02%[1]s (allkirjastamata kompilatsioon, uuendusi " +
-	"pole)\x02Viga AmneziaWG'i sulgemisel\x02Teenuse lõpetamine ebaõnnestus j" +
-	"ärgneva tõttu: %[1]v. Võid proovida AmneziaWG'i lõpetada teenusehalduri" +
-	"st.\x02AmneziaWG'ile on uuendus saadaval. Sügavalt soovitame uuendada ni" +
-	"ipea kui võimalik.\x02Staatus: Ootan kasutaja järel\x02Uuenda nüüd\x02St" +
-	"aatus: Ootan uuendusteenuse järel\x02Viga: %[1]v. Palun proovige uuesti." +
-	"\x02Staatus: Valmis!\x02Nüüd\x02Süsteemi kella on tagasi keritud!\x14" +
-	"\x01\x81\x01\x00\x02\x0c\x02%[1]d aasta\x00\x0d\x02%[1]d aastat\x14\x01" +
-	"\x81\x01\x00\x02\x0c\x02%[1]d päev\x00\x0d\x02%[1]d päeva\x14\x01\x81" +
-	"\x01\x00\x02\x0b\x02%[1]d tund\x00\x0c\x02%[1]d tundi\x14\x01\x81\x01" +
-	"\x00\x02\x0c\x02%[1]d minut\x00\x0e\x02%[1]d minutit\x14\x01\x81\x01\x00" +
-	"\x02\x0d\x02%[1]d sekund\x00\x0f\x02%[1]d sekundit\x02%[1]s tagasi\x02%[" +
-	"1]d\u00a0B\x02%.2[1]f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB" +
-	"\x02%.2[1]f\u00a0TiB\x02%[1]s: %[2]q\x02Sobimatu IP-aadress\x02Sobimatu " +
-	"alamvõrgu maski pikkus\x02Lõpp-punktis on port määramata\x02Sobimatu lõp" +
-	"p-punkti aadress\x02Looksulud peavad sisaldama IPv6-aadressi\x02Sobimatu" +
-	" MTU\x02Sobimatu port\x02Sobimatu kestva ühendushoidiku väärtus\x02Sobim" +
-	"atu võti: %[1]v\x02Võtmed peavad dekodeerima täpselt 32 baidi suuruseks" +
-	"\x02Number peab olema väärtus 0 ja 2^64-1 vahel: %[1]v\x02Kaks koma järj" +
-	"est\x02Tunneli nimi pole sobilik\x02Rida peab olemas olema lõigu sees" +
-	"\x02Seadistusvõtmel on võrdusmärk eraldajana puudu\x02Võti peab omama vä" +
-	"ärtust\x02Sobimatu võti [Interface] lõigus\x02Sobimatu võti [Peer] lõig" +
-	"us\x02Liides peab omama privaatvõtit\x02[pole määratud]\x02Kõik partneri" +
-	"d peavad omama avalikke võtmeid\x02Seadistuste saamisel ilmnes viga\x02S" +
-	"obimatu võti liidese lõigus\x02Protokolli versioon peab olema 1\x02Sobim" +
-	"atu võti partneri lõigus\x02&AmneziaWG'ist…"
+	"tus\x02Liides: %[1]s\x02Partner\x02Aeg\x02Jõudeolekus\x02&Kopeeri\x02Val" +
+	"i &kõik\x02Loo uus tunnel\x02Muuda tunnelit\x02&Nimi:\x02&Avalik võti:" +
+	"\x02(tundmatu)\x02&Keela tunneldamata liiklus (kaitselüliti)\x02&Salvest" +
+	"a\x02Loobu\x02&Seadistus:\x02Sobimatu nimi\x02Nimi on kohustuslik.\x02Tu" +
+	"nneli nimi '%[1]s' on sobimatu.\x02Olemasolevaid tunneleid ei saa loetle" +
+	"da\x02Tunnel on juba olemas\x02Tunnel nimega '%[1]s' juba on olemas.\x02" +
+	"Uue seadistuse loomine ebaõnnestus\x02Faili kirjutamine ebaõnnestus\x02F" +
+	"ail nimega '%[1]s' on juba olemas.\x0a\x0aKas soovid selle üle kirjutada" +
+	"?\x02Ühenduses\x02Ühendumas\x02Lahti ühendumas\x02Tundmatu olek\x02Logi" +
+	"\x02&Salvesta faili…\x02Logisõnum\x02Tekstifailid (*.txt)|*.txt|Kõik fai" +
+	"lid (*.*)|*.*\x02Ekspordi logid faili\x02Tunneli viga\x02%[1]s\x0a\x0aLi" +
+	"sainformatsiooni saamiseks palun vaadake logisid.\x02%[1]s (uuendamata)" +
+	"\x02AmneziaWG'i tuvastusviga\x02AmneziaWG'i akna ilmumise ootamine ebaõn" +
+	"nestus: %[1]v\x02AmneziaWG: Lahti ühendatud\x02Staatus: Tundmatu olek" +
+	"\x02Aadressid: Pole\x02&Halda tunneleid…\x02&Impordi tunnel(id) failist…" +
+	"\x02Sul&e\x02&Tunnelid\x02AmneziaWG ühendatud\x02Tunnel '%[1]s' on ühend" +
+	"atud.\x02AmneziaWG lahti ühendatud\x02Tunnel '%[1]s' on lahti ühendatud." +
+	"\x02AmneziaWG tunneli viga\x02AmneziaWG: %[1]s\x02Staatus: %[1]s\x02Aadr" +
+	"essid: %[1]s\x02Uuendus on saadaval!\x02AmneziaWG uuendus saadaval\x02Am" +
+	"neziaWG'i uuendus on nüüd saadaval. Soovitame teil esimesel võimalusel u" +
+	"uendada.\x02Tunnelid\x02&Muuda\x02Lisa tühi tunn&el…\x02Lisa tunnel\x02E" +
+	"emalda valitud tunnel(id)\x02Ekspordi kõik tunnelid zip-faili\x02Lüli&tu" +
+	" ümber\x02Ekspordi kõik tunnelid &zip-faili…\x02Muuda &valitud tunnelit…" +
+	"\x02&Eemalda valitud tunnel(id)\x02ühtegi seadistusfaili ei leitud\x02Po" +
+	"le võimeline importima valitud seadistusfaili: %[1]v\x02Pole võimeline l" +
+	"oetlema olemasolevaid tunneleid: %[1]v\x02Tunnel nimega '%[1]s' on juba " +
+	"olemas\x02Seadistuse import ebaõnnestus: %[1]v\x02Imporditud tunnelid" +
+	"\x14\x01\x81\x01\x00\x02\x18\x02Imporditud %[1]d tunnel\x00\x1a\x02Impor" +
+	"titud %[1]d tunnelit\x14\x02\x80\x01\x02$\x02Imporditud %[1]d %[2]d-st t" +
+	"unnelist\x00$\x02Imporditud %[1]d %[2]d-st tunnelist\x02Tunnelit ei saa " +
+	"luua\x14\x01\x81\x01\x00\x02\x15\x02Kustuta %[1]d tunnel\x00\x17\x02Kust" +
+	"uta %[1]d tunnelit\x14\x01\x81\x01\x00\x024\x02Kas oled kindel, et soovi" +
+	"d kustutada %[1]d tunneli?\x005\x02Kas oled kindel, et soovid kustutada " +
+	"%[1]d tunnelit?\x02Kustuta tunnel '%[1]s'\x02Kas oled kindel, et soovid " +
+	"kustutada tunneli nimega '%[1]s'?\x02%[1]s Seda tegevust ei saa tagasi v" +
+	"õtta.\x02Tunnelit ei saa kustutada\x02Tunnelit ei saanud kustutada: %[1" +
+	"]s\x02Tunneleid ei saa kustutada\x14\x01\x81\x01\x00\x02$\x02Ei saanud e" +
+	"emaldada %[1]d tunnelit.\x00$\x02Ei saanud eemaldada %[1]d tunnelit.\x02" +
+	"Seadistusfailid (*.zip, *.conf)|*.zip;*.conf|Kõik failid (*.*)|*.*\x02Im" +
+	"pordi tunnel(id) failist\x02Pakendatud seadistusfailid (*.zip)|*.zip\x02" +
+	"Ekspordi tunnelid zip-faili\x02%[1]s (allkirjastamata kompilatsioon, uue" +
+	"ndusi pole)\x02Viga AmneziaWG'i sulgemisel\x02Teenuse lõpetamine ebaõnne" +
+	"stus järgneva tõttu: %[1]v. Võid proovida AmneziaWG'i lõpetada teenuseha" +
+	"ldurist.\x02AmneziaWG'ile on uuendus saadaval. Sügavalt soovitame uuenda" +
+	"da niipea kui võimalik.\x02Staatus: Ootan kasutaja järel\x02Uuenda nüüd" +
+	"\x02Staatus: Ootan uuendusteenuse järel\x02Viga: %[1]v. Palun proovige u" +
+	"uesti.\x02Staatus: Valmis!\x02Nüüd\x02Süsteemi kella on tagasi keritud!" +
+	"\x14\x01\x81\x01\x00\x02\x0c\x02%[1]d aasta\x00\x0d\x02%[1]d aastat\x14" +
+	"\x01\x81\x01\x00\x02\x0c\x02%[1]d päev\x00\x0d\x02%[1]d päeva\x14\x01" +
+	"\x81\x01\x00\x02\x0b\x02%[1]d tund\x00\x0c\x02%[1]d tundi\x14\x01\x81" +
+	"\x01\x00\x02\x0c\x02%[1]d minut\x00\x0e\x02%[1]d minutit\x14\x01\x81\x01" +
+	"\x00\x02\x0d\x02%[1]d sekund\x00\x0f\x02%[1]d sekundit\x02%[1]s tagasi" +
+	"\x02%[1]d\u00a0B\x02%.2[1]f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f" +
+	"\u00a0GiB\x02%.2[1]f\u00a0TiB\x02%[1]s: %[2]q\x02Sobimatu IP-aadress\x02" +
+	"Sobimatu alamvõrgu maski pikkus\x02Lõpp-punktis on port määramata\x02Sob" +
+	"imatu lõpp-punkti aadress\x02Looksulud peavad sisaldama IPv6-aadressi" +
+	"\x02Sobimatu MTU\x02Sobimatu port\x02Sobimatu kestva ühendushoidiku väär" +
+	"tus\x02Sobimatu võti: %[1]v\x02Võtmed peavad dekodeerima täpselt 32 baid" +
+	"i suuruseks\x02Number peab olema väärtus 0 ja 2^64-1 vahel: %[1]v\x02Kak" +
+	"s koma järjest\x02Tunneli nimi pole sobilik\x02Rida peab olemas olema lõ" +
+	"igu sees\x02Seadistusvõtmel on võrdusmärk eraldajana puudu\x02Võti peab " +
+	"omama väärtust\x02Sobimatu võti [Interface] lõigus\x02Sobimatu võti [Pee" +
+	"r] lõigus\x02Liides peab omama privaatvõtit\x02[pole määratud]\x02Kõik p" +
+	"artnerid peavad omama avalikke võtmeid\x02Seadistuste saamisel ilmnes vi" +
+	"ga\x02Sobimatu võti liidese lõigus\x02Protokolli versioon peab olema 1" +
+	"\x02Sobimatu võti partneri lõigus\x02&AmneziaWG'ist…"
 
-var faIndex = []uint32{ // 304 elements
+var faIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000007, 0x0000005b, 0x0000007a,
 	0x0000009e, 0x000000fe, 0x00000171, 0x000001a3,
@@ -1516,15 +1829,15 @@ var faIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x000004dd, 0x000004f5, 0x0000050b, 0x00000537,
 	0x00000547, 0x00000577, 0x000005a6, 0x000005d5,
-	0x0000060a, 0x0000061a, 0x00000623, 0x00000640,
-	0x00000656, 0x0000065f, 0x00000675, 0x00000688,
-	0x000006d0, 0x000006dc, 0x000006e3, 0x000006f6,
-	0x0000070c, 0x0000072d, 0x00000761, 0x000007a7,
-	0x000007d4, 0x0000080f, 0x00000846, 0x00000870,
-	0x000008e8, 0x000008f1, 0x00000911, 0x00000920,
+	0x0000060a, 0x0000061a, 0x00000623, 0x0000062c,
+	0x0000063b, 0x00000649, 0x0000065d, 0x0000067a,
+	0x00000690, 0x00000699, 0x000006af, 0x000006c2,
+	0x0000070a, 0x00000716, 0x0000071d, 0x00000730,
+	0x00000746, 0x00000767, 0x0000079b, 0x000007e1,
+	0x0000080e, 0x00000849, 0x00000880, 0x000008aa,
 	// Entry 40 - 5F
-	0x00000946, 0x00000962, 0x00000978, 0x00000986,
-	0x0000099a, 0x000009bb, 0x000009c4, 0x000009e5,
+	0x00000922, 0x0000092b, 0x0000094b, 0x00000971,
+	0x0000098d, 0x000009a3, 0x000009c4, 0x000009e5,
 	0x00000a37, 0x00000a73, 0x00000a87, 0x00000aee,
 	0x00000b01, 0x00000b2b, 0x00000b82, 0x00000bab,
 	0x00000bc8, 0x00000be2, 0x00000c03, 0x00000c3a,
@@ -1590,7 +1903,35 @@ var faIndex = []uint32{ // 304 elements
 	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
 	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
 	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
-} // Size: 1240 bytes
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	// Entry 140 - 15F
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	// Entry 160 - 17F
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	// Entry 180 - 19F
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+	0x00001a09, 0x00001a09, 0x00001a09, 0x00001a09,
+} // Size: 1640 bytes
 
 const faData string = "" + // Size: 6665 bytes
 	"\x02خطا\x02(بدون ورودیی): سرویس مدیریت را ارتقا و نصب کنید\x02استفاده: %" +
@@ -1608,16 +1949,16 @@ const faData string = "" + // Size: 6665 bytes
 	"برقراری\x02پیشنیاز قطعی\x02پسنیاز قطعی\x02غیر فعال، بر اساس خط مشی\x02ف" +
 	"عال شده\x02%[1]s دریافت شد، %[2]s ارسال شد\x02وضعیت تونل تعیین نشده است" +
 	"\x02فعال سازی تونل ناموفق بود\x02غیرفعال سازی تونل ناموفق بود\x02رابط: %" +
-	"[1]s\x02همتا\x02ایجاد تونل جدید\x02ویرایش تونل\x02&نام:\x02&کلید عمومی:" +
-	"\x02(ناشناخته)\x02&مسدود کردن ترافیک تونل نشده (سوئیچ مرگ)\x02&ذخیره\x02" +
-	"لغو\x02&پیکربندی:\x02نام نامعتبر\x02یک نام الزامی است.\x02تونل با نام '" +
-	"%[1]s' نامعتبر است.\x02نمی\u200cتوان تونل\u200cهای موجود را فهرست کرد" +
-	"\x02تونل هم\u200cاکنون موجود است\x02تونل دیگری با نام '%[1]s' وجود دارد." +
-	"\x02ناتوان در ایجاد پیکربندی جدید\x02نوشتن پرونده انجام نشد\x02پرونده «%" +
-	"[1]s» از قبل وجود دارد.\x0a\x0aآیا می\u200cخواهید آن را بازنویسی کنید؟" +
-	"\x02فعال\x02در حال فعال\u200cسازی\x02غیرفعال\x02در حال غیرفعال\u200cسازی" +
-	"\x02وضعیت ناشناخته\x02گزارش وقایع\x02&روگرفت\x02انتخاب همه\x02&ذخیره در " +
-	"پرونده…\x02زمان\x02پیام گزارش رویداد\x02پرونده\u200cهای متنی (*.txt)|*." +
+	"[1]s\x02همتا\x02زمان\x02غیرفعال\x02&روگرفت\x02انتخاب همه\x02ایجاد تونل ج" +
+	"دید\x02ویرایش تونل\x02&نام:\x02&کلید عمومی:\x02(ناشناخته)\x02&مسدود کرد" +
+	"ن ترافیک تونل نشده (سوئیچ مرگ)\x02&ذخیره\x02لغو\x02&پیکربندی:\x02نام نا" +
+	"معتبر\x02یک نام الزامی است.\x02تونل با نام '%[1]s' نامعتبر است.\x02نمی" +
+	"\u200cتوان تونل\u200cهای موجود را فهرست کرد\x02تونل هم\u200cاکنون موجود " +
+	"است\x02تونل دیگری با نام '%[1]s' وجود دارد.\x02ناتوان در ایجاد پیکربندی" +
+	" جدید\x02نوشتن پرونده انجام نشد\x02پرونده «%[1]s» از قبل وجود دارد.\x0a" +
+	"\x0aآیا می\u200cخواهید آن را بازنویسی کنید؟\x02فعال\x02در حال فعال\u200c" +
+	"سازی\x02در حال غیرفعال\u200cسازی\x02وضعیت ناشناخته\x02گزارش وقایع\x02&ذ" +
+	"خیره در پرونده…\x02پیام گزارش رویداد\x02پرونده\u200cهای متنی (*.txt)|*." +
 	"txt|همه پرونده\u200cها (*.*)|*.*\x02برون\u200cبرد گزارش رویداد به پرونده" +
 	"\x02خطالی تونل\x02%[1]s\x0a\x0aلطفا برای اطلاعات بیشتر به گزارش رویداد م" +
 	"راجعه کنید.\x02%[1]s (قدیمی)\x02وقوع اشکال در وایرگارد\x02نمی\u200cتوان" +
@@ -1664,7 +2005,7 @@ const faData string = "" + // Size: 6665 bytes
 	"\x02کلید برای بخش [Interface] نامعتبر است\x02نسخه پروتکل باید 1 باشد\x02" +
 	"کلید برای بخش طرفین نامعتبر است\x02&درباره AmneziaWG…"
 
-var fiIndex = []uint32{ // 304 elements
+var fiIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000006, 0x00000056, 0x0000006f,
 	0x00000085, 0x000000ea, 0x00000133, 0x0000016b,
@@ -1677,15 +2018,15 @@ var fiIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x00000385, 0x0000038e, 0x00000398, 0x000003c3,
 	0x000003cf, 0x000003f5, 0x0000041c, 0x0000043d,
-	0x00000460, 0x00000472, 0x0000047b, 0x0000048c,
-	0x0000049d, 0x000004a4, 0x000004b5, 0x000004c2,
-	0x000004f2, 0x000004fc, 0x00000504, 0x00000514,
-	0x00000526, 0x0000053a, 0x00000565, 0x00000590,
-	0x000005a7, 0x000005d4, 0x000005f7, 0x00000618,
-	0x00000654, 0x0000065f, 0x0000066b, 0x0000067a,
+	0x00000460, 0x00000472, 0x0000047b, 0x00000480,
+	0x0000048f, 0x00000497, 0x000004a7, 0x000004b8,
+	0x000004c9, 0x000004d0, 0x000004e1, 0x000004ee,
+	0x0000051e, 0x00000528, 0x00000530, 0x00000540,
+	0x00000552, 0x00000566, 0x00000591, 0x000005bc,
+	0x000005d3, 0x00000600, 0x00000623, 0x00000644,
 	// Entry 40 - 5F
-	0x00000688, 0x00000698, 0x0000069d, 0x000006a5,
-	0x000006b5, 0x000006cd, 0x000006d2, 0x000006dd,
+	0x00000680, 0x0000068b, 0x00000697, 0x000006a5,
+	0x000006b5, 0x000006ba, 0x000006d2, 0x000006dd,
 	0x00000716, 0x0000072a, 0x00000737, 0x0000076b,
 	0x00000782, 0x0000079d, 0x000007d7, 0x000007ee,
 	0x000007ff, 0x00000816, 0x0000082e, 0x0000084d,
@@ -1751,7 +2092,35 @@ var fiIndex = []uint32{ // 304 elements
 	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
 	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
 	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
-} // Size: 1240 bytes
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	// Entry 140 - 15F
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	// Entry 160 - 17F
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	// Entry 180 - 19F
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+	0x000012bc, 0x000012bc, 0x000012bc, 0x000012bc,
+} // Size: 1640 bytes
 
 const fiData string = "" + // Size: 4796 bytes
 	"\x02Virhe\x02(ei määrityksiä): suorita järjestelmäoikeuksilla ja asenna " +
@@ -1771,45 +2140,45 @@ const fiData string = "" + // Size: 4796 bytes
 	"nnön perusteella\x02käytössä\x02%[1]s vastaanotettu, %[2]s lähetetty\x02" +
 	"Tunnelin tilan määritys epäonnistui\x02Tunnelin aktivointi epäonnistui" +
 	"\x02Tunnelin deaktivointi epäonnistui\x02Liitäntä: %[1]s\x02Osapuoli\x02" +
-	"Luo uusi tunneli\x02Muokkaa tunnelia\x02&Nimi:\x02&Julkinen avain:\x02(t" +
-	"untematon)\x02&Estä tunneloimaton liikenne (pääkatkaisija)\x02&Tallenna" +
-	"\x02Peruuta\x02&Konfiguraatio:\x02Virheellinen nimi\x02Nimi on pakolline" +
-	"n.\x02Tunnelin nimi ‘%[1]s’ on virheellinen.\x02Olemassaolevia tunneleit" +
-	"a ei voitu listata\x02Tunneli on jo olemassa\x02Nimellä ‘%[1]s’ on jo ol" +
-	"emassa tunneli.\x02Uutta määritystä ei voida luoda\x02Tiedoston kirjoitu" +
-	"s epäonnistui\x02Tiedosto ‘%[1]s’ on jo olemassa.\x0a\x0aHaluatko korvat" +
-	"a sen?\x02Aktiivinen\x02Aktivoidaan\x02Epäaktiivinen\x02Deaktivoidaan" +
-	"\x02Tuntematon tila\x02Loki\x02&Kopioi\x02Valitse k&aikki\x02&Tallenna t" +
-	"iedostoon…\x02Aika\x02Lokiviesti\x02Tekstitiedostot (*.txt)|*.txt|Kaikki" +
-	" tiedostot (*.*)|*.*\x02Vie loki tiedostoon\x02Tunnelivirhe\x02%[1]s\x0a" +
-	"\x0aLue lisää lokista saadaksesi lisätietoja.\x02%[1]s (ei ajantasalla)" +
-	"\x02AmneziaWGin tunnistusvirhe\x02Ei voida odottaa AmneziaWGin ikkunan i" +
-	"lmestymistä: %[1]v\x02AmneziaWG: deaktivoitu\x02Tila: tuntematon\x02Osoi" +
-	"tteet: ei mitään\x02&Hallitse tunneleita…\x02Tuo tunnele&ita tiedostosta" +
-	"…\x02Lo&peta\x02&Tunnelit\x02AmneziaWG aktivoitu\x02Tunneli %[1]s on a" +
-	"ktivoitu.\x02AmneziaWG deaktivoitu\x02Tunneli %[1]s on deaktivoitu.\x02A" +
-	"mneziaWG tunnelivirhe\x02AmneziaWG: %[1]s\x02Tila: %[1]s\x02Osoitteet: %" +
-	"[1]s\x02Päivitys on saatavilla!\x02AmneziaWG päivitys saatavilla\x02Amne" +
-	"ziaWGin päivitys on nyt saatavilla. Sinua kehotetaan päivittämään mahdol" +
-	"lisimman pian.\x02Tunneli\x02&Muokkaa\x02Lisää tyhjä tunn&eli…\x02Lisää " +
-	"tunneli\x02Poista valitut tunneli(t)\x02Vie kaikki tunnelit zip-tiedosto" +
-	"on\x02Vaihda &tila\x02Vie kaikki tunnelit &zip-tiedostoon…\x02Muokkaa &v" +
-	"alittua tunnelia…\x02&Poista valitut tunnelit\x02määritystiedostoa ei lö" +
-	"ytynyt\x02Valittua määritystiedostoa ei voitu tuoda: %[1]v\x02Olemassaol" +
-	"evia tunneleita ei voitu luetella: %[1]v\x02Nimellä ‘%[1]s’ on jo olemas" +
-	"saoleva tunneli\x02Ei voitu tuoda määritystiedostoa: %[1]v\x02Tuodut tun" +
-	"nelit\x14\x01\x81\x01\x00\x02\x14\x02Tuotu %[1]d tunneli\x00\x15\x02Tuot" +
-	"u %[1]d tunnelia\x14\x02\x80\x01\x02\x1f\x02Tuotiin %[1]d / %[2]d tunnel" +
-	"ia\x00\x1f\x02Tuotiin %[1]d / %[2]d tunnelia\x02Tunnelia ei voitu luoda" +
-	"\x14\x01\x81\x01\x00\x02\x15\x02Poista %[1]d tunneli\x00\x16\x02Poista %" +
-	"[1]d tunnelia\x14\x01\x81\x01\x00\x022\x02Oletko varma että haluat poist" +
-	"aa %[1]d tunnelin?\x002\x02Oletko varma että haluat poistaa %[1]d tunnel" +
-	"ia?\x02Poista tunneli ‘%[1]s’\x02Oletko varma että haluat poistaa tunnel" +
-	"in ‘%[1]s’?\x02%[1]s Tätä toimintoa ei voi peruuttaa.\x02Tunnelia ei voi" +
-	"tu poistaa\x02Tunnelia ei voitu poistaa: %[1]s\x02Tunnelia ei voitu pois" +
-	"taa\x02Tuo tunneli(t) tiedostosta\x02Vie tunnelit zip-tiedostoon\x02Virh" +
-	"e AmneziaWGista poistuttaessa\x02Tila: Odotetaan käyttäjää\x02Päivitä ny" +
-	"t\x02Tila: Valmis!\x02Nyt\x02Järjestelmän kello jättää!\x14\x01\x81\x01" +
+	"Aika\x02Epäaktiivinen\x02&Kopioi\x02Valitse k&aikki\x02Luo uusi tunneli" +
+	"\x02Muokkaa tunnelia\x02&Nimi:\x02&Julkinen avain:\x02(tuntematon)\x02&E" +
+	"stä tunneloimaton liikenne (pääkatkaisija)\x02&Tallenna\x02Peruuta\x02&K" +
+	"onfiguraatio:\x02Virheellinen nimi\x02Nimi on pakollinen.\x02Tunnelin ni" +
+	"mi ‘%[1]s’ on virheellinen.\x02Olemassaolevia tunneleita ei voitu listat" +
+	"a\x02Tunneli on jo olemassa\x02Nimellä ‘%[1]s’ on jo olemassa tunneli." +
+	"\x02Uutta määritystä ei voida luoda\x02Tiedoston kirjoitus epäonnistui" +
+	"\x02Tiedosto ‘%[1]s’ on jo olemassa.\x0a\x0aHaluatko korvata sen?\x02Akt" +
+	"iivinen\x02Aktivoidaan\x02Deaktivoidaan\x02Tuntematon tila\x02Loki\x02&T" +
+	"allenna tiedostoon…\x02Lokiviesti\x02Tekstitiedostot (*.txt)|*.txt|Kaikk" +
+	"i tiedostot (*.*)|*.*\x02Vie loki tiedostoon\x02Tunnelivirhe\x02%[1]s" +
+	"\x0a\x0aLue lisää lokista saadaksesi lisätietoja.\x02%[1]s (ei ajantasal" +
+	"la)\x02AmneziaWGin tunnistusvirhe\x02Ei voida odottaa AmneziaWGin ikkuna" +
+	"n ilmestymistä: %[1]v\x02AmneziaWG: deaktivoitu\x02Tila: tuntematon\x02O" +
+	"soitteet: ei mitään\x02&Hallitse tunneleita…\x02Tuo tunnele&ita tiedosto" +
+	"sta…\x02Lo&peta\x02&Tunnelit\x02AmneziaWG aktivoitu\x02Tunneli %[1]s on " +
+	"aktivoitu.\x02AmneziaWG deaktivoitu\x02Tunneli %[1]s on deaktivoitu.\x02" +
+	"AmneziaWG tunnelivirhe\x02AmneziaWG: %[1]s\x02Tila: %[1]s\x02Osoitteet: " +
+	"%[1]s\x02Päivitys on saatavilla!\x02AmneziaWG päivitys saatavilla\x02Amn" +
+	"eziaWGin päivitys on nyt saatavilla. Sinua kehotetaan päivittämään mahdo" +
+	"llisimman pian.\x02Tunneli\x02&Muokkaa\x02Lisää tyhjä tunn&eli…\x02Lisää" +
+	" tunneli\x02Poista valitut tunneli(t)\x02Vie kaikki tunnelit zip-tiedost" +
+	"oon\x02Vaihda &tila\x02Vie kaikki tunnelit &zip-tiedostoon…\x02Muokkaa &" +
+	"valittua tunnelia…\x02&Poista valitut tunnelit\x02määritystiedostoa ei l" +
+	"öytynyt\x02Valittua määritystiedostoa ei voitu tuoda: %[1]v\x02Olemassa" +
+	"olevia tunneleita ei voitu luetella: %[1]v\x02Nimellä ‘%[1]s’ on jo olem" +
+	"assaoleva tunneli\x02Ei voitu tuoda määritystiedostoa: %[1]v\x02Tuodut t" +
+	"unnelit\x14\x01\x81\x01\x00\x02\x14\x02Tuotu %[1]d tunneli\x00\x15\x02Tu" +
+	"otu %[1]d tunnelia\x14\x02\x80\x01\x02\x1f\x02Tuotiin %[1]d / %[2]d tunn" +
+	"elia\x00\x1f\x02Tuotiin %[1]d / %[2]d tunnelia\x02Tunnelia ei voitu luod" +
+	"a\x14\x01\x81\x01\x00\x02\x15\x02Poista %[1]d tunneli\x00\x16\x02Poista " +
+	"%[1]d tunnelia\x14\x01\x81\x01\x00\x022\x02Oletko varma että haluat pois" +
+	"taa %[1]d tunnelin?\x002\x02Oletko varma että haluat poistaa %[1]d tunne" +
+	"lia?\x02Poista tunneli ‘%[1]s’\x02Oletko varma että haluat poistaa tunne" +
+	"lin ‘%[1]s’?\x02%[1]s Tätä toimintoa ei voi peruuttaa.\x02Tunnelia ei vo" +
+	"itu poistaa\x02Tunnelia ei voitu poistaa: %[1]s\x02Tunnelia ei voitu poi" +
+	"staa\x02Tuo tunneli(t) tiedostosta\x02Vie tunnelit zip-tiedostoon\x02Vir" +
+	"he AmneziaWGista poistuttaessa\x02Tila: Odotetaan käyttäjää\x02Päivitä n" +
+	"yt\x02Tila: Valmis!\x02Nyt\x02Järjestelmän kello jättää!\x14\x01\x81\x01" +
 	"\x00\x02\x0c\x02%[1]d vuosi\x00\x0d\x02%[1]d vuotta\x14\x01\x81\x01\x00" +
 	"\x02\x0e\x02%[1]d päivä\x00\x10\x02%[1]d päivää\x14\x01\x81\x01\x00\x02" +
 	"\x0c\x02%[1]d tunti\x00\x0d\x02%[1]d tuntia\x14\x01\x81\x01\x00\x02\x0f" +
@@ -1831,7 +2200,7 @@ const fiData string = "" + // Size: 4796 bytes
 	"n version pitää olla 1\x02Virheellinen avain osapuoli-osiossa\x02Tietoja" +
 	" &AmneziaWGista…"
 
-var frIndex = []uint32{ // 304 elements
+var frIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000007, 0x00000046, 0x00000063,
 	0x00000083, 0x000000cb, 0x00000112, 0x0000014b,
@@ -1844,15 +2213,15 @@ var frIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x000003f1, 0x00000405, 0x00000419, 0x00000437,
 	0x00000442, 0x00000463, 0x0000048f, 0x000004ae,
-	0x000004d2, 0x000004e4, 0x000004ee, 0x00000507,
-	0x0000051a, 0x00000521, 0x00000532, 0x0000053f,
-	0x00000572, 0x0000057f, 0x00000587, 0x00000598,
-	0x000005a7, 0x000005bf, 0x000005e9, 0x0000061e,
-	0x00000634, 0x00000668, 0x00000698, 0x000006b6,
-	0x000006f5, 0x000006fe, 0x00000712, 0x0000071b,
+	0x000004d2, 0x000004e4, 0x000004ee, 0x000004f4,
+	0x000004fd, 0x00000505, 0x00000519, 0x00000532,
+	0x00000545, 0x0000054c, 0x0000055d, 0x0000056a,
+	0x0000059d, 0x000005aa, 0x000005b2, 0x000005c3,
+	0x000005d2, 0x000005ea, 0x00000614, 0x00000649,
+	0x0000065f, 0x00000693, 0x000006c3, 0x000006e1,
 	// Entry 40 - 5F
-	0x00000733, 0x00000741, 0x00000749, 0x00000751,
-	0x00000765, 0x00000785, 0x0000078b, 0x0000079e,
+	0x00000720, 0x00000729, 0x0000073d, 0x00000755,
+	0x00000763, 0x0000076b, 0x0000078b, 0x0000079e,
 	0x000007d7, 0x000007fb, 0x0000080c, 0x00000856,
 	0x00000868, 0x0000088a, 0x000008cc, 0x000008e3,
 	0x000008f3, 0x00000905, 0x0000091d, 0x0000094f,
@@ -1918,7 +2287,35 @@ var frIndex = []uint32{ // 304 elements
 	0x00001716, 0x00001716, 0x00001716, 0x00001716,
 	0x00001716, 0x00001716, 0x00001716, 0x00001716,
 	0x00001716, 0x00001716, 0x00001716, 0x00001716,
-} // Size: 1240 bytes
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	// Entry 140 - 15F
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	// Entry 160 - 17F
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	// Entry 180 - 19F
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+	0x00001716, 0x00001716, 0x00001716, 0x00001716,
+} // Size: 1640 bytes
 
 const frData string = "" + // Size: 5910 bytes
 	"\x02Erreur\x02(sans argument) : élever et installer service du gestionna" +
@@ -1939,17 +2336,17 @@ const frData string = "" + // Size: 5910 bytes
 	"on\x02pré-désactivation\x02post-désactivation\x02désactivé, par préféren" +
 	"ce\x02activé(e)\x02%[1]s reçu(e), %[2]s envoyé(e)\x02Impossible de déter" +
 	"miner l'état du tunnel\x02Impossible d'activer le tunnel\x02Impossible d" +
-	"e désactiver le tunnel\x02Interface : %[1]s\x02Homologue\x02Créer un nou" +
-	"veau tunnel\x02Modifier le tunnel\x02&Nom :\x02&Clé publique :\x02(incon" +
-	"nu(e))\x02&Bloquer tous le trafic hors tunnel (interrupteur)\x02&Enregis" +
-	"trer\x02Annuler\x02&Configuration :\x02Nom non valide\x02Le nom est obli" +
-	"gatoire.\x02Nom de tunnel « %[1]s » est non valide.\x02Impossible de cré" +
-	"er une liste des tunnels existants\x02Tunnel existe déjà.\x02Nom « %[1]s" +
-	" » est déjà utilisé pour un tunnel.\x02Impossible de créer une configura" +
-	"tion nouvelle\x02Échec d'écriture du fichier\x02Fichier « %[1]s » existe" +
-	" déjà.\x0a\x0aVoulez-vous le remplacer ?\x02Activée\x02Activation en cou" +
-	"rs\x02Éteinte\x02Désactivation en cours\x02État inconnu\x02Journal\x02&C" +
-	"opier\x02Sélectionner &tout\x02&Enregistrer dans le fichier…\x02Temps" +
+	"e désactiver le tunnel\x02Interface : %[1]s\x02Homologue\x02Temps\x02Éte" +
+	"inte\x02&Copier\x02Sélectionner &tout\x02Créer un nouveau tunnel\x02Modi" +
+	"fier le tunnel\x02&Nom :\x02&Clé publique :\x02(inconnu(e))\x02&Bloquer " +
+	"tous le trafic hors tunnel (interrupteur)\x02&Enregistrer\x02Annuler\x02" +
+	"&Configuration :\x02Nom non valide\x02Le nom est obligatoire.\x02Nom de " +
+	"tunnel « %[1]s » est non valide.\x02Impossible de créer une liste des tu" +
+	"nnels existants\x02Tunnel existe déjà.\x02Nom « %[1]s » est déjà utilisé" +
+	" pour un tunnel.\x02Impossible de créer une configuration nouvelle\x02Éc" +
+	"hec d'écriture du fichier\x02Fichier « %[1]s » existe déjà.\x0a\x0aVoule" +
+	"z-vous le remplacer ?\x02Activée\x02Activation en cours\x02Désactivation" +
+	" en cours\x02État inconnu\x02Journal\x02&Enregistrer dans le fichier…" +
 	"\x02Message du journal\x02Fichiers texte (*.txt)|*.txt|Tous les fichiers" +
 	" (*.*)|*.*\x02Exporter le journal vers le fichier\x02Erreur du tunnel" +
 	"\x02%[1]s\x0a\x0aConsultez le journal pour plus d’informations, s'il vou" +
@@ -2014,7 +2411,7 @@ const frData string = "" + // Size: 5910 bytes
 	"\x02Version du protocole doit être 1\x02Clé non valide pour la section d" +
 	"'homologue\x02&À propos AmneziaWG…"
 
-var idIndex = []uint32{ // 304 elements
+var idIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x0000000a, 0x00000047, 0x00000062,
 	0x00000074, 0x000000bf, 0x000000fe, 0x0000012f,
@@ -2027,15 +2424,15 @@ var idIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x000002d6, 0x000002d6, 0x000002d6, 0x000002d6,
 	0x000002d6, 0x000002d6, 0x000002d6, 0x000002d6,
-	0x000002d6, 0x000002d6, 0x000002d6, 0x000002d6,
-	0x000002d6, 0x000002d6, 0x000002d6, 0x000002d6,
-	0x000002d6, 0x000002d6, 0x000002d6, 0x000002d6,
-	0x000002d6, 0x000002d6, 0x000002d6, 0x000002d6,
-	0x000002d6, 0x000002d6, 0x000002d6, 0x000002d6,
-	0x000002d6, 0x000002dc, 0x000002e9, 0x000002f2,
+	0x000002d6, 0x000002d6, 0x000002d6, 0x000002dc,
+	0x000002e5, 0x000002eb, 0x000002f7, 0x000002f7,
+	0x000002f7, 0x000002f7, 0x000002f7, 0x000002f7,
+	0x000002f7, 0x000002f7, 0x000002f7, 0x000002f7,
+	0x000002f7, 0x000002f7, 0x000002f7, 0x000002f7,
+	0x000002f7, 0x000002f7, 0x000002f7, 0x000002f7,
 	// Entry 40 - 5F
-	0x00000300, 0x00000317, 0x0000031f, 0x00000325,
-	0x00000331, 0x0000034e, 0x00000354, 0x0000035e,
+	0x000002f7, 0x000002fd, 0x0000030a, 0x00000318,
+	0x0000032f, 0x00000337, 0x00000354, 0x0000035e,
 	0x0000038e, 0x000003a6, 0x000003b2, 0x000003e8,
 	0x000003fb, 0x00000412, 0x00000447, 0x00000460,
 	0x00000478, 0x00000487, 0x0000049a, 0x000004b5,
@@ -2101,7 +2498,35 @@ var idIndex = []uint32{ // 304 elements
 	0x00000990, 0x00000990, 0x00000990, 0x00000990,
 	0x00000990, 0x00000990, 0x00000990, 0x00000990,
 	0x00000990, 0x00000990, 0x00000990, 0x00000990,
-} // Size: 1240 bytes
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	// Entry 140 - 15F
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	// Entry 160 - 17F
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	// Entry 180 - 19F
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+	0x00000990, 0x00000990, 0x00000990, 0x00000990,
+} // Size: 1640 bytes
 
 const idData string = "" + // Size: 2448 bytes
 	"\x02Kesalahan\x02(tidak ada argumen): naikkan akses dan instal servis ma" +
@@ -2115,9 +2540,9 @@ const idData string = "" + // Size: 2448 bytes
 	", \x02Tentang AmneziaWG\x02Gambar logo AmneziaWG\x02Tutup\x02Status:\x02" +
 	"&Nonaktifkan\x02&Aktifkan\x02Kunci publik:\x02Port Pendengar:\x02MTU:" +
 	"\x02Alamat:\x02Server DNS:\x02Skrip:\x02Preshared key:\x02IP yang diperb" +
-	"olehkan:\x02Endpoint:\x02Aktif\x02Mengaktifkan\x02Nonaktif\x02Menonaktif" +
-	"kan\x02Status tidak diketahui\x02Catatan\x02Salin\x02Pilih semua\x02Meny" +
-	"impan ke dalam berkas…\x02Waktu\x02Pesan log\x02Berkas Txt (*.Txt)|*.Txt" +
+	"olehkan:\x02Endpoint:\x02Waktu\x02Nonaktif\x02Salin\x02Pilih semua\x02Ak" +
+	"tif\x02Mengaktifkan\x02Menonaktifkan\x02Status tidak diketahui\x02Catata" +
+	"n\x02Menyimpan ke dalam berkas…\x02Pesan log\x02Berkas Txt (*.Txt)|*.Txt" +
 	"|Semua berkas (*.*)|*.*\x02Ekspor log kedalam file\x02Tunnel eror\x02%[1" +
 	"]s\x0a\x0aSilakan baca log untuk informasi lebih lanjut.\x02%[1]s (kadal" +
 	"uarsa)\x02Deteksi eror AmneziaWG\x02Tidak dapat menunggu jendela Amnezia" +
@@ -2145,7 +2570,7 @@ const idData string = "" + // Size: 2448 bytes
 	"ak valid pada bagian [Interface]\x02Versi protokol harus 1\x02Kunci tida" +
 	"k valid pada bagian [Peer]\x02&Tentang AmneziaWG…"
 
-var itIndex = []uint32{ // 304 elements
+var itIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000007, 0x00000044, 0x0000005d,
 	0x00000075, 0x000000bd, 0x00000101, 0x0000013a,
@@ -2158,15 +2583,15 @@ var itIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x00000374, 0x0000037d, 0x00000387, 0x000003a1,
 	0x000003ab, 0x000003c9, 0x000003fc, 0x00000420,
-	0x00000447, 0x0000045a, 0x0000045f, 0x0000046b,
-	0x0000047b, 0x00000482, 0x00000494, 0x000004a2,
-	0x000004d2, 0x000004d9, 0x000004e1, 0x000004f2,
-	0x00000502, 0x00000518, 0x00000546, 0x0000056e,
-	0x00000584, 0x000005b9, 0x000005e4, 0x00000604,
-	0x0000063b, 0x00000642, 0x0000064e, 0x00000657,
+	0x00000447, 0x0000045a, 0x0000045f, 0x00000465,
+	0x0000046e, 0x00000475, 0x00000486, 0x00000492,
+	0x000004a2, 0x000004a9, 0x000004bb, 0x000004c9,
+	0x000004f9, 0x00000500, 0x00000508, 0x00000519,
+	0x00000529, 0x0000053f, 0x0000056d, 0x00000595,
+	0x000005ab, 0x000005e0, 0x0000060b, 0x0000062b,
 	// Entry 40 - 5F
-	0x00000666, 0x00000678, 0x0000067c, 0x00000683,
-	0x00000694, 0x000006a6, 0x000006ac, 0x000006bd,
+	0x00000662, 0x00000669, 0x00000675, 0x00000684,
+	0x00000696, 0x0000069a, 0x000006ac, 0x000006bd,
 	0x000006f0, 0x00000704, 0x00000716, 0x00000749,
 	0x0000075a, 0x0000077d, 0x000007c2, 0x000007d9,
 	0x000007ec, 0x000007ff, 0x00000815, 0x00000830,
@@ -2232,7 +2657,35 @@ var itIndex = []uint32{ // 304 elements
 	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
 	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
 	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
-} // Size: 1240 bytes
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	// Entry 140 - 15F
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	// Entry 160 - 17F
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	// Entry 180 - 19F
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+	0x0000155d, 0x0000155d, 0x0000155d, 0x0000155d,
+} // Size: 1640 bytes
 
 const itData string = "" + // Size: 5469 bytes
 	"\x02Errore\x02(nessun argomento): eleva e installa il servizio di gestio" +
@@ -2252,79 +2705,79 @@ const itData string = "" + // Size: 5469 bytes
 	"isattivato, per criterio\x02abilitato\x02%[1]s ricevuti, %[2]s inviati" +
 	"\x02Determinazione dello stato del tunnel non riuscita\x02Attivazione de" +
 	"l tunnel non riuscita\x02Disattivazione del tunnel non riuscita\x02Inter" +
-	"faccia: %[1]s\x02Peer\x02Crea tunnel\x02Modifica tunnel\x02&Nome:\x02Chi" +
-	"ave &pubblica:\x02(sconosciuto)\x02&Blocca traffico fuori dal tunnel (ki" +
-	"ll-switch)\x02&Salva\x02Annulla\x02&Configurazione:\x02Nome non valido" +
-	"\x02Un nome è richiesto.\x02Il nome del tunnel ‘%[1]s’ non è valido.\x02" +
-	"Impossibile elencare i tunnel esistenti\x02Il tunnel esiste già\x02Un al" +
-	"tro tunnel con il nome ‘%[1]s’ esiste già.\x02Impossibile creare la nuov" +
-	"a configurazione\x02Scrittura del file non riuscita\x02Il file ‘%[1]s’ e" +
-	"siste già.\x0a\x0aVuoi sovrascriverlo?\x02Attivo\x02Attivazione\x02Inatt" +
-	"ivo\x02Disattivazione\x02Stato sconosciuto\x02Log\x02&Copia\x02Selezion&" +
-	"a tutto\x02&Salva su file…\x02Tempo\x02Messaggio di log\x02File di testo" +
-	" (*.txt)|*.txt|Tutti i file (*.*)|*.*\x02Esporta log su file\x02Errore d" +
-	"el tunnel\x02%[1]s\x0a\x0aConsulta il log per ulteriori Informazioni." +
-	"\x02%[1]s (obsoleto)\x02Errore di rilevamento di AmneziaWG\x02Impossibil" +
-	"e attendere la comparsa della finestra di AmneziaWG: %[1]v\x02AmneziaWG:" +
-	" disattivato\x02Stato: sconosciuto\x02Indirizzi: nessuno\x02&Gestisci i " +
-	"tunnel…\x02&Importa tunnel da file…\x02E&sci\x02&Tunnel\x02AmneziaWG att" +
-	"ivato\x02Il tunnel %[1]s è stato attivato.\x02AmneziaWG disattivato\x02I" +
-	"l tunnel %[1]s è stato disattivato.\x02Errore tunnel di AmneziaWG\x02Amn" +
-	"eziaWG: %[1]s\x02Stato: %[1]s\x02Indirizzi: %[1]s\x02Un aggiornamento è " +
-	"disponibile!\x02Aggiornamento di AmneziaWG disponibile\x02Un aggiornamen" +
-	"to di AmneziaWG è disponibile. Ti consigliamo di aggiornare il prima pos" +
-	"sibile.\x02Tunnel\x02&Modifica\x02Aggiungi tunn&el vuoto...\x02Aggiungi " +
-	"tunnel\x02Rimuovi tunnel selezionati\x02Esporta tutti i tunnel in zip" +
-	"\x02Commu&ta\x02Esporta tutti i tunnel in &zip...\x02Modifica il tunnel " +
-	"&selezionato…\x02&Rimuovi i tunnel selezionati\x02nessun file di configu" +
-	"razione trovato\x02Impossibile importare la configurazione selezionata: " +
-	"%[1]v\x02Impossibile enumerare i tunnel esistenti: %[1]v\x02Un altro tun" +
-	"nel esiste già con il nome ‘%[1]s‘\x02Impossibile importare la configura" +
-	"zione: %[1]v\x02Tunnel importati\x14\x01\x81\x01\x00\x02\x17\x02%[1]d tu" +
-	"nnel importato\x00\x17\x02%[1]d tunnel importati\x14\x02\x80\x01\x02 " +
-	"\x02%[1]d de %[2]d tunnel importato\x00 \x02%[1]d di %[2]d tunnel import" +
-	"ati\x02Impossibile creare il tunnel\x14\x01\x81\x01\x00\x02\x15\x02Elimi" +
-	"na %[1]d tunnel\x00\x15\x02Elimina %[1]d tunnel\x14\x01\x81\x01\x00\x02," +
-	"\x02Sei sicuro di voler eliminare %[1]d tunnel?\x00,\x02Sei sicuro di vo" +
-	"ler eliminare %[1]d tunnel?\x02Elimina tunnel ‘%[1]s‘\x02Sei sicuro di v" +
-	"oler eliminare il tunnel ‘%[1]s‘?\x02%[1]s Non è possibile annullare que" +
-	"sta azione.\x02Impossibile eliminare il tunnel\x02Non è stato possibile " +
-	"rimuovere un tunnel: %[1]s\x02Impossibile eliminare i tunnel\x14\x01\x81" +
-	"\x01\x00\x02/\x02Non è stato possibile eliminare %[1]d tunnel.\x00/\x02N" +
-	"on è stato possibile eliminare %[1]d tunnel.\x02File di configurazione (" +
-	"*.zip, *.conf)|*.zip;*.conf|Tutti i file (*.*)|*.*\x02Importa tunnel da " +
-	"file\x02File di configurazione ZIP (*.zip)|*.zip\x02Esporta tunnel in zi" +
-	"p\x02%[1]s (versione non firmata, nessun aggiornamento)\x02Errore durant" +
-	"e la chiusura di AmneziaWG\x02Impossibile uscire dal servizio a causa di" +
-	": %[1]v. Potresti voler interrompere AmneziaWG dal gestore dei servizi." +
-	"\x02Un aggiornamento di AmneziaWG è disponibile. Ti consigliamo vivament" +
-	"e di aggiornare immediatamente.\x02Stato: in attesa dell'utente\x02Aggio" +
-	"rna ora\x02Stato: in attesa del servizio di aggiornamento\x02Errore: %[1" +
-	"]v. Prova ancora.\x02Stato: Completo!\x02Ora\x02L'orologio di sistema va" +
-	" all'indietro!\x14\x01\x81\x01\x00\x02\x0b\x02%[1]d anno\x00\x0b\x02%[1]" +
-	"d anni\x14\x01\x81\x01\x00\x02\x0d\x02%[1]d giorno\x00\x0d\x02%[1]d gior" +
-	"ni\x14\x01\x81\x01\x00\x02\x0a\x02%[1]d ora\x00\x0a\x02%[1]d ore\x14\x01" +
-	"\x81\x01\x00\x02\x0d\x02%[1]d minuto\x00\x0d\x02%[1]d minuti\x14\x01\x81" +
-	"\x01\x00\x02\x0e\x02%[1]d secondo\x00\x0e\x02%[1]d secondi\x02%[1]s fa" +
-	"\x02%[1]d\u00a0B\x02%.2[1]f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f" +
-	"\u00a0GiB\x02%.2[1]f\u00a0TiB\x02%[1]s: %[2]q\x02Indirizzo IP non valido" +
-	"\x02Lunghezza del prefisso di rete non valida\x02Manca la porta dall'end" +
-	"point\x02Host dell'endpoint non valido\x02Le parentesi devono contenere " +
-	"un indirizzo IPv6\x02MTU non valido\x02Porta non valida\x02Keepalive per" +
-	"manente non valido\x02Chiave non valida: %[1]v\x02Le chiavi devono decod" +
-	"ificare esattamente 32 byte\x02Il numero deve essere un numero compreso " +
-	"tra 0 e 2^64-1: %[1]v\x02Due virgole in una riga\x02Il nome del tunnel n" +
-	"on è valido\x02Una riga deve essere presente in una sezione\x02Manca un " +
-	"separatore di uguaglianza per la chiave di configurazione\x02La chiave d" +
-	"eve avere un valore\x02Chiave non valida per la sezione [Interface]\x02C" +
-	"hiave non valida per la sezione [Peer]\x02Un'interfaccia deve avere una " +
-	"chiave privata\x02[non specificato]\x02Tutti i peer devono avere una chi" +
-	"ave pubblica\x02Errore durante il recupero della configurazione\x02Chiav" +
-	"e non valida per la sezione dell'interfaccia\x02La versione del protocol" +
-	"lo deve essere 1\x02Chiave non valida per la sezione peer\x02Inform&azio" +
-	"ni su AmneziaWG…"
+	"faccia: %[1]s\x02Peer\x02Tempo\x02Inattivo\x02&Copia\x02Selezion&a tutto" +
+	"\x02Crea tunnel\x02Modifica tunnel\x02&Nome:\x02Chiave &pubblica:\x02(sc" +
+	"onosciuto)\x02&Blocca traffico fuori dal tunnel (kill-switch)\x02&Salva" +
+	"\x02Annulla\x02&Configurazione:\x02Nome non valido\x02Un nome è richiest" +
+	"o.\x02Il nome del tunnel ‘%[1]s’ non è valido.\x02Impossibile elencare i" +
+	" tunnel esistenti\x02Il tunnel esiste già\x02Un altro tunnel con il nome" +
+	" ‘%[1]s’ esiste già.\x02Impossibile creare la nuova configurazione\x02Sc" +
+	"rittura del file non riuscita\x02Il file ‘%[1]s’ esiste già.\x0a\x0aVuoi" +
+	" sovrascriverlo?\x02Attivo\x02Attivazione\x02Disattivazione\x02Stato sco" +
+	"nosciuto\x02Log\x02&Salva su file…\x02Messaggio di log\x02File di testo " +
+	"(*.txt)|*.txt|Tutti i file (*.*)|*.*\x02Esporta log su file\x02Errore de" +
+	"l tunnel\x02%[1]s\x0a\x0aConsulta il log per ulteriori Informazioni.\x02" +
+	"%[1]s (obsoleto)\x02Errore di rilevamento di AmneziaWG\x02Impossibile at" +
+	"tendere la comparsa della finestra di AmneziaWG: %[1]v\x02AmneziaWG: dis" +
+	"attivato\x02Stato: sconosciuto\x02Indirizzi: nessuno\x02&Gestisci i tunn" +
+	"el…\x02&Importa tunnel da file…\x02E&sci\x02&Tunnel\x02AmneziaWG attivat" +
+	"o\x02Il tunnel %[1]s è stato attivato.\x02AmneziaWG disattivato\x02Il tu" +
+	"nnel %[1]s è stato disattivato.\x02Errore tunnel di AmneziaWG\x02Amnezia" +
+	"WG: %[1]s\x02Stato: %[1]s\x02Indirizzi: %[1]s\x02Un aggiornamento è disp" +
+	"onibile!\x02Aggiornamento di AmneziaWG disponibile\x02Un aggiornamento d" +
+	"i AmneziaWG è disponibile. Ti consigliamo di aggiornare il prima possibi" +
+	"le.\x02Tunnel\x02&Modifica\x02Aggiungi tunn&el vuoto...\x02Aggiungi tunn" +
+	"el\x02Rimuovi tunnel selezionati\x02Esporta tutti i tunnel in zip\x02Com" +
+	"mu&ta\x02Esporta tutti i tunnel in &zip...\x02Modifica il tunnel &selezi" +
+	"onato…\x02&Rimuovi i tunnel selezionati\x02nessun file di configurazione" +
+	" trovato\x02Impossibile importare la configurazione selezionata: %[1]v" +
+	"\x02Impossibile enumerare i tunnel esistenti: %[1]v\x02Un altro tunnel e" +
+	"siste già con il nome ‘%[1]s‘\x02Impossibile importare la configurazione" +
+	": %[1]v\x02Tunnel importati\x14\x01\x81\x01\x00\x02\x17\x02%[1]d tunnel " +
+	"importato\x00\x17\x02%[1]d tunnel importati\x14\x02\x80\x01\x02 \x02%[1]" +
+	"d de %[2]d tunnel importato\x00 \x02%[1]d di %[2]d tunnel importati\x02I" +
+	"mpossibile creare il tunnel\x14\x01\x81\x01\x00\x02\x15\x02Elimina %[1]d" +
+	" tunnel\x00\x15\x02Elimina %[1]d tunnel\x14\x01\x81\x01\x00\x02,\x02Sei " +
+	"sicuro di voler eliminare %[1]d tunnel?\x00,\x02Sei sicuro di voler elim" +
+	"inare %[1]d tunnel?\x02Elimina tunnel ‘%[1]s‘\x02Sei sicuro di voler eli" +
+	"minare il tunnel ‘%[1]s‘?\x02%[1]s Non è possibile annullare questa azio" +
+	"ne.\x02Impossibile eliminare il tunnel\x02Non è stato possibile rimuover" +
+	"e un tunnel: %[1]s\x02Impossibile eliminare i tunnel\x14\x01\x81\x01\x00" +
+	"\x02/\x02Non è stato possibile eliminare %[1]d tunnel.\x00/\x02Non è sta" +
+	"to possibile eliminare %[1]d tunnel.\x02File di configurazione (*.zip, *" +
+	".conf)|*.zip;*.conf|Tutti i file (*.*)|*.*\x02Importa tunnel da file\x02" +
+	"File di configurazione ZIP (*.zip)|*.zip\x02Esporta tunnel in zip\x02%[1" +
+	"]s (versione non firmata, nessun aggiornamento)\x02Errore durante la chi" +
+	"usura di AmneziaWG\x02Impossibile uscire dal servizio a causa di: %[1]v." +
+	" Potresti voler interrompere AmneziaWG dal gestore dei servizi.\x02Un ag" +
+	"giornamento di AmneziaWG è disponibile. Ti consigliamo vivamente di aggi" +
+	"ornare immediatamente.\x02Stato: in attesa dell'utente\x02Aggiorna ora" +
+	"\x02Stato: in attesa del servizio di aggiornamento\x02Errore: %[1]v. Pro" +
+	"va ancora.\x02Stato: Completo!\x02Ora\x02L'orologio di sistema va all'in" +
+	"dietro!\x14\x01\x81\x01\x00\x02\x0b\x02%[1]d anno\x00\x0b\x02%[1]d anni" +
+	"\x14\x01\x81\x01\x00\x02\x0d\x02%[1]d giorno\x00\x0d\x02%[1]d giorni\x14" +
+	"\x01\x81\x01\x00\x02\x0a\x02%[1]d ora\x00\x0a\x02%[1]d ore\x14\x01\x81" +
+	"\x01\x00\x02\x0d\x02%[1]d minuto\x00\x0d\x02%[1]d minuti\x14\x01\x81\x01" +
+	"\x00\x02\x0e\x02%[1]d secondo\x00\x0e\x02%[1]d secondi\x02%[1]s fa\x02%[" +
+	"1]d\u00a0B\x02%.2[1]f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB" +
+	"\x02%.2[1]f\u00a0TiB\x02%[1]s: %[2]q\x02Indirizzo IP non valido\x02Lungh" +
+	"ezza del prefisso di rete non valida\x02Manca la porta dall'endpoint\x02" +
+	"Host dell'endpoint non valido\x02Le parentesi devono contenere un indiri" +
+	"zzo IPv6\x02MTU non valido\x02Porta non valida\x02Keepalive permanente n" +
+	"on valido\x02Chiave non valida: %[1]v\x02Le chiavi devono decodificare e" +
+	"sattamente 32 byte\x02Il numero deve essere un numero compreso tra 0 e 2" +
+	"^64-1: %[1]v\x02Due virgole in una riga\x02Il nome del tunnel non è vali" +
+	"do\x02Una riga deve essere presente in una sezione\x02Manca un separator" +
+	"e di uguaglianza per la chiave di configurazione\x02La chiave deve avere" +
+	" un valore\x02Chiave non valida per la sezione [Interface]\x02Chiave non" +
+	" valida per la sezione [Peer]\x02Un'interfaccia deve avere una chiave pr" +
+	"ivata\x02[non specificato]\x02Tutti i peer devono avere una chiave pubbl" +
+	"ica\x02Errore durante il recupero della configurazione\x02Chiave non val" +
+	"ida per la sezione dell'interfaccia\x02La versione del protocollo deve e" +
+	"ssere 1\x02Chiave non valida per la sezione peer\x02Inform&azioni su Amn" +
+	"eziaWG…"
 
-var jaIndex = []uint32{ // 304 elements
+var jaIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x0000000a, 0x0000005b, 0x00000075,
 	0x0000009a, 0x000000e6, 0x00000140, 0x0000017e,
@@ -2337,15 +2790,15 @@ var jaIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x000003ef, 0x000003f8, 0x00000402, 0x00000424,
 	0x0000042b, 0x00000453, 0x00000484, 0x000004b2,
-	0x000004e0, 0x00000500, 0x00000507, 0x00000523,
-	0x00000539, 0x00000545, 0x00000554, 0x0000055d,
-	0x000005b6, 0x000005c1, 0x000005d1, 0x000005dd,
-	0x000005ed, 0x00000606, 0x00000635, 0x00000663,
-	0x0000068b, 0x000006da, 0x0000070b, 0x00000730,
-	0x00000782, 0x00000789, 0x00000796, 0x0000079d,
+	0x000004e0, 0x00000500, 0x00000507, 0x0000050e,
+	0x00000515, 0x00000523, 0x00000537, 0x00000553,
+	0x00000569, 0x00000575, 0x00000584, 0x0000058d,
+	0x000005e6, 0x000005f1, 0x00000601, 0x0000060d,
+	0x0000061d, 0x00000636, 0x00000665, 0x00000693,
+	0x000006bb, 0x0000070a, 0x0000073b, 0x00000760,
 	// Entry 40 - 5F
-	0x000007aa, 0x000007ba, 0x000007c1, 0x000007cf,
-	0x000007e3, 0x00000800, 0x00000807, 0x0000081e,
+	0x000007b2, 0x000007b9, 0x000007c6, 0x000007d3,
+	0x000007e3, 0x000007ea, 0x00000807, 0x0000081e,
 	0x00000868, 0x00000893, 0x000008a9, 0x000008de,
 	0x000008f3, 0x0000090d, 0x0000094f, 0x0000096a,
 	0x00000979, 0x0000098e, 0x000009ab, 0x000009e3,
@@ -2411,7 +2864,35 @@ var jaIndex = []uint32{ // 304 elements
 	0x00001885, 0x00001885, 0x00001885, 0x00001885,
 	0x00001885, 0x00001885, 0x00001885, 0x00001885,
 	0x00001885, 0x00001885, 0x00001885, 0x00001885,
-} // Size: 1240 bytes
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	// Entry 140 - 15F
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	// Entry 160 - 17F
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	// Entry 180 - 19F
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+	0x00001885, 0x00001885, 0x00001885, 0x00001885,
+} // Size: 1640 bytes
 
 const jaData string = "" + // Size: 6277 bytes
 	"\x02エラー\x02(引数なし): 管理者権限でmanagerサービスをインストールする\x02使い方: %[1]s [\x0a%[2]s]" +
@@ -2424,50 +2905,50 @@ const jaData string = "" + // Size: 6277 bytes
 	"llowed IPs:\x02エンドポイント:\x02持続的キープアライブ:\x02直近のハンドシェイク:\x02転送:\x02pre-up" +
 	"\x02post-up\x02pre-down\x02post-down\x02ポリシーにより無効です\x02有効\x02%[1]s 受信済み、" +
 	"%[2]s 送信済み\x02トンネルの状態取得に失敗しました\x02トンネルの有効化に失敗しました\x02トンネルの無効化に失敗しました\x02" +
-	"インターフェース: %[1]s\x02ピア\x02トンネルの新規作成\x02トンネルの編集\x02名前(&N):\x02公開鍵(&P):" +
-	"\x02(不明)\x02トンネルを通らないトラフィックのブロック（キルスイッチ）(&B)\x02保存(&S)\x02キャンセル\x02設定(&C" +
-	"):\x02無効な名前\x02名前は必須です。\x02トンネル名 ‘%[1]s’ は不正です。\x02既存のトンネルを表示できません\x02トン" +
-	"ネルはすでに存在します\x02‘%[1]s’ という名前の別のトンネルがすでに存在します。\x02新しい設定を作成できませんでした\x02フ" +
-	"ァイルの書き込みに失敗\x02ファイル ‘%[1]s’ はすでに存在します。\x0a\x0a上書きしますか？\x02有効\x02有効化中" +
-	"\x02無効\x02無効化中\x02不明な状態\x02ログ\x02コピー(&C)\x02すべて選択(&A)\x02ファイルに保存…(&S)" +
-	"\x02時刻\x02ログ メッセージ\x02テキストファイル (*.txt)|*.txt|すべてのファイル (*.*)|*.*\x02ログをファ" +
-	"イルにエクスポート\x02トンネルエラー\x02%[1]s\x0a\x0a詳細はログを参照してください。\x02%[1]s (更新あり)" +
-	"\x02AmneziaWG 検出エラー\x02AmneziaWG ウィンドウが表示できませんでした: %[1]v\x02AmneziaWG: 無" +
-	"効化済み\x02状態: 不明\x02アドレス: なし\x02トンネルの管理…(&M)\x02トンネルをファイルからインポート…(&I)" +
-	"\x02終了(&X)\x02トンネル(&T)\x02AmneziaWG 有効化済み\x02トンネル %[1]s は有効になりました。\x02Am" +
-	"neziaWG 無効化済み\x02トンネル %[1]s は無効になりました。\x02AmneziaWG トンネルエラー\x02AmneziaWG" +
-	": %[1]s\x02状態: %[1]s\x02アドレス: %[1]s\x02更新が利用できます！\x02AmneziaWG の更新が利用可能で" +
-	"す\x02AmneziaWG の更新が利用可能になりました。できるだけ早く更新してください。\x02トンネル\x02編集(&E)\x02空の" +
-	"トンネルを追加…(&E)\x02トンネルの追加\x02選択したトンネルの削除\x02すべてのトンネルをzipにエクスポート\x02切り替え(" +
-	"&T)\x02すべてのトンネルをzipにエクスポート…(&Z)\x02選択したトンネルの編集…(&S)\x02選択したトンネルの削除(&R)" +
-	"\x02設定ファイルが見つかりません\x02選択したファイルからインポートできませんでした: %[1]v\x02既存のトンネルを表示できませんで" +
-	"した: %[1]v\x02‘%[1]s’ という名前の別のトンネルがすでに存在します\x02設定をインポートできませんでした: %[1]v" +
-	"\x02トンネルのインポート結果\x14\x01\x81\x01\x00\x001\x02%[1]d トンネルをインポートしました\x14" +
-	"\x02\x80\x01\x00>\x02%[2]d 中の %[1]d トンネルをインポートしました\x02トンネルを作成できません\x14" +
-	"\x01\x81\x01\x00\x00\x1c\x02%[1]d トンネルを削除\x14\x01\x81\x01\x00\x005\x02本当" +
-	"に %[1]d トンネルを削除しますか？\x02トンネル ‘%[1]s’ を削除\x02本当にトンネル ‘%[1]s’ を削除しますか？" +
-	"\x02%[1]s この操作はもとに戻せません。\x02トンネルを削除できません\x02トンネルを削除できませんでした: %[1]s\x02トン" +
-	"ネルを削除できません\x14\x01\x81\x01\x00\x004\x02%[1]d トンネルを削除できませんでした\x02設定ファイル" +
-	" (*.zip, *.conf)|*.zip;*.conf|すべてのファイル (*.*)|*.*\x02ファイルからトンネルをインポート\x02" +
-	"ZIP形式設定ファイル (*.zip)|*.zip\x02トンネルをZIPにエクスポート\x02%[1]s (未署名のビルド、更新の提供なし)" +
-	"\x02AmneziaWG 終了エラー\x02%[1]v のためサービスを終了できませんでした。サービスマネージャから AmneziaWG を停" +
-	"止できます。\x02AmneziaWG の更新が利用可能です。速やかに更新することを強く推奨します。\x02状態: ユーザーからの応答待ち" +
-	"\x02今すぐ更新\x02状態: アップデータサービスを待機中\x02エラー: %[1]v。再度実行してください。\x02状態: 完了！\x02" +
-	"今\x02システム時刻が巻き戻った！\x14\x01\x81\x01\x00\x00\x0a\x02%[1]d 年\x14\x01\x81" +
-	"\x01\x00\x00\x0a\x02%[1]d 日\x14\x01\x81\x01\x00\x00\x0d\x02%[1]d 時間\x14" +
-	"\x01\x81\x01\x00\x00\x0a\x02%[1]d 分\x14\x01\x81\x01\x00\x00\x0a\x02%[1]d" +
-	" 秒\x02%[1]s 前\x02%[1]d B\x02%.2[1]f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[" +
-	"1]f\u00a0GiB\x02%.2[1]f\u00a0TiB\x02%[1]s: %[2]q\x02無効な IP アドレス\x02無効なネッ" +
-	"トワークプレフィックス長\x02エンドポイントのポート指定なし\x02無効なエンドポイントホスト\x02カッコ内は IPv6 アドレスが入り" +
-	"ます\x02無効な MTU\x02無効なポート番号\x02無効な持続的キープアライブ値\x02不正な鍵: %[1]v\x02鍵は 32 バイ" +
-	"トでなければなりません\x02数値は0から2の64乗-1の範囲内の値でなければなりません: %[1]v\x021行にカンマが2つあります" +
-	"\x02トンネル名が不正です\x02行がセクション内にありません\x02設定項目にイコール(=)セパレータがない\x02キー項目に対応する値があ" +
-	"りません\x02無効な [Interface] セクションのキー項目\x02無効な [Peer] セクションのキー項目\x02インターフェー" +
-	"スには秘密鍵が必須です\x02[指定なし]\x02すべてのピアには公開鍵が必須です\x02設定の読込中にエラーが発生しました\x02無効な " +
-	"Interface セクションのキー項目\x02プロトコルバージョンは 1 でなければなりません\x02無効な Peer セクションのキー項目" +
-	"\x02AmneziaWGについて…(&A)"
+	"インターフェース: %[1]s\x02ピア\x02時刻\x02無効\x02コピー(&C)\x02すべて選択(&A)\x02トンネルの新規作成" +
+	"\x02トンネルの編集\x02名前(&N):\x02公開鍵(&P):\x02(不明)\x02トンネルを通らないトラフィックのブロック（キルスイッ" +
+	"チ）(&B)\x02保存(&S)\x02キャンセル\x02設定(&C):\x02無効な名前\x02名前は必須です。\x02トンネル名 ‘%[" +
+	"1]s’ は不正です。\x02既存のトンネルを表示できません\x02トンネルはすでに存在します\x02‘%[1]s’ という名前の別のトンネルが" +
+	"すでに存在します。\x02新しい設定を作成できませんでした\x02ファイルの書き込みに失敗\x02ファイル ‘%[1]s’ はすでに存在しま" +
+	"す。\x0a\x0a上書きしますか？\x02有効\x02有効化中\x02無効化中\x02不明な状態\x02ログ\x02ファイルに保存…(&S" +
+	")\x02ログ メッセージ\x02テキストファイル (*.txt)|*.txt|すべてのファイル (*.*)|*.*\x02ログをファイルにエク" +
+	"スポート\x02トンネルエラー\x02%[1]s\x0a\x0a詳細はログを参照してください。\x02%[1]s (更新あり)\x02Amn" +
+	"eziaWG 検出エラー\x02AmneziaWG ウィンドウが表示できませんでした: %[1]v\x02AmneziaWG: 無効化済み" +
+	"\x02状態: 不明\x02アドレス: なし\x02トンネルの管理…(&M)\x02トンネルをファイルからインポート…(&I)\x02終了(&X" +
+	")\x02トンネル(&T)\x02AmneziaWG 有効化済み\x02トンネル %[1]s は有効になりました。\x02AmneziaWG 無" +
+	"効化済み\x02トンネル %[1]s は無効になりました。\x02AmneziaWG トンネルエラー\x02AmneziaWG: %[1]s" +
+	"\x02状態: %[1]s\x02アドレス: %[1]s\x02更新が利用できます！\x02AmneziaWG の更新が利用可能です\x02Am" +
+	"neziaWG の更新が利用可能になりました。できるだけ早く更新してください。\x02トンネル\x02編集(&E)\x02空のトンネルを追加…(" +
+	"&E)\x02トンネルの追加\x02選択したトンネルの削除\x02すべてのトンネルをzipにエクスポート\x02切り替え(&T)\x02すべての" +
+	"トンネルをzipにエクスポート…(&Z)\x02選択したトンネルの編集…(&S)\x02選択したトンネルの削除(&R)\x02設定ファイルが" +
+	"見つかりません\x02選択したファイルからインポートできませんでした: %[1]v\x02既存のトンネルを表示できませんでした: %[1]v" +
+	"\x02‘%[1]s’ という名前の別のトンネルがすでに存在します\x02設定をインポートできませんでした: %[1]v\x02トンネルのインポ" +
+	"ート結果\x14\x01\x81\x01\x00\x001\x02%[1]d トンネルをインポートしました\x14\x02\x80\x01" +
+	"\x00>\x02%[2]d 中の %[1]d トンネルをインポートしました\x02トンネルを作成できません\x14\x01\x81\x01" +
+	"\x00\x00\x1c\x02%[1]d トンネルを削除\x14\x01\x81\x01\x00\x005\x02本当に %[1]d トンネル" +
+	"を削除しますか？\x02トンネル ‘%[1]s’ を削除\x02本当にトンネル ‘%[1]s’ を削除しますか？\x02%[1]s この操作" +
+	"はもとに戻せません。\x02トンネルを削除できません\x02トンネルを削除できませんでした: %[1]s\x02トンネルを削除できません" +
+	"\x14\x01\x81\x01\x00\x004\x02%[1]d トンネルを削除できませんでした\x02設定ファイル (*.zip, *.c" +
+	"onf)|*.zip;*.conf|すべてのファイル (*.*)|*.*\x02ファイルからトンネルをインポート\x02ZIP形式設定ファイル " +
+	"(*.zip)|*.zip\x02トンネルをZIPにエクスポート\x02%[1]s (未署名のビルド、更新の提供なし)\x02AmneziaWG" +
+	" 終了エラー\x02%[1]v のためサービスを終了できませんでした。サービスマネージャから AmneziaWG を停止できます。\x02Amn" +
+	"eziaWG の更新が利用可能です。速やかに更新することを強く推奨します。\x02状態: ユーザーからの応答待ち\x02今すぐ更新\x02状態:" +
+	" アップデータサービスを待機中\x02エラー: %[1]v。再度実行してください。\x02状態: 完了！\x02今\x02システム時刻が巻き戻っ" +
+	"た！\x14\x01\x81\x01\x00\x00\x0a\x02%[1]d 年\x14\x01\x81\x01\x00\x00\x0a" +
+	"\x02%[1]d 日\x14\x01\x81\x01\x00\x00\x0d\x02%[1]d 時間\x14\x01\x81\x01\x00" +
+	"\x00\x0a\x02%[1]d 分\x14\x01\x81\x01\x00\x00\x0a\x02%[1]d 秒\x02%[1]s 前" +
+	"\x02%[1]d B\x02%.2[1]f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB" +
+	"\x02%.2[1]f\u00a0TiB\x02%[1]s: %[2]q\x02無効な IP アドレス\x02無効なネットワークプレフィックス長" +
+	"\x02エンドポイントのポート指定なし\x02無効なエンドポイントホスト\x02カッコ内は IPv6 アドレスが入ります\x02無効な MTU" +
+	"\x02無効なポート番号\x02無効な持続的キープアライブ値\x02不正な鍵: %[1]v\x02鍵は 32 バイトでなければなりません\x02" +
+	"数値は0から2の64乗-1の範囲内の値でなければなりません: %[1]v\x021行にカンマが2つあります\x02トンネル名が不正です" +
+	"\x02行がセクション内にありません\x02設定項目にイコール(=)セパレータがない\x02キー項目に対応する値がありません\x02無効な [I" +
+	"nterface] セクションのキー項目\x02無効な [Peer] セクションのキー項目\x02インターフェースには秘密鍵が必須です\x02[" +
+	"指定なし]\x02すべてのピアには公開鍵が必須です\x02設定の読込中にエラーが発生しました\x02無効な Interface セクションの" +
+	"キー項目\x02プロトコルバージョンは 1 でなければなりません\x02無効な Peer セクションのキー項目\x02AmneziaWGにつ" +
+	"いて…(&A)"
 
-var koIndex = []uint32{ // 304 elements
+var koIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000007, 0x0000003e, 0x00000055,
 	0x0000006d, 0x000000b6, 0x00000103, 0x00000137,
@@ -2480,15 +2961,15 @@ var koIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x0000038d, 0x0000039b, 0x000003a9, 0x000003cb,
 	0x000003d8, 0x000003f6, 0x0000041b, 0x0000043c,
-	0x00000460, 0x00000477, 0x0000047e, 0x00000499,
-	0x000004a7, 0x000004b0, 0x000004bd, 0x000004cc,
-	0x000004f8, 0x00000500, 0x00000507, 0x00000516,
-	0x00000527, 0x0000054a, 0x00000571, 0x00000597,
-	0x000005af, 0x000005f9, 0x00000618, 0x0000062d,
-	0x00000676, 0x00000680, 0x0000068e, 0x00000698,
+	0x00000460, 0x00000477, 0x0000047e, 0x00000485,
+	0x0000048f, 0x00000497, 0x000004a6, 0x000004c1,
+	0x000004cf, 0x000004d8, 0x000004e5, 0x000004f4,
+	0x00000520, 0x00000528, 0x0000052f, 0x0000053e,
+	0x0000054f, 0x00000572, 0x00000599, 0x000005bf,
+	0x000005d7, 0x00000621, 0x00000640, 0x00000655,
 	// Entry 40 - 5F
-	0x000006a9, 0x000006bf, 0x000006c6, 0x000006ce,
-	0x000006dd, 0x000006f2, 0x000006f9, 0x0000070a,
+	0x0000069e, 0x000006a8, 0x000006b6, 0x000006c7,
+	0x000006dd, 0x000006e4, 0x000006f9, 0x0000070a,
 	0x00000741, 0x0000075c, 0x0000076a, 0x000007a0,
 	0x000007af, 0x000007c7, 0x00000808, 0x00000823,
 	0x0000083a, 0x00000849, 0x0000085b, 0x00000883,
@@ -2554,7 +3035,35 @@ var koIndex = []uint32{ // 304 elements
 	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
 	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
 	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
-} // Size: 1240 bytes
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	// Entry 140 - 15F
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	// Entry 160 - 17F
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	// Entry 180 - 19F
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+	0x0000155e, 0x0000155e, 0x0000155e, 0x0000155e,
+} // Size: 1640 bytes
 
 const koData string = "" + // Size: 5470 bytes
 	"\x02오류\x02(인수 없음): 관리자 서비스 상승 및 설치\x02사용: %[1]s [\x0a%[2]s]\x02커맨드 라인 옵션" +
@@ -2566,13 +3075,13 @@ const koData string = "" + // Size: 5470 bytes
 	"\x02공개 키:\x02수신 포트:\x02MTU:\x02주소:\x02DNS 서버:\x02스크립트:\x02사전 공유 키:\x02허용" +
 	"된 IP:\x02엔드포인트:\x02지속적 연결 유지:\x02마지막 정보교환:\x02전송:\x02사전-준비\x02게시-하기" +
 	"\x02준비-해제\x02게시-중단\x02비활성화됨, 정책에 따라\x02활성화됨\x02%[1]s 받음, %[2]s 보내기\x02터널" +
-	" 상태를 확인하지 못함\x02터널을 활성화하지 못함\x02터널을 비활성화하지 못함\x02인터페이스: %[1]s\x02피어\x02새" +
-	"로운 터널 만들기\x02터널 편집\x02&이름:\x02&공개 키:\x02(알수없음)\x02&Block 터널 없는 교통 (킬-스" +
-	"위치)\x02&저장\x02취소\x02&환경설정:\x02잘못된 이름\x02이름은 필수 항목 입니다.\x02터널명 ‘%[1]s’ " +
-	"무효입니다.\x02기존 터널을 나열할 수 없음\x02이름이 이미 있음\x02이름과 함께 또 다른 터널이 이미 존재합니다 ‘%[" +
-	"1]s’.\x02구성을 가져올 수 없음\x02파일 쓰기 실패\x02파일 ‘%[1]s’ 이미 존재합니다.\x0a\x0aDo you " +
-	"want to overwrite it?\x02활성화\x02활성화 중\x02비활성\x02비활성화 중\x02알 수 없는 상태\x02로" +
-	"그\x02&복사\x02전체 &선택\x02&파일에 저장…\x02시간\x02로그 메시지\x02텍스트 파일 (*.txt)|*.txt" +
+	" 상태를 확인하지 못함\x02터널을 활성화하지 못함\x02터널을 비활성화하지 못함\x02인터페이스: %[1]s\x02피어\x02시" +
+	"간\x02비활성\x02&복사\x02전체 &선택\x02새로운 터널 만들기\x02터널 편집\x02&이름:\x02&공개 키:\x02" +
+	"(알수없음)\x02&Block 터널 없는 교통 (킬-스위치)\x02&저장\x02취소\x02&환경설정:\x02잘못된 이름\x02이름" +
+	"은 필수 항목 입니다.\x02터널명 ‘%[1]s’ 무효입니다.\x02기존 터널을 나열할 수 없음\x02이름이 이미 있음\x02" +
+	"이름과 함께 또 다른 터널이 이미 존재합니다 ‘%[1]s’.\x02구성을 가져올 수 없음\x02파일 쓰기 실패\x02파일 ‘%" +
+	"[1]s’ 이미 존재합니다.\x0a\x0aDo you want to overwrite it?\x02활성화\x02활성화 중\x02비" +
+	"활성화 중\x02알 수 없는 상태\x02로그\x02&파일에 저장…\x02로그 메시지\x02텍스트 파일 (*.txt)|*.txt" +
 	"|모든 파일 (*.*)|*.*\x02로그 파일 내보내기\x02터널 오류\x02%[1]s\x0a\x0a자세한 내용은 로그를 참조하세" +
 	"요.\x02%[1]s (구식)\x02AmneziaWG 감지 오류\x02AmneziaWG 창이 나타날 때까지 기다릴 수 없음: " +
 	"%[1]v\x02AmneziaWG: 비활성화됨\x02상태: 알 수 없음\x02주소: 없음\x02&터널 관리…\x02&파일에서 터널" +
@@ -2608,7 +3117,7 @@ const koData string = "" + // Size: 5470 bytes
 	"정되지 않음]\x02모든 피어에는 공개 키가 있어야 함\x02구성을 가져오는 중 오류가 발생\x02인터페이스 섹션의 키가 잘못" +
 	"됨\x02프로토콜 버전은 1이어야 합니다.\x02피어 섹션의 키가 잘못됨\x02&AmneziaWG에 관하여…"
 
-var nlIndex = []uint32{ // 304 elements
+var nlIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x0000000c, 0x0000004f, 0x0000006d,
 	0x00000084, 0x000000c7, 0x0000010a, 0x00000139,
@@ -2621,15 +3130,15 @@ var nlIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x0000034c, 0x0000034c, 0x0000034c, 0x00000366,
 	0x00000373, 0x00000394, 0x000003b6, 0x000003d0,
-	0x000003ec, 0x000003ec, 0x000003ec, 0x000003ff,
-	0x000003ff, 0x00000406, 0x00000419, 0x00000424,
-	0x00000451, 0x0000045a, 0x00000464, 0x00000473,
-	0x00000482, 0x00000497, 0x000004bc, 0x000004e1,
-	0x000004f6, 0x0000052b, 0x00000560, 0x0000057a,
-	0x000005b1, 0x000005b8, 0x000005c2, 0x000005cb,
+	0x000003ec, 0x000003ec, 0x000003ec, 0x000003f1,
+	0x000003fa, 0x00000404, 0x00000415, 0x00000428,
+	0x00000428, 0x0000042f, 0x00000442, 0x0000044d,
+	0x0000047a, 0x00000483, 0x0000048d, 0x0000049c,
+	0x000004ab, 0x000004c0, 0x000004e5, 0x0000050a,
+	0x0000051f, 0x00000554, 0x00000589, 0x000005a3,
 	// Entry 40 - 5F
-	0x000005d7, 0x000005e8, 0x000005f0, 0x000005fa,
-	0x0000060b, 0x00000624, 0x00000629, 0x00000634,
+	0x000005da, 0x000005e1, 0x000005eb, 0x000005f7,
+	0x00000608, 0x00000610, 0x00000629, 0x00000634,
 	0x0000066b, 0x0000068a, 0x00000696, 0x000006c9,
 	0x000006dd, 0x000006f6, 0x00000726, 0x0000073f,
 	0x00000750, 0x00000760, 0x00000774, 0x00000798,
@@ -2695,7 +3204,35 @@ var nlIndex = []uint32{ // 304 elements
 	0x000013da, 0x000013da, 0x000013da, 0x000013da,
 	0x000013da, 0x000013da, 0x000013da, 0x000013da,
 	0x000013da, 0x000013da, 0x000013da, 0x000013da,
-} // Size: 1240 bytes
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	// Entry 140 - 15F
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	// Entry 160 - 17F
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	// Entry 180 - 19F
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+	0x000013da, 0x000013da, 0x000013da, 0x000013da,
+} // Size: 1640 bytes
 
 const nlData string = "" + // Size: 5082 bytes
 	"\x02Foutmelding\x02(geen argumenten): Verhoog rechten en installeer behe" +
@@ -2713,22 +3250,22 @@ const nlData string = "" + // Size: 5082 bytes
 	"tane IP-adressen:\x02Eindpunt:\x02Recentste uitwisseling:\x02Overdracht:" +
 	"\x02uitgeschakeld, per beleid\x02ingeschakeld\x02%[1]s ontvangen, %[2]s " +
 	"verzonden\x02Kon tunnelstatus niet vaststellen\x02Kon tunnel niet active" +
-	"ren\x02Kon tunnel niet deactiveren\x02Maak nieuwe tunnel\x02&Naam:\x02&P" +
-	"ublieke sleutel:\x02(onbekend)\x02&Ongetunneld verkeer blokkeren (kill-s" +
-	"witch)\x02&Opslaan\x02Annuleren\x02&Instellingen:\x02Ongeldige naam\x02E" +
-	"en naam is vereist.\x02Naam van tunnel '%[1]s' is ongeldig.\x02Kan besta" +
-	"ande tunnels niet weergeven\x02Tunnel bestaat reeds\x02Er bestaat al een" +
-	" andere tunnel met de naam '%[1]s'.\x02De nieuwe instellingen konden nie" +
-	"t worden aangemaakt\x02Bestand schrijven mislukt\x02Bestand '%[1]s' best" +
-	"aat al.\x0a\x0aWil je dit overschrijven?\x02Actief\x02Activeren\x02Inact" +
-	"ief\x02Deactiveren\x02Onbekende status\x02Logboek\x02&Kopiëer\x02Selecte" +
-	"er &alles\x02&Opslaan naar bestand…\x02Tijd\x02Logbericht\x02Tekstbestan" +
-	"den (*.txt)|*.txt|Alle bestanden (*. *)|*.*\x02Exporteer logboek naar be" +
-	"stand\x02Tunnel-fout\x02%[1]s\x0a\x0aRaadpleeg het logboek voor meer inf" +
-	"ormatie.\x02%[1]s (out-of-date)\x02AmneziaWG Detection Fout\x02Kan niet " +
-	"wachten op het AmneziaWG-window: %[1]v\x02AmneziaWG: Gedeactiveerd\x02St" +
-	"atus: Onbekend\x02Addressen: Geen\x02&Tunnels beheren…\x02&Importeer tun" +
-	"nel(s) van bestand…\x02&Afsluiten\x02&Tunnels\x02AmneziaWG Geactiveerd" +
+	"ren\x02Kon tunnel niet deactiveren\x02Tijd\x02Inactief\x02&Kopiëer\x02Se" +
+	"lecteer &alles\x02Maak nieuwe tunnel\x02&Naam:\x02&Publieke sleutel:\x02" +
+	"(onbekend)\x02&Ongetunneld verkeer blokkeren (kill-switch)\x02&Opslaan" +
+	"\x02Annuleren\x02&Instellingen:\x02Ongeldige naam\x02Een naam is vereist" +
+	".\x02Naam van tunnel '%[1]s' is ongeldig.\x02Kan bestaande tunnels niet " +
+	"weergeven\x02Tunnel bestaat reeds\x02Er bestaat al een andere tunnel met" +
+	" de naam '%[1]s'.\x02De nieuwe instellingen konden niet worden aangemaak" +
+	"t\x02Bestand schrijven mislukt\x02Bestand '%[1]s' bestaat al.\x0a\x0aWil" +
+	" je dit overschrijven?\x02Actief\x02Activeren\x02Deactiveren\x02Onbekend" +
+	"e status\x02Logboek\x02&Opslaan naar bestand…\x02Logbericht\x02Tekstbest" +
+	"anden (*.txt)|*.txt|Alle bestanden (*. *)|*.*\x02Exporteer logboek naar " +
+	"bestand\x02Tunnel-fout\x02%[1]s\x0a\x0aRaadpleeg het logboek voor meer i" +
+	"nformatie.\x02%[1]s (out-of-date)\x02AmneziaWG Detection Fout\x02Kan nie" +
+	"t wachten op het AmneziaWG-window: %[1]v\x02AmneziaWG: Gedeactiveerd\x02" +
+	"Status: Onbekend\x02Addressen: Geen\x02&Tunnels beheren…\x02&Importeer t" +
+	"unnel(s) van bestand…\x02&Afsluiten\x02&Tunnels\x02AmneziaWG Geactiveerd" +
 	"\x02De %[1]s tunnel is geactiveerd.\x02AmneziaWG Gedeactiveerd\x02De %[1" +
 	"]s tunnel is gedeactiveerd.\x02AmneziaWG Tunnel Fout\x02AmneziaWG: %[1]s" +
 	"\x02Status: %[1]s\x02Addressen: %[1]s\x02Een Update is Beschikbaar!\x02A" +
@@ -2781,7 +3318,7 @@ const nlData string = "" + // Size: 5082 bytes
 	"sleutel voor interface-gedeelte\x02Protocol-versie moet 1 zijn\x02Ongeld" +
 	"ige sleutel voor peer-gedeelte\x02Over &AmneziaWG…"
 
-var pa_INIndex = []uint32{ // 304 elements
+var pa_INIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000010, 0x00000010, 0x00000030,
 	0x0000005d, 0x000000ea, 0x0000017f, 0x000001e6,
@@ -2794,15 +3331,15 @@ var pa_INIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x0000064c, 0x0000064c, 0x0000064c, 0x0000067e,
 	0x00000695, 0x000006bc, 0x00000707, 0x00000749,
-	0x00000792, 0x000007af, 0x000007bc, 0x000007e0,
-	0x00000801, 0x00000810, 0x00000835, 0x0000084d,
-	0x000008c4, 0x000008db, 0x000008ef, 0x00000907,
-	0x0000091e, 0x00000945, 0x00000945, 0x00000945,
-	0x00000980, 0x000009de, 0x00000a2f, 0x00000a6d,
-	0x00000b17, 0x00000b27, 0x00000b5f, 0x00000b76,
+	0x00000792, 0x000007af, 0x000007bc, 0x000007c9,
+	0x000007e0, 0x000007fb, 0x00000819, 0x0000083d,
+	0x0000085e, 0x0000086d, 0x00000892, 0x000008aa,
+	0x00000921, 0x00000938, 0x0000094c, 0x00000964,
+	0x0000097b, 0x000009a2, 0x000009a2, 0x000009a2,
+	0x000009dd, 0x00000a3b, 0x00000a8c, 0x00000aca,
 	// Entry 40 - 5F
-	0x00000bb5, 0x00000bdb, 0x00000be8, 0x00000c03,
-	0x00000c21, 0x00000c58, 0x00000c65, 0x00000c82,
+	0x00000b74, 0x00000b84, 0x00000bbc, 0x00000bfb,
+	0x00000c21, 0x00000c2e, 0x00000c65, 0x00000c82,
 	0x00000ce6, 0x00000d27, 0x00000d3e, 0x00000d72,
 	0x00000d86, 0x00000daa, 0x00000daa, 0x00000de8,
 	0x00000e0f, 0x00000e40, 0x00000e7b, 0x00000ec6,
@@ -2868,7 +3405,35 @@ var pa_INIndex = []uint32{ // 304 elements
 	0x00002152, 0x00002152, 0x00002152, 0x00002152,
 	0x00002152, 0x00002152, 0x00002152, 0x00002152,
 	0x00002152, 0x00002152, 0x00002152, 0x00002152,
-} // Size: 1240 bytes
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	// Entry 140 - 15F
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	// Entry 160 - 17F
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	// Entry 180 - 19F
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+	0x00002152, 0x00002152, 0x00002152, 0x00002152,
+} // Size: 1640 bytes
 
 const pa_INData string = "" + // Size: 8530 bytes
 	"\x02ਗ਼ਲਤੀ\x02ਵਰਤੋਂ: %[1]s [\x0a%[2]s]\x02ਕਮਾਂਡ ਲਾਈਨ ਚੋਣਾਂ\x02ਪਤਾ ਲਗਾਉਣ ਲ" +
@@ -2884,16 +3449,16 @@ const pa_INData string = "" + // Size: 8530 bytes
 	"ਨਜ਼ੂਰ ਕੀਤੇ IP:\x02ਐਂਡ-ਪੁਆਇੰਟ:\x02ਸਥਿਰ ਲਗਾਤਾਰ ਜਾਰੀ ਰੱਖੋ:\x02ਆਖਰੀ ਹੈਂਡ-ਸ਼ੇ" +
 	"ਕ:\x02ਟਰਾਂਸਫਰ:\x02ਅਸਮਰੱਥ ਹੈ, ਹਰ ਪਾਲਸੀ\x02ਸਮਰੱਥ ਹੈ\x02%[1]s ਮਿਲੇ, %[2]s" +
 	" ਭੇਜੇ\x02ਟਨਲ ਸਥਿਤੀ ਪਤਾ ਲਗਾਉਣ ਲਈ ਅਸਫ਼ਲ\x02ਟਨਲ ਸਰਗਰਮ ਕਰਨ ਲਈ ਅਸਫ਼ਲ ਹੈ\x02ਟਨ" +
-	"ਲ ਨਾ-ਸਰਗਰਮ ਕਰਨ ਲਈ ਅਸਫ਼ਲ ਹੈ\x02ਇੰਟਰਫੇਸ: %[1]s\x02ਪੀਅਰ\x02ਨਵੀਂ ਟਨਲ ਬਣਾਓ" +
-	"\x02ਟਨਲ ਨੂੰ ਸੋਧੋ\x02ਨਾਂ(&N):\x02ਪਬਲਿਕ ਕੁੰਜੀ(&P):\x02(ਅਣਪਛਾਤਾ)\x02ਬਿਨਾਂ-ਟ" +
-	"ਨਲ ਵਾਲੇ ਟਰੈਫਿਕ ਉੱਤੇ ਪਾਬੰਦੀ ਲਾਓ (&B) (kill-switch)\x02ਸੰਭਾਲੋ(&S)\x02ਰੱਦ" +
-	" ਕਰੋ\x02ਸੰਰਚਨਾ(&C):\x02ਅਯੋਗ ਨਾਂ\x02ਨਾਂ ਚਾਹੀਦਾ ਹੈ।\x02ਟਨਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ" +
-	" ਹੈ\x02ਨਾਂ ‘%[1]s’ ਨਾਲ ਟਨਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।\x02ਨਵੀਂ ਸੰਰਚਨਾ ਬਣਾਉਣ ਲਈ ਅ" +
-	"ਸਮਰੱਥ ਹੈ\x02ਫ਼ਾਇਲ ਬਣਾਉਣ ਲਈ ਅਸਫ਼ਲ ਹੈ\x02‘%[1]s’ ਫ਼ਾਇਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹ" +
-	"ੈ।\x0a\x0aਕੀ ਤੁਸੀਂ ਇਸ ਉੱਤੇ ਲਿਖਣਾ ਚਾਹੁੰਦੇ ਹੋ?\x02ਸਰਗਰਮ\x02ਸਰਗਰਮ ਕੀਤਾ ਜਾ" +
-	" ਰਿਹਾ ਹੈ\x02ਨਾ-ਸਰਗਰਮ\x02ਨਾ-ਸਰਗਰਮ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ\x02ਅਣਪਛਾਤੀ ਸਥਿਤੀ\x02ਲਾਗ" +
-	"ੂ\x02ਕਾਪੀ ਕਰੋ(&C)\x02ਸਾਰੇ ਚੁਣੋ(&a)\x02ਫ਼ਾਇਲ ਵਿੱਚ ਸੰਭਾਲੋ(&S)…\x02ਸਮਾਂ" +
-	"\x02ਲਾਗ ਸੁਨੇਹਾ\x02ਲਿਖਤ ਫ਼ਾਇਲਾਂ (*.txt)|*.txt|ਸਾਰੀਆਂ ਫ਼ਾਇਲਾਂ (*.*)|*.*" +
+	"ਲ ਨਾ-ਸਰਗਰਮ ਕਰਨ ਲਈ ਅਸਫ਼ਲ ਹੈ\x02ਇੰਟਰਫੇਸ: %[1]s\x02ਪੀਅਰ\x02ਸਮਾਂ\x02ਨਾ-ਸਰਗ" +
+	"ਰਮ\x02ਕਾਪੀ ਕਰੋ(&C)\x02ਸਾਰੇ ਚੁਣੋ(&a)\x02ਨਵੀਂ ਟਨਲ ਬਣਾਓ\x02ਟਨਲ ਨੂੰ ਸੋਧੋ" +
+	"\x02ਨਾਂ(&N):\x02ਪਬਲਿਕ ਕੁੰਜੀ(&P):\x02(ਅਣਪਛਾਤਾ)\x02ਬਿਨਾਂ-ਟਨਲ ਵਾਲੇ ਟਰੈਫਿਕ ਉ" +
+	"ੱਤੇ ਪਾਬੰਦੀ ਲਾਓ (&B) (kill-switch)\x02ਸੰਭਾਲੋ(&S)\x02ਰੱਦ ਕਰੋ\x02ਸੰਰਚਨਾ(&" +
+	"C):\x02ਅਯੋਗ ਨਾਂ\x02ਨਾਂ ਚਾਹੀਦਾ ਹੈ।\x02ਟਨਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ\x02ਨਾਂ ‘%[1]" +
+	"s’ ਨਾਲ ਟਨਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।\x02ਨਵੀਂ ਸੰਰਚਨਾ ਬਣਾਉਣ ਲਈ ਅਸਮਰੱਥ ਹੈ\x02ਫ਼ਾਇ" +
+	"ਲ ਬਣਾਉਣ ਲਈ ਅਸਫ਼ਲ ਹੈ\x02‘%[1]s’ ਫ਼ਾਇਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।\x0a\x0aਕੀ ਤੁਸ" +
+	"ੀਂ ਇਸ ਉੱਤੇ ਲਿਖਣਾ ਚਾਹੁੰਦੇ ਹੋ?\x02ਸਰਗਰਮ\x02ਸਰਗਰਮ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ\x02ਨਾ-ਸ" +
+	"ਰਗਰਮ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ\x02ਅਣਪਛਾਤੀ ਸਥਿਤੀ\x02ਲਾਗੂ\x02ਫ਼ਾਇਲ ਵਿੱਚ ਸੰਭਾਲੋ(&S)" +
+	"…\x02ਲਾਗ ਸੁਨੇਹਾ\x02ਲਿਖਤ ਫ਼ਾਇਲਾਂ (*.txt)|*.txt|ਸਾਰੀਆਂ ਫ਼ਾਇਲਾਂ (*.*)|*.*" +
 	"\x02ਲਾਗ ਫ਼ਾਇਲ ਵਿੱਚ ਬਰਾਮਦ ਕਰੋ\x02ਟਨਲ ਗਲਤੀ\x02%[1]s\x0a\x0aPlease consult " +
 	"the log for more information.\x02%[1]s (out of date)\x02AmneziaWG ਖੋਜ ਗ਼" +
 	"ਲਤੀ\x02ਵਾਇਰਗਾਰਡ: ਨਾ-ਸਰਗਰਮ ਕੀਤਾ\x02ਸਥਿਤੀ: ਅਣਪਛਾਤੀ\x02ਸਿਰਨਾਵੇਂ: ਕੋਈ ਨਹੀਂ" +
@@ -2936,7 +3501,7 @@ const pa_INData string = "" + // Size: 8530 bytes
 	"ਦਾ ਹੈ: %[1]v\x02ਇੱਕ ਕਤਾਰ ਵਿੱਚ ਦੋ ਕੌਮੇ ਹਨ\x02ਟਨਲ ਦਾ ਨਾਂ ਠੀਕ ਨਹੀਂ ਹੈ\x02" +
 	"ਭਾਗ ਵਿੱਚ ਲਾਈਨ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ\x02ਵਾਇਰਗਾਰਡ ਬਾਰੇ(&A)…"
 
-var plIndex = []uint32{ // 304 elements
+var plIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000007, 0x0000004f, 0x00000067,
 	0x0000007e, 0x000000cc, 0x00000108, 0x0000013f,
@@ -2949,15 +3514,15 @@ var plIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x000003a1, 0x000003b5, 0x000003c5, 0x000003e6,
 	0x000003f1, 0x00000410, 0x00000438, 0x0000045a,
-	0x0000047a, 0x0000048b, 0x00000490, 0x000004a3,
-	0x000004b0, 0x000004b8, 0x000004ca, 0x000004d5,
-	0x0000050b, 0x00000513, 0x0000051a, 0x00000529,
-	0x0000053e, 0x00000553, 0x0000057e, 0x000005aa,
-	0x000005be, 0x000005f7, 0x0000061f, 0x0000063e,
-	0x00000677, 0x0000067f, 0x0000068b, 0x00000696,
+	0x0000047a, 0x0000048b, 0x00000490, 0x00000495,
+	0x000004a0, 0x000004a8, 0x000004ba, 0x000004cd,
+	0x000004da, 0x000004e2, 0x000004f4, 0x000004ff,
+	0x00000535, 0x0000053d, 0x00000544, 0x00000553,
+	0x00000568, 0x0000057d, 0x000005a8, 0x000005d4,
+	0x000005e8, 0x00000621, 0x00000649, 0x00000668,
 	// Entry 40 - 5F
-	0x000006a5, 0x000006b3, 0x000006bc, 0x000006c4,
-	0x000006d6, 0x000006ea, 0x000006ef, 0x00000705,
+	0x000006a1, 0x000006a9, 0x000006b5, 0x000006c4,
+	0x000006d2, 0x000006db, 0x000006ef, 0x00000705,
 	0x0000073c, 0x00000758, 0x00000766, 0x000007ab,
 	0x000007bf, 0x000007d9, 0x00000817, 0x00000830,
 	0x00000841, 0x0000084e, 0x00000866, 0x00000884,
@@ -3023,7 +3588,35 @@ var plIndex = []uint32{ // 304 elements
 	0x00001745, 0x00001745, 0x00001745, 0x00001745,
 	0x00001745, 0x00001745, 0x00001745, 0x00001745,
 	0x00001745, 0x00001745, 0x00001745, 0x00001745,
-} // Size: 1240 bytes
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	// Entry 140 - 15F
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	// Entry 160 - 17F
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	// Entry 180 - 19F
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+	0x00001745, 0x00001745, 0x00001745, 0x00001745,
+} // Size: 1640 bytes
 
 const plData string = "" + // Size: 5957 bytes
 	"\x02Błąd\x02(brak argumentu): Podnieś uprawnienia i zainstaluj usługę me" +
@@ -3043,57 +3636,57 @@ const plData string = "" + // Size: 5957 bytes
 	"\x02po wyłączeniu\x02wyłączone, według zasad grupy\x02włączone\x02%[1]s " +
 	"odebrano, %[2]s wysłano\x02Nie udało się określić stanu tunelu\x02Nie ud" +
 	"ało się aktywować tunelu\x02Nie można dezaktywować tunelu\x02Interfejs: " +
-	"%[1]s\x02Peer\x02Utwórz nowy tunel\x02Edytuj tunel\x02&Nazwa:\x02&Klucz " +
-	"publiczny:\x02(nieznany)\x02Zablokuj niezabezpieczony ruch (wyłącznik aw" +
-	"aryjny)\x02&Zapisz\x02Anuluj\x02&Konfiguracja:\x02Nieprawidłowa nazwa" +
-	"\x02Nazwa jest wymagana.\x02Nazwa tunelu ‘%[1]s’ jest niepoprawna.\x02Ni" +
-	"e można wylistować istniejących tuneli\x02Tunel już istnieje\x02Inny tun" +
-	"el już istnieje z tą samą nazwą ‘%[1]s’.\x02Nie można utworzyć nowej kon" +
-	"figuracji\x02Zapis pliku się nie powiódł\x02Plik ‘%[1]s’ już istnieje. C" +
-	"zy chcesz go nadpisać?\x02Aktywny\x02Aktywowanie\x02Nieaktywny\x02Dezakt" +
-	"ywowanie\x02Stan nieznany\x02Dziennik\x02&Kopiuj\x02Wybierz &wszystko" +
-	"\x02&Zapisz do pliku…\x02Czas\x02Wiadomości dziennika\x02Pliki tekstowe " +
-	"(*.txt)|*.txt|Wszystkie pliki (*.*)|*.*\x02Eksportuj dziennik do pliku" +
-	"\x02Błąd tunelu\x02%[1]s\x0a\x0aAby uzyskać więcej informacji, zapoznaj " +
-	"się z dziennikiem.\x02%[1]s (nieaktualny)\x02Błąd detekcji AmneziaWG\x02" +
-	"Nie można poczekać na pojawienie się okna AmneziaWG: %[1]v\x02AmneziaWG:" +
-	" Dezaktywowany\x02Status: Nieznany\x02Adresy: Brak\x02&Zarządzaj tunelam" +
-	"i…\x02&Importuj tunel(e) z pliku…\x02W&yjście\x02&Tunele\x02AmneziaWG Ak" +
-	"tywny\x02Tunel %[1]s został aktywowany.\x02AmneziaWG dezaktywowany\x02Tu" +
-	"nel %[1]s został dezaktywowany.\x02Błąd tunelu AmneziaWG\x02AmneziaWG: %" +
-	"[1]s\x02Status: %[1]s\x02Adresy: %[1]s\x02Dostępna nowa aktualizacja!" +
-	"\x02Aktualizacja AmneziaWG jest dostępna\x02Aktualizacja AmneziaWG jest " +
-	"już dostępna. Zaleca się jak najszybszą aktualizację.\x02Tunele\x02&Edyt" +
-	"uj\x02Dodaj &pusty tunel…\x02Dodaj tunel\x02Usuń wybrany(-e) tunel(e)" +
-	"\x02Eksportuj wszystkie tunele do archiwum ZIP\x02&Przełącz\x02Eksportuj" +
-	" wszystkie tunele do archiwum &zip…\x02Edytuj &wybrany tunel…\x02&Usuń w" +
-	"ybrany(-e) tunel(e)\x02brak plików konfiguracyjnych\x02Nie można zaimpor" +
-	"tować wybranej konfiguracji: %[1]v\x02Nie można wskazać istniejących tun" +
-	"eli: %[1]v\x02Inny tunel już istnieje z tą samą nazwą ‘%[1]s’\x02Nie moż" +
-	"na zaimportować konfiguracji: %[1]v\x02Zaimportowane tunele\x14\x01\x81" +
-	"\x01\x00\x04\x1b\x02Zaimportowano %[1]d tunele\x05\x1b\x02Zaimportowano " +
-	"%[1]d tuneli\x02\x1a\x02Zaimportowano %[1]d tunel\x00\x1b\x02Zaimportowa" +
-	"no %[1]d tuneli\x14\x02\x80\x01\x04#\x02Zaimportowano %[1]d z %[2]d tune" +
-	"le\x05#\x02Zaimportowano %[1]d z %[2]d tuneli\x02#\x02Zaimportowano %[1]" +
-	"d z %[2]d tunelu\x00#\x02Zaimportowano %[1]d z %[2]d tuneli\x02Nie można" +
-	" utworzyć tunelu\x14\x01\x81\x01\x00\x04\x13\x02Usuń %[1]d tunele\x05" +
-	"\x13\x02Usuń %[1]d tuneli\x02\x12\x02Usuń %[1]d tunel\x00\x13\x02Usuń %[" +
-	"1]d tuneli\x14\x01\x81\x01\x00\x04+\x02Czy na pewno chcesz usunąć %[1]d " +
-	"tunele?\x05+\x02Czy na pewno chcesz usunąć %[1]d tuneli?\x02*\x02Czy na " +
-	"pewno chcesz usunąć %[1]d tunel?\x00+\x02Czy na pewno chcesz usunąć %[1]" +
-	"d tuneli?\x02Usuń tunel ‘%[1]s’\x02Czy na pewno chcesz usunąć tunel ‘%[1" +
-	"]s’?\x02%[1]s Tej akcji nie można cofnąć.\x02Nie można usunąć tunelu\x02" +
-	"Tunel nie mógł zostać usunięty: %[1]s\x02Nie można usunąć tuneli\x14\x01" +
-	"\x81\x01\x00\x04'\x02%[1]d tunele nie mogą być usunięte.\x05'\x02%[1]d t" +
-	"unele nie mogą być usunięte.\x02)\x02%[1]d tunel nie może zostać usunięt" +
-	"y.\x00'\x02%[1]d tunele nie mogą być usunięte.\x02Pliki konfiguracji (*." +
-	"zip, *.conf)|*.zip;*.conf|Wszystkie pliki (*.*)|*.*\x02Importuj tunel(e)" +
-	" z pliku\x02Pliki ZIP konfiguracji (*.zip)|*.zip\x02Eksportuj tunele do " +
-	"archiwum ZIP\x02%[1]s (wersja niepodpisana, brak aktualizacji)\x02Błąd p" +
-	"odczas zamykania AmneziaWG\x02Nie można wyłączyć usługi ze względu na: %" +
-	"[1]v. Jeśli chcesz wyłączyć AmneziaWG, możesz to zrobić z poziomu menedż" +
-	"era usług.\x02Aktualizacja AmneziaWG jest dostępna. Zaleca się natychmia" +
-	"stową aktualizację.\x02Status: Czekam na użytkownika\x02Uaktualnij teraz" +
+	"%[1]s\x02Peer\x02Czas\x02Nieaktywny\x02&Kopiuj\x02Wybierz &wszystko\x02U" +
+	"twórz nowy tunel\x02Edytuj tunel\x02&Nazwa:\x02&Klucz publiczny:\x02(nie" +
+	"znany)\x02Zablokuj niezabezpieczony ruch (wyłącznik awaryjny)\x02&Zapisz" +
+	"\x02Anuluj\x02&Konfiguracja:\x02Nieprawidłowa nazwa\x02Nazwa jest wymaga" +
+	"na.\x02Nazwa tunelu ‘%[1]s’ jest niepoprawna.\x02Nie można wylistować is" +
+	"tniejących tuneli\x02Tunel już istnieje\x02Inny tunel już istnieje z tą " +
+	"samą nazwą ‘%[1]s’.\x02Nie można utworzyć nowej konfiguracji\x02Zapis pl" +
+	"iku się nie powiódł\x02Plik ‘%[1]s’ już istnieje. Czy chcesz go nadpisać" +
+	"?\x02Aktywny\x02Aktywowanie\x02Dezaktywowanie\x02Stan nieznany\x02Dzienn" +
+	"ik\x02&Zapisz do pliku…\x02Wiadomości dziennika\x02Pliki tekstowe (*.txt" +
+	")|*.txt|Wszystkie pliki (*.*)|*.*\x02Eksportuj dziennik do pliku\x02Błąd" +
+	" tunelu\x02%[1]s\x0a\x0aAby uzyskać więcej informacji, zapoznaj się z dz" +
+	"iennikiem.\x02%[1]s (nieaktualny)\x02Błąd detekcji AmneziaWG\x02Nie możn" +
+	"a poczekać na pojawienie się okna AmneziaWG: %[1]v\x02AmneziaWG: Dezakty" +
+	"wowany\x02Status: Nieznany\x02Adresy: Brak\x02&Zarządzaj tunelami…\x02&I" +
+	"mportuj tunel(e) z pliku…\x02W&yjście\x02&Tunele\x02AmneziaWG Aktywny" +
+	"\x02Tunel %[1]s został aktywowany.\x02AmneziaWG dezaktywowany\x02Tunel %" +
+	"[1]s został dezaktywowany.\x02Błąd tunelu AmneziaWG\x02AmneziaWG: %[1]s" +
+	"\x02Status: %[1]s\x02Adresy: %[1]s\x02Dostępna nowa aktualizacja!\x02Akt" +
+	"ualizacja AmneziaWG jest dostępna\x02Aktualizacja AmneziaWG jest już dos" +
+	"tępna. Zaleca się jak najszybszą aktualizację.\x02Tunele\x02&Edytuj\x02D" +
+	"odaj &pusty tunel…\x02Dodaj tunel\x02Usuń wybrany(-e) tunel(e)\x02Ekspor" +
+	"tuj wszystkie tunele do archiwum ZIP\x02&Przełącz\x02Eksportuj wszystkie" +
+	" tunele do archiwum &zip…\x02Edytuj &wybrany tunel…\x02&Usuń wybrany(-e)" +
+	" tunel(e)\x02brak plików konfiguracyjnych\x02Nie można zaimportować wybr" +
+	"anej konfiguracji: %[1]v\x02Nie można wskazać istniejących tuneli: %[1]v" +
+	"\x02Inny tunel już istnieje z tą samą nazwą ‘%[1]s’\x02Nie można zaimpor" +
+	"tować konfiguracji: %[1]v\x02Zaimportowane tunele\x14\x01\x81\x01\x00" +
+	"\x04\x1b\x02Zaimportowano %[1]d tunele\x05\x1b\x02Zaimportowano %[1]d tu" +
+	"neli\x02\x1a\x02Zaimportowano %[1]d tunel\x00\x1b\x02Zaimportowano %[1]d" +
+	" tuneli\x14\x02\x80\x01\x04#\x02Zaimportowano %[1]d z %[2]d tunele\x05#" +
+	"\x02Zaimportowano %[1]d z %[2]d tuneli\x02#\x02Zaimportowano %[1]d z %[2" +
+	"]d tunelu\x00#\x02Zaimportowano %[1]d z %[2]d tuneli\x02Nie można utworz" +
+	"yć tunelu\x14\x01\x81\x01\x00\x04\x13\x02Usuń %[1]d tunele\x05\x13\x02Us" +
+	"uń %[1]d tuneli\x02\x12\x02Usuń %[1]d tunel\x00\x13\x02Usuń %[1]d tuneli" +
+	"\x14\x01\x81\x01\x00\x04+\x02Czy na pewno chcesz usunąć %[1]d tunele?" +
+	"\x05+\x02Czy na pewno chcesz usunąć %[1]d tuneli?\x02*\x02Czy na pewno c" +
+	"hcesz usunąć %[1]d tunel?\x00+\x02Czy na pewno chcesz usunąć %[1]d tunel" +
+	"i?\x02Usuń tunel ‘%[1]s’\x02Czy na pewno chcesz usunąć tunel ‘%[1]s’?" +
+	"\x02%[1]s Tej akcji nie można cofnąć.\x02Nie można usunąć tunelu\x02Tune" +
+	"l nie mógł zostać usunięty: %[1]s\x02Nie można usunąć tuneli\x14\x01\x81" +
+	"\x01\x00\x04'\x02%[1]d tunele nie mogą być usunięte.\x05'\x02%[1]d tunel" +
+	"e nie mogą być usunięte.\x02)\x02%[1]d tunel nie może zostać usunięty." +
+	"\x00'\x02%[1]d tunele nie mogą być usunięte.\x02Pliki konfiguracji (*.zi" +
+	"p, *.conf)|*.zip;*.conf|Wszystkie pliki (*.*)|*.*\x02Importuj tunel(e) z" +
+	" pliku\x02Pliki ZIP konfiguracji (*.zip)|*.zip\x02Eksportuj tunele do ar" +
+	"chiwum ZIP\x02%[1]s (wersja niepodpisana, brak aktualizacji)\x02Błąd pod" +
+	"czas zamykania AmneziaWG\x02Nie można wyłączyć usługi ze względu na: %[1" +
+	"]v. Jeśli chcesz wyłączyć AmneziaWG, możesz to zrobić z poziomu menedżer" +
+	"a usług.\x02Aktualizacja AmneziaWG jest dostępna. Zaleca się natychmiast" +
+	"ową aktualizację.\x02Status: Czekam na użytkownika\x02Uaktualnij teraz" +
 	"\x02Status: Czekam na usługę aktualizacji\x02Błąd: %[1]v. Spróbuj ponown" +
 	"ie.\x02Status: Ukończone!\x02Teraz\x02Zegar systemowy został cofnięty!" +
 	"\x14\x01\x81\x01\x00\x04\x0b\x02%[1]d lata\x05\x0a\x02%[1]d lat\x02\x0a" +
@@ -3121,7 +3714,7 @@ const plData string = "" + // Size: 5957 bytes
 	"ja protokołu musi być 1\x02Nieprawidłowy klucz dla sekcji peer\x02&Infor" +
 	"macje o AmneziaWG…"
 
-var pt_BRIndex = []uint32{ // 304 elements
+var pt_BRIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000005, 0x0000003f, 0x00000053,
 	0x00000070, 0x000000c2, 0x00000102, 0x0000013c,
@@ -3134,15 +3727,15 @@ var pt_BRIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x00000371, 0x0000037c, 0x00000387, 0x000003a1,
 	0x000003ac, 0x000003ca, 0x000003f1, 0x0000040a,
-	0x00000425, 0x00000436, 0x00000440, 0x0000044d,
-	0x0000045b, 0x00000462, 0x00000475, 0x00000484,
-	0x000004b5, 0x000004bd, 0x000004c6, 0x000004d7,
-	0x000004e6, 0x000004fe, 0x00000527, 0x00000554,
-	0x00000567, 0x00000597, 0x000005c4, 0x000005de,
-	0x0000061d, 0x00000623, 0x0000062a, 0x00000632,
+	0x00000425, 0x00000436, 0x00000440, 0x00000446,
+	0x0000044e, 0x00000456, 0x00000467, 0x00000474,
+	0x00000482, 0x00000489, 0x0000049c, 0x000004ab,
+	0x000004dc, 0x000004e4, 0x000004ed, 0x000004fe,
+	0x0000050d, 0x00000525, 0x0000054e, 0x0000057b,
+	0x0000058e, 0x000005be, 0x000005eb, 0x00000605,
 	// Entry 40 - 5F
-	0x0000063e, 0x00000656, 0x0000065f, 0x00000667,
-	0x00000678, 0x0000068e, 0x00000694, 0x000006aa,
+	0x00000644, 0x0000064a, 0x00000651, 0x0000065d,
+	0x00000675, 0x0000067e, 0x00000694, 0x000006aa,
 	0x000006e6, 0x000006fe, 0x0000070d, 0x0000074d,
 	0x00000763, 0x00000783, 0x000007c4, 0x000007da,
 	0x000007ee, 0x00000801, 0x00000817, 0x00000839,
@@ -3208,7 +3801,35 @@ var pt_BRIndex = []uint32{ // 304 elements
 	0x00001565, 0x00001565, 0x00001565, 0x00001565,
 	0x00001565, 0x00001565, 0x00001565, 0x00001565,
 	0x00001565, 0x00001565, 0x00001565, 0x00001565,
-} // Size: 1240 bytes
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	// Entry 140 - 15F
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	// Entry 160 - 17F
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	// Entry 180 - 19F
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+	0x00001565, 0x00001565, 0x00001565, 0x00001565,
+} // Size: 1640 bytes
 
 const pt_BRData string = "" + // Size: 5477 bytes
 	"\x02Erro\x02(sem argumento): elevar e instalar o serviço gerenciador\x02" +
@@ -3227,16 +3848,16 @@ const pt_BRData string = "" + // Size: 5477 bytes
 	"\x02pré-cima\x02postar\x02pré-baixo\x02pós-baixo\x02desativada, por polí" +
 	"tica\x02habilitado\x02%[1]s recebido, %[2]s enviado\x02Falha ao determin" +
 	"ar o estado do túnel\x02Falha ao ativar o túnel\x02Falha ao desativar o " +
-	"tunel\x02Interface: %[1]s\x02Parceiros\x02Criar túnel\x02Editar túnel" +
-	"\x02&Nome:\x02&Chaves públicas:\x02(desconhecido)\x02&Bloquear tráfego s" +
-	"em tunelamento (kill-switch)\x02&Salvar\x02Cancelar\x02&Configuração:" +
-	"\x02Nome inválido\x02Um nome é necessário.\x02O nome do túnel ‘%[1]s' é " +
-	"inválido.\x02Não foi possível listar túneis existentes\x02Arquivo já exi" +
-	"ste\x02Já existe outro túnel com o nome ‘%[1]s’.\x02Não é possível adici" +
-	"onar a configuração\x02Falha ao escrever arquivo\x02O arquivo '%[1]s' já" +
-	" existe.\x0a\x0aVocê deseja sobrescrever isso?\x02Ativo\x02Ativar\x02Ina" +
-	"tivo\x02Desativando\x02Situação desconhecida\x02Registro\x02&Copiar\x02S" +
-	"elecionar &Tudo\x02&Salvar em arquivo…\x02Tempo\x02Registro de mensagens" +
+	"tunel\x02Interface: %[1]s\x02Parceiros\x02Tempo\x02Inativo\x02&Copiar" +
+	"\x02Selecionar &Tudo\x02Criar túnel\x02Editar túnel\x02&Nome:\x02&Chaves" +
+	" públicas:\x02(desconhecido)\x02&Bloquear tráfego sem tunelamento (kill-" +
+	"switch)\x02&Salvar\x02Cancelar\x02&Configuração:\x02Nome inválido\x02Um " +
+	"nome é necessário.\x02O nome do túnel ‘%[1]s' é inválido.\x02Não foi pos" +
+	"sível listar túneis existentes\x02Arquivo já existe\x02Já existe outro t" +
+	"únel com o nome ‘%[1]s’.\x02Não é possível adicionar a configuração\x02" +
+	"Falha ao escrever arquivo\x02O arquivo '%[1]s' já existe.\x0a\x0aVocê de" +
+	"seja sobrescrever isso?\x02Ativo\x02Ativar\x02Desativando\x02Situação de" +
+	"sconhecida\x02Registro\x02&Salvar em arquivo…\x02Registro de mensagens" +
 	"\x02Arquivos de texto (*.txt)|*.txt|Todos os arquivos (*.*)|*.*\x02Expor" +
 	"tar arquivo de log\x02Erro de túnel\x02%[1]s\x0a\x0aPor favor, consulte " +
 	"o log para obter mais informações.\x02%[1]s (desatualizado)\x02Erro de D" +
@@ -3297,7 +3918,7 @@ const pt_BRData string = "" + // Size: 5477 bytes
 	"a seção da interface\x02A versão do protocolo deve ser 1\x02Chave inváli" +
 	"da para a seção do par\x02Sobre o &AmneziaWG…"
 
-var roIndex = []uint32{ // 304 elements
+var roIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000007, 0x0000005d, 0x00000077,
 	0x00000092, 0x000000d1, 0x0000011a, 0x0000014e,
@@ -3310,15 +3931,15 @@ var roIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x000003ac, 0x000003b7, 0x000003c3, 0x000003e1,
 	0x000003eb, 0x00000406, 0x00000432, 0x00000450,
-	0x00000471, 0x00000484, 0x0000048c, 0x0000049d,
-	0x000004ab, 0x000004b2, 0x000004c3, 0x000004d2,
-	0x0000051f, 0x00000528, 0x00000530, 0x00000540,
-	0x0000054d, 0x00000563, 0x0000058e, 0x000005b5,
-	0x000005ca, 0x000005fb, 0x00000620, 0x0000063e,
-	0x00000684, 0x0000068a, 0x00000698, 0x000006a0,
+	0x00000471, 0x00000484, 0x0000048c, 0x00000491,
+	0x00000499, 0x000004a2, 0x000004b5, 0x000004c6,
+	0x000004d4, 0x000004db, 0x000004ec, 0x000004fb,
+	0x00000548, 0x00000551, 0x00000559, 0x00000569,
+	0x00000576, 0x0000058c, 0x000005b7, 0x000005de,
+	0x000005f3, 0x00000624, 0x00000649, 0x00000667,
 	// Entry 40 - 5F
-	0x000006b1, 0x000006c4, 0x000006cb, 0x000006d4,
-	0x000006e7, 0x000006ff, 0x00000704, 0x00000714,
+	0x000006ad, 0x000006b3, 0x000006c1, 0x000006d2,
+	0x000006e5, 0x000006ec, 0x00000704, 0x00000714,
 	0x0000074b, 0x00000768, 0x00000778, 0x000007b0,
 	0x000007c5, 0x000007e3, 0x00000821, 0x00000837,
 	0x0000084b, 0x0000085b, 0x00000873, 0x00000898,
@@ -3384,7 +4005,35 @@ var roIndex = []uint32{ // 304 elements
 	0x00001713, 0x00001713, 0x00001713, 0x00001713,
 	0x00001713, 0x00001713, 0x00001713, 0x00001713,
 	0x00001713, 0x00001713, 0x00001713, 0x00001713,
-} // Size: 1240 bytes
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	// Entry 140 - 15F
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	// Entry 160 - 17F
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	// Entry 180 - 19F
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+	0x00001713, 0x00001713, 0x00001713, 0x00001713,
+} // Size: 1640 bytes
 
 const roData string = "" + // Size: 5907 bytes
 	"\x02Eroare\x02(fără argument): obținere drept administrativ și instalare" +
@@ -3404,84 +4053,84 @@ const roData string = "" + // Size: 5907 bytes
 	"\x02post-pornire\x02pre-oprire\x02post-oprire\x02dezactivat, conform pol" +
 	"iticii\x02activată\x02%[1]s primit, %[2]s trimis\x02Nu a putut fi determ" +
 	"inată starea tunelului\x02Tunelul nu a putut fi activat\x02Tunelul nu a " +
-	"putut fi dezactivat\x02Interfață: %[1]s\x02Pereche\x02Creare tunel nou" +
-	"\x02Editare tunel\x02&Nume:\x02Cheie &publică:\x02(necunoscută)\x02&Bloc" +
-	"hează traficul care nu trece prin tunel (întrerupător de activitate)\x02" +
-	"&Salvare\x02Anulare\x02&Configurație:\x02Nume invalid\x02Este necesar un" +
-	" nume.\x02Numele tunelului „%[1]s” este invalid.\x02Tunelurile existente" +
-	" nu pot fi listate\x02Tunelul există deja\x02Există deja un alt tunel cu" +
-	" numele „%[1]s”.\x02Nu se poate crea configurația nouă\x02Scrierea fișie" +
-	"rului a eșuat\x02Fișierul „%[1]s” există deja.\x0a\x0aDorești suprascrie" +
-	"rea acestuia?\x02Activ\x02Se activează\x02Inactiv\x02Se dezactivează\x02" +
-	"Stare necunoscută\x02Jurnal\x02&Copiere\x02Selectare &totală\x02&Salvare" +
-	" în fișier…\x02Timp\x02Mesaj de jurnal\x02Fișiere text (*.txt)|*.txt|Toa" +
-	"te fișierele (*.*)|*.*\x02Exportare jurnal în fișier\x02Eroare de tunel" +
-	"\x02%[1]s\x0a\x0aConsultă jurnalul pentru mai multe informații.\x02%[1]s" +
-	" (neactualizat)\x02Eroare de detectare AmneziaWG\x02Nu se poate aștepta " +
-	"ca fereastra AmneziaWG să apară: %[1]v\x02AmneziaWG: dezactivat\x02Stare" +
-	": necunoscută\x02Adrese: niciuna\x02&Gestionare tuneluri…\x02&Importare " +
-	"tunel(uri) din fișier…\x02Ie&șire\x02&Tuneluri\x02AmneziaWG activat\x02T" +
-	"unelul %[1]s a fost activat.\x02AmneziaWG dezactivat\x02Tunelul %[1]s a " +
-	"fost dezactivat.\x02Eroare de tunel AmneziaWG\x02AmneziaWG: %[1]s\x02Sta" +
-	"re: %[1]s\x02Adrese: %[1]s\x02Este disponibilă o actualizare!\x02Actuali" +
-	"zare disponibilă pentru AmneziaWG\x02O actualizare pentru AmneziaWG este" +
-	" acum disponibilă. Se recomandă efectuarea actualizării cât mai rapid po" +
-	"sibil.\x02Tuneluri\x02&Editare\x02Adăugare tunel &gol…\x02Adăugare tunel" +
-	"\x02Eliminare tunel(uri) selectat(e)\x02Exportă toate tunelurile în zip" +
-	"\x02&Comutare\x02Exportă toate tunelurile în &zip…\x02Editare tunel &sel" +
-	"ectat…\x02&Eliminare tunel(uri) selectat(e)\x02nu au fost găsite fișiere" +
-	" de configurare\x02Configurația selectată nu a putut fi importată: %[1]v" +
-	"\x02Tunelurile existente nu au putut fi enumerate: %[1]v\x02Există deja " +
-	"un alt tunel cu numele „%[1]s”\x02Configurația nu poate fi importată: %[" +
-	"1]v\x02Tuneluri importate\x14\x01\x81\x01\x00\x04\x18\x02Importat %[1]d " +
-	"tuneluri\x02\x15\x02Importat %[1]d tunel\x00\x1b\x02Importat %[1]d de tu" +
-	"neluri\x14\x02\x80\x01\x04\x22\x02Importat %[1]d din %[2]d tuneluri\x02" +
-	"\x1f\x02Importat %[1]d din %[2]d tunel\x00%\x02Importat %[1]d din %[2]d " +
-	"de tuneluri\x02Tunelul nu poate fi creat\x14\x01\x81\x01\x00\x04\x19\x02" +
-	"Ștergere %[1]d tuneluri\x02\x16\x02Ștergere %[1]d tunel\x00\x1c\x02Șter" +
-	"gere %[1]d de tuneluri\x14\x01\x81\x01\x00\x045\x02Ești sigur că dorești" +
-	" să ștergi %[1]d tuneluri?\x022\x02Ești sigur că dorești să ștergi %[1]d" +
-	" tunel?\x008\x02Ești sigur că dorești să ștergi %[1]d de tuneluri?\x02Șt" +
-	"ergere tunel „%[1]s”\x02Ești sigur că dorești să ștergi tunelul „%[1]s”?" +
-	"\x02%[1]s Această acțiune nu poate fi anulată.\x02Tunelul nu poate fi șt" +
-	"ers\x02Un tunel nu a putut fi eliminat: %[1]s\x02Nu se pot șterge tunelu" +
-	"rile\x14\x01\x81\x01\x00\x04)\x02%[1]d tuneluri nu au putut fi eliminate" +
-	".\x02$\x02%[1]d tunel nu a putut fi eliminat.\x00,\x02%[1]d de tuneluri " +
-	"nu au putut fi eliminate.\x02Fișiere de configurare (*.zip, *.conf)|*.zi" +
-	"p;*.conf|Toate fișierele (*.*)|*.*\x02Importare tunel(uri) din fișier" +
-	"\x02Fișiere ZIP de configurare (*.zip)|*.zip\x02Exportare tuneluri în zi" +
-	"p\x02%[1]s (versiune nesemnată, fără actualizări)\x02Eroare la ieșirea d" +
-	"in AmneziaWG\x02Nu se poate ieși din serviciu din cauza: %[1]v. Poți opr" +
-	"i AmneziaWG din managerul de servicii.\x02Este disponibilă o actualizare" +
-	" pentru AmneziaWG. Se recomandă ferm actualizarea imediată.\x02Stare: se" +
-	" așteaptă utilizatorul\x02Actualizează acum\x02Stare: se așteaptă servic" +
-	"iul de actualizare\x02Eroare: %[1]v. Încearcă din nou.\x02Stare: finaliz" +
-	"ată!\x02Acum\x02Ceasul de sistem a fost dat în spate!\x14\x01\x81\x01" +
-	"\x00\x04\x0a\x02%[1]d ani\x02\x09\x02%[1]d an\x00\x0d\x02%[1]d de ani" +
-	"\x14\x01\x81\x01\x00\x04\x0b\x02%[1]d zile\x02\x09\x02%[1]d zi\x00\x0e" +
-	"\x02%[1]d de zile\x14\x01\x81\x01\x00\x04\x0a\x02%[1]d ore\x02\x0b\x02%[" +
-	"1]d oră\x00\x0d\x02%[1]d de ore\x14\x01\x81\x01\x00\x04\x0d\x02%[1]d min" +
-	"ute\x02\x0c\x02%[1]d minut\x00\x10\x02%[1]d de minute\x14\x01\x81\x01" +
-	"\x00\x04\x0e\x02%[1]d secunde\x02\x0f\x02%[1]d secundă\x00\x11\x02%[1]d " +
-	"de secunde\x02acum %[1]s\x02%[1]d\u00a0B\x02%.2[1]f\u00a0KiB\x02%.2[1]f" +
-	"\u00a0MiB\x02%.2[1]f\u00a0GiB\x02%.2[1]f\u00a0TiB\x02%[1]s: %[2]q\x02Adr" +
-	"esă IP invalidă\x02Lungimea prefixului de rețea este invalidă\x02Lipseșt" +
-	"e portul de la punctul final\x02Gazdă invalidă a punctului final\x02Para" +
-	"ntezele trebuie să conțină o adresă IPv6\x02MTU invalidă\x02Port invalid" +
-	"\x02Mesaj keepalive persistent invalid\x02Cheie invalidă: %[1]v\x02Rezul" +
-	"tatul decodificat de chei trebuie să aibă exact 32 de octeți\x02Numărul " +
-	"trebuie să fie cuprins între 0 și 2^64-1: %[1]v\x02Două virgule una după" +
-	" cealaltă\x02Numele tunelului nu este valid\x02Linia trebuie să apară în" +
-	"tr-o secțiune\x02Cheii de configurare îi lipsește un separator de forma " +
-	"semnului egal\x02Cheia trebuie să conțină o valoare\x02Cheie invalidă pe" +
-	"ntru secțiunea [Interface]\x02Cheie invalidă pentru secțiunea [Peer]\x02" +
-	"O interfață trebuie să aibă o cheie privată\x02[niciuna specificată]\x02" +
-	"Toate perechile trebuie să aibă chei publice\x02Eroare la obținerea conf" +
-	"igurației\x02Cheie invalidă pentru secțiunea interfeței\x02Versiunea de " +
-	"protocol trebuie să fie 1\x02Cheie invalidă pentru secțiunea perechii" +
-	"\x02&Despre AmneziaWG…"
+	"putut fi dezactivat\x02Interfață: %[1]s\x02Pereche\x02Timp\x02Inactiv" +
+	"\x02&Copiere\x02Selectare &totală\x02Creare tunel nou\x02Editare tunel" +
+	"\x02&Nume:\x02Cheie &publică:\x02(necunoscută)\x02&Blochează traficul ca" +
+	"re nu trece prin tunel (întrerupător de activitate)\x02&Salvare\x02Anula" +
+	"re\x02&Configurație:\x02Nume invalid\x02Este necesar un nume.\x02Numele " +
+	"tunelului „%[1]s” este invalid.\x02Tunelurile existente nu pot fi listat" +
+	"e\x02Tunelul există deja\x02Există deja un alt tunel cu numele „%[1]s”." +
+	"\x02Nu se poate crea configurația nouă\x02Scrierea fișierului a eșuat" +
+	"\x02Fișierul „%[1]s” există deja.\x0a\x0aDorești suprascrierea acestuia?" +
+	"\x02Activ\x02Se activează\x02Se dezactivează\x02Stare necunoscută\x02Jur" +
+	"nal\x02&Salvare în fișier…\x02Mesaj de jurnal\x02Fișiere text (*.txt)|*." +
+	"txt|Toate fișierele (*.*)|*.*\x02Exportare jurnal în fișier\x02Eroare de" +
+	" tunel\x02%[1]s\x0a\x0aConsultă jurnalul pentru mai multe informații." +
+	"\x02%[1]s (neactualizat)\x02Eroare de detectare AmneziaWG\x02Nu se poate" +
+	" aștepta ca fereastra AmneziaWG să apară: %[1]v\x02AmneziaWG: dezactivat" +
+	"\x02Stare: necunoscută\x02Adrese: niciuna\x02&Gestionare tuneluri…\x02&I" +
+	"mportare tunel(uri) din fișier…\x02Ie&șire\x02&Tuneluri\x02AmneziaWG act" +
+	"ivat\x02Tunelul %[1]s a fost activat.\x02AmneziaWG dezactivat\x02Tunelul" +
+	" %[1]s a fost dezactivat.\x02Eroare de tunel AmneziaWG\x02AmneziaWG: %[1" +
+	"]s\x02Stare: %[1]s\x02Adrese: %[1]s\x02Este disponibilă o actualizare!" +
+	"\x02Actualizare disponibilă pentru AmneziaWG\x02O actualizare pentru Amn" +
+	"eziaWG este acum disponibilă. Se recomandă efectuarea actualizării cât m" +
+	"ai rapid posibil.\x02Tuneluri\x02&Editare\x02Adăugare tunel &gol…\x02Adă" +
+	"ugare tunel\x02Eliminare tunel(uri) selectat(e)\x02Exportă toate tunelur" +
+	"ile în zip\x02&Comutare\x02Exportă toate tunelurile în &zip…\x02Editare " +
+	"tunel &selectat…\x02&Eliminare tunel(uri) selectat(e)\x02nu au fost găsi" +
+	"te fișiere de configurare\x02Configurația selectată nu a putut fi import" +
+	"ată: %[1]v\x02Tunelurile existente nu au putut fi enumerate: %[1]v\x02Ex" +
+	"istă deja un alt tunel cu numele „%[1]s”\x02Configurația nu poate fi imp" +
+	"ortată: %[1]v\x02Tuneluri importate\x14\x01\x81\x01\x00\x04\x18\x02Impor" +
+	"tat %[1]d tuneluri\x02\x15\x02Importat %[1]d tunel\x00\x1b\x02Importat %" +
+	"[1]d de tuneluri\x14\x02\x80\x01\x04\x22\x02Importat %[1]d din %[2]d tun" +
+	"eluri\x02\x1f\x02Importat %[1]d din %[2]d tunel\x00%\x02Importat %[1]d d" +
+	"in %[2]d de tuneluri\x02Tunelul nu poate fi creat\x14\x01\x81\x01\x00" +
+	"\x04\x19\x02Ștergere %[1]d tuneluri\x02\x16\x02Ștergere %[1]d tunel\x00" +
+	"\x1c\x02Ștergere %[1]d de tuneluri\x14\x01\x81\x01\x00\x045\x02Ești sigu" +
+	"r că dorești să ștergi %[1]d tuneluri?\x022\x02Ești sigur că dorești să " +
+	"ștergi %[1]d tunel?\x008\x02Ești sigur că dorești să ștergi %[1]d de tu" +
+	"neluri?\x02Ștergere tunel „%[1]s”\x02Ești sigur că dorești să ștergi tun" +
+	"elul „%[1]s”?\x02%[1]s Această acțiune nu poate fi anulată.\x02Tunelul n" +
+	"u poate fi șters\x02Un tunel nu a putut fi eliminat: %[1]s\x02Nu se pot " +
+	"șterge tunelurile\x14\x01\x81\x01\x00\x04)\x02%[1]d tuneluri nu au putu" +
+	"t fi eliminate.\x02$\x02%[1]d tunel nu a putut fi eliminat.\x00,\x02%[1]" +
+	"d de tuneluri nu au putut fi eliminate.\x02Fișiere de configurare (*.zip" +
+	", *.conf)|*.zip;*.conf|Toate fișierele (*.*)|*.*\x02Importare tunel(uri)" +
+	" din fișier\x02Fișiere ZIP de configurare (*.zip)|*.zip\x02Exportare tun" +
+	"eluri în zip\x02%[1]s (versiune nesemnată, fără actualizări)\x02Eroare l" +
+	"a ieșirea din AmneziaWG\x02Nu se poate ieși din serviciu din cauza: %[1]" +
+	"v. Poți opri AmneziaWG din managerul de servicii.\x02Este disponibilă o " +
+	"actualizare pentru AmneziaWG. Se recomandă ferm actualizarea imediată." +
+	"\x02Stare: se așteaptă utilizatorul\x02Actualizează acum\x02Stare: se aș" +
+	"teaptă serviciul de actualizare\x02Eroare: %[1]v. Încearcă din nou.\x02S" +
+	"tare: finalizată!\x02Acum\x02Ceasul de sistem a fost dat în spate!\x14" +
+	"\x01\x81\x01\x00\x04\x0a\x02%[1]d ani\x02\x09\x02%[1]d an\x00\x0d\x02%[1" +
+	"]d de ani\x14\x01\x81\x01\x00\x04\x0b\x02%[1]d zile\x02\x09\x02%[1]d zi" +
+	"\x00\x0e\x02%[1]d de zile\x14\x01\x81\x01\x00\x04\x0a\x02%[1]d ore\x02" +
+	"\x0b\x02%[1]d oră\x00\x0d\x02%[1]d de ore\x14\x01\x81\x01\x00\x04\x0d" +
+	"\x02%[1]d minute\x02\x0c\x02%[1]d minut\x00\x10\x02%[1]d de minute\x14" +
+	"\x01\x81\x01\x00\x04\x0e\x02%[1]d secunde\x02\x0f\x02%[1]d secundă\x00" +
+	"\x11\x02%[1]d de secunde\x02acum %[1]s\x02%[1]d\u00a0B\x02%.2[1]f\u00a0K" +
+	"iB\x02%.2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB\x02%.2[1]f\u00a0TiB\x02%[1]s:" +
+	" %[2]q\x02Adresă IP invalidă\x02Lungimea prefixului de rețea este invali" +
+	"dă\x02Lipsește portul de la punctul final\x02Gazdă invalidă a punctului " +
+	"final\x02Parantezele trebuie să conțină o adresă IPv6\x02MTU invalidă" +
+	"\x02Port invalid\x02Mesaj keepalive persistent invalid\x02Cheie invalidă" +
+	": %[1]v\x02Rezultatul decodificat de chei trebuie să aibă exact 32 de oc" +
+	"teți\x02Numărul trebuie să fie cuprins între 0 și 2^64-1: %[1]v\x02Două " +
+	"virgule una după cealaltă\x02Numele tunelului nu este valid\x02Linia tre" +
+	"buie să apară într-o secțiune\x02Cheii de configurare îi lipsește un sep" +
+	"arator de forma semnului egal\x02Cheia trebuie să conțină o valoare\x02C" +
+	"heie invalidă pentru secțiunea [Interface]\x02Cheie invalidă pentru secț" +
+	"iunea [Peer]\x02O interfață trebuie să aibă o cheie privată\x02[niciuna " +
+	"specificată]\x02Toate perechile trebuie să aibă chei publice\x02Eroare l" +
+	"a obținerea configurației\x02Cheie invalidă pentru secțiunea interfeței" +
+	"\x02Versiunea de protocol trebuie să fie 1\x02Cheie invalidă pentru secț" +
+	"iunea perechii\x02&Despre AmneziaWG…"
 
-var ruIndex = []uint32{ // 304 elements
+var ruIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x0000000d, 0x000000a9, 0x000000d4,
 	0x00000107, 0x00000166, 0x000001c9, 0x00000220,
@@ -3494,15 +4143,15 @@ var ruIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x000005ad, 0x000005cf, 0x000005ef, 0x00000619,
 	0x0000062a, 0x0000065d, 0x000006a8, 0x000006e0,
-	0x00000716, 0x00000730, 0x00000737, 0x00000755,
-	0x0000077f, 0x00000788, 0x000007a6, 0x000007bd,
-	0x00000816, 0x0000082a, 0x00000837, 0x00000852,
-	0x00000872, 0x0000088d, 0x000008c7, 0x000008ff,
-	0x0000092a, 0x00000972, 0x000009b9, 0x000009e6,
-	0x00000a4c, 0x00000a5f, 0x00000a76, 0x00000a87,
+	0x00000716, 0x00000730, 0x00000737, 0x00000742,
+	0x00000753, 0x00000769, 0x00000780, 0x0000079e,
+	0x000007c8, 0x000007d1, 0x000007ef, 0x00000806,
+	0x0000085f, 0x00000873, 0x00000880, 0x0000089b,
+	0x000008bb, 0x000008d6, 0x00000910, 0x00000948,
+	0x00000973, 0x000009bb, 0x00000a02, 0x00000a2f,
 	// Entry 40 - 5F
-	0x00000a9c, 0x00000ac6, 0x00000ad3, 0x00000ae9,
-	0x00000b00, 0x00000b23, 0x00000b2e, 0x00000b50,
+	0x00000a95, 0x00000aa8, 0x00000abf, 0x00000ad4,
+	0x00000afe, 0x00000b0b, 0x00000b2e, 0x00000b50,
 	0x00000b98, 0x00000bc2, 0x00000bde, 0x00000c59,
 	0x00000c70, 0x00000c9e, 0x00000cf2, 0x00000d18,
 	0x00000d3b, 0x00000d50, 0x00000d7c, 0x00000dae,
@@ -3564,13 +4213,41 @@ var ruIndex = []uint32{ // 304 elements
 	0x0000246e, 0x0000246e, 0x0000246e, 0x0000246e,
 	0x0000246e, 0x0000246e, 0x0000246e, 0x0000246e,
 	// Entry 120 - 13F
-	0x0000246e, 0x0000246e, 0x0000246e, 0x0000246e,
-	0x0000246e, 0x0000246e, 0x0000246e, 0x0000246e,
-	0x0000246e, 0x0000246e, 0x0000246e, 0x000024e9,
-	0x00002552, 0x00002552, 0x00002552, 0x00002552,
-} // Size: 1240 bytes
+	0x0000246e, 0x0000246e, 0x00002485, 0x00002518,
+	0x00002524, 0x00002542, 0x00002546, 0x0000256f,
+	0x00002580, 0x0000258f, 0x000025b7, 0x000025c2,
+	0x000025d0, 0x000025df, 0x000025f0, 0x00002608,
+	0x00002619, 0x00002641, 0x0000265c, 0x00002668,
+	0x00002698, 0x000026b0, 0x000026c1, 0x000026d2,
+	0x000026ee, 0x00002719, 0x00002769, 0x000027a3,
+	0x000027d3, 0x00002831, 0x0000285b, 0x00002891,
+	// Entry 140 - 15F
+	0x00002898, 0x000028a7, 0x000028b7, 0x000028c8,
+	0x00002906, 0x0000292e, 0x0000296a, 0x0000299e,
+	0x000029b0, 0x000029da, 0x00002a00, 0x00002b0b,
+	0x00002b15, 0x00002bb8, 0x00002bc5, 0x00002c82,
+	0x00002c91, 0x00002d5d, 0x00002d6e, 0x00002df2,
+	0x00002e50, 0x00002f47, 0x00002fc2, 0x00003046,
+	0x00003059, 0x00003120, 0x00003169, 0x000031ed,
+	0x00003220, 0x0000329c, 0x000032db, 0x000033ba,
+	// Entry 160 - 17F
+	0x000033d2, 0x000033ea, 0x0000346b, 0x00003485,
+	0x000034e5, 0x000034fc, 0x00003585, 0x00003592,
+	0x000035c6, 0x00003610, 0x0000366b, 0x000036a9,
+	0x00003719, 0x0000379a, 0x000037eb, 0x000037fe,
+	0x00003829, 0x00003899, 0x00003900, 0x00003947,
+	0x0000397d, 0x000039bb, 0x000039f1, 0x00003a04,
+	0x00003a3e, 0x00003a60, 0x00003a72, 0x00003a84,
+	0x00003a94, 0x00003a94, 0x00003ab0, 0x00003abb,
+	// Entry 180 - 19F
+	0x00003bc5, 0x00003c33, 0x00003cc6, 0x00003d4c,
+	0x00003d57, 0x00003e3b, 0x00003e8f, 0x00003f3c,
+	0x00003f8c, 0x00003f8c, 0x00003f8c, 0x00003f8c,
+	0x00003f8c, 0x00003f8c, 0x00003f8c, 0x00003f8c,
+	0x00003f8c, 0x00003fb3, 0x00003fba, 0x00003fba,
+} // Size: 1640 bytes
 
-const ruData string = "" + // Size: 9554 bytes
+const ruData string = "" + // Size: 16314 bytes
 	"\x02Ошибка\x02(нет аргумента): получить права администратора и установит" +
 	"ь административную службу\x02Использование: %[1]s [\x0a%[2]s]\x02Параме" +
 	"тры командной строки\x02Ошибка определения или процесс работает как WOW" +
@@ -3587,21 +4264,21 @@ const ruData string = "" + // Size: 9554 bytes
 	"\x02после подключения\x02перед отключением\x02после отключения\x02отключ" +
 	"ено, по политике\x02включено\x02Получено %[1]s, отправлено %[2]s\x02Не " +
 	"удалось определить состояние туннеля\x02Не удалось подключить туннель" +
-	"\x02Не удалось отключить туннель\x02Интерфейс: %[1]s\x02Пир\x02Создать т" +
-	"уннель\x02Редактировать туннель\x02&Имя:\x02&Публичный ключ:\x02(неизве" +
-	"стно)\x02&Блокировать трафик, идущий мимо туннеля (kill-switch)\x02&Сох" +
-	"ранить\x02Отмена\x02&Конфигурация:\x02Недопустимое имя\x02Требуется имя" +
-	".\x02Имя туннеля ‘%[1]s’ недопустимо.\x02Не удалось отобразить туннели" +
-	"\x02Туннель уже существует\x02Туннель с именем ’%[1]s’ уже существует." +
-	"\x02Не удалось создать новую конфигурацию\x02Ошибка при записи в файл" +
-	"\x02Файл ‘%[1]s’ уже существует!\x0a\x0aВы хотите перезаписать его?\x02П" +
-	"одключен\x02Подключение\x02Отключен\x02Отключение\x02Неизвестное состоя" +
-	"ние\x02Журнал\x02&Копировать\x02Выбрать &все\x02&Сохранить в файл…\x02В" +
-	"ремя\x02Сообщение журнала\x02Текстовые файлы (*.txt)|*.txt|Все файлы (*" +
-	".*)|*.*\x02Экспорт журнала в файл\x02Ошибка туннеля\x02%[1]s\x0a\x0aОбра" +
-	"титесь к журналу для получения дополнительной информации.\x02%[1]s (уст" +
-	"арел)\x02Ошибка обнаружения AmneziaWG\x02Не удалось дождаться появления" +
-	" окна AmneziaWG: %[1]v\x02AmneziaWG: деактивирован\x02Статус: неизвестен" +
+	"\x02Не удалось отключить туннель\x02Интерфейс: %[1]s\x02Пир\x02Время\x02" +
+	"Отключен\x02&Копировать\x02Выбрать &все\x02Создать туннель\x02Редактиро" +
+	"вать туннель\x02&Имя:\x02&Публичный ключ:\x02(неизвестно)\x02&Блокирова" +
+	"ть трафик, идущий мимо туннеля (kill-switch)\x02&Сохранить\x02Отмена" +
+	"\x02&Конфигурация:\x02Недопустимое имя\x02Требуется имя.\x02Имя туннеля " +
+	"‘%[1]s’ недопустимо.\x02Не удалось отобразить туннели\x02Туннель уже с" +
+	"уществует\x02Туннель с именем ’%[1]s’ уже существует.\x02Не удалось соз" +
+	"дать новую конфигурацию\x02Ошибка при записи в файл\x02Файл ‘%[1]s’ уже" +
+	" существует!\x0a\x0aВы хотите перезаписать его?\x02Подключен\x02Подключе" +
+	"ние\x02Отключение\x02Неизвестное состояние\x02Журнал\x02&Сохранить в фа" +
+	"йл…\x02Сообщение журнала\x02Текстовые файлы (*.txt)|*.txt|Все файлы (*." +
+	"*)|*.*\x02Экспорт журнала в файл\x02Ошибка туннеля\x02%[1]s\x0a\x0aОбрат" +
+	"итесь к журналу для получения дополнительной информации.\x02%[1]s (уста" +
+	"рел)\x02Ошибка обнаружения AmneziaWG\x02Не удалось дождаться появления " +
+	"окна AmneziaWG: %[1]v\x02AmneziaWG: деактивирован\x02Статус: неизвестен" +
 	"\x02Адреса: нет\x02&Управление туннелями…\x02&Импорт туннелей из файла…" +
 	"\x02Вы&ход\x02&Туннели\x02AmneziaWG включен\x02Туннель %[1]s подключен." +
 	"\x02AmneziaWG выключен\x02Туннель %[1]s отключен.\x02Ошибка туннеля Amne" +
@@ -3662,10 +4339,69 @@ const ruData string = "" + // Size: 9554 bytes
 	"указан]\x02Все пиры должны иметь публичные ключи\x02Ошибка при получени" +
 	"и конфигурации\x02Неверный ключ для секции интерфейса\x02Версия протоко" +
 	"ла должна быть 1\x02Недействительный ключ для секции пира\x02&О Amnezia" +
-	"WG…\x02Убедитесь, что вы получили файл конфигурации в надёжном источнике" +
-	".\x02Официальные сервисы Amnezia доступны только на сайте amnezia.org."
+	"WG…\x02Локальный DNS\x02Добавьте локальные DNS-записи. Эти домены будут " +
+	"разрешаться в указанные IP-адреса.\x02Домен:\x02например, example.com" +
+	"\x02IP:\x02например, 192.168.1.1 или ::1\x02Добавить\x02Удалить\x02Включ" +
+	"ить локальный DNS\x02Домен\x02IP-адрес\x02Туннель\x02Напрямую\x02По умо" +
+	"лчанию\x02Журнал DNS\x02Включить логирование\x02Автопрокрутка\x02Поиск:" +
+	"\x02Поиск в записях журнала DNS\x02Запросов: %[1]d\x02Обновить\x02Очисти" +
+	"ть\x02Очистить кэш DNS\x02Добавить в локальный DNS\x02Невозможно добави" +
+	"ть: домен или IP не указаны\x02%[1]s -> %[2]s добавлен в локальный DNS" +
+	"\x02Добавить в список доменов\x02Не удалось обновить правила маршрутизац" +
+	"ии доменов\x02Маршрутизация доменов\x02%[1]s добавлен в список доменов" +
+	"\x02Тип\x02Маршрут\x02IP-адреса\x02Задержка\x02Не удалось очистить кэш D" +
+	"NS: %[1]s\x0a\x0a%[2]s\x02Кэш DNS успешно очищен.\x02Запросов: %[1]d / %" +
+	"[2]d | Локальных: %[3]d\x02Запросов: %[1]d | Локальных: %[2]d\x02Общее и" +
+	" DNS\x02Правила маршрутизации\x02Режим маршрутизации\x02Маршрутизация по" +
+	" доменам позволяет направлять трафик на основе доменных имён. DNS-запрос" +
+	"ы перехватываются, а маршруты добавляются автоматически.\x02Выкл.\x02Ма" +
+	"ршрутизация по доменам отключена. Весь трафик идёт через туннель соглас" +
+	"но настройкам.\x02Мягкий\x02Для совпадающих доменов добавляются маршрут" +
+	"ы. Если маршрут добавить не удаётся, трафик всё равно идёт.\x02Строгий" +
+	"\x02Для совпадающих доменов добавляются маршруты. Если маршрут добавить " +
+	"не удаётся, DNS-запрос завершается ошибкой.\x02Только DNS\x02Только DNS" +
+	"-прокси. Трафик идёт напрямую, без маршрутизации через туннель.\x02Исклю" +
+	"чить localhost из туннеля (требуется для DNS-прокси)\x02При включении д" +
+	"обавляется маршрут, предотвращающий прохождение трафика 127.0.0.1 через" +
+	" туннель. Требуется при использовании AllowedIPs = 0.0.0.0/0\x02Отключит" +
+	"ь IPv6 (предотвращает утечки и повышает производительность)\x02При вклю" +
+	"чении перехватывает AAAA DNS-запросы и убирает IPv6 из AllowedIPs тунне" +
+	"ля.\x02DNS-запросы\x02DNS-серверы для запросов (по одному на строку, IP" +
+	" или IP:порт). Если пусто — используется системный/туннельный DNS.\x02От" +
+	"правлять DNS напрямую (в обход туннеля)\x02Привязывать DNS-запросы к фи" +
+	"зическому интерфейсу, когда туннель активен.\x02Отправлять DNS через ту" +
+	"ннель\x02Привязывать DNS-запросы к интерфейсу туннеля, когда туннель ак" +
+	"тивен.\x02Туннель для фильтруемого трафика:\x02Выберите туннель, которы" +
+	"й будет получать отфильтрованный по доменам трафик. «Авто» использует т" +
+	"екущий активный туннель.\x02Режим списка\x02Белый список\x02Через тунне" +
+	"ль идут только перечисленные домены, остальное — напрямую\x02Чёрный спи" +
+	"сок\x02Всё идёт через туннель, кроме перечисленных доменов\x02Расширенн" +
+	"ый\x02Использовать раздельные списки доменов для туннеля и прямого подк" +
+	"лючения\x02Домены\x02Домены (по одному на строку):\x02Заблокированные д" +
+	"омены (всегда активно)\x02Домены для полной блокировки (возвращается NX" +
+	"DOMAIN):\x02Правила для доменов (расширенные)\x02Домены для маршрутизаци" +
+	"и через туннель (по одному на строку):\x02Домены для прямой маршрутизац" +
+	"ии (в обход туннеля, по одному на строку):\x02Пример: google.com (соотв" +
+	"етствует google.com и *.google.com)\x02Применить\x02Авто (активный тунн" +
+	"ель)\x02Домены для маршрутизации ЧЕРЕЗ ТУННЕЛЬ (по одному на строку):" +
+	"\x02Домены для маршрутизации НАПРЯМУЮ (по одному на строку):\x02Не удало" +
+	"сь задать режим маршрутизации\x02Не удалось сохранить правила\x02Не уда" +
+	"лось сохранить настройки DNS\x02Настройки успешно сохранены.\x02Отключе" +
+	"но\x02Ожидание подключения туннеля...\x02Активно (режим %[1]s)\x02Вы&ре" +
+	"зать\x02&Вставить\x02&Удалить\x02Файрвол портов\x02Режим\x02Блокирует и" +
+	"ли разрешает отдельные TCP/UDP-порты только для трафика через активный " +
+	"туннель. На остальной системный трафик вне туннеля это не влияет.\x02Фа" +
+	"йрвол портов отключён. Все порты через туннель разрешены.\x02Через тунн" +
+	"ель разрешены только перечисленные порты, всё остальное блокируется." +
+	"\x02Перечисленные порты блокируются через туннель, всё остальное разреше" +
+	"но.\x02Порты\x02По одной записи на строку: порт или диапазон, опциональ" +
+	"но с префиксом tcp: или udp: (по умолчанию — оба). Пример: 443, 8000-81" +
+	"00, udp:51820-51830\x02Не удалось сохранить правила файрвола портов\x02Р" +
+	"ежим «белый список» с пустым списком портов заблокирует все порты через" +
+	" туннель. Продолжить?\x02Некорректная запись порта в строке %[1]d: \x22%" +
+	"[2]s\x22\x02Больше не спрашивать\x02Нет"
 
-var si_LKIndex = []uint32{ // 304 elements
+var si_LKIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000013, 0x000000a9, 0x000000cc,
 	0x000000fc, 0x00000197, 0x00000223, 0x00000293,
@@ -3678,15 +4414,15 @@ var si_LKIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x00000731, 0x00000748, 0x00000768, 0x000007ab,
 	0x000007bb, 0x000007ee, 0x0000084b, 0x00000895,
-	0x000008e2, 0x0000090b, 0x00000935, 0x0000095f,
-	0x00000992, 0x0000099b, 0x000009b7, 0x000009c9,
-	0x00000a4f, 0x00000a69, 0x00000a7c, 0x00000a9a,
-	0x00000ac4, 0x00000aeb, 0x00000b1f, 0x00000b6f,
-	0x00000b9c, 0x00000c02, 0x00000c51, 0x00000c8d,
-	0x00000d15, 0x00000d34, 0x00000d5d, 0x00000d76,
+	0x000008e2, 0x0000090b, 0x00000935, 0x00000945,
+	0x0000095e, 0x00000975, 0x0000099c, 0x000009c6,
+	0x000009f9, 0x00000a02, 0x00000a1e, 0x00000a30,
+	0x00000ab6, 0x00000ad0, 0x00000ae3, 0x00000b01,
+	0x00000b2b, 0x00000b52, 0x00000b86, 0x00000bd6,
+	0x00000c03, 0x00000c69, 0x00000cb8, 0x00000cf4,
 	// Entry 40 - 5F
-	0x00000d99, 0x00000dc8, 0x00000dd5, 0x00000dec,
-	0x00000e13, 0x00000e46, 0x00000e56, 0x00000e79,
+	0x00000d7c, 0x00000d9b, 0x00000dc4, 0x00000de7,
+	0x00000e16, 0x00000e23, 0x00000e56, 0x00000e79,
 	0x00000ec5, 0x00000f08, 0x00000f1f, 0x00000f91,
 	0x00000fb7, 0x00000ff0, 0x00001086, 0x000010b5,
 	0x000010d9, 0x00001107, 0x00001140, 0x00001189,
@@ -3752,7 +4488,35 @@ var si_LKIndex = []uint32{ // 304 elements
 	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
 	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
 	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
-} // Size: 1240 bytes
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	// Entry 140 - 15F
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	// Entry 160 - 17F
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	// Entry 180 - 19F
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+	0x00002b64, 0x00002b64, 0x00002b64, 0x00002b64,
+} // Size: 1640 bytes
 
 const si_LKData string = "" + // Size: 11108 bytes
 	"\x02දෝෂයකි\x02(තර්කයක් නැත): කළමනාකරු සේවාව ඉහළ නැංවීම සහ ස්ථාපනය කිරීම" +
@@ -3771,17 +4535,17 @@ const si_LKData string = "" + // Size: 11108 bytes
 	"\x02පශ්චාත්-අප්\x02පෙර-පහළට\x02පශ්චාත්-පහළ\x02ආබාධිත, ප්රතිපත්තිය අනුව" +
 	"\x02සබලයි\x02%[1]s ලැබුණී, %[2]s යැවිණි\x02උමං තත්ත්වය තීරණය කිරීමට අසමත" +
 	"් විය\x02උමග සක්රිය කිරීමට අසමත් විය\x02උමග අක්\u200dරිය කිරීමට අසමත් " +
-	"විය\x02අතුරුමුහුණත: %[1]s\x02සම වයසේ මිතුරන්\x02නව උමගක් සාදන්න\x02උමග" +
-	" සංස්කරණය කරන්න\x02&නම:\x02&පොදු යතුර:\x02(නොදනී)\x02&උමං මාර්ග රහිත ගමන" +
-	"ාගමනය අවහිර කරන්න (මරන්න-ස්විච්)\x02&සුරකින්න\x02අවලංගු\x02&වින්\u200d" +
-	"යාසය:\x02වලංගු නොවන නමකි\x02නමක් අවශ්\u200dයයි.\x02උමං නම '%[1]s' වලංග" +
-	"ු නැත.\x02පවතින උමං ලැයිස්තුගත කළ නොහැක\x02උමග දැනටමත් පවතී\x02තවත් උම" +
-	"ගක් දැනටමත් '%[1]s' යන නාමයෙන් පවතී.\x02නව වින්\u200dයාසය සෑදීමට නොහැක" +
-	"ියි\x02ගොනුව ලිවීමට අසමත්විය\x02'%[1]s' ගොනුව දැනටමත් පවතී.\x0a\x0aඔබට" +
-	" එය උඩින් ලිවීමට අවශ්\u200dයද?\x02ක්රියාකාරී\x02සක්\u200dරිය වෙමින්\x02අ" +
-	"ක්රියයි\x02අක්රිය කිරීම\x02නොදන්නා තත්\u200dවයකි\x02සටහන\x02&පිටපතක්" +
-	"\x02&සියල්ල තෝරන්න\x02&ගොනුවකට සුරකින්න…\x02වේලාව\x02ලොග් පණිවිඩය\x02පෙළ" +
-	" ගොනු (*.txt)|*.txt|සියලු ගොනු (*.*)|*.*\x02ලොගය ගොනුවට අපනයනය කරන්න\x02" +
+	"විය\x02අතුරුමුහුණත: %[1]s\x02සම වයසේ මිතුරන්\x02වේලාව\x02අක්රියයි\x02&" +
+	"පිටපතක්\x02&සියල්ල තෝරන්න\x02නව උමගක් සාදන්න\x02උමග සංස්කරණය කරන්න\x02" +
+	"&නම:\x02&පොදු යතුර:\x02(නොදනී)\x02&උමං මාර්ග රහිත ගමනාගමනය අවහිර කරන්න (" +
+	"මරන්න-ස්විච්)\x02&සුරකින්න\x02අවලංගු\x02&වින්\u200dයාසය:\x02වලංගු නොවන" +
+	" නමකි\x02නමක් අවශ්\u200dයයි.\x02උමං නම '%[1]s' වලංගු නැත.\x02පවතින උමං ල" +
+	"ැයිස්තුගත කළ නොහැක\x02උමග දැනටමත් පවතී\x02තවත් උමගක් දැනටමත් '%[1]s' ය" +
+	"න නාමයෙන් පවතී.\x02නව වින්\u200dයාසය සෑදීමට නොහැකියි\x02ගොනුව ලිවීමට අ" +
+	"සමත්විය\x02'%[1]s' ගොනුව දැනටමත් පවතී.\x0a\x0aඔබට එය උඩින් ලිවීමට අවශ්" +
+	"\u200dයද?\x02ක්රියාකාරී\x02සක්\u200dරිය වෙමින්\x02අක්රිය කිරීම\x02නොදන්න" +
+	"ා තත්\u200dවයකි\x02සටහන\x02&ගොනුවකට සුරකින්න…\x02ලොග් පණිවිඩය\x02පෙළ ග" +
+	"ොනු (*.txt)|*.txt|සියලු ගොනු (*.*)|*.*\x02ලොගය ගොනුවට අපනයනය කරන්න\x02" +
 	"උමං දෝෂය\x02%[1]s\x0a\x0aවැඩි විස්තර සඳහා කරුණාකර ලඝු-සටහන බලන්න.\x02%" +
 	"[1]s (ඉකුත් වී ඇත)\x02AmneziaWG හඳුනාගැනීමේ දෝෂය\x02වයර්ගාඩ් කවුළුව පෙනෙ" +
 	"න තෙක් බලා සිටීමට බලාපොරොත්තු වේ: %[1]v\x02AmneziaWG: අක්\u200dරිය කර " +
@@ -3838,7 +4602,7 @@ const si_LKData string = "" + // Size: 11108 bytes
 	"\x02කෙටුම්පතෙහි අනු. 1 විය යුතුය\x02සම වයසේ කොටස සඳහා වලංගු නොවන යතුරක්" +
 	"\x02&වයර්ගාඩ් ගැන…"
 
-var skIndex = []uint32{ // 304 elements
+var skIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000006, 0x0000005e, 0x00000078,
 	0x00000097, 0x000000d1, 0x0000011e, 0x00000156,
@@ -3851,15 +4615,15 @@ var skIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x0000037e, 0x0000038d, 0x00000399, 0x000003ba,
 	0x000003c4, 0x000003e8, 0x0000040a, 0x00000429,
-	0x0000044a, 0x0000045b, 0x00000460, 0x00000476,
-	0x00000485, 0x0000048e, 0x000004a1, 0x000004ac,
-	0x000004da, 0x000004e4, 0x000004ed, 0x000004fd,
-	0x0000050e, 0x00000522, 0x0000054a, 0x00000580,
-	0x00000593, 0x000005bd, 0x000005ea, 0x0000060d,
-	0x0000064a, 0x00000653, 0x0000065f, 0x0000066a,
+	0x0000044a, 0x0000045b, 0x00000460, 0x00000465,
+	0x00000470, 0x0000047d, 0x0000048e, 0x000004a4,
+	0x000004b3, 0x000004bc, 0x000004cf, 0x000004da,
+	0x00000508, 0x00000512, 0x0000051b, 0x0000052b,
+	0x0000053c, 0x00000550, 0x00000578, 0x000005ae,
+	0x000005c1, 0x000005eb, 0x00000618, 0x0000063b,
 	// Entry 40 - 5F
-	0x00000678, 0x00000686, 0x00000698, 0x000006a5,
-	0x000006b6, 0x000006ce, 0x000006d3, 0x000006f0,
+	0x00000678, 0x00000681, 0x0000068d, 0x0000069b,
+	0x000006a9, 0x000006bb, 0x000006d3, 0x000006f0,
 	0x00000729, 0x00000752, 0x0000075f, 0x00000797,
 	0x000007aa, 0x000007c3, 0x000007fe, 0x00000817,
 	0x00000825, 0x00000835, 0x0000084b, 0x0000086f,
@@ -3925,7 +4689,35 @@ var skIndex = []uint32{ // 304 elements
 	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
 	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
 	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
-} // Size: 1240 bytes
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	// Entry 140 - 15F
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	// Entry 160 - 17F
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	// Entry 180 - 19F
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+	0x000017b4, 0x000017b4, 0x000017b4, 0x000017b4,
+} // Size: 1640 bytes
 
 const skData string = "" + // Size: 6068 bytes
 	"\x02Chyba\x02(bez argumentu): získať administrátorské práva a nainštalov" +
@@ -3944,85 +4736,85 @@ const skData string = "" + // Size: 6068 bytes
 	"ed-vypnutím\x02po-vypnutí\x02zakázané, na základe pravidla\x02povolené" +
 	"\x02%[1]s prijatých, %[2]s odoslaných\x02Nepodarilo sa zistiť stav tunel" +
 	"a\x02Nepodarilo sa aktivovať tunel\x02Nepodarilo sa deaktivovať tunel" +
-	"\x02Rozhranie: %[1]s\x02Peer\x02Vytvoriť nový tunel\x02Upraviť tunel\x02" +
-	"&Názov:\x02&Verejný kľúč:\x02(neznámy)\x02&Blokovať netunelovaný prenos " +
-	"(kill-switch)\x02&Uložiť\x02Zrušiť\x02&Konfigurácia:\x02Neplatný názov" +
-	"\x02Názov je povinný.\x02Názov tunela ‘%[1]s’ je neplatný.\x02Nepodarilo" +
-	" sa pripraviť zoznam existujúcich tunelov\x02Tunel už existuje\x02Tunel " +
-	"s názvom ‘%[1]s’ už existuje.\x02Nie je možné vytvoriť novú konfiguráciu" +
-	"\x02Nepodarilo sa zapísať do súboru\x02Súbor ‘%[1]s’ už existuje.\x0a" +
-	"\x0aŽeláte si ho prepísať?\x02Aktívny\x02Aktivuje sa\x02Neaktívny\x02Dea" +
-	"ktivuje sa\x02Neznámy stav\x02Denník udalostí\x02&Kopírovať\x02Vybr&ať v" +
-	"šetko\x02Uložiť do &súboru…\x02Čas\x02Správa v denníku udalostí\x02Text" +
-	"ové súbory (*.txt)|*.txt|Všetky súbory (*.*)|*.*\x02Exportovať denník ud" +
-	"alostí do súboru\x02Chyba tunela\x02%[1]s\x0a\x0aViac informácií nájdete" +
-	" v denníku udalostí.\x02%[1]s (neaktuány)\x02Chyba detekcie AmneziaWG" +
-	"\x02Nie je možné čakať na zobrazenie AmneziaWG okna: %[1]v\x02AmneziaWG:" +
-	" deaktivovaný\x02Stav: Nezámy\x02Adresa: žiadna\x02&Spravovať tunely…" +
-	"\x02&Importovať tunel(y) zo súboru…\x02U&končiť\x02&Tunely\x02AmneziaWG " +
-	"je aktivovaný\x02Tunel %[1]s bol aktivovaný.\x02AmneziaWG je deaktivovan" +
-	"ý\x02Tunel %[1]s bol deaktivovaný.\x02Chyba AmneziaWG tunelu\x02Amnezia" +
-	"WG: %[1]s\x02Stav: %[1]s\x02Adresa: %[1]s\x02Je dostupná aktualizácia!" +
-	"\x02Dostupná aktualizácia pre AmneziaWG\x02Je k dispozícii aktualizácia " +
-	"programu AmneziaWG. Je odporúčané čo najskôr vykonať aktualizáciu.\x02Tu" +
-	"nely\x02&Upraviť\x02Pridať &prázdny tunel…\x02Pridať tunel\x02Odstrániť " +
-	"označený(é) tunel(y)\x02Export všetkých tunelov do zip súboru\x02P&repnú" +
-	"ť\x02Export všetkých tunelov do &zip súboru…\x02Upraviť &označený tunel" +
-	"…\x02&Odstrániť označené tunely\x02neboli nájdené žiadne konfiguračné " +
-	"súbory\x02Nepodarilo sa naimportovať vybrané konfigurácie: %[1]v\x02Nepo" +
-	"darilo sa načítať existujúce tunely: %[1]v\x02Už existuje tunel s názvom" +
-	" '%[1]s'\x02Nepodarilo sa naimportovať konfiguráciu: %[1]v\x02Naimportov" +
-	"ané tunely\x14\x01\x81\x01\x00\x04\x1c\x02Naimportované %[1]d tunely\x05" +
-	"\x1f\x02Naimportovaných %[1]d tunelov\x02\x19\x02Importovaný %[1]d tunel" +
-	"\x00\x1f\x02Naimportovaných %[1]d tunelov\x14\x02\x80\x01\x04%\x02Naimpo" +
-	"rtované %[1]d z %[2]d tunelov\x05'\x02Naimportovaných %[1]d z %[2]d tune" +
-	"lov\x02%\x02Naimportovaný %[1]d z %[2]d tunelov\x00'\x02Naimportovaných " +
-	"%[1]d z %[2]d tunelov\x02Tunel sa nedá vytvoriť\x14\x01\x81\x01\x00\x04" +
-	"\x19\x02Odstránene %[1]d tunely\x05\x1d\x02Odstránených %[1]d tunelov" +
-	"\x02\x19\x02Odstránený %[1]d tunel\x00\x1d\x02Odstránených %[1]d tunelov" +
-	"\x14\x01\x81\x01\x00\x048\x02Ste si istý, že si želáte odstrániť %[1]d t" +
-	"unely?\x059\x02Ste si istý, že si želáte odstrániť %[1]d tunelov?\x027" +
-	"\x02Ste si istý, že si želáte odstrániť %[1]d tunel?\x009\x02Ste si istý" +
-	", že si želáte odstrániť %[1]d tunelov?\x02Odstránenie tunela ‘%[1]s’" +
-	"\x02Ste si istý, že si želáte odstrániť tunel ‘%[1]s’?\x02%[1]s Túto akc" +
-	"iu nemôže vrátiť späť.\x02Tunel sa nedá odstrániť\x02Nebolo možné odstrá" +
-	"niť tunel: %[1]s\x02Tunely sa nedajú odstrániť\x14\x01\x81\x01\x00\x04)" +
-	"\x02%[1]d tunely nebolo možné odstrániť.\x05*\x02%[1]d tunelov nebolo mo" +
-	"žné odstrániť.\x02(\x02%[1]d tunel nebolo možné odstrániť.\x00*\x02%[1]" +
-	"d tunelov nebolo možné odstrániť.\x02Konfirugačné súbory (*.zip, *.conf)" +
-	"|*.zip;*.conf|Všetky súbory (*.*)|*.*\x02Importovať tunel(y) zo súboru" +
-	"\x02Konfiguračné ZIP súbry (*.zip)|*.zip\x02Export tunelov do zip súboru" +
-	"\x02%[1]s (nepodpísaná verzia, žiadne aktualizácie)\x02Chyba ukončenia A" +
-	"mneziaWG\x02Nie je možné ukončiť služby z dôvodu: %[1]v. Skúste zastaviť" +
-	" AmneziaWG v správcovi služieb.\x02Je k dispozícii nová verzia programu " +
-	"AmneziaWG. Odporúčame bezodkladne vykonať aktualizáciu.\x02Stav: Čaká sa" +
-	" na užívateľa\x02Aktualizovať teraz\x02Stav: Čaká sa na aktualizačnú slu" +
-	"žbu\x02Chyba: %[1]v. Skúste to znova.\x02Stav: Dokončené!\x02Teraz\x02S" +
-	"ystémové hodiny sa vrátili v čase!\x14\x01\x81\x01\x00\x04\x0b\x02%[1]d " +
-	"roky\x05\x0c\x02%[1]d rokov\x02\x0a\x02%[1]d rok\x00\x0c\x02%[1]d rokov" +
-	"\x14\x01\x81\x01\x00\x04\x0a\x02%[1]d dni\x05\x0b\x02%[1]d dní\x02\x0b" +
-	"\x02%[1]d deň\x00\x0b\x02%[1]d dní\x14\x01\x81\x01\x00\x04\x0d\x02%[1]d " +
-	"hodiny\x05\x0d\x02%[1]d hodín\x02\x0d\x02%[1]d hodina\x00\x0d\x02%[1]d h" +
-	"odín\x14\x01\x81\x01\x00\x04\x0e\x02%[1]d minúty\x05\x0d\x02%[1]d minút" +
-	"\x02\x0e\x02%[1]d minúta\x00\x0d\x02%[1]d minút\x14\x01\x81\x01\x00\x04" +
-	"\x0e\x02%[1]d sekundy\x05\x0e\x02%[1]d sekúnd\x02\x0e\x02%[1]d sekunda" +
-	"\x00\x0e\x02%[1]d sekúnd\x02Pred %[1]s\x02%[1]d\u00a0B\x02%.2[1]f\u00a0K" +
-	"iB\x02%.2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB\x02%.2[1]f\u00a0TiB\x02%[1]s:" +
-	" %[2]q\x02Neplatná adresa IP\x02Neplatná dĺžka sieťového prefixu\x02Konc" +
-	"ovému bodu chýba číslo portu\x02Neplatný hostiteľ koncového bodu\x02Medz" +
-	"i zátvorkami musí byť IPv6 adresa\x02Neplatné MTU\x02Neplatný port\x02Ne" +
-	"platný perzistentný keepalive\x02Neplatný kľúč: %[1]v\x02Dekódované kľúč" +
-	"e musia mať veľkosť 32 bajtov\x02Číslo musí mať hodnotu medzi 0 a 2^64-1" +
-	": %[1]v\x02Dve čiarky v poradí\x02Názov tunela nie je platný\x02Sekcia m" +
-	"usí obsahovať čiaru\x02Konfiguračný kľúč neobsahuje separátor (znamienko" +
-	" rovnosti)\x02Kľúč musí obsahovať hodnotu\x02Neplatný kľúč sekcie [Inter" +
-	"face]\x02Neplatný kľúč sekcie [Peer]\x02Rozhranie musí mať priradený súk" +
-	"romný kľúč\x02[nešpecifikované]\x02Všetci peeri musia mať priradený vere" +
-	"jný kľúč\x02Chyba pri získavaní konfigurácie\x02Neplatný kľúč sekcie roz" +
-	"hrania\x02Verzia protokolu musí byť 1\x02Neplatný kľúč peer sekcie\x02&O" +
-	" AmneziaWG…"
+	"\x02Rozhranie: %[1]s\x02Peer\x02Čas\x02Neaktívny\x02&Kopírovať\x02Vybr&a" +
+	"ť všetko\x02Vytvoriť nový tunel\x02Upraviť tunel\x02&Názov:\x02&Verejný" +
+	" kľúč:\x02(neznámy)\x02&Blokovať netunelovaný prenos (kill-switch)\x02&U" +
+	"ložiť\x02Zrušiť\x02&Konfigurácia:\x02Neplatný názov\x02Názov je povinný." +
+	"\x02Názov tunela ‘%[1]s’ je neplatný.\x02Nepodarilo sa pripraviť zoznam " +
+	"existujúcich tunelov\x02Tunel už existuje\x02Tunel s názvom ‘%[1]s’ už e" +
+	"xistuje.\x02Nie je možné vytvoriť novú konfiguráciu\x02Nepodarilo sa zap" +
+	"ísať do súboru\x02Súbor ‘%[1]s’ už existuje.\x0a\x0aŽeláte si ho prepís" +
+	"ať?\x02Aktívny\x02Aktivuje sa\x02Deaktivuje sa\x02Neznámy stav\x02Denník" +
+	" udalostí\x02Uložiť do &súboru…\x02Správa v denníku udalostí\x02Textové " +
+	"súbory (*.txt)|*.txt|Všetky súbory (*.*)|*.*\x02Exportovať denník udalos" +
+	"tí do súboru\x02Chyba tunela\x02%[1]s\x0a\x0aViac informácií nájdete v d" +
+	"enníku udalostí.\x02%[1]s (neaktuány)\x02Chyba detekcie AmneziaWG\x02Nie" +
+	" je možné čakať na zobrazenie AmneziaWG okna: %[1]v\x02AmneziaWG: deakti" +
+	"vovaný\x02Stav: Nezámy\x02Adresa: žiadna\x02&Spravovať tunely…\x02&Impor" +
+	"tovať tunel(y) zo súboru…\x02U&končiť\x02&Tunely\x02AmneziaWG je aktivov" +
+	"aný\x02Tunel %[1]s bol aktivovaný.\x02AmneziaWG je deaktivovaný\x02Tunel" +
+	" %[1]s bol deaktivovaný.\x02Chyba AmneziaWG tunelu\x02AmneziaWG: %[1]s" +
+	"\x02Stav: %[1]s\x02Adresa: %[1]s\x02Je dostupná aktualizácia!\x02Dostupn" +
+	"á aktualizácia pre AmneziaWG\x02Je k dispozícii aktualizácia programu A" +
+	"mneziaWG. Je odporúčané čo najskôr vykonať aktualizáciu.\x02Tunely\x02&U" +
+	"praviť\x02Pridať &prázdny tunel…\x02Pridať tunel\x02Odstrániť označený(é" +
+	") tunel(y)\x02Export všetkých tunelov do zip súboru\x02P&repnúť\x02Expor" +
+	"t všetkých tunelov do &zip súboru…\x02Upraviť &označený tunel…\x02&Odstr" +
+	"ániť označené tunely\x02neboli nájdené žiadne konfiguračné súbory\x02Ne" +
+	"podarilo sa naimportovať vybrané konfigurácie: %[1]v\x02Nepodarilo sa na" +
+	"čítať existujúce tunely: %[1]v\x02Už existuje tunel s názvom '%[1]s'" +
+	"\x02Nepodarilo sa naimportovať konfiguráciu: %[1]v\x02Naimportované tune" +
+	"ly\x14\x01\x81\x01\x00\x04\x1c\x02Naimportované %[1]d tunely\x05\x1f\x02" +
+	"Naimportovaných %[1]d tunelov\x02\x19\x02Importovaný %[1]d tunel\x00\x1f" +
+	"\x02Naimportovaných %[1]d tunelov\x14\x02\x80\x01\x04%\x02Naimportované " +
+	"%[1]d z %[2]d tunelov\x05'\x02Naimportovaných %[1]d z %[2]d tunelov\x02%" +
+	"\x02Naimportovaný %[1]d z %[2]d tunelov\x00'\x02Naimportovaných %[1]d z " +
+	"%[2]d tunelov\x02Tunel sa nedá vytvoriť\x14\x01\x81\x01\x00\x04\x19\x02O" +
+	"dstránene %[1]d tunely\x05\x1d\x02Odstránených %[1]d tunelov\x02\x19\x02" +
+	"Odstránený %[1]d tunel\x00\x1d\x02Odstránených %[1]d tunelov\x14\x01\x81" +
+	"\x01\x00\x048\x02Ste si istý, že si želáte odstrániť %[1]d tunely?\x059" +
+	"\x02Ste si istý, že si želáte odstrániť %[1]d tunelov?\x027\x02Ste si is" +
+	"tý, že si želáte odstrániť %[1]d tunel?\x009\x02Ste si istý, že si želát" +
+	"e odstrániť %[1]d tunelov?\x02Odstránenie tunela ‘%[1]s’\x02Ste si istý," +
+	" že si želáte odstrániť tunel ‘%[1]s’?\x02%[1]s Túto akciu nemôže vrátiť" +
+	" späť.\x02Tunel sa nedá odstrániť\x02Nebolo možné odstrániť tunel: %[1]s" +
+	"\x02Tunely sa nedajú odstrániť\x14\x01\x81\x01\x00\x04)\x02%[1]d tunely " +
+	"nebolo možné odstrániť.\x05*\x02%[1]d tunelov nebolo možné odstrániť." +
+	"\x02(\x02%[1]d tunel nebolo možné odstrániť.\x00*\x02%[1]d tunelov nebol" +
+	"o možné odstrániť.\x02Konfirugačné súbory (*.zip, *.conf)|*.zip;*.conf|V" +
+	"šetky súbory (*.*)|*.*\x02Importovať tunel(y) zo súboru\x02Konfiguračné" +
+	" ZIP súbry (*.zip)|*.zip\x02Export tunelov do zip súboru\x02%[1]s (nepod" +
+	"písaná verzia, žiadne aktualizácie)\x02Chyba ukončenia AmneziaWG\x02Nie " +
+	"je možné ukončiť služby z dôvodu: %[1]v. Skúste zastaviť AmneziaWG v spr" +
+	"ávcovi služieb.\x02Je k dispozícii nová verzia programu AmneziaWG. Odpo" +
+	"rúčame bezodkladne vykonať aktualizáciu.\x02Stav: Čaká sa na užívateľa" +
+	"\x02Aktualizovať teraz\x02Stav: Čaká sa na aktualizačnú službu\x02Chyba:" +
+	" %[1]v. Skúste to znova.\x02Stav: Dokončené!\x02Teraz\x02Systémové hodin" +
+	"y sa vrátili v čase!\x14\x01\x81\x01\x00\x04\x0b\x02%[1]d roky\x05\x0c" +
+	"\x02%[1]d rokov\x02\x0a\x02%[1]d rok\x00\x0c\x02%[1]d rokov\x14\x01\x81" +
+	"\x01\x00\x04\x0a\x02%[1]d dni\x05\x0b\x02%[1]d dní\x02\x0b\x02%[1]d deň" +
+	"\x00\x0b\x02%[1]d dní\x14\x01\x81\x01\x00\x04\x0d\x02%[1]d hodiny\x05" +
+	"\x0d\x02%[1]d hodín\x02\x0d\x02%[1]d hodina\x00\x0d\x02%[1]d hodín\x14" +
+	"\x01\x81\x01\x00\x04\x0e\x02%[1]d minúty\x05\x0d\x02%[1]d minút\x02\x0e" +
+	"\x02%[1]d minúta\x00\x0d\x02%[1]d minút\x14\x01\x81\x01\x00\x04\x0e\x02%" +
+	"[1]d sekundy\x05\x0e\x02%[1]d sekúnd\x02\x0e\x02%[1]d sekunda\x00\x0e" +
+	"\x02%[1]d sekúnd\x02Pred %[1]s\x02%[1]d\u00a0B\x02%.2[1]f\u00a0KiB\x02%." +
+	"2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB\x02%.2[1]f\u00a0TiB\x02%[1]s: %[2]q" +
+	"\x02Neplatná adresa IP\x02Neplatná dĺžka sieťového prefixu\x02Koncovému " +
+	"bodu chýba číslo portu\x02Neplatný hostiteľ koncového bodu\x02Medzi zátv" +
+	"orkami musí byť IPv6 adresa\x02Neplatné MTU\x02Neplatný port\x02Neplatný" +
+	" perzistentný keepalive\x02Neplatný kľúč: %[1]v\x02Dekódované kľúče musi" +
+	"a mať veľkosť 32 bajtov\x02Číslo musí mať hodnotu medzi 0 a 2^64-1: %[1]" +
+	"v\x02Dve čiarky v poradí\x02Názov tunela nie je platný\x02Sekcia musí ob" +
+	"sahovať čiaru\x02Konfiguračný kľúč neobsahuje separátor (znamienko rovno" +
+	"sti)\x02Kľúč musí obsahovať hodnotu\x02Neplatný kľúč sekcie [Interface]" +
+	"\x02Neplatný kľúč sekcie [Peer]\x02Rozhranie musí mať priradený súkromný" +
+	" kľúč\x02[nešpecifikované]\x02Všetci peeri musia mať priradený verejný k" +
+	"ľúč\x02Chyba pri získavaní konfigurácie\x02Neplatný kľúč sekcie rozhran" +
+	"ia\x02Verzia protokolu musí byť 1\x02Neplatný kľúč peer sekcie\x02&O Amn" +
+	"eziaWG…"
 
-var slIndex = []uint32{ // 304 elements
+var slIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000007, 0x00000058, 0x00000070,
 	0x00000089, 0x000000c1, 0x00000111, 0x00000148,
@@ -4035,15 +4827,15 @@ var slIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x0000036e, 0x00000381, 0x00000392, 0x000003b0,
 	0x000003bb, 0x000003d8, 0x000003fc, 0x0000041a,
-	0x0000043b, 0x0000044a, 0x00000452, 0x00000464,
-	0x00000470, 0x00000476, 0x00000485, 0x0000048f,
-	0x000004b9, 0x000004c1, 0x000004cb, 0x000004db,
-	0x000004e8, 0x000004f8, 0x0000051a, 0x0000054a,
-	0x0000055c, 0x00000587, 0x000005ae, 0x000005cc,
-	0x00000607, 0x0000060f, 0x0000061b, 0x00000625,
+	0x0000043b, 0x0000044a, 0x00000452, 0x00000457,
+	0x00000461, 0x0000046a, 0x00000476, 0x00000488,
+	0x00000494, 0x0000049a, 0x000004a9, 0x000004b3,
+	0x000004dd, 0x000004e5, 0x000004ef, 0x000004ff,
+	0x0000050c, 0x0000051c, 0x0000053e, 0x0000056e,
+	0x00000580, 0x000005ab, 0x000005d2, 0x000005f0,
 	// Entry 40 - 5F
-	0x00000634, 0x00000643, 0x0000064b, 0x00000654,
-	0x00000660, 0x00000678, 0x0000067d, 0x00000693,
+	0x0000062b, 0x00000633, 0x0000063f, 0x0000064e,
+	0x0000065d, 0x00000665, 0x0000067d, 0x00000693,
 	0x000006cb, 0x000006e5, 0x000006f3, 0x00000722,
 	0x00000738, 0x00000755, 0x00000790, 0x000007a8,
 	0x000007b7, 0x000007c5, 0x000007dc, 0x000007fb,
@@ -4109,7 +4901,35 @@ var slIndex = []uint32{ // 304 elements
 	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
 	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
 	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
-} // Size: 1240 bytes
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	// Entry 140 - 15F
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	// Entry 160 - 17F
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	// Entry 180 - 19F
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+	0x000015d7, 0x000015d7, 0x000015d7, 0x000015d7,
+} // Size: 1640 bytes
 
 const slData string = "" + // Size: 5591 bytes
 	"\x02Napaka\x02(brez argumenta): povzdigni na skrbniške pravice in namest" +
@@ -4129,26 +4949,26 @@ const slData string = "" + // Size: 5591 bytes
 	"ji\x02onemogočeno, zaradi politike\x02omogočeno\x02%[1]s prejeto, %[2]s " +
 	"poslano\x02Napaka pri določanju stanja tunela\x02Napaka pri aktiviranju " +
 	"tunela\x02Napaka pri dezaktiviranju tunela\x02Vmesnik: %[1]s\x02Vrstnik" +
-	"\x02Ustvari nov tunel\x02Uredi tunel\x02&Ime:\x02&Javni ključ:\x02(nezna" +
-	"no)\x02&Blokiraj promet izven tunela (varovalka)\x02&Shrani\x02Prekliči" +
-	"\x02&Konfiguracija:\x02Napačno ime\x02Ime je obvezno.\x02Ime tunela »%[1" +
-	"]s« ni veljavno.\x02Napaka pri pripravi seznama obstoječih tunelov\x02Tu" +
-	"nel že obstaja\x02Drug tunel z imenom »%[1]s« že obstaja.\x02Napaka pri " +
-	"izdelavi nove konfiguracije\x02Napaka pri pisanju v datoteko\x02Datoteka" +
-	" »%[1]s« že obstaja.\x0a\x0aAli jo želite prepisati?\x02Aktivno\x02Se ak" +
-	"tivira\x02Neaktivno\x02Se dezaktivira\x02Neznano stanje\x02Dnevnik\x02&K" +
-	"opiraj\x02&Izberi vse\x02&Shrani v datoteko\u00a0…\x02Čas\x02Sporočilo v" +
-	" dnevniku\x02Tekstovne datoteke (*.txt)|*.txt|Vse datoteke (*.*)|*.*\x02" +
-	"Izvozi dnevnik v datoteko\x02Napaka tunela\x02%[1]s\x0a\x0aDodatne infor" +
-	"macije najdete v dnevniku.\x02%[1]s (neposodobljen)\x02Napaka zaznavanja" +
-	" AmneziaWGa\x02Čakanje, da se pojavi AmneziaWGovo okno, ni možno: %[1]v" +
-	"\x02AmneziaWG: Dezaktiviran\x02Status: Neznan\x02Naslovi: Brez\x02&Uprav" +
-	"ljaj tunele\u00a0…\x02&Uvozi tunel(e) iz datoteke…\x02I&zhod\x02&Tuneli" +
-	"\x02AmneziaWG aktiviran\x02Tunel %[1]s je bil aktiviran.\x02AmneziaWG de" +
-	"zaktiviran\x02Tunel %[1]s je bil dezaktiviran.\x02Napaka tunela AmneziaW" +
-	"G\x02AmneziaWG: %[1]s\x02Status: %[1]s\x02Naslovi: %[1]s\x02Na voljo je " +
-	"posodobitev!\x02Posodobitev AmneziaWGa je na voljo\x02Posodobitev Amnezi" +
-	"aWGa je na voljo. Svetujemo posodobitev čim prej.\x02Tuneli\x02&Uredi" +
+	"\x02Čas\x02Neaktivno\x02&Kopiraj\x02&Izberi vse\x02Ustvari nov tunel\x02" +
+	"Uredi tunel\x02&Ime:\x02&Javni ključ:\x02(neznano)\x02&Blokiraj promet i" +
+	"zven tunela (varovalka)\x02&Shrani\x02Prekliči\x02&Konfiguracija:\x02Nap" +
+	"ačno ime\x02Ime je obvezno.\x02Ime tunela »%[1]s« ni veljavno.\x02Napaka" +
+	" pri pripravi seznama obstoječih tunelov\x02Tunel že obstaja\x02Drug tun" +
+	"el z imenom »%[1]s« že obstaja.\x02Napaka pri izdelavi nove konfiguracij" +
+	"e\x02Napaka pri pisanju v datoteko\x02Datoteka »%[1]s« že obstaja.\x0a" +
+	"\x0aAli jo želite prepisati?\x02Aktivno\x02Se aktivira\x02Se dezaktivira" +
+	"\x02Neznano stanje\x02Dnevnik\x02&Shrani v datoteko\u00a0…\x02Sporočilo " +
+	"v dnevniku\x02Tekstovne datoteke (*.txt)|*.txt|Vse datoteke (*.*)|*.*" +
+	"\x02Izvozi dnevnik v datoteko\x02Napaka tunela\x02%[1]s\x0a\x0aDodatne i" +
+	"nformacije najdete v dnevniku.\x02%[1]s (neposodobljen)\x02Napaka zaznav" +
+	"anja AmneziaWGa\x02Čakanje, da se pojavi AmneziaWGovo okno, ni možno: %[" +
+	"1]v\x02AmneziaWG: Dezaktiviran\x02Status: Neznan\x02Naslovi: Brez\x02&Up" +
+	"ravljaj tunele\u00a0…\x02&Uvozi tunel(e) iz datoteke…\x02I&zhod\x02&Tune" +
+	"li\x02AmneziaWG aktiviran\x02Tunel %[1]s je bil aktiviran.\x02AmneziaWG " +
+	"dezaktiviran\x02Tunel %[1]s je bil dezaktiviran.\x02Napaka tunela Amnezi" +
+	"aWG\x02AmneziaWG: %[1]s\x02Status: %[1]s\x02Naslovi: %[1]s\x02Na voljo j" +
+	"e posodobitev!\x02Posodobitev AmneziaWGa je na voljo\x02Posodobitev Amne" +
+	"ziaWGa je na voljo. Svetujemo posodobitev čim prej.\x02Tuneli\x02&Uredi" +
 	"\x02Dodaj &prazen tunel\u00a0…\x02Dodaj tunel\x02Odstrani izbrane tunele" +
 	"\x02Izvozi vse tunele v zip\x02&Preklopi\x02Izvozi vse tunele v &zip" +
 	"\u00a0…\x02Uredi &izbran tunel\u00a0…\x02Odst&rani izbrane tunele\x02ni " +
@@ -4204,7 +5024,7 @@ const slData string = "" + // Size: 5591 bytes
 	"Napačen ključ za odsek vmesnika\x02Verzija protokola mora biti 1\x02Napa" +
 	"čen ključ za odsek vrstnika\x02O &AmneziaWGu\u00a0…"
 
-var sv_SEIndex = []uint32{ // 304 elements
+var sv_SEIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000004, 0x0000003c, 0x00000058,
 	0x0000006f, 0x000000af, 0x000000f7, 0x0000012f,
@@ -4217,15 +5037,15 @@ var sv_SEIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x0000033e, 0x0000034f, 0x00000360, 0x00000378,
 	0x00000382, 0x000003a0, 0x000003d0, 0x000003ec,
-	0x00000409, 0x0000041c, 0x00000421, 0x00000431,
-	0x00000441, 0x00000448, 0x00000458, 0x00000461,
-	0x00000489, 0x00000490, 0x00000497, 0x000004a7,
-	0x000004b5, 0x000004c6, 0x000004ed, 0x0000050f,
-	0x00000522, 0x00000556, 0x00000575, 0x00000596,
-	0x000005d0, 0x000005d6, 0x000005e0, 0x000005e7,
+	0x00000409, 0x0000041c, 0x00000421, 0x00000425,
+	0x0000042c, 0x00000435, 0x00000443, 0x00000453,
+	0x00000463, 0x0000046a, 0x0000047a, 0x00000483,
+	0x000004ab, 0x000004b2, 0x000004b9, 0x000004c9,
+	0x000004d7, 0x000004e8, 0x0000050f, 0x00000531,
+	0x00000544, 0x00000578, 0x00000597, 0x000005b8,
 	// Entry 40 - 5F
-	0x000005f4, 0x00000606, 0x0000060b, 0x00000614,
-	0x00000622, 0x00000635, 0x00000639, 0x00000648,
+	0x000005f2, 0x000005f8, 0x00000602, 0x0000060f,
+	0x00000621, 0x00000626, 0x00000639, 0x00000648,
 	0x00000675, 0x0000068d, 0x00000697, 0x000006d0,
 	0x000006e4, 0x000006f6, 0x00000736, 0x0000074d,
 	0x0000075c, 0x0000076c, 0x00000780, 0x000007a0,
@@ -4291,7 +5111,35 @@ var sv_SEIndex = []uint32{ // 304 elements
 	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
 	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
 	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
-} // Size: 1240 bytes
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	// Entry 140 - 15F
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	// Entry 160 - 17F
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	// Entry 180 - 19F
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+	0x000013d8, 0x000013d8, 0x000013d8, 0x000013d8,
+} // Size: 1640 bytes
 
 const sv_SEData string = "" + // Size: 5080 bytes
 	"\x02Fel\x02(inget argument): höj och installera hanterartjänsten\x02Anvä" +
@@ -4310,73 +5158,73 @@ const sv_SEData string = "" + // Size: 5080 bytes
 	"nedtagning\x02inaktiverad, per policy\x02aktiverad\x02%[1]s mottagen, %[" +
 	"2]s skickad\x02Det gick inte att bestämma tunnelns tillstånd\x02Kunde in" +
 	"te aktivera tunneln\x02Kunde inte avaktivera tunnel\x02Gränssnitt: %[1]s" +
-	"\x02Peer\x02Skapa ny tunnel\x02Redigera tunnel\x02&Namn:\x02&Publik nyck" +
-	"el:\x02(okänd)\x02&Blockera otunnlad trafik (kill-switch)\x02&Spara\x02A" +
-	"vbryt\x02&Konfiguration:\x02Ogiltigt namn\x02Ett namn krävs.\x02Tunnelna" +
-	"mnet ‘%[1]s’ är ogiltigt.\x02Kan inte lista befintliga tunnlar\x02Tunnel" +
-	" finns redan\x02En annan tunnel finns redan med namnet ‘%[1]s’.\x02Kan i" +
-	"nte skapa ny inställning\x02Misslyckades att skriva till fil\x02Filen ‘%" +
-	"[1]s’ finns redan.\x0a\x0aVill du skriva över den?\x02Aktiv\x02Aktiverar" +
-	"\x02Passiv\x02Passiviserar\x02Okänt tillstånd\x02Logg\x02&Kopiera\x02Mar" +
-	"kera &allt\x02&Spara till fil…\x02Tid\x02Loggmeddelande\x02Textfiler (*." +
-	"txt)|*.txt|Alla filer (*.*)|*.*\x02Exportera logg till fil\x02Tunnelfel" +
-	"\x02%[1]s\x0a\x0aVänligen inspektera loggen för mer information.\x02%[1]" +
-	"s (föråldrad)\x02AmneziaWG Vaktfel\x02Lyckas inte vänta på att AmneziaWG" +
-	" fönstret ska visas: %[1]v\x02AmneziaWG: inaktiverad\x02Status: Okänd" +
-	"\x02Adresser: Ingen\x02&Hantera tunnlar…\x02&Importera tunnlar från fil…" +
-	"\x02A&vsluta\x02&Tunnlar\x02AmneziaWG aktiverad\x02%[1]s tunneln har akt" +
-	"iverats.\x02AmneziaWG inaktiverad\x02%[1]s tunneln har inaktiverats.\x02" +
-	"AmneziaWG Tunnelfel\x02AmneziaWG: %[1]s\x02Status: %[1]s\x02Adresser: %[" +
-	"1]s\x02En uppdatering är tillgänglig!\x02AmneziaWG uppdatering tillgängl" +
-	"ig\x02En uppdatering till AmneziaWG är nu tillgänglig. Du rekommenderas " +
-	"att uppdatera så snart som möjligt.\x02Tunnlar\x02&Redigera\x02Lägg till" +
-	" &tom tunnel…\x02Skapa tunnel\x02Ta bort valda tunnlar\x02Exportera alla" +
-	" tunnlar till zip\x02&Växla\x02Exportera alla tunnlar till &zip…\x02Redi" +
-	"gera &vald tunnel…\x02&Ta bort valda tunnlar\x02inga konfigurationsfiler" +
-	" hittades\x02Kunde inte importera vald konfiguration: %[1]v\x02Det gick " +
-	"inte att numrera existerande tunnlar: %[1]v\x02Det finns redan en annan " +
-	"tunnel med namnet ‘%[1]s’\x02Kan inte importera konfiguration: %[1]v\x02" +
-	"Importerade tunnlar\x14\x01\x81\x01\x00\x02\x19\x02Importerade %[1]d tun" +
-	"nel\x00\x1a\x02Importerade %[1]d tunnlar\x14\x02\x80\x01\x02#\x02Importe" +
-	"rade %[1]d av %[2]d tunnlar\x00#\x02Importerade %[1]d av %[2]d tunnlar" +
-	"\x02Kan inte skapa tunnel\x14\x01\x81\x01\x00\x02\x15\x02Ta bort %[1]d t" +
-	"unnel\x00\x16\x02Ta bort %[1]d tunnlar\x14\x01\x81\x01\x00\x024\x02Är du" +
-	" säker på att du vill ta bort %[1]d tunnel?\x004\x02Är du säker på att d" +
-	"u vill radera %[1]d tunnlar?\x02Ta bort tunnel ‘%[1]s’\x02Är du säker på" +
-	" att du vill ta bort tunneln ‘%[1]s’?\x02%[1]s Du kan inte ångra denna å" +
-	"tgärd.\x02Kan inte ta bort tunnel\x02En tunnel kunde inte tas bort: %[1]" +
-	"s\x02Kan inte ta bort tunnlar\x14\x01\x81\x01\x00\x02#\x02%[1]d tunneln " +
-	"kunde inte tas bort.\x00#\x02%[1]d tunnlar kunde inte tas bort.\x02Instä" +
-	"llningsfiler (*.zip, *.conf)|*.zip;*.conf|Alla filer (*.*)|*.*\x02Import" +
-	"era tunnlar från fil\x02Inställningsfiler ZIP (*.zip)|*.zip\x02Exportera" +
-	" tunnlar till zip\x02%[1]s (osignerat bygge, inga uppdateringar)\x02Fel " +
-	"när AmneziaWG avslutades\x02Det går inte att avsluta tjänsten på grund a" +
-	"v %[1]v. Du kanske vill stoppa AmneziaWG från servicehanteraren.\x02En u" +
-	"ppdatering av AmneziaWG finns tillgänglig. Uppdatering bör utföras snara" +
-	"st möjligt.\x02Status: Väntar på användaren\x02Uppdatera nu\x02Status: V" +
-	"äntar på uppdateringstjänst\x02Fel: %[1]v. Vänligen försök igen.\x02Sta" +
-	"tus: Färdig!\x02Nu\x02Systemets klocka har ställts tillbaka!\x14\x01\x81" +
-	"\x01\x00\x02\x0a\x02%[1]d år\x00\x0a\x02%[1]d år\x14\x01\x81\x01\x00\x02" +
-	"\x0a\x02%[1]d dag\x00\x0c\x02%[1]d dagar\x14\x01\x81\x01\x00\x02\x0c\x02" +
-	"%[1]d timme\x00\x0d\x02%[1]d timmar\x14\x01\x81\x01\x00\x02\x0c\x02%[1]d" +
-	" minut\x00\x0e\x02%[1]d minuter\x14\x01\x81\x01\x00\x02\x0d\x02%[1]d sek" +
-	"und\x00\x0f\x02%[1]d sekunder\x02%[1]s sedan\x02%[1]d\u00a0B\x02%.2[1]f" +
-	"\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB\x02%.2[1]f\u00a0TiB" +
-	"\x02%[1]s: %[2]q\x02Ogiltig IP-adress\x02Ogiltigt nätverksprefixlängd" +
-	"\x02Saknad port från slutpunkt\x02Ogiltig slutpunktsvärd\x02Parenteser m" +
-	"åste innehålla en IPv6-adress\x02Ogiltig MTU\x02Ogiltig port\x02Ogiltig" +
-	" beständig keepalive\x02Ogiltig nyckel: %[1]v\x02Nycklar måste avkoda ti" +
-	"ll exakt 32 byte\x02Numret måste vara ett tal mellan 0 och 2^64-1: %[1]v" +
-	"\x02Två kommatecken i rad\x02Tunnelnamn är ogiltig\x02Linje måste föreko" +
-	"mma i ett avsnitt\x02Konfigurationsnyckel saknar en likvärdig separator" +
-	"\x02Nyckel måste ha ett värde\x02Ogiltig nyckel för sektionen [Interface" +
-	"]\x02Ogiltig nyckel för sektionen [Peer]\x02Ett gränssnitt måste innehål" +
-	"la en privat nyckel\x02[ingen angiven]\x02Alla peers måste ha offentliga" +
-	" nycklar\x02Fel vid hämtning av konfiguration\x02Ogiltig nyckel för grän" +
-	"ssnittsavsnitt\x02Protokollversion måste vara 1\x02Ogiltig nyckel för pe" +
-	"er-avsnitt\x02Om &AmneziaWG…"
+	"\x02Peer\x02Tid\x02Passiv\x02&Kopiera\x02Markera &allt\x02Skapa ny tunne" +
+	"l\x02Redigera tunnel\x02&Namn:\x02&Publik nyckel:\x02(okänd)\x02&Blocker" +
+	"a otunnlad trafik (kill-switch)\x02&Spara\x02Avbryt\x02&Konfiguration:" +
+	"\x02Ogiltigt namn\x02Ett namn krävs.\x02Tunnelnamnet ‘%[1]s’ är ogiltigt" +
+	".\x02Kan inte lista befintliga tunnlar\x02Tunnel finns redan\x02En annan" +
+	" tunnel finns redan med namnet ‘%[1]s’.\x02Kan inte skapa ny inställning" +
+	"\x02Misslyckades att skriva till fil\x02Filen ‘%[1]s’ finns redan.\x0a" +
+	"\x0aVill du skriva över den?\x02Aktiv\x02Aktiverar\x02Passiviserar\x02Ok" +
+	"änt tillstånd\x02Logg\x02&Spara till fil…\x02Loggmeddelande\x02Textfile" +
+	"r (*.txt)|*.txt|Alla filer (*.*)|*.*\x02Exportera logg till fil\x02Tunne" +
+	"lfel\x02%[1]s\x0a\x0aVänligen inspektera loggen för mer information.\x02" +
+	"%[1]s (föråldrad)\x02AmneziaWG Vaktfel\x02Lyckas inte vänta på att Amnez" +
+	"iaWG fönstret ska visas: %[1]v\x02AmneziaWG: inaktiverad\x02Status: Okän" +
+	"d\x02Adresser: Ingen\x02&Hantera tunnlar…\x02&Importera tunnlar från fil" +
+	"…\x02A&vsluta\x02&Tunnlar\x02AmneziaWG aktiverad\x02%[1]s tunneln har " +
+	"aktiverats.\x02AmneziaWG inaktiverad\x02%[1]s tunneln har inaktiverats." +
+	"\x02AmneziaWG Tunnelfel\x02AmneziaWG: %[1]s\x02Status: %[1]s\x02Adresser" +
+	": %[1]s\x02En uppdatering är tillgänglig!\x02AmneziaWG uppdatering tillg" +
+	"änglig\x02En uppdatering till AmneziaWG är nu tillgänglig. Du rekommend" +
+	"eras att uppdatera så snart som möjligt.\x02Tunnlar\x02&Redigera\x02Lägg" +
+	" till &tom tunnel…\x02Skapa tunnel\x02Ta bort valda tunnlar\x02Exportera" +
+	" alla tunnlar till zip\x02&Växla\x02Exportera alla tunnlar till &zip…" +
+	"\x02Redigera &vald tunnel…\x02&Ta bort valda tunnlar\x02inga konfigurati" +
+	"onsfiler hittades\x02Kunde inte importera vald konfiguration: %[1]v\x02D" +
+	"et gick inte att numrera existerande tunnlar: %[1]v\x02Det finns redan e" +
+	"n annan tunnel med namnet ‘%[1]s’\x02Kan inte importera konfiguration: %" +
+	"[1]v\x02Importerade tunnlar\x14\x01\x81\x01\x00\x02\x19\x02Importerade %" +
+	"[1]d tunnel\x00\x1a\x02Importerade %[1]d tunnlar\x14\x02\x80\x01\x02#" +
+	"\x02Importerade %[1]d av %[2]d tunnlar\x00#\x02Importerade %[1]d av %[2]" +
+	"d tunnlar\x02Kan inte skapa tunnel\x14\x01\x81\x01\x00\x02\x15\x02Ta bor" +
+	"t %[1]d tunnel\x00\x16\x02Ta bort %[1]d tunnlar\x14\x01\x81\x01\x00\x024" +
+	"\x02Är du säker på att du vill ta bort %[1]d tunnel?\x004\x02Är du säker" +
+	" på att du vill radera %[1]d tunnlar?\x02Ta bort tunnel ‘%[1]s’\x02Är du" +
+	" säker på att du vill ta bort tunneln ‘%[1]s’?\x02%[1]s Du kan inte ångr" +
+	"a denna åtgärd.\x02Kan inte ta bort tunnel\x02En tunnel kunde inte tas b" +
+	"ort: %[1]s\x02Kan inte ta bort tunnlar\x14\x01\x81\x01\x00\x02#\x02%[1]d" +
+	" tunneln kunde inte tas bort.\x00#\x02%[1]d tunnlar kunde inte tas bort." +
+	"\x02Inställningsfiler (*.zip, *.conf)|*.zip;*.conf|Alla filer (*.*)|*.*" +
+	"\x02Importera tunnlar från fil\x02Inställningsfiler ZIP (*.zip)|*.zip" +
+	"\x02Exportera tunnlar till zip\x02%[1]s (osignerat bygge, inga uppdateri" +
+	"ngar)\x02Fel när AmneziaWG avslutades\x02Det går inte att avsluta tjänst" +
+	"en på grund av %[1]v. Du kanske vill stoppa AmneziaWG från servicehanter" +
+	"aren.\x02En uppdatering av AmneziaWG finns tillgänglig. Uppdatering bör " +
+	"utföras snarast möjligt.\x02Status: Väntar på användaren\x02Uppdatera nu" +
+	"\x02Status: Väntar på uppdateringstjänst\x02Fel: %[1]v. Vänligen försök " +
+	"igen.\x02Status: Färdig!\x02Nu\x02Systemets klocka har ställts tillbaka!" +
+	"\x14\x01\x81\x01\x00\x02\x0a\x02%[1]d år\x00\x0a\x02%[1]d år\x14\x01\x81" +
+	"\x01\x00\x02\x0a\x02%[1]d dag\x00\x0c\x02%[1]d dagar\x14\x01\x81\x01\x00" +
+	"\x02\x0c\x02%[1]d timme\x00\x0d\x02%[1]d timmar\x14\x01\x81\x01\x00\x02" +
+	"\x0c\x02%[1]d minut\x00\x0e\x02%[1]d minuter\x14\x01\x81\x01\x00\x02\x0d" +
+	"\x02%[1]d sekund\x00\x0f\x02%[1]d sekunder\x02%[1]s sedan\x02%[1]d\u00a0" +
+	"B\x02%.2[1]f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB\x02%.2[1]f" +
+	"\u00a0TiB\x02%[1]s: %[2]q\x02Ogiltig IP-adress\x02Ogiltigt nätverksprefi" +
+	"xlängd\x02Saknad port från slutpunkt\x02Ogiltig slutpunktsvärd\x02Parent" +
+	"eser måste innehålla en IPv6-adress\x02Ogiltig MTU\x02Ogiltig port\x02Og" +
+	"iltig beständig keepalive\x02Ogiltig nyckel: %[1]v\x02Nycklar måste avko" +
+	"da till exakt 32 byte\x02Numret måste vara ett tal mellan 0 och 2^64-1: " +
+	"%[1]v\x02Två kommatecken i rad\x02Tunnelnamn är ogiltig\x02Linje måste f" +
+	"örekomma i ett avsnitt\x02Konfigurationsnyckel saknar en likvärdig sepa" +
+	"rator\x02Nyckel måste ha ett värde\x02Ogiltig nyckel för sektionen [Inte" +
+	"rface]\x02Ogiltig nyckel för sektionen [Peer]\x02Ett gränssnitt måste in" +
+	"nehålla en privat nyckel\x02[ingen angiven]\x02Alla peers måste ha offen" +
+	"tliga nycklar\x02Fel vid hämtning av konfiguration\x02Ogiltig nyckel för" +
+	" gränssnittsavsnitt\x02Protokollversion måste vara 1\x02Ogiltig nyckel f" +
+	"ör peer-avsnitt\x02Om &AmneziaWG…"
 
-var trIndex = []uint32{ // 304 elements
+var trIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000005, 0x00000053, 0x0000006d,
 	0x00000089, 0x000000cd, 0x00000112, 0x0000013d,
@@ -4389,15 +5237,15 @@ var trIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x00000379, 0x00000392, 0x000003ac, 0x000003c7,
 	0x000003cd, 0x000003ef, 0x0000040b, 0x00000426,
-	0x0000044b, 0x0000045b, 0x0000045f, 0x00000474,
-	0x00000485, 0x0000048d, 0x0000049d, 0x000004aa,
-	0x000004de, 0x000004e6, 0x000004ed, 0x000004fe,
-	0x0000050d, 0x00000524, 0x0000054b, 0x0000056a,
-	0x0000057e, 0x000005ac, 0x000005d1, 0x000005e4,
-	0x00000623, 0x00000629, 0x0000063c, 0x0000064a,
+	0x0000044b, 0x0000045b, 0x0000045f, 0x00000464,
+	0x00000472, 0x0000047b, 0x0000048b, 0x000004a0,
+	0x000004b1, 0x000004b9, 0x000004c9, 0x000004d6,
+	0x0000050a, 0x00000512, 0x00000519, 0x0000052a,
+	0x00000539, 0x00000550, 0x00000577, 0x00000596,
+	0x000005aa, 0x000005d8, 0x000005fd, 0x00000610,
 	// Entry 40 - 5F
-	0x00000667, 0x00000678, 0x00000681, 0x0000068a,
-	0x0000069a, 0x000006ad, 0x000006b2, 0x000006c3,
+	0x0000064f, 0x00000655, 0x00000668, 0x00000685,
+	0x00000696, 0x0000069f, 0x000006b2, 0x000006c3,
 	0x000006fa, 0x00000714, 0x00000723, 0x00000760,
 	0x00000775, 0x0000078e, 0x000007c2, 0x000007db,
 	0x000007ed, 0x000007fb, 0x00000811, 0x00000834,
@@ -4463,7 +5311,35 @@ var trIndex = []uint32{ // 304 elements
 	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
 	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
 	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
-} // Size: 1240 bytes
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	// Entry 140 - 15F
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	// Entry 160 - 17F
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	// Entry 180 - 19F
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+	0x000014b7, 0x000014b7, 0x000014b7, 0x000014b7,
+} // Size: 1640 bytes
 
 const trData string = "" + // Size: 5303 bytes
 	"\x02Hata\x02(parametre belirtilmediyse): gerekli izinleri al ve yönetim " +
@@ -4482,24 +5358,24 @@ const trData string = "" + // Size: 5303 bytes
 	" kesme öncesi\x02bağlantı kesme sonrası\x02ilke gereği devre dışı\x02etk" +
 	"in\x02%[1]s alındı, %[2]s gönderildi\x02Tünel durumu belirlenemedi\x02Tü" +
 	"nel etkinleştirilemedi\x02Tünel devre dışı bırakılamadı\x02Arabirim: %[1" +
-	"]s\x02Eş\x02Yeni tünel oluştur\x02Tüneli düzenle\x02&İsim:\x02&Ortak ana" +
-	"htar:\x02(bilinmiyor)\x02&Tünelden geçmeyen trafiği engelle (kill switch" +
-	")\x02&Kaydet\x02İptal\x02&Yapılandırma:\x02Geçersiz isim\x02Bir isim gir" +
-	"melisiniz.\x02‘%[1]s’ geçersiz bir tünel ismi.\x02Mevcut tüneller listel" +
-	"enemedi\x02Tünel zaten mevcut\x02‘%[1]s’ adında başka bir tünel mevcut." +
-	"\x02Yeni yapılandırma oluşturulamadı\x02Dosya yazılamadı\x02`%[1]s` dosy" +
-	"ası zaten mevcut.\x0a\x0aÜzerine yazmak ister misiniz?\x02Etkin\x02Etkin" +
-	"leştiriliyor\x02Devre dışı\x02Devre dışı bırakılıyor\x02Durum bilinmiyor" +
-	"\x02Günlük\x02&Kopyala\x02&Tümünü seç\x02&Dosyaya kaydet…\x02Saat\x02Gün" +
-	"lük mesajı\x02Metin dosyaları (*.txt)|*.txt|Tüm dosyalar (*.*)|*.*\x02Gü" +
-	"nlüğü dosyaya aktar\x02Tünel Hatası\x02%[1]s\x0a\x0aDaha fazla bilgi içi" +
-	"n lütfen günlüğe göz atın.\x02%[1]s (eski sürüm)\x02AmneziaWG Tespit Hat" +
-	"ası\x02AmneziaWG penceresinin belirmesi beklenemedi: %[1]v\x02AmneziaWG:" +
-	" Devre dışı\x02Durum: Bilinmiyor\x02Adresler: Yok\x02&Tünelleri yönet…" +
-	"\x02Tünelleri dosyadan &içe aktar…\x02Çı&kış\x02&Tüneller\x02AmneziaWG E" +
-	"tkin\x02%[1]s tüneli etkinleştirildi.\x02AmneziaWG Devre Dışı Bırakıldı" +
-	"\x02%[1]s tüneli devre dışı bırakıldı.\x02AmneziaWG Tünel Hatası\x02Amne" +
-	"ziaWG: %[1]s\x02Durum: %[1]s\x02Adresler: %[1]s\x02Güncelleme Mevcut!" +
+	"]s\x02Eş\x02Saat\x02Devre dışı\x02&Kopyala\x02&Tümünü seç\x02Yeni tünel " +
+	"oluştur\x02Tüneli düzenle\x02&İsim:\x02&Ortak anahtar:\x02(bilinmiyor)" +
+	"\x02&Tünelden geçmeyen trafiği engelle (kill switch)\x02&Kaydet\x02İptal" +
+	"\x02&Yapılandırma:\x02Geçersiz isim\x02Bir isim girmelisiniz.\x02‘%[1]s’" +
+	" geçersiz bir tünel ismi.\x02Mevcut tüneller listelenemedi\x02Tünel zate" +
+	"n mevcut\x02‘%[1]s’ adında başka bir tünel mevcut.\x02Yeni yapılandırma " +
+	"oluşturulamadı\x02Dosya yazılamadı\x02`%[1]s` dosyası zaten mevcut.\x0a" +
+	"\x0aÜzerine yazmak ister misiniz?\x02Etkin\x02Etkinleştiriliyor\x02Devre" +
+	" dışı bırakılıyor\x02Durum bilinmiyor\x02Günlük\x02&Dosyaya kaydet…\x02G" +
+	"ünlük mesajı\x02Metin dosyaları (*.txt)|*.txt|Tüm dosyalar (*.*)|*.*" +
+	"\x02Günlüğü dosyaya aktar\x02Tünel Hatası\x02%[1]s\x0a\x0aDaha fazla bil" +
+	"gi için lütfen günlüğe göz atın.\x02%[1]s (eski sürüm)\x02AmneziaWG Tesp" +
+	"it Hatası\x02AmneziaWG penceresinin belirmesi beklenemedi: %[1]v\x02Amne" +
+	"ziaWG: Devre dışı\x02Durum: Bilinmiyor\x02Adresler: Yok\x02&Tünelleri yö" +
+	"net…\x02Tünelleri dosyadan &içe aktar…\x02Çı&kış\x02&Tüneller\x02Amnezia" +
+	"WG Etkin\x02%[1]s tüneli etkinleştirildi.\x02AmneziaWG Devre Dışı Bırakı" +
+	"ldı\x02%[1]s tüneli devre dışı bırakıldı.\x02AmneziaWG Tünel Hatası\x02A" +
+	"mneziaWG: %[1]s\x02Durum: %[1]s\x02Adresler: %[1]s\x02Güncelleme Mevcut!" +
 	"\x02AmneziaWG Güncellemesi Mevcut\x02Yeni bir AmneziaWG güncellemesi yay" +
 	"ımlandı. İlk fırsatta güncelleme yapmanız tavsiye edilir.\x02Tüneller" +
 	"\x02&Düzenle\x02Boş tünel &ekle…\x02Tünel ekle\x02Seçilen tünelleri kald" +
@@ -4547,7 +5423,7 @@ const trData string = "" + // Size: 5303 bytes
 	"bölümünde geçersiz anahtar\x02Protokol sürümü 1 olmalıdır\x02Eş bölümünd" +
 	"e geçersiz anahtar\x02&AmneziaWG hakkında…"
 
-var ukIndex = []uint32{ // 304 elements
+var ukIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x0000000f, 0x0000008e, 0x000000b7,
 	0x000000ea, 0x00000144, 0x000001c2, 0x0000021b,
@@ -4560,15 +5436,15 @@ var ukIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x0000054d, 0x00000569, 0x00000583, 0x000005c0,
 	0x000005d3, 0x00000608, 0x00000645, 0x0000067b,
-	0x000006b5, 0x000006cf, 0x000006d6, 0x000006ff,
-	0x00000721, 0x0000072e, 0x0000074c, 0x00000761,
-	0x0000079a, 0x000007ac, 0x000007bf, 0x000007da,
-	0x000007ed, 0x00000816, 0x00000849, 0x00000890,
-	0x000008af, 0x000008e8, 0x0000092e, 0x00000955,
-	0x000009af, 0x000009c0, 0x000009d7, 0x000009ec,
+	0x000006b5, 0x000006cf, 0x000006d6, 0x000006dd,
+	0x000006f2, 0x00000708, 0x0000071d, 0x00000746,
+	0x00000768, 0x00000775, 0x00000793, 0x000007a8,
+	0x000007e1, 0x000007f3, 0x00000806, 0x00000821,
+	0x00000834, 0x0000085d, 0x00000890, 0x000008d7,
+	0x000008f6, 0x0000092f, 0x00000975, 0x0000099c,
 	// Entry 40 - 5F
-	0x00000a03, 0x00000a1f, 0x00000a26, 0x00000a3c,
-	0x00000a51, 0x00000a72, 0x00000a79, 0x00000a9e,
+	0x000009f6, 0x00000a07, 0x00000a1e, 0x00000a35,
+	0x00000a51, 0x00000a58, 0x00000a79, 0x00000a9e,
 	0x00000ae4, 0x00000b10, 0x00000b2c, 0x00000bb0,
 	0x00000bcd, 0x00000bf9, 0x00000c49, 0x00000c67,
 	0x00000c88, 0x00000ca1, 0x00000cc9, 0x00000cff,
@@ -4634,7 +5510,35 @@ var ukIndex = []uint32{ // 304 elements
 	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
 	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
 	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
-} // Size: 1240 bytes
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	// Entry 140 - 15F
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	// Entry 160 - 17F
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	// Entry 180 - 19F
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+	0x0000232f, 0x0000232f, 0x0000232f, 0x0000232f,
+} // Size: 1640 bytes
 
 const ukData string = "" + // Size: 9007 bytes
 	"\x02Помилка\x02(немає аргумента): отримати права аднімістратора і встано" +
@@ -4653,16 +5557,16 @@ const ukData string = "" + // Size: 9007 bytes
 	"\x02перед-зупинкою\x02після-зупинки\x02вимкнено, відповідно до політики" +
 	"\x02увімкнено\x02%[1]s отримано, %[2]s відправлено\x02Не вдалося визначи" +
 	"ти стан тунелю\x02Не вдалося активувати тунель\x02Не вдалося деактивува" +
-	"ти тунель\x02Інтерфейс: %[1]s\x02Пір\x02Створити новий тунель\x02Редагу" +
-	"вати тунель\x02&Назва:\x02&Публічний ключ:\x02(невідомий)\x02&Блокувати" +
-	" трафік поза тунелем\x02&Зберегти\x02Скасувати\x02&Налаштування:\x02Хибн" +
-	"е ім'я\x02Необхідно ввести ім'я.\x02Ім'я тунелю '%[1]s' некоректне.\x02" +
-	"Не вдалося відобразити існуючі тунелі\x02Тунель вже існує\x02Тунель з і" +
-	"м'ям ‘%[1]s’ вже існує.\x02Неможливо створити нову конфігурацію\x02Поми" +
-	"лка запису файлу\x02Файл \x22%[1]s\x22 вже існує.\x0a\x0aВи хочете пере" +
-	"записати його?\x02Активний\x02Активується\x02Неактивний\x02Вимикається" +
-	"\x02Невідомий стан\x02Лог\x02&Скопіювати\x02Обрати &все\x02&Зберегти у ф" +
-	"айл…\x02Час\x02Повідомлення з логу\x02Текстові файли (*.txt)|*.txt|Усі " +
+	"ти тунель\x02Інтерфейс: %[1]s\x02Пір\x02Час\x02Неактивний\x02&Скопіюват" +
+	"и\x02Обрати &все\x02Створити новий тунель\x02Редагувати тунель\x02&Назв" +
+	"а:\x02&Публічний ключ:\x02(невідомий)\x02&Блокувати трафік поза тунелем" +
+	"\x02&Зберегти\x02Скасувати\x02&Налаштування:\x02Хибне ім'я\x02Необхідно " +
+	"ввести ім'я.\x02Ім'я тунелю '%[1]s' некоректне.\x02Не вдалося відобрази" +
+	"ти існуючі тунелі\x02Тунель вже існує\x02Тунель з ім'ям ‘%[1]s’ вже існ" +
+	"ує.\x02Неможливо створити нову конфігурацію\x02Помилка запису файлу\x02" +
+	"Файл \x22%[1]s\x22 вже існує.\x0a\x0aВи хочете перезаписати його?\x02Ак" +
+	"тивний\x02Активується\x02Вимикається\x02Невідомий стан\x02Лог\x02&Збере" +
+	"гти у файл…\x02Повідомлення з логу\x02Текстові файли (*.txt)|*.txt|Усі " +
 	"файли (*.*)|*.*\x02Експортувати лог у файл\x02Помилка тунелю\x02%[1]s" +
 	"\x0a\x0aБудь ласка, зверніться до логу для отримання додаткової інформац" +
 	"ії.\x02%[1]s (застарілий)\x02Помилка виявлення AmneziaWG\x02Не вдалося " +
@@ -4728,7 +5632,7 @@ const ukData string = "" + // Size: 9007 bytes
 	"лу інтерфейсу\x02Версія протоколу повинна бути 1\x02Хибний ключ для [Pe" +
 	"er] розділу\x02Про &AmneziaWG…"
 
-var viIndex = []uint32{ // 304 elements
+var viIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000006, 0x00000006, 0x00000022,
 	0x0000003b, 0x0000003b, 0x0000003b, 0x0000003b,
@@ -4741,12 +5645,12 @@ var viIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x000000b2, 0x000000b2, 0x000000b2, 0x000000b2,
 	0x000000c4, 0x000000de, 0x0000010a, 0x00000128,
-	0x00000149, 0x00000149, 0x0000015c, 0x00000166,
+	0x00000149, 0x00000149, 0x0000015c, 0x0000015c,
+	0x0000015c, 0x0000015c, 0x0000015c, 0x00000166,
 	0x00000178, 0x00000178, 0x00000178, 0x00000178,
 	0x00000178, 0x00000178, 0x0000017e, 0x0000017e,
 	0x00000195, 0x000001ad, 0x000001d3, 0x000001f4,
 	0x00000209, 0x00000236, 0x00000236, 0x00000236,
-	0x00000236, 0x00000236, 0x00000236, 0x00000236,
 	// Entry 40 - 5F
 	0x00000236, 0x00000236, 0x00000236, 0x00000236,
 	0x00000236, 0x00000236, 0x00000236, 0x00000236,
@@ -4815,7 +5719,35 @@ var viIndex = []uint32{ // 304 elements
 	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
 	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
 	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
-} // Size: 1240 bytes
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	// Entry 140 - 15F
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	// Entry 160 - 17F
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	// Entry 180 - 19F
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+	0x000003aa, 0x000003aa, 0x000003aa, 0x000003aa,
+} // Size: 1640 bytes
 
 const viData string = "" + // Size: 938 bytes
 	"\x02Lỗi\x02Sử dụng: %[1]s [\x0a%[2]s]\x02Tùy chọn dòng lệnh\x02,\x02," +
@@ -4834,7 +5766,7 @@ const viData string = "" + // Size: 938 bytes
 	"ệ: %[1]v\x02Tên VPN không hợp lệ\x02Ko có Chỉ định\x02Lỗi khi lưu cấu " +
 	"hình"
 
-var zh_CNIndex = []uint32{ // 304 elements
+var zh_CNIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000007, 0x00000030, 0x00000047,
 	0x00000057, 0x0000008b, 0x000000c9, 0x000000ef,
@@ -4847,15 +5779,15 @@ var zh_CNIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x000002be, 0x000002c8, 0x000002d2, 0x000002f1,
 	0x000002fb, 0x00000316, 0x0000032f, 0x00000342,
-	0x0000035b, 0x00000369, 0x00000370, 0x00000380,
-	0x0000038d, 0x0000039a, 0x000003a7, 0x000003b0,
-	0x000003df, 0x000003eb, 0x000003f2, 0x000003ff,
-	0x0000040c, 0x00000422, 0x00000440, 0x00000459,
-	0x00000469, 0x0000048a, 0x000004a3, 0x000004b6,
-	0x000004f1, 0x000004fb, 0x00000508, 0x00000512,
+	0x0000035b, 0x00000369, 0x00000370, 0x00000377,
+	0x00000381, 0x0000038d, 0x00000399, 0x000003a9,
+	0x000003b6, 0x000003c3, 0x000003d0, 0x000003d9,
+	0x00000408, 0x00000414, 0x0000041b, 0x00000428,
+	0x00000435, 0x0000044b, 0x00000469, 0x00000482,
+	0x00000492, 0x000004b3, 0x000004cc, 0x000004df,
 	// Entry 40 - 5F
-	0x0000051f, 0x00000526, 0x0000052d, 0x00000539,
-	0x00000545, 0x00000554, 0x0000055b, 0x00000568,
+	0x0000051a, 0x00000524, 0x00000531, 0x0000053e,
+	0x00000545, 0x0000054c, 0x0000055b, 0x00000568,
 	0x0000059a, 0x000005a7, 0x000005b4, 0x000005da,
 	0x000005ec, 0x00000603, 0x0000062e, 0x00000643,
 	0x00000652, 0x0000065e, 0x00000673, 0x00000691,
@@ -4921,7 +5853,35 @@ var zh_CNIndex = []uint32{ // 304 elements
 	0x00001033, 0x00001033, 0x00001033, 0x00001033,
 	0x00001033, 0x00001033, 0x00001033, 0x00001033,
 	0x00001033, 0x00001033, 0x00001033, 0x00001033,
-} // Size: 1240 bytes
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	// Entry 140 - 15F
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	// Entry 160 - 17F
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	// Entry 180 - 19F
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+	0x00001033, 0x00001033, 0x00001033, 0x00001033,
+} // Size: 1640 bytes
 
 const zh_CNData string = "" + // Size: 4147 bytes
 	"\x02错误\x02(无参数): 提升并安装管理服务\x02用法: %[1]s [\x0a%[2]s]\x02命令行选项\x02无法确定该进程是" +
@@ -4932,33 +5892,33 @@ const zh_CNData string = "" + // Size: 4147 bytes
 	"TU:\x02地址:\x02DNS 服务器:\x02脚本:\x02预共享密钥:\x02允许的 IP:\x02对端:\x02连接保活间隔:\x02" +
 	"上次握手时间:\x02流量:\x02连接前\x02连接后\x02断开前\x02断开后\x02已禁用（依管理策略）\x02已启用\x02接收 " +
 	"%[1]s, 发送 %[2]s\x02无法确认隧道状态\x02无法连接隧道\x02无法断开隧道连接\x02接口: %[1]s\x02节点\x02" +
-	"创建新隧道\x02编辑隧道\x02名称 (&N):\x02公钥 (&P):\x02(未知)\x02拦截未经隧道的流量 (kill-switc" +
-	"h) (&B)\x02保存 (&S)\x02取消\x02配置 (&C):\x02名称无效\x02必须输入名称。\x02隧道名「%[1]s」无效。" +
-	"\x02无法列出现有隧道\x02隧道已存在\x02隧道名「%[1]s」已存在。\x02无法创建新的配置\x02写入文件失败\x02文件「%[1]" +
-	"s」已存在。\x0a\x0a您确定要覆盖它吗？\x02已连接\x02正在连接\x02已断开\x02正在断开\x02未知\x02日志\x02复制 " +
-	"(&C)\x02全选 (&A)\x02导出… (&S)\x02时间\x02日志消息\x02文本文件 (*.txt)|*.txt|所有文件 (*." +
-	"*)|*.*\x02导出日志\x02隧道错误\x02%[1]s\x0a\x0a更多信息请查看日志。\x02%[1]s (已过时)\x02Amne" +
-	"ziaWG 检测错误\x02无法等待 AmneziaWG 窗口出现: %[1]v\x02AmneziaWG: 已断开\x02状态: 未知\x02" +
-	"地址: 无\x02管理隧道… (&M)\x02从文件导入隧道… (&I)\x02退出 (&E)\x02隧道 (&T)\x02AmneziaW" +
-	"G 已连接\x02隧道「%[1]s」已连接。\x02AmneziaWG 已断开\x02隧道「%[1]s」已断开连接。\x02AmneziaWG " +
-	"隧道错误\x02AmneziaWG: %[1]s\x02状态: %[1]s\x02地址: %[1]s\x02发现更新！\x02Amnezia" +
-	"WG 更新\x02新的 AmneziaWG 版本发布了。强烈建议您现在安装。\x02隧道\x02编辑 (&E)\x02新建空隧道… (&E)" +
-	"\x02新建隧道\x02删除所选隧道\x02导出所有隧道 (ZIP 压缩包)\x02切换连接状态 (&T)\x02导出所有隧道 (ZIP 压缩包" +
-	")… (&Z)\x02编辑所选隧道… (&E)\x02删除所选隧道 (&R)\x02未找到配置文件\x02无法导入配置: %[1]v\x02无法" +
-	"列出现有隧道: %[1]v\x02另一个同名的隧道「%[1]s」已存在\x02无法导入配置: %[1]v\x02导入隧道\x14\x01" +
-	"\x81\x01\x00\x00\x1a\x02导入了 %[1]d 个隧道\x14\x02\x80\x01\x000\x02导入了 %[2]d " +
-	"个隧道中的 %[1]d 个隧道\x02无法创建隧道\x14\x01\x81\x01\x00\x00\x17\x02删除 %[1]d 个隧道" +
-	"\x14\x01\x81\x01\x00\x00,\x02您确定要删除这 %[1]d 个隧道吗？\x02删除隧道「%[1]s」\x02您确定要删" +
-	"除隧道「%[1]s」吗？\x02%[1]s此操作无法撤销。\x02无法删除隧道\x02无法删除隧道: %[1]s\x02无法删除隧道\x14" +
-	"\x01\x81\x01\x00\x00 \x02无法删除 %[1]d 个隧道。\x02配置文件 (*.zip, *.conf)|*.zip;*" +
-	".conf|所有文件 (*.*)|*.*\x02从文件导入隧道\x02配置文件 (*.zip)|*.zip\x02导出配置文件 (ZIP 压缩包" +
-	")\x02%[1]s (未签名版本，禁用自动更新)\x02退出 AmneziaWG 时出错\x02无法停止服务: %[1]v。您可能需要在服务管" +
-	"理器中手动停止 AmneziaWG 服务。\x02发现新版 AmneziaWG。强烈建议您现在安装。\x02状态: 等待用户\x02立即更新" +
-	"\x02状态: 等待更新服务\x02错误: %[1]v。请重试。\x02状态: 完成！\x02刚刚\x02系统时间倒退了！\x14\x01" +
-	"\x81\x01\x00\x00\x0a\x02%[1]d 年\x14\x01\x81\x01\x00\x00\x0a\x02%[1]d 天" +
-	"\x14\x01\x81\x01\x00\x00\x0d\x02%[1]d 小时\x14\x01\x81\x01\x00\x00\x0d\x02" +
-	"%[1]d 分钟\x14\x01\x81\x01\x00\x00\x0a\x02%[1]d 秒\x02%[1]s 前\x02%[1]d B" +
-	"\x02%.2[1]f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB\x02%.2[1]f" +
+	"时间\x02已断开\x02复制 (&C)\x02全选 (&A)\x02创建新隧道\x02编辑隧道\x02名称 (&N):\x02公钥 (&P" +
+	"):\x02(未知)\x02拦截未经隧道的流量 (kill-switch) (&B)\x02保存 (&S)\x02取消\x02配置 (&C):" +
+	"\x02名称无效\x02必须输入名称。\x02隧道名「%[1]s」无效。\x02无法列出现有隧道\x02隧道已存在\x02隧道名「%[1]s」已" +
+	"存在。\x02无法创建新的配置\x02写入文件失败\x02文件「%[1]s」已存在。\x0a\x0a您确定要覆盖它吗？\x02已连接\x02" +
+	"正在连接\x02正在断开\x02未知\x02日志\x02导出… (&S)\x02日志消息\x02文本文件 (*.txt)|*.txt|所有文" +
+	"件 (*.*)|*.*\x02导出日志\x02隧道错误\x02%[1]s\x0a\x0a更多信息请查看日志。\x02%[1]s (已过时)" +
+	"\x02AmneziaWG 检测错误\x02无法等待 AmneziaWG 窗口出现: %[1]v\x02AmneziaWG: 已断开\x02状态" +
+	": 未知\x02地址: 无\x02管理隧道… (&M)\x02从文件导入隧道… (&I)\x02退出 (&E)\x02隧道 (&T)\x02Am" +
+	"neziaWG 已连接\x02隧道「%[1]s」已连接。\x02AmneziaWG 已断开\x02隧道「%[1]s」已断开连接。\x02Amne" +
+	"ziaWG 隧道错误\x02AmneziaWG: %[1]s\x02状态: %[1]s\x02地址: %[1]s\x02发现更新！\x02Amn" +
+	"eziaWG 更新\x02新的 AmneziaWG 版本发布了。强烈建议您现在安装。\x02隧道\x02编辑 (&E)\x02新建空隧道… (&" +
+	"E)\x02新建隧道\x02删除所选隧道\x02导出所有隧道 (ZIP 压缩包)\x02切换连接状态 (&T)\x02导出所有隧道 (ZIP 压" +
+	"缩包)… (&Z)\x02编辑所选隧道… (&E)\x02删除所选隧道 (&R)\x02未找到配置文件\x02无法导入配置: %[1]v" +
+	"\x02无法列出现有隧道: %[1]v\x02另一个同名的隧道「%[1]s」已存在\x02无法导入配置: %[1]v\x02导入隧道\x14" +
+	"\x01\x81\x01\x00\x00\x1a\x02导入了 %[1]d 个隧道\x14\x02\x80\x01\x000\x02导入了 %[" +
+	"2]d 个隧道中的 %[1]d 个隧道\x02无法创建隧道\x14\x01\x81\x01\x00\x00\x17\x02删除 %[1]d 个隧" +
+	"道\x14\x01\x81\x01\x00\x00,\x02您确定要删除这 %[1]d 个隧道吗？\x02删除隧道「%[1]s」\x02您确" +
+	"定要删除隧道「%[1]s」吗？\x02%[1]s此操作无法撤销。\x02无法删除隧道\x02无法删除隧道: %[1]s\x02无法删除隧道" +
+	"\x14\x01\x81\x01\x00\x00 \x02无法删除 %[1]d 个隧道。\x02配置文件 (*.zip, *.conf)|*.z" +
+	"ip;*.conf|所有文件 (*.*)|*.*\x02从文件导入隧道\x02配置文件 (*.zip)|*.zip\x02导出配置文件 (ZIP" +
+	" 压缩包)\x02%[1]s (未签名版本，禁用自动更新)\x02退出 AmneziaWG 时出错\x02无法停止服务: %[1]v。您可能需要" +
+	"在服务管理器中手动停止 AmneziaWG 服务。\x02发现新版 AmneziaWG。强烈建议您现在安装。\x02状态: 等待用户\x02" +
+	"立即更新\x02状态: 等待更新服务\x02错误: %[1]v。请重试。\x02状态: 完成！\x02刚刚\x02系统时间倒退了！\x14" +
+	"\x01\x81\x01\x00\x00\x0a\x02%[1]d 年\x14\x01\x81\x01\x00\x00\x0a\x02%[1]d" +
+	" 天\x14\x01\x81\x01\x00\x00\x0d\x02%[1]d 小时\x14\x01\x81\x01\x00\x00\x0d" +
+	"\x02%[1]d 分钟\x14\x01\x81\x01\x00\x00\x0a\x02%[1]d 秒\x02%[1]s 前\x02%[1]d " +
+	"B\x02%.2[1]f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB\x02%.2[1]f" +
 	"\u00a0TiB\x02%[1]s: %[2]q\x02IP地址无效\x02网络前缀长度无效\x02对端 (endpoint) 中缺少端口" +
 	"\x02对端主机名 (endpoint host) 无效\x02方括号中应包含一个 IPv6 地址\x02MTU 无效\x02端口无效\x02连" +
 	"接保活间隔无效\x02无效的密钥：%[1]v\x02解码后的密钥长度必须为32字节\x02数值必须介于 0 至 2^64-1 之间: %[1" +
@@ -4966,7 +5926,7 @@ const zh_CNData string = "" + // Size: 4147 bytes
 	"face] 段落中的该键无效\x02[Peer] 段落中的该键无效\x02接口必须有一个私钥\x02[未指定]\x02每个节点都必须指定公钥" +
 	"\x02获取配置时出错\x02接口段落的键无效\x02协议版本必须为 1\x02节点段落的键无效\x02关于 AmneziaWG… (&A)"
 
-var zh_TWIndex = []uint32{ // 304 elements
+var zh_TWIndex = []uint32{ // 404 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000007, 0x00000037, 0x00000056,
 	0x00000066, 0x000000a4, 0x000000df, 0x00000110,
@@ -4979,15 +5939,15 @@ var zh_TWIndex = []uint32{ // 304 elements
 	// Entry 20 - 3F
 	0x000002ed, 0x000002f7, 0x00000301, 0x00000319,
 	0x00000323, 0x00000345, 0x0000035e, 0x00000371,
-	0x0000038a, 0x00000399, 0x000003a0, 0x000003b0,
-	0x000003c3, 0x000003cf, 0x000003db, 0x000003e4,
-	0x00000419, 0x00000425, 0x0000042c, 0x00000438,
-	0x00000448, 0x0000045e, 0x00000482, 0x0000049b,
-	0x000004ab, 0x000004cc, 0x000004eb, 0x000004fe,
-	0x00000531, 0x0000053b, 0x0000054b, 0x0000055b,
+	0x0000038a, 0x00000399, 0x000003a0, 0x000003a7,
+	0x000003b7, 0x000003c3, 0x000003cf, 0x000003df,
+	0x000003f2, 0x000003fe, 0x0000040a, 0x00000413,
+	0x00000448, 0x00000454, 0x0000045b, 0x00000467,
+	0x00000477, 0x0000048d, 0x000004b1, 0x000004ca,
+	0x000004da, 0x000004fb, 0x0000051a, 0x0000052d,
 	// Entry 40 - 5F
-	0x0000056b, 0x00000572, 0x00000579, 0x00000585,
-	0x00000591, 0x000005a0, 0x000005a7, 0x000005b4,
+	0x00000560, 0x0000056a, 0x0000057a, 0x0000058a,
+	0x00000591, 0x00000598, 0x000005a7, 0x000005b4,
 	0x000005e3, 0x000005f3, 0x00000600, 0x0000062f,
 	0x00000644, 0x0000065c, 0x00000689, 0x0000069f,
 	0x000006af, 0x000006bc, 0x000006ce, 0x000006e6,
@@ -5053,7 +6013,35 @@ var zh_TWIndex = []uint32{ // 304 elements
 	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
 	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
 	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
-} // Size: 1240 bytes
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	// Entry 140 - 15F
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	// Entry 160 - 17F
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	// Entry 180 - 19F
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+	0x000010dd, 0x000010dd, 0x000010dd, 0x000010dd,
+} // Size: 1640 bytes
 
 const zh_TWData string = "" + // Size: 4317 bytes
 	"\x02錯誤\x02(無參數)：提升權限並安裝管理服務\x02使用方法： %[1]s [\x0a%[2]s]\x02命令列選項\x02無法確定該" +
@@ -5064,40 +6052,40 @@ const zh_TWData string = "" + // Size: 4317 bytes
 	")\x02公鑰\x02監聽埠\x02MTU\x02位址\x02DNS 伺服器\x02指令碼：\x02預交換金鑰\x02允許的位址\x02連接點" +
 	"\x02Keepalive 間隔\x02最後交握時間\x02流量\x02連接前\x02連接後\x02斷線前\x02斷線後\x02已關閉, 隨著策" +
 	"略\x02已啓用\x02已收到 %[1]s；已傳送 %[2]s\x02無法確認隧道狀態\x02無法連接隧道\x02無法斷開隧道連線\x02[" +
-	"隧道] %[1]s\x02節點\x02建立新隧道\x02編輯隧道設定\x02名稱 (&N)\x02公鑰 (&P)\x02(未知)\x02阻斷" +
-	"未經過隧道的流量（kill-switch） (&B)\x02儲存 (&S)\x02取消\x02設定 (&C)\x02無效的名稱\x02必須填" +
-	"寫名稱。\x02無效的隧道名稱「%[1]s」。\x02無法列出現有隧道\x02隧道已存在\x02已有同名隧道「%[1]s」。\x02無法建立" +
-	"新的隧道設定\x02檔案寫入失敗\x02檔案已存在： %[1]s\x0a\x0a您確定要覆蓋嗎？\x02已連線\x02正在連線…\x02已中" +
-	"斷連線\x02正在中斷…\x02未知\x02日誌\x02複製 (&C)\x02全選 (&A)\x02匯出… (&S)\x02時間\x02日誌" +
-	"訊息\x02純文字 (*.txt)|*.txt|所有檔案 (*.*)|*.*\x02匯出日誌…\x02隧道錯誤\x02%[1]s\x0a" +
-	"\x0a如需更多資訊，請查看日誌。\x02%[1]s（已過時）\x02偵測 AmneziaWG 錯誤\x02無法等待 AmneziaWG 視窗開" +
-	"啓： %[1]v\x02AmneziaWG - 未連線\x02[狀態] 未知\x02[位址] 無\x02管理隧道 (&M)\x02從檔案匯入" +
-	"… (&I)\x02離開 (&X)\x02隧道(&T)\x02AmneziaWG 已連線\x02已連線至隧道 - %[1]s\x02Amne" +
-	"ziaWG 已中斷連線\x02已中斷與隧道的連線 - %[1]s\x02AmneziaWG 隧道錯誤\x02AmneziaWG - %[1]s" +
-	"\x02[狀態] %[1]s\x02位址: %[1]s\x02更新\x02AmneziaWG 更新\x02更新的 AmneziaWG 已經為您準" +
-	"備好了。\x0a強烈建議您立即更新 AmneziaWG。\x02隧道\x02編輯 (&E)\x02新增隧道精靈 (&E)\x02新增隧道" +
-	"\x02刪除選取隧道\x02匯出所有隧道（ZIP 格式）\x02切換連線狀態 (&T)\x02匯出所有隧道至 &ZIP 壓縮檔\x02編輯選取隧" +
-	"道 (&S)\x02刪除已選取隧道 (&R)\x02找不到設定檔\x02無法匯入設定： %[1]v\x02無法列出隧道： %[1]v\x02" +
-	"已有另一個同名的隧道「%[1]s」\x02無法匯入設定： %[1]v\x02已匯入隧道\x14\x01\x81\x01\x00\x00" +
-	"\x1a\x02已匯入 %[1]d 個隧道\x14\x02\x80\x01\x00-\x02已匯入 %[1]d 個隧道（共 %[2]d 個）" +
-	"\x02無法建立隧道\x14\x01\x81\x01\x00\x00\x17\x02刪除 %[1]d 個隧道\x14\x01\x81\x01" +
-	"\x00\x00)\x02您確定要刪除 %[1]d 個隧道嗎？\x02刪除隧道 - %[1]s\x02您確定要刪除隧道「%[1]s」嗎？\x02" +
-	"%[1]s\x0a\x0a您將無法復原此操作。\x02無法刪除隧道\x02無法刪除隧道： %[1]s\x02無法刪除隧道\x14\x01\x81" +
-	"\x01\x00\x00\x1d\x02無法刪除 %[1]d 個隧道\x02隧道設定檔 (*.zip, *.conf)|*.zip;*.conf" +
-	"|所有檔案 (*.*)|*.*\x02從檔案中匯入隧道…\x02隧道設定檔 (*.zip)|*.zip\x02匯出隧道設定至…\x02%[1]s" +
-	"（未簽署發行版本，無法自動更新）\x02離開 AmneziaWG 失敗\x02無法結束服務： %[1]v。\x0a您可能需要手動從服務管理中" +
-	"結束 AmneziaWG 服務。\x02更新的 AmneziaWG 已經為您準備好了。\x0a強烈建議您立即進行更新。\x02狀態：等待使用" +
-	"者\x02立即更新\x02狀態：等待更新服務\x02錯誤： %[1]v。請稍後再試。\x02狀態：已完成！\x02就是現在\x02系統時鐘倒" +
-	"退了！\x14\x01\x81\x01\x00\x00\x0a\x02%[1]d 年\x14\x01\x81\x01\x00\x00\x0a" +
-	"\x02%[1]d 天\x14\x01\x81\x01\x00\x00\x0d\x02%[1]d 小時\x14\x01\x81\x01\x00" +
-	"\x00\x0d\x02%[1]d 分鐘\x14\x01\x81\x01\x00\x00\x0a\x02%[1]d 秒\x02%[1]s 前" +
-	"\x02%[1]d\u00a0B\x02%.2[1]f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f" +
-	"\u00a0GiB\x02%.2[1]f\u00a0TiB\x02%[1]s： %[2]q\x02無效的 IP 位址\x02無效的網路位址首碼長" +
-	"度\x02Endpoint 中沒有指定埠號\x02無效的 Endpoint 位址\x02括號中必須包含一個 IPv6 位址\x02無效的 M" +
-	"TU\x02無效的埠號\x02無效的 Persistent Keepalive 設定\x02無效的金鑰： %[1]v\x02金鑰必須剛好長 32" +
-	" bytes\x02數值必須介於 0 到 2^64-1： %[1]v\x02一行中有兩個逗號\x02隧道名稱無效\x02行必須出現在段落中" +
-	"\x02設定的項目必須要有一個等號\x02必須要有一個值\x02[Interface] 中有無效選項\x02[Peer] 中有無效選項\x02I" +
-	"nterface 中必須要有一把私鑰\x02[未指定]\x02每個 Peer 都必須要有公鑰\x02讀取設定時發生錯誤\x02Interface" +
-	" 中的金鑰無效\x02協定版本必須為 1\x02Peer 中的金鑰無效\x02關於 AmneziaWG (&A)"
+	"隧道] %[1]s\x02節點\x02時間\x02已中斷連線\x02複製 (&C)\x02全選 (&A)\x02建立新隧道\x02編輯隧道設" +
+	"定\x02名稱 (&N)\x02公鑰 (&P)\x02(未知)\x02阻斷未經過隧道的流量（kill-switch） (&B)\x02儲存 " +
+	"(&S)\x02取消\x02設定 (&C)\x02無效的名稱\x02必須填寫名稱。\x02無效的隧道名稱「%[1]s」。\x02無法列出現有隧道" +
+	"\x02隧道已存在\x02已有同名隧道「%[1]s」。\x02無法建立新的隧道設定\x02檔案寫入失敗\x02檔案已存在： %[1]s\x0a" +
+	"\x0a您確定要覆蓋嗎？\x02已連線\x02正在連線…\x02正在中斷…\x02未知\x02日誌\x02匯出… (&S)\x02日誌訊息" +
+	"\x02純文字 (*.txt)|*.txt|所有檔案 (*.*)|*.*\x02匯出日誌…\x02隧道錯誤\x02%[1]s\x0a\x0a如需" +
+	"更多資訊，請查看日誌。\x02%[1]s（已過時）\x02偵測 AmneziaWG 錯誤\x02無法等待 AmneziaWG 視窗開啓： %" +
+	"[1]v\x02AmneziaWG - 未連線\x02[狀態] 未知\x02[位址] 無\x02管理隧道 (&M)\x02從檔案匯入… (&I)" +
+	"\x02離開 (&X)\x02隧道(&T)\x02AmneziaWG 已連線\x02已連線至隧道 - %[1]s\x02AmneziaWG 已中" +
+	"斷連線\x02已中斷與隧道的連線 - %[1]s\x02AmneziaWG 隧道錯誤\x02AmneziaWG - %[1]s\x02[狀態" +
+	"] %[1]s\x02位址: %[1]s\x02更新\x02AmneziaWG 更新\x02更新的 AmneziaWG 已經為您準備好了。" +
+	"\x0a強烈建議您立即更新 AmneziaWG。\x02隧道\x02編輯 (&E)\x02新增隧道精靈 (&E)\x02新增隧道\x02刪除選取" +
+	"隧道\x02匯出所有隧道（ZIP 格式）\x02切換連線狀態 (&T)\x02匯出所有隧道至 &ZIP 壓縮檔\x02編輯選取隧道 (&S)" +
+	"\x02刪除已選取隧道 (&R)\x02找不到設定檔\x02無法匯入設定： %[1]v\x02無法列出隧道： %[1]v\x02已有另一個同名的" +
+	"隧道「%[1]s」\x02無法匯入設定： %[1]v\x02已匯入隧道\x14\x01\x81\x01\x00\x00\x1a\x02已匯入" +
+	" %[1]d 個隧道\x14\x02\x80\x01\x00-\x02已匯入 %[1]d 個隧道（共 %[2]d 個）\x02無法建立隧道" +
+	"\x14\x01\x81\x01\x00\x00\x17\x02刪除 %[1]d 個隧道\x14\x01\x81\x01\x00\x00)" +
+	"\x02您確定要刪除 %[1]d 個隧道嗎？\x02刪除隧道 - %[1]s\x02您確定要刪除隧道「%[1]s」嗎？\x02%[1]s\x0a" +
+	"\x0a您將無法復原此操作。\x02無法刪除隧道\x02無法刪除隧道： %[1]s\x02無法刪除隧道\x14\x01\x81\x01\x00" +
+	"\x00\x1d\x02無法刪除 %[1]d 個隧道\x02隧道設定檔 (*.zip, *.conf)|*.zip;*.conf|所有檔案 (*" +
+	".*)|*.*\x02從檔案中匯入隧道…\x02隧道設定檔 (*.zip)|*.zip\x02匯出隧道設定至…\x02%[1]s（未簽署發行版本" +
+	"，無法自動更新）\x02離開 AmneziaWG 失敗\x02無法結束服務： %[1]v。\x0a您可能需要手動從服務管理中結束 Amnez" +
+	"iaWG 服務。\x02更新的 AmneziaWG 已經為您準備好了。\x0a強烈建議您立即進行更新。\x02狀態：等待使用者\x02立即更新" +
+	"\x02狀態：等待更新服務\x02錯誤： %[1]v。請稍後再試。\x02狀態：已完成！\x02就是現在\x02系統時鐘倒退了！\x14\x01" +
+	"\x81\x01\x00\x00\x0a\x02%[1]d 年\x14\x01\x81\x01\x00\x00\x0a\x02%[1]d 天" +
+	"\x14\x01\x81\x01\x00\x00\x0d\x02%[1]d 小時\x14\x01\x81\x01\x00\x00\x0d\x02" +
+	"%[1]d 分鐘\x14\x01\x81\x01\x00\x00\x0a\x02%[1]d 秒\x02%[1]s 前\x02%[1]d" +
+	"\u00a0B\x02%.2[1]f\u00a0KiB\x02%.2[1]f\u00a0MiB\x02%.2[1]f\u00a0GiB\x02%" +
+	".2[1]f\u00a0TiB\x02%[1]s： %[2]q\x02無效的 IP 位址\x02無效的網路位址首碼長度\x02Endpoint " +
+	"中沒有指定埠號\x02無效的 Endpoint 位址\x02括號中必須包含一個 IPv6 位址\x02無效的 MTU\x02無效的埠號" +
+	"\x02無效的 Persistent Keepalive 設定\x02無效的金鑰： %[1]v\x02金鑰必須剛好長 32 bytes\x02數" +
+	"值必須介於 0 到 2^64-1： %[1]v\x02一行中有兩個逗號\x02隧道名稱無效\x02行必須出現在段落中\x02設定的項目必須要" +
+	"有一個等號\x02必須要有一個值\x02[Interface] 中有無效選項\x02[Peer] 中有無效選項\x02Interface 中" +
+	"必須要有一把私鑰\x02[未指定]\x02每個 Peer 都必須要有公鑰\x02讀取設定時發生錯誤\x02Interface 中的金鑰無效" +
+	"\x02協定版本必須為 1\x02Peer 中的金鑰無效\x02關於 AmneziaWG (&A)"
 
-	// Total table size 201043 bytes (196KiB); checksum: 99D565D6
+	// Total table size 221908 bytes (216KiB); checksum: 73BFA1AA
