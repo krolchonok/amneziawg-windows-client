@@ -55,6 +55,10 @@ jobs:
           Write-Host "ERROR: wintun.dll not found!"
           exit 1
         }
+        if (!(Test-Path "amd64\AmneziaWG-Setup.exe")) {
+          Write-Host "ERROR: AmneziaWG-Setup.exe not found!"
+          exit 1
+        }
         Write-Host "All build outputs verified successfully"
         Get-ChildItem -Path amd64 | Format-Table Name, Length
       shell: pwsh
@@ -67,12 +71,13 @@ jobs:
           amd64\amneziawg.exe
           amd64\awg.exe
           amd64\wintun.dll
+          amd64\AmneziaWG-Setup.exe
         if-no-files-found: error
 
     - name: Create Release and Upload Assets
       if: github.event_name == 'release'
       run: |
-        gh release upload ${{ github.event.release.tag_name }} amd64\amneziawg.exe amd64\awg.exe amd64\wintun.dll --clobber
+        gh release upload ${{ github.event.release.tag_name }} amd64\amneziawg.exe amd64\awg.exe amd64\wintun.dll amd64\AmneziaWG-Setup.exe --clobber
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       shell: pwsh
